@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{8c6af0fe-91f3-47b6-9d3b-05213c0d7128}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Base\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{2b887a1b-504d-4077-8f4d-3685f4ad4e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\2D">
+      <UniqueIdentifier>{f6ea89f8-4b6b-4b4a-b838-eaa020d19adc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\3D">
+      <UniqueIdentifier>{55eb35cb-52cf-4b77-a269-7ea683d1825c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\2D\Header Files">
+      <UniqueIdentifier>{cf0306bc-1e27-4eb4-969c-8f9720c794e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\2D\Source Files">
+      <UniqueIdentifier>{f2be1f0c-88f2-4fcf-bfd7-340268b99845}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\3D\Header Files">
+      <UniqueIdentifier>{beda7a65-44a5-4fbf-bd10-5bc0491d9e4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\3D\Source Files">
+      <UniqueIdentifier>{7ba9b82a-5f33-43e4-90bf-69fab6b8b98f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\3D\VBGO Base">
+      <UniqueIdentifier>{a75f1702-1de8-406d-a9da-303efa55129b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Sound">
+      <UniqueIdentifier>{93f56f34-def8-4698-a27d-a70448fb48f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Sound\Header Files">
+      <UniqueIdentifier>{a641e3ad-5a7a-42a4-92d5-e5bd47b94d93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Sound\Source Files">
+      <UniqueIdentifier>{b36885db-921d-4d11-87ed-14c324432822}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StepTimer.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawData2D.h">
+      <Filter>GameObjects\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject2D.h">
+      <Filter>GameObjects\2D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectList.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageGO2D.h">
+      <Filter>GameObjects\2D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextGO2D.h">
+      <Filter>GameObjects\2D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawData.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMOGO.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameobject.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TPSCamera.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeBit.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBCube.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBGO.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vertex.h">
+      <Filter>GameObjects\3D\VBGO Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>GameObjects\3D\VBGO Base</Filter>
+    </ClInclude>
+    <ClInclude Include="fileVBGO.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MarchCubes.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBPillow.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBSnail.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBspiral.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Loop.h">
+      <Filter>GameObjects\Sound\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>GameObjects\Sound\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TestSound.h">
+      <Filter>GameObjects\Sound\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GPGO.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject2D.cpp">
+      <Filter>GameObjects\2D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageGO2D.cpp">
+      <Filter>GameObjects\2D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextGO2D.cpp">
+      <Filter>GameObjects\2D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameobject.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMOGO.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TPSCamera.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="treebit.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBCube.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBGO.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileVBGO.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MarchCubes.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBSnail.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Loop.cpp">
+      <Filter>GameObjects\Sound\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>GameObjects\Sound\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSound.cpp">
+      <Filter>GameObjects\Sound\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GPGO.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

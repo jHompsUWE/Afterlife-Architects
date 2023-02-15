@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Text Include="shell.txt">
+      <Filter>VBFileModels</Filter>
+    </Text>
+    <Text Include="cube.txt">
+      <Filter>VBFileModels</Filter>
+    </Text>
+    <Text Include="terrainTex.txt">
+      <Filter>VBFileModels</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="VBFileModels">
+      <UniqueIdentifier>{6697cb77-25ae-4be6-b1c9-f44a6aef5e66}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <MeshContentTask Include="Vase\JEMINA vase -up.fbx" />
+    <MeshContentTask Include="Table\table.FBX" />
+    <MeshContentTask Include="Bird\BirdModelV1.fbx" />
+  </ItemGroup>
+</Project>
