@@ -3,6 +3,8 @@
 //
 
 #include "pch.h"
+
+#include "Afterlife.h"
 #include "Game.h"
 
 using namespace DirectX;
@@ -16,7 +18,7 @@ using namespace DirectX;
 
 namespace
 {
-    std::unique_ptr<Game> g_game;
+    std::unique_ptr<Afterlife> g_game;
 }
 
 LPCWSTR g_szAppName = L"Direct3D_Win32";
@@ -57,7 +59,7 @@ int WINAPI wWinMain(_In_ HINSTANCE _hInstance, _In_opt_ HINSTANCE _hPrevInstance
     if (FAILED(hr))
         return 1;
 
-    g_game = std::make_unique<Game>();
+    g_game = std::make_unique<Afterlife>();
 
     // Register class and create window
     {

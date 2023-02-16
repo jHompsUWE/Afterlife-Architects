@@ -179,6 +179,7 @@
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
+    <ClInclude Include="Include.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loop.h" />
     <ClInclude Include="MarchCubes.h" />
