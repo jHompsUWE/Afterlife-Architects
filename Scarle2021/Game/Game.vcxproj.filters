@@ -49,46 +49,31 @@
     <Filter Include="GameObjects\Sound\Source Files">
       <UniqueIdentifier>{b36885db-921d-4d11-87ed-14c324432822}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife">
+      <UniqueIdentifier>{1e489a48-107e-458e-bb57-eb4b8005b69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Core Components">
+      <UniqueIdentifier>{b683a75a-053b-49a8-b6c1-350611c53532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Core Components\DirectX Headers">
+      <UniqueIdentifier>{0ce6f69d-da88-45ae-932e-138223e73eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Core Components\DirectX Source">
+      <UniqueIdentifier>{a10b08bb-73d8-4673-9745-d5353f7f9647}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Base\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StepTimer.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameData.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawData2D.h">
-      <Filter>GameObjects\2D</Filter>
     </ClInclude>
     <ClInclude Include="GameObject2D.h">
       <Filter>GameObjects\2D\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectList.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="ImageGO2D.h">
       <Filter>GameObjects\2D\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Helper.h">
-      <Filter>Base\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextGO2D.h">
       <Filter>GameObjects\2D\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawData.h">
-      <Filter>Base\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
       <Filter>GameObjects\3D\Header Files</Filter>
@@ -156,12 +141,39 @@
     <ClInclude Include="GPGO.h">
       <Filter>GameObjects\3D\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Afterlife.h">
+      <Filter>Afterlife</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Afterlife\Core Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>Afterlife\Core Components</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawData.h">
+      <Filter>Afterlife\Core Components</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Afterlife\Core Components\DirectX Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Afterlife\Core Components\DirectX Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Afterlife\Core Components\DirectX Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="StepTimer.h">
+      <Filter>Afterlife\Core Components\DirectX Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawData2D.h">
+      <Filter>Afterlife\Core Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectList.h">
+      <Filter>Afterlife\Core Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
-      <Filter>Base\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
       <Filter>Base\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObject2D.cpp">
@@ -226,6 +238,12 @@
     </ClCompile>
     <ClCompile Include="GPGO.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Afterlife.cpp">
+      <Filter>Afterlife</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Afterlife\Core Components\DirectX Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

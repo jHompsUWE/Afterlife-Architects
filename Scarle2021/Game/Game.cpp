@@ -600,6 +600,7 @@ void Game::ReadInput()
 {
     m_GD->m_KBS = m_keyboard->GetState();
     m_GD->m_KBS_tracker.Update(m_GD->m_KBS);
+    
     //quit game on hiting escape
     if (m_GD->m_KBS.Escape)
     {
