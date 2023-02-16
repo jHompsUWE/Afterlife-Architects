@@ -59,7 +59,7 @@ void Game::Initialize(HWND _window, int _width, int _height)
 
     //create GameData struct and populate its pointers
     m_GD = new GameData;
-    m_GD->m_GS = GS_PLAY_MAIN_CAM;
+    m_GD->m_GS = gs_main_menu;
 
     //set up systems for 2D rendering
     m_DD2D = new DrawData2D();
@@ -150,7 +150,7 @@ void Game::Initialize(HWND _window, int _width, int _height)
     m_GameObjects.push_back(m_cam);
 
     //add Player
-    Player* pPlayer = new Player("BirdModelV1", m_d3dDevice.Get(), m_fxFactory);
+    CMOGO* pPlayer = new CMOGO("BirdModelV1", m_d3dDevice.Get(), m_fxFactory);
     m_GameObjects.push_back(pPlayer);
 
     //add a secondary camera
@@ -277,6 +277,8 @@ void Game::Update(DX::StepTimer const& _timer)
     //see docs here for what's going on: https://github.com/Microsoft/DirectXTK/wiki/Keyboard
     if (m_GD->m_KBS_tracker.pressed.Space)
     {
+        //Commented out because we made our own gamestates.
+        /*
         if (m_GD->m_GS == GS_PLAY_MAIN_CAM)
         {
             m_GD->m_GS = GS_PLAY_TPS_CAM;
@@ -285,6 +287,7 @@ void Game::Update(DX::StepTimer const& _timer)
         {
             m_GD->m_GS = GS_PLAY_MAIN_CAM;
         }
+        */
     }
 
     //update all objects
@@ -314,11 +317,15 @@ void Game::Render()
 
     //set which camera to be used
     m_DD->m_cam = m_cam;
+
+    //Commented out because we made our own gamestates.
+    /*
     if (m_GD->m_GS == GS_PLAY_TPS_CAM)
     {
         m_DD->m_cam = m_TPScam;
     }
-
+    */
+    
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(m_DD);
 

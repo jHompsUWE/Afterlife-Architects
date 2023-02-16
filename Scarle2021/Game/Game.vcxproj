@@ -185,7 +185,6 @@
     <ClInclude Include="MarchCubes.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="ScarlePointers.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
@@ -223,7 +222,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TestSound.cpp" />

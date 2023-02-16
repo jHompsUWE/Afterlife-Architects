@@ -63,7 +63,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     
     // GameData
     game_data = new GameData;
-    game_data->m_GS = GS_PLAY_MAIN_CAM;
+    game_data->m_GS = gs_main_menu;
 
     // 2D rendering
     draw_data2D = new DrawData2D();

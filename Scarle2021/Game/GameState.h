@@ -6,13 +6,10 @@
 //=================================================================
 
 enum GameState {
-	GS_NULL = 0,
-	GS_ATTRACT,
-	GS_PLAY_MAIN_CAM,
-	GS_PLAY_TPS_CAM,
-	GS_PAUSE,
-	GS_GAME_OVER,
-	GS_COUNT
+	gs_main_menu = 0,
+	gs_level_select = 1,
+	gs_gameplay = 2,
+	gs_game_over = 3
 };
 
 #endif

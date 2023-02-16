@@ -10,7 +10,6 @@
 #include "CMOGO.h"
 #include "Tree.h"
 #include "Terrain.h"
-#include "Player.h"
 #include "Light.h"
 #include "GPGO.h"
 

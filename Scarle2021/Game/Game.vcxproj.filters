@@ -102,9 +102,6 @@
     <ClInclude Include="TreeBit.h">
       <Filter>GameObjects\3D\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObjects\3D\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VBCube.h">
       <Filter>GameObjects\3D\Header Files</Filter>
     </ClInclude>
@@ -219,9 +216,6 @@
       <Filter>GameObjects\3D\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="treebit.cpp">
-      <Filter>GameObjects\3D\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VBCube.cpp">
