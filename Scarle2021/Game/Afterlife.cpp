@@ -5,6 +5,7 @@
 #include "pch.h"
 #include "Afterlife.h"
 #include <time.h>
+#include <iostream>
 
 //Scarle headers
 #include "GameData.h"
@@ -13,12 +14,14 @@
 #include "DrawData2D.h"
 #include "ObjectList.h"
 
+#include "ScarlePointers.h"
+
 extern void ExitGame() noexcept;
 using namespace DirectX;
 using Microsoft::WRL::ComPtr;
 
 Afterlife::Afterlife() noexcept :
-    stupid_window(nullptr),
+    main_window(nullptr),
     output_width(800),
     output_height(600),
     feature_level(D3D_FEATURE_LEVEL_11_0)
@@ -27,7 +30,7 @@ Afterlife::Afterlife() noexcept :
 
 void Afterlife::Initialize(HWND _window, int _width, int _height)
 {
-    stupid_window = _window;
+    main_window = _window;
     output_width = std::max(_width, 1);
     output_height = std::max(_height, 1);
     
@@ -42,7 +45,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     m_timer.SetFixedTimeStep(true);
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
     */
-
+    
     // Seed random gen
     srand((UINT)time(NULL));
 
@@ -51,9 +54,12 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     keyboard = std::make_unique<Keyboard>();
     mouse = std::make_unique<Mouse>();
     mouse->SetWindow(_window);
-    mouse->SetMode(Mouse::MODE_RELATIVE);
+    
+    //ABSOLUTE: px position of the screen
+    //RELATIVE: Movement vector of the cursor
+    mouse->SetMode(Mouse::MODE_ABSOLUTE);
     // Mouse Pointer visible?
-    ShowCursor(false);
+    ShowCursor(true);
     
     // GameData
     game_data = new GameData;
@@ -102,6 +108,9 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     text = new TextGO2D("EXAMPLE TEXT VERY POG");
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
+
+    ScarlePointers::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
+        d3d_device.Get(),d3d_context.Get(), effect_factory);
 }
 
 // Executes basic tick loop
@@ -129,6 +138,9 @@ void Afterlife::Update(DX::StepTimer const& timer)
         }
     }
 
+    
+    std::cout << "Singleton" << ScarlePointers::GetGD()->m_MS.x << std::endl;
+    
     ReadInput();
 
     main_cam->Tick(game_data);
@@ -144,11 +156,12 @@ void Afterlife::Render()
         return;
     }
 
-    // Clear the stupid_window 
+    // Clear the main_window 
     Clear();
 
     //set immediate context of the graphics device
     draw_data->m_pd3dImmediateContext = d3d_context.Get();
+    //Sets main cam
     draw_data->m_cam = main_cam;
 
     //update the constant buffer for the rendering of VBGOs
@@ -208,12 +221,12 @@ void Afterlife::Present()
 // Message handlers
 void Afterlife::OnActivated()
 {
-    // TODO: Game is becoming active stupid_window.
+    // TODO: Game is becoming active main_window.
 }
 
 void Afterlife::OnDeactivated()
 {
-    // TODO: Game is becoming background stupid_window.
+    // TODO: Game is becoming background main_window.
 }
 
 void Afterlife::OnSuspending()
@@ -235,13 +248,13 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
 
     CreateResources();
 
-    // TODO: Game stupid_window is being resized.
+    // TODO: Game main_window is being resized.
 }
 
 // Properties
 void Afterlife::GetDefaultSize(int& _width, int& _height) const noexcept
 {
-    // TODO: Change to desired default stupid_window size (note minimum size is 320x200).
+    // TODO: Change to desired default main_window size (note minimum size is 320x200).
     _width = 1080;
     _height = 720;
 }
@@ -312,13 +325,13 @@ void Afterlife::CreateDevice()
     DX::ThrowIfFailed(device.As(&d3d_device));
     DX::ThrowIfFailed(context.As(&d3d_context));
 
-    // TODO: Initialize device dependent objects here (independent of stupid_window size).
+    // TODO: Initialize device dependent objects here (independent of main_window size).
 }
 
-// Allocate all memory resources that change on a stupid_window SizeChanged event.
+// Allocate all memory resources that change on a main_window SizeChanged event.
 void Afterlife::CreateResources()
 {
-    // Clear the previous stupid_window size specific context.
+    // Clear the previous main_window size specific context.
     ID3D11RenderTargetView* nullViews [] = { nullptr };
     d3d_context->OMSetRenderTargets(static_cast<UINT>(std::size(nullViews)), nullViews, nullptr);
     render_target_view.Reset();
@@ -377,10 +390,10 @@ void Afterlife::CreateResources()
         DXGI_SWAP_CHAIN_FULLSCREEN_DESC fsSwapChainDesc = {};
         fsSwapChainDesc.Windowed = TRUE;
 
-        // Create a SwapChain from a Win32 stupid_window.
+        // Create a SwapChain from a Win32 main_window.
         DX::ThrowIfFailed(dxgiFactory->CreateSwapChainForHwnd(
             d3d_device.Get(),
-            stupid_window,
+            main_window,
             &swapChainDesc,
             &fsSwapChainDesc,
             nullptr,
@@ -388,10 +401,10 @@ void Afterlife::CreateResources()
             ));
 
         // This template does not support exclusive fullscreen mode and prevents DXGI from responding to the ALT+ENTER shortcut.
-        DX::ThrowIfFailed(dxgiFactory->MakeWindowAssociation(stupid_window, DXGI_MWA_NO_ALT_ENTER));
+        DX::ThrowIfFailed(dxgiFactory->MakeWindowAssociation(main_window, DXGI_MWA_NO_ALT_ENTER));
     }
 
-    // Obtain the backbuffer for this stupid_window which will be the final 3D rendertarget.
+    // Obtain the backbuffer for this main_window which will be the final 3D rendertarget.
     ComPtr<ID3D11Texture2D> backBuffer;
     DX::ThrowIfFailed(swap_chain->GetBuffer(0, IID_PPV_ARGS(backBuffer.GetAddressOf())));
 
@@ -437,11 +450,11 @@ void Afterlife::ReadInput()
     }
 
     game_data->m_MS = mouse->GetState();
-
-    //lock the cursor to the centre of the stupid_window
-    RECT _window;
-    GetWindowRect(stupid_window, &_window);
-    SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
+    
+    //lock the cursor to the centre of the window
+    //RECT _window;
+    //GetWindowRect(main_window, &_window);
+    //SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
 }
 
 

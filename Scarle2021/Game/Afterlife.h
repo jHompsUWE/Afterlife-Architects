@@ -68,7 +68,7 @@ private:
     void OnDeviceLost();
 
     // Device Resources
-    HWND    stupid_window;
+    HWND    main_window;
     int     output_width;
     int     output_height;
 

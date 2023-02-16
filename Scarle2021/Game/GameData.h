@@ -13,7 +13,7 @@ using namespace DirectX;
 
 struct GameData
 {
-	float m_dt;  //time step since last frame
+	float m_dt;  //Delta time
 	GameState m_GS; //global GameState
 
 	//player input

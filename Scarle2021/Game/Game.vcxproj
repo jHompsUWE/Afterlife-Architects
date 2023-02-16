@@ -171,6 +171,7 @@
     <ClInclude Include="DrawData2D.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="FSM.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="gameobject.h" />
@@ -179,14 +180,15 @@
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
-    <ClInclude Include="Include.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loop.h" />
     <ClInclude Include="MarchCubes.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ScarlePointers.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TestSound.h" />
@@ -206,6 +208,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
     <ClCompile Include="fileVBGO.cpp" />
+    <ClCompile Include="FSM.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="GameObject2D.cpp" />

@@ -18,7 +18,6 @@ struct DrawData
 	CommonStates* m_states;
 	Camera* m_cam;
 	Light* m_light;
-
 };
 
 #endif
