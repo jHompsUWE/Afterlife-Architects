@@ -81,7 +81,7 @@ void VBGO::Draw(DrawData* _DD)
 {
 	//set raster state
 	ID3D11RasterizerState* useRasterS = m_pRasterState ? m_pRasterState : s_pRasterState;
-	_DD->m_pd3dImmediateContext->RSSetState(useRasterS);
+	_DD->pd3d_immediate_context->RSSetState(useRasterS);
 
 	//set standard Constant Buffer to match this object
 	s_pCB->world = m_worldMat.Transpose();
@@ -90,47 +90,47 @@ void VBGO::Draw(DrawData* _DD)
 	//Set vertex buffer
 	UINT stride = sizeof(myVertex);
 	UINT offset = 0;
-	_DD->m_pd3dImmediateContext->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
+	_DD->pd3d_immediate_context->IASetVertexBuffers(0, 1, &m_VertexBuffer, &stride, &offset);
 
 	// Set index buffer
-	_DD->m_pd3dImmediateContext->IASetIndexBuffer(m_IndexBuffer, m_IndexFormat, 0);
+	_DD->pd3d_immediate_context->IASetIndexBuffer(m_IndexBuffer, m_IndexFormat, 0);
 
 	//update the Constant Buffer in classes that inherit from this then push to the GPU here
 	ID3D11Buffer* useCB = m_pConstantBuffer ? m_pConstantBuffer : s_pConstantBuffer;
 	void* useCBData = m_pCB ? m_pCB : s_pCB;
 
-	_DD->m_pd3dImmediateContext->UpdateSubresource(useCB, 0, NULL, useCBData, 0, 0);
-	_DD->m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, &useCB);
-	_DD->m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, &useCB);
+	_DD->pd3d_immediate_context->UpdateSubresource(useCB, 0, NULL, useCBData, 0, 0);
+	_DD->pd3d_immediate_context->VSSetConstantBuffers(0, 1, &useCB);
+	_DD->pd3d_immediate_context->PSSetConstantBuffers(0, 1, &useCB);
 
 	//unless it has it own set them to the static defaults
 
 	//set primitive type used
-	_DD->m_pd3dImmediateContext->IASetPrimitiveTopology(m_topology);
+	_DD->pd3d_immediate_context->IASetPrimitiveTopology(m_topology);
 
 	//set  vertex layout
 	//note that if you do use this you'll need to change the stride and offset above
 	ID3D11InputLayout* useLayout = m_pVertexLayout ? m_pVertexLayout : s_pVertexLayout;
-	_DD->m_pd3dImmediateContext->IASetInputLayout(useLayout);
+	_DD->pd3d_immediate_context->IASetInputLayout(useLayout);
 
 	//set Vertex Shader
 	ID3D11VertexShader* useVS = m_pVertexShader ? m_pVertexShader : s_pVertexShader;
-	_DD->m_pd3dImmediateContext->VSSetShader(useVS, NULL, 0);
+	_DD->pd3d_immediate_context->VSSetShader(useVS, NULL, 0);
 
 	//set Pixel Shader
 	ID3D11PixelShader* usePS = m_pPixelShader ? m_pPixelShader : s_pPixelShader;
-	_DD->m_pd3dImmediateContext->PSSetShader(usePS, NULL, 0);
+	_DD->pd3d_immediate_context->PSSetShader(usePS, NULL, 0);
 
 	//set Texture
 	ID3D11ShaderResourceView* useTex = m_pTextureRV ? m_pTextureRV : s_pTextureRV;
-	_DD->m_pd3dImmediateContext->PSSetShaderResources(0, 1, &useTex);
+	_DD->pd3d_immediate_context->PSSetShaderResources(0, 1, &useTex);
 
 	//set sampler
 	ID3D11SamplerState* useSample = m_pSampler ? m_pSampler : s_pSampler;
-	_DD->m_pd3dImmediateContext->PSSetSamplers(0, 1, &useSample);
+	_DD->pd3d_immediate_context->PSSetSamplers(0, 1, &useSample);
 
 	//and draw
-	_DD->m_pd3dImmediateContext->DrawIndexed(3 * m_numPrims, 0, 0);//number here will need to change depending on the primative topology!
+	_DD->pd3d_immediate_context->DrawIndexed(3 * m_numPrims, 0, 0);//number here will need to change depending on the primative topology!
 }
 
 //--------------------------------------------------------------------------------------
@@ -231,13 +231,13 @@ void VBGO::Init(ID3D11Device* _GD)
 void VBGO::UpdateConstantBuffer(DrawData* _DD)
 {
 	//you'll need your own version of this if you use a different Constant Buffer
-	s_pCB->view = _DD->m_cam->GetView().Transpose();
-	s_pCB->projection = _DD->m_cam->GetProj().Transpose();
-	if (_DD->m_light)
+	s_pCB->view = _DD->main_camera->GetView().Transpose();
+	s_pCB->projection = _DD->main_camera->GetProj().Transpose();
+	if (_DD->main_light)
 	{
-		s_pCB->lightCol = _DD->m_light->GetColour();
-		s_pCB->lightPos = _DD->m_light->GetPos();
-		s_pCB->ambientCol = _DD->m_light->GetAmbCol();
+		s_pCB->lightCol = _DD->main_light->GetColour();
+		s_pCB->lightPos = _DD->main_light->GetPos();
+		s_pCB->ambientCol = _DD->main_light->GetAmbCol();
 	}
 }
 

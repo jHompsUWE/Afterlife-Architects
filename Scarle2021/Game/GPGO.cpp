@@ -99,5 +99,5 @@ void GPGO::Tick(GameData* _GD)
 
 void GPGO::Draw(DrawData* _DD)
 {
-	shape->Draw(m_worldMat,_DD->m_cam->GetView(),_DD->m_cam->GetProj(),m_colour);
+	shape->Draw(m_worldMat,_DD->main_camera->GetView(),_DD->main_camera->GetProj(),m_colour);
 }

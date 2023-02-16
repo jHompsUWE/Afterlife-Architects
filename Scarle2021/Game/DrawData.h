@@ -14,10 +14,10 @@ class Light;
 
 struct DrawData
 {
-	ID3D11DeviceContext* m_pd3dImmediateContext;
-	CommonStates* m_states;
-	Camera* m_cam;
-	Light* m_light;
+	ID3D11DeviceContext* pd3d_immediate_context;
+	CommonStates* common_states;
+	Camera* main_camera;
+	Light* main_light;
 };
 
 #endif

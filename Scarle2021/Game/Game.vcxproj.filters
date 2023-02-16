@@ -64,7 +64,10 @@
     <Filter Include="Afterlife\GameStates">
       <UniqueIdentifier>{98f5c18d-60cc-414d-ab1d-8c9dd2c27088}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Afterlife\GameStates\Interface">
+    <Filter Include="Afterlife\Singletons">
+      <UniqueIdentifier>{518271c0-e290-4a78-a594-fcf9a0b1278a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Interfaces">
       <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -178,10 +181,22 @@
       <Filter>Afterlife\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="StateTemplate.h">
-      <Filter>Afterlife\GameStates\Interface</Filter>
+      <Filter>Afterlife\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelect.h">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GamePlay.h">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Afterlife\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="ScarlePointers.h">
-      <Filter>Afterlife\Core Components</Filter>
+      <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +270,18 @@
       <Filter>Afterlife\Core Components\DirectX Source</Filter>
     </ClCompile>
     <ClCompile Include="FSM.cpp">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelect.cpp">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GamePlay.cpp">
+      <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
       <Filter>Afterlife\GameStates</Filter>
     </ClCompile>
   </ItemGroup>

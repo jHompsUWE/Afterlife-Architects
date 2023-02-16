@@ -59,12 +59,12 @@ void Game::Initialize(HWND _window, int _width, int _height)
 
     //create GameData struct and populate its pointers
     m_GD = new GameData;
-    m_GD->m_GS = gs_main_menu;
+    m_GD->current_game_state = gs_main_menu;
 
     //set up systems for 2D rendering
     m_DD2D = new DrawData2D();
-    m_DD2D->m_Sprites.reset(new SpriteBatch(m_d3dContext.Get()));
-    m_DD2D->m_Font.reset(new SpriteFont(m_d3dDevice.Get(), L"..\\Assets\\italic.spritefont"));
+    m_DD2D->sprites_batch.reset(new SpriteBatch(m_d3dContext.Get()));
+    m_DD2D->main_font.reset(new SpriteFont(m_d3dDevice.Get(), L"..\\Assets\\italic.spritefont"));
     m_states = new CommonStates(m_d3dDevice.Get());
 
     //set up DirectXTK Effects system
@@ -210,10 +210,10 @@ void Game::Initialize(HWND _window, int _width, int _height)
 
     //create DrawData struct and populate its pointers
     m_DD = new DrawData;
-    m_DD->m_pd3dImmediateContext = nullptr;
-    m_DD->m_states = m_states;
-    m_DD->m_cam = m_cam;
-    m_DD->m_light = m_light;
+    m_DD->pd3d_immediate_context = nullptr;
+    m_DD->common_states = m_states;
+    m_DD->main_camera = m_cam;
+    m_DD->main_light = m_light;
 
     //example basic 2D stuff
     ImageGO2D* logo = new ImageGO2D("logo_small", m_d3dDevice.Get());
@@ -253,7 +253,7 @@ void Game::Tick()
 void Game::Update(DX::StepTimer const& _timer)
 {
     float elapsedTime = float(_timer.GetElapsedSeconds());
-    m_GD->m_dt = elapsedTime;
+    m_GD->delta_time = elapsedTime;
 
     //this will update the audio engine but give us chance to do somehting else if that isn't working
     if (!m_audioEngine->Update())
@@ -275,7 +275,7 @@ void Game::Update(DX::StepTimer const& _timer)
     ReadInput();
     //upon space bar switch camera state
     //see docs here for what's going on: https://github.com/Microsoft/DirectXTK/wiki/Keyboard
-    if (m_GD->m_KBS_tracker.pressed.Space)
+    if (m_GD->keyboard_state_tracker.pressed.Space)
     {
         //Commented out because we made our own gamestates.
         /*
@@ -313,16 +313,16 @@ void Game::Render()
     Clear();
     
     //set immediate context of the graphics device
-    m_DD->m_pd3dImmediateContext = m_d3dContext.Get();
+    m_DD->pd3d_immediate_context = m_d3dContext.Get();
 
     //set which camera to be used
-    m_DD->m_cam = m_cam;
+    m_DD->main_camera = m_cam;
 
     //Commented out because we made our own gamestates.
     /*
     if (m_GD->m_GS == GS_PLAY_TPS_CAM)
     {
-        m_DD->m_cam = m_TPScam;
+        m_DD->main_camera = m_TPScam;
     }
     */
     
@@ -336,12 +336,12 @@ void Game::Render()
     }
 
     // Draw sprite batch stuff 
-    m_DD2D->m_Sprites->Begin(SpriteSortMode_Deferred, m_states->NonPremultiplied());
+    m_DD2D->sprites_batch->Begin(SpriteSortMode_Deferred, m_states->NonPremultiplied());
     for (list<GameObject2D*>::iterator it = m_GameObjects2D.begin(); it != m_GameObjects2D.end(); it++)
     {
         (*it)->Draw(m_DD2D);
     }
-    m_DD2D->m_Sprites->End();
+    m_DD2D->sprites_batch->End();
 
     //drawing text screws up the Depth Stencil State, this puts it back again!
     m_d3dContext->OMSetDepthStencilState(m_states->DepthDefault(), 0);
@@ -605,16 +605,16 @@ void Game::OnDeviceLost()
 
 void Game::ReadInput()
 {
-    m_GD->m_KBS = m_keyboard->GetState();
-    m_GD->m_KBS_tracker.Update(m_GD->m_KBS);
+    m_GD->keybaord_state = m_keyboard->GetState();
+    m_GD->keyboard_state_tracker.Update(m_GD->keybaord_state);
     
     //quit game on hiting escape
-    if (m_GD->m_KBS.Escape)
+    if (m_GD->keybaord_state.Escape)
     {
         ExitGame();
     }
 
-    m_GD->m_MS = m_mouse->GetState();
+    m_GD->mouse_state = m_mouse->GetState();
 
     //lock the cursor to the centre of the window
     RECT window;

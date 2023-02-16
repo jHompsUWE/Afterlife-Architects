@@ -11,14 +11,28 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Afterlife.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/CMOGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/CMOGO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/DrawData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DrawData.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/DrawData2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DrawData2D.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/FSM.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/FSM.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GPGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GPGO.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ObjectList.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ObjectList.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Player.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Player.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameData.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/ImageGO2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ImageGO2D.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/StateTemplate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StateTemplate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/TestSound.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TestSound.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/TextGO2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TextGO2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/VBGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/VBGO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/VBSnail.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/VBSnail.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/gameobject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/gameobject.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/light.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/light.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,21 +54,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Simon\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Simon\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Direct3D_Win32" type="CppProject" factoryName="C++ Project" temporary="true">
       <configuration_1>
@@ -116,7 +130,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676571320984</updated>
-      <workItem from="1676571322363" duration="6380000" />
+      <workItem from="1676571322363" duration="9081000" />
+      <workItem from="1676581312605" duration="2457000" />
+      <workItem from="1676584441713" duration="3097000" />
     </task>
     <servers />
   </component>

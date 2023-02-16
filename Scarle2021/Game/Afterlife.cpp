@@ -5,7 +5,6 @@
 #include "pch.h"
 #include "Afterlife.h"
 #include <time.h>
-#include <iostream>
 
 //Scarle headers
 #include "GameData.h"
@@ -14,6 +13,7 @@
 #include "DrawData2D.h"
 #include "ObjectList.h"
 
+//Scarle pointers singleton
 #include "ScarlePointers.h"
 
 extern void ExitGame() noexcept;
@@ -37,6 +37,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Aspect ratio
     float AR = (float)_width / (float)_height;
 
+    //Sets up directX stuff
     CreateDevice();
     CreateResources();
 
@@ -63,12 +64,12 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     
     // GameData
     game_data = new GameData;
-    game_data->m_GS = gs_main_menu;
+    game_data->current_game_state = gs_main_menu;
 
     // 2D rendering
     draw_data2D = new DrawData2D();
-    draw_data2D->m_Sprites.reset(new SpriteBatch(d3d_context.Get()));
-    draw_data2D->m_Font.reset(new SpriteFont(d3d_device.Get(), L"..\\Assets\\italic.spritefont"));
+    draw_data2D->sprites_batch.reset(new SpriteBatch(d3d_context.Get()));
+    draw_data2D->main_font.reset(new SpriteFont(d3d_device.Get(), L"..\\Assets\\italic.spritefont"));
     common_states = new CommonStates(d3d_device.Get());
 
     // Set up DirectXTK Effects system
@@ -77,13 +78,6 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     ((EffectFactory*)effect_factory)->SetDirectory(L"..\\Assets");
     // Init render system for VBGOs
     VBGO::Init(d3d_device.Get());
-
-    // Set audio system
-    AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-#ifdef _DEBUG
-    eflags = eflags | AudioEngine_Debug;
-#endif
-    audio_engine = std::make_unique<AudioEngine>(eflags);
 
     // Creates a starting light
     light = new Light(Vector3(0.0f, 100.0f, 160.0f), Color(1.0f, 1.0f, 1.0f, 1.0f),
@@ -99,53 +93,43 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
-    draw_data->m_pd3dImmediateContext = nullptr;
-    draw_data->m_states = common_states;
-    draw_data->m_cam = main_cam;
-    draw_data->m_light = light;
+    draw_data->pd3d_immediate_context = nullptr;
+    draw_data->common_states = common_states;
+    draw_data->main_camera = main_cam;
+    draw_data->main_light = light;
 
-    // Example text
-    text = new TextGO2D("EXAMPLE TEXT VERY POG");
-    text->SetPos(Vector2(100, 10));
-    text->SetColour(Color((float*)&Colors::Yellow));
-
+    //Sets up scarle pointers
     ScarlePointers::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
         d3d_device.Get(),d3d_context.Get(), effect_factory);
+
+    //Inits the finite state machine
+    finite_state_machine = std::make_unique<FSM>(game_data);
+    finite_state_machine->init();
 }
 
 // Executes basic tick loop
 void Afterlife::Tick()
 {
+    //BEGINNING FOR NOW
+    ReadInput();
+    
     timer.Tick([&]()
     {
-        Update(timer);
+        MainUpdate(timer);
     });
 
     Render();
 }
 
-void Afterlife::Update(DX::StepTimer const& timer)
+void Afterlife::MainUpdate(DX::StepTimer const& timer)
 {
-    float elapsed_time = float(timer.GetElapsedSeconds());
-    game_data->m_dt = elapsed_time;
-
-    //this will update the audio engine but give us chance to do somehting else if that isn't working
-    if (!audio_engine->Update())
-    {
-        if (audio_engine->IsCriticalError())
-        {
-            // We lost the audio device!
-        }
-    }
-
-    
-    std::cout << "Singleton" << ScarlePointers::GetGD()->m_MS.x << std::endl;
-    
-    ReadInput();
+    float delta_time = float(timer.GetElapsedSeconds());
+    game_data->delta_time = delta_time;
+   
+    finite_state_machine->Update(delta_time);
 
     main_cam->Tick(game_data);
     light->Tick(game_data);
-    text->Tick(game_data);
 }
 
 void Afterlife::Render()
@@ -160,24 +144,24 @@ void Afterlife::Render()
     Clear();
 
     //set immediate context of the graphics device
-    draw_data->m_pd3dImmediateContext = d3d_context.Get();
+    draw_data->pd3d_immediate_context = d3d_context.Get();
     //Sets main cam
-    draw_data->m_cam = main_cam;
+    draw_data->main_camera = main_cam;
 
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
 
     //Begins sprite batching stuff
-    draw_data2D->m_Sprites->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
+    draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
 
     //TODO::DO NOT FUCKING TRY TO RENDER BEFORE OR AFTER SPRITE BATCHING 
     //render HERE
+    finite_state_machine->Render();
     main_cam->Draw(draw_data);
     light->Draw(draw_data);
-    text->Draw(draw_data2D);
 
     // Stops sprite batching
-    draw_data2D->m_Sprites->End();
+    draw_data2D->sprites_batch->End();
     
     //drawing text screws up the Depth Stencil State, this puts it back again!
     d3d_context->OMSetDepthStencilState(common_states->DepthDefault(), 0);
@@ -440,16 +424,18 @@ void Afterlife::OnDeviceLost()
 
 void Afterlife::ReadInput()
 {
-    game_data->m_KBS = keyboard->GetState();
-    game_data->m_KBS_tracker.Update(game_data->m_KBS);
+    game_data->keybaord_state = keyboard->GetState();
+    game_data->keyboard_state_tracker.Update(game_data->keybaord_state);
     
     //quit game on hiting escape
-    if (game_data->m_KBS.Escape)
+    if (game_data->keybaord_state.Escape)
     {
         ExitGame();
     }
 
-    game_data->m_MS = mouse->GetState();
+    game_data->mouse_state = mouse->GetState();
+
+    finite_state_machine->GetInput();
     
     //lock the cursor to the centre of the window
     //RECT _window;

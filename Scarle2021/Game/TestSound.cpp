@@ -14,7 +14,7 @@ TestSound::~TestSound()
 
 void TestSound::Tick(GameData * _GD)
 {
-	if (_GD->m_KBS_tracker.pressed.Space)
+	if (_GD->keyboard_state_tracker.pressed.Space)
 	{
 		Play();
 	}

@@ -7,20 +7,12 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Audio.h"
-
+#include "FSM.h"
 
 // Forward declarations
 struct GameData;
 struct DrawData;
 struct DrawData2D;
-
-//not sure
-class GameObject;
-class GameObject2D;
-class Camera;
-class TPSCamera;
-class Light;
-class Sound;
 
 //Main Game Loop
 class Afterlife
@@ -51,13 +43,9 @@ public:
     void GetDefaultSize( int& width, int& height ) const noexcept;
 
 private:
+    
     // Game Loop
-    //void EventManager();
-    //void FixedUpdate();
-    void Update(DX::StepTimer const& timer);
-    //void ScaledUpdate();
-    //void LateUpdate();
-
+    void MainUpdate(DX::StepTimer const& timer);
     void Render();
     
     // Device Manager
@@ -94,19 +82,15 @@ private:
     Light* light = NULL;
 
     // required for the CMO model rendering system
-    DirectX::CommonStates* common_states = NULL;
-    DirectX::IEffectFactory* effect_factory = NULL;
+    CommonStates* common_states = NULL;
+    IEffectFactory* effect_factory = NULL;
 
     // basic keyboard and mouse input system
     void ReadInput(); //Get current Mouse and Keyboard states
-    std::unique_ptr<DirectX::Keyboard> keyboard{};
-    std::unique_ptr<DirectX::Mouse> mouse{};
-    
-    //sound stuff
-    //This uses a simple system, but a better pipeline can be used using Wave Banks
-    //See here: https://github.com/Microsoft/DirectXTK/wiki/Creating-and-playing-sound_list Using wave banks Section
-    std::unique_ptr<DirectX::AudioEngine> audio_engine{};
+    std::unique_ptr<Keyboard> keyboard{};
+    std::unique_ptr<Mouse> mouse{};
 
-    GameObject2D* text = nullptr;
+    //Instance of the FSM
+    std::unique_ptr<FSM> finite_state_machine = nullptr;
 };
 

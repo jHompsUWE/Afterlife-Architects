@@ -151,8 +151,8 @@ VBSnail::VBSnail(ID3D11Device* _GD, std::string _filename, int _sections, float 
 
 void VBSnail::Tick(GameData* _GD)
 {
-	//m_pitch += _GD->m_dt;
-	//m_yaw -= _GD->m_dt;
-	//m_roll += 0.5f * _GD->m_dt;
+	//m_pitch += _GD->delta_time;
+	//m_yaw -= _GD->delta_time;
+	//m_roll += 0.5f * _GD->delta_time;
 	VBGO::Tick(_GD);
 }

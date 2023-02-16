@@ -14,8 +14,8 @@ using namespace std;
 struct DrawData2D
 {
 	//spritebatch stuff
-	unique_ptr<SpriteBatch>	m_Sprites;
-	unique_ptr<SpriteFont> m_Font;
+	unique_ptr<SpriteBatch>	sprites_batch;
+	unique_ptr<SpriteFont> main_font;
 };
 
 #endif

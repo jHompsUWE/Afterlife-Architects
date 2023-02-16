@@ -176,12 +176,16 @@
     <ClInclude Include="GameData.h" />
     <ClInclude Include="gameobject.h" />
     <ClInclude Include="GameObject2D.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
+    <ClInclude Include="LevelSelect.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loop.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MarchCubes.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="pch.h" />
@@ -211,10 +215,14 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="GameObject2D.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="GPGO.cpp" />
     <ClCompile Include="ImageGO2D.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="Loop.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarchCubes.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
