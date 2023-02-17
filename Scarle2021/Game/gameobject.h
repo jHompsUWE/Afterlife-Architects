@@ -12,6 +12,7 @@ using namespace DirectX;
 using namespace DirectX::SimpleMath;
 
 class Camera;
+class OrthographicCamera;
 struct ID3D11DeviceContext;
 struct GameData;
 struct DrawData;

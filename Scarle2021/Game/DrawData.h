@@ -10,6 +10,7 @@
 using namespace DirectX;
 
 class Camera;
+class OrthographicCamera;
 class Light;
 
 struct DrawData
@@ -17,6 +18,7 @@ struct DrawData
 	ID3D11DeviceContext* pd3d_immediate_context;
 	CommonStates* common_states;
 	Camera* main_camera;
+	OrthographicCamera* ortho_camera;
 	Light* main_light;
 };
 

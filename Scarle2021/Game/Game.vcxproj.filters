@@ -198,6 +198,9 @@
     <ClInclude Include="ScarlePointers.h">
       <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="OrthographicCamera.h">
+      <Filter>Afterlife</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -283,6 +286,9 @@
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
       <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthographicCamera.cpp">
+      <Filter>Afterlife</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

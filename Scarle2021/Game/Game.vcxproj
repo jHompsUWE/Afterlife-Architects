@@ -188,6 +188,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MarchCubes.h" />
     <ClInclude Include="ObjectList.h" />
+    <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ScarlePointers.h" />
     <ClInclude Include="Sound.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Loop.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarchCubes.cpp" />
+    <ClCompile Include="OrthographicCamera.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

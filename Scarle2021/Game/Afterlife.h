@@ -8,6 +8,7 @@
 #include "Mouse.h"
 #include "Audio.h"
 #include "FSM.h"
+#include "OrthographicCamera.h"
 
 // Forward declarations
 struct GameData;
@@ -79,6 +80,7 @@ private:
     // 3D renders
     Camera* main_cam = NULL;
     TPSCamera* tps_cam = NULL; //Follow up camera
+    OrthographicCamera* ortho_cam = NULL;
     Light* light = NULL;
 
     // required for the CMO model rendering system

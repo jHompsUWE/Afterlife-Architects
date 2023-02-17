@@ -84,18 +84,23 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
         Color(0.4f, 0.1f, 0.1f, 1.0f));
 
     // Creates camera
-    main_cam = new Camera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
+    /*main_cam = new Camera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
         Vector3::UnitY, Vector3::Zero);
-    main_cam->SetPos(Vector3(0.0f, 200.0f, 200.0f));
+    main_cam->SetPos(Vector3(0.0f, 200.0f, 200.0f));*/
+    main_cam = nullptr;
     
     // No follow camera
     tps_cam = nullptr;
+
+    //ortho camera
+    ortho_cam = new OrthographicCamera(400.0f, 300.0f, Vector3::UnitY, Vector3::Zero);
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
     draw_data->pd3d_immediate_context = nullptr;
     draw_data->common_states = common_states;
-    draw_data->main_camera = main_cam;
+    //draw_data->main_camera = main_cam;
+    draw_data->ortho_camera = ortho_cam;
     draw_data->main_light = light;
 
     //Sets up scarle pointers
@@ -128,7 +133,8 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
    
     finite_state_machine->Update(delta_time);
 
-    main_cam->Tick(game_data);
+    //main_cam->Tick(game_data);
+    ortho_cam->Tick(game_data);
     light->Tick(game_data);
 }
 
@@ -146,7 +152,7 @@ void Afterlife::Render()
     //set immediate context of the graphics device
     draw_data->pd3d_immediate_context = d3d_context.Get();
     //Sets main cam
-    draw_data->main_camera = main_cam;
+    draw_data->ortho_camera = ortho_cam;
 
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
@@ -157,7 +163,8 @@ void Afterlife::Render()
     //TODO::DO NOT FUCKING TRY TO RENDER BEFORE OR AFTER SPRITE BATCHING 
     //render HERE
     finite_state_machine->Render();
-    main_cam->Draw(draw_data);
+    //main_cam->Draw(draw_data);
+    ortho_cam->Draw(draw_data);
     light->Draw(draw_data);
 
     // Stops sprite batching
