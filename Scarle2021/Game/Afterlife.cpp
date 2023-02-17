@@ -41,7 +41,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     CreateDevice();
     CreateResources();
 
-    // Uncomment this for fixed 60FPS
+    //TODO: Uncomment this for fixed 60FPS
     /*
     m_timer.SetFixedTimeStep(true);
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
@@ -66,7 +66,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     game_data = new GameData;
     game_data->current_game_state = gs_main_menu;
 
-    // 2D rendering
+    // 2D rendering data
     draw_data2D = new DrawData2D();
     draw_data2D->sprites_batch.reset(new SpriteBatch(d3d_context.Get()));
     draw_data2D->main_font.reset(new SpriteFont(d3d_device.Get(), L"..\\Assets\\italic.spritefont"));
@@ -74,7 +74,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     // Set up DirectXTK Effects system
     effect_factory = new EffectFactory(d3d_device.Get());
-    // Tell the fxFactory to look to the correct build directory to pull stuff in from
+    // Tell the effect_factory to look to the correct build directory to pull stuff in from
     ((EffectFactory*)effect_factory)->SetDirectory(L"..\\Assets");
     // Init render system for VBGOs
     VBGO::Init(d3d_device.Get());
@@ -87,9 +87,6 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     main_cam = new Camera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
         Vector3::UnitY, Vector3::Zero);
     main_cam->SetPos(Vector3(0.0f, 200.0f, 200.0f));
-    
-    // No follow camera
-    tps_cam = nullptr;
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
@@ -98,7 +95,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data->main_camera = main_cam;
     draw_data->main_light = light;
 
-    //Sets up scarle pointers
+    //Sets up Scarle pointers, a singleton that makes all those pointers accessible everywere
     ScarlePointers::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
         d3d_device.Get(),d3d_context.Get(), effect_factory);
 
@@ -110,9 +107,10 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 // Executes basic tick loop
 void Afterlife::Tick()
 {
-    //BEGINNING FOR NOW
+    //Gathers the inputs
     ReadInput();
-    
+
+    //Update cycle tied to a DirectX timer
     timer.Tick([&]()
     {
         MainUpdate(timer);
@@ -128,6 +126,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
    
     finite_state_machine->Update(delta_time);
 
+    //Ticks the main camera and light
     main_cam->Tick(game_data);
     light->Tick(game_data);
 }
@@ -146,6 +145,7 @@ void Afterlife::Render()
     //set immediate context of the graphics device
     draw_data->pd3d_immediate_context = d3d_context.Get();
     //Sets main cam
+    //TODO: MAKE CHANGES HERE FOR SWITCHING CAMERAS
     draw_data->main_camera = main_cam;
 
     //update the constant buffer for the rendering of VBGOs
@@ -155,7 +155,7 @@ void Afterlife::Render()
     draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
 
     //TODO::DO NOT FUCKING TRY TO RENDER BEFORE OR AFTER SPRITE BATCHING 
-    //render HERE
+    //render ****HERE****
     finite_state_machine->Render();
     main_cam->Draw(draw_data);
     light->Draw(draw_data);
@@ -411,7 +411,6 @@ void Afterlife::CreateResources()
 void Afterlife::OnDeviceLost()
 {
     // TODO: Add Direct3D resource cleanup here.
-
     depth_stencil_view.Reset();
     render_target_view.Reset();
     swap_chain.Reset();
@@ -426,21 +425,22 @@ void Afterlife::ReadInput()
 {
     game_data->keybaord_state = keyboard->GetState();
     game_data->keyboard_state_tracker.Update(game_data->keybaord_state);
+    game_data->mouse_state = mouse->GetState();
     
     //quit game on hiting escape
     if (game_data->keybaord_state.Escape)
     {
         ExitGame();
     }
-
-    game_data->mouse_state = mouse->GetState();
-
-    finite_state_machine->GetInput();
     
-    //lock the cursor to the centre of the window
-    //RECT _window;
-    //GetWindowRect(main_window, &_window);
-    //SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
+    finite_state_machine->GetInput();
+
+    //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
+    /*
+    RECT _window;
+    GetWindowRect(main_window, &_window);
+    SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
+    */
 }
 
 

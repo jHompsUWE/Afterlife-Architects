@@ -78,7 +78,6 @@ private:
 
     // 3D renders
     Camera* main_cam = NULL;
-    TPSCamera* tps_cam = NULL; //Follow up camera
     Light* light = NULL;
 
     // required for the CMO model rendering system

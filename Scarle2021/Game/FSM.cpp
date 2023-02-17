@@ -22,6 +22,7 @@ bool FSM::init()
     //Runs each state and its init function
     for (auto& state : state_array)
     {
+        //If init fails return false
         if(!state->init())
         {
             std::cout << typeid(state).name() << " Failed Initilization" << std::endl;
@@ -42,6 +43,7 @@ void FSM::Update(float& delta_time)
         if(game_data->time_scale_factor != 0)
         {
             //Scales the delta time accordingly with the time scale factor
+            //TODO: Economy and time related stuff have to be inside scaled update
             float scaled_dt = delta_time * game_data->time_scale_factor;
             state_array[game_data->current_game_state]->ScaledUpdate(scaled_dt);
         }

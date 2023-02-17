@@ -70,6 +70,9 @@
     <Filter Include="Afterlife\Interfaces">
       <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\GameStates\FSM">
+      <UniqueIdentifier>{d913d5ff-7e28-434e-af18-dde60016132b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -177,9 +180,6 @@
     <ClInclude Include="ObjectList.h">
       <Filter>Afterlife\Core Components</Filter>
     </ClInclude>
-    <ClInclude Include="FSM.h">
-      <Filter>Afterlife\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="StateTemplate.h">
       <Filter>Afterlife\Interfaces</Filter>
     </ClInclude>
@@ -197,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="ScarlePointers.h">
       <Filter>Afterlife\Singletons</Filter>
+    </ClInclude>
+    <ClInclude Include="FSM.h">
+      <Filter>Afterlife\GameStates\FSM</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +272,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Afterlife\Core Components\DirectX Source</Filter>
     </ClCompile>
-    <ClCompile Include="FSM.cpp">
-      <Filter>Afterlife\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Afterlife\GameStates</Filter>
     </ClCompile>
@@ -283,6 +283,9 @@
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
       <Filter>Afterlife\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="FSM.cpp">
+      <Filter>Afterlife\GameStates\FSM</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
