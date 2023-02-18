@@ -605,11 +605,11 @@ void Game::OnDeviceLost()
 
 void Game::ReadInput()
 {
-    m_GD->keybaord_state = m_keyboard->GetState();
-    m_GD->keyboard_state_tracker.Update(m_GD->keybaord_state);
+    m_GD->keyboard_state = m_keyboard->GetState();
+    m_GD->keyboard_state_tracker.Update(m_GD->keyboard_state);
     
     //quit game on hiting escape
-    if (m_GD->keybaord_state.Escape)
+    if (m_GD->keyboard_state.Escape)
     {
         ExitGame();
     }

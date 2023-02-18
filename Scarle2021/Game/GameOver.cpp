@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "GameOver.h"
 
-
 GameOver::GameOver(GameData* _game_data) : StateTemplate(_game_data)
 {
 }
@@ -26,7 +25,11 @@ void GameOver::LateUpdate()
 {
 }
 
-void GameOver::Render()
+void GameOver::Render2D()
+{
+}
+
+void GameOver::Render3D()
 {
 }
 

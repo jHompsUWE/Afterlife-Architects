@@ -53,9 +53,24 @@ void FSM::Update(float& delta_time)
     state_array[game_data->current_game_state]->LateUpdate();
 }
 
-void FSM::Render()
+/**
+ * \brief Used to Render all the 3D GameObjects,
+ * or any class that inherits from GameObject
+ *
+ * NOTE: RENDERING 2D OBJECTS HERE WILL RESULT IN A CRASH
+ */
+void FSM::Render3D()
 {
-    state_array[game_data->current_game_state]->Render();
+    state_array[game_data->current_game_state]->Render3D();
+}
+
+/**
+ * \brief Sprite batched, Used to Render all the 2D GameObjects,
+ * or any class that inherits from GameObject2D
+ */
+void FSM::Render2D()
+{
+    state_array[game_data->current_game_state]->Render2D();
 }
 
 void FSM::GetInput()

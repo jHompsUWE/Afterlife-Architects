@@ -25,7 +25,11 @@ void LevelSelect::LateUpdate()
 {
 }
 
-void LevelSelect::Render()
+void LevelSelect::Render2D()
+{
+}
+
+void LevelSelect::Render3D()
 {
 }
 

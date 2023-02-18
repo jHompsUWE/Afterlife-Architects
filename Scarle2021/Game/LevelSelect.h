@@ -8,13 +8,17 @@ public:
     ~LevelSelect() override;
 
     bool init() override;
-	
+
+    //Update Cycles
     void Update(float& delta_time) override;
-    auto ScaledUpdate(float& delta_time) -> void override;
+    void ScaledUpdate(float& delta_time) override;
     void LateUpdate() override;
 
-    void Render() override;
+    //Renders
+    void Render2D() override;
+    void Render3D() override;
 
+    //Input
     void GetInput() override;
 };
 

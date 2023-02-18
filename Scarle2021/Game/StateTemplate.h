@@ -1,5 +1,5 @@
 #pragma once
-#include "ScarlePointers.h"
+#include "DataManager.h"
 #include "ObjectList.h"
 #include "iostream"
 
@@ -22,7 +22,8 @@ public:
     virtual void LateUpdate() = 0;
 
     // Render
-    virtual void Render() = 0;
+    virtual void Render3D() = 0;
+    virtual void Render2D() = 0;
     
     // M&K input queue
     virtual void GetInput() = 0;

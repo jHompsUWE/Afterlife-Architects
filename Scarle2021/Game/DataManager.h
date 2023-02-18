@@ -11,20 +11,20 @@
  * everywhere in the code base.
  *
  * Example of syntax to gather game data:
- * ScarlePointers::GetGD();
+ * DataManager::GetGD();
  */
-class ScarlePointers
+class DataManager
 {
 public:
     //Deleted copy constructor
-    ScarlePointers(const ScarlePointers&) = delete;
+    DataManager(const DataManager&) = delete;
     //Delete assignment operator
-    ScarlePointers& operator=(const ScarlePointers&) = delete;
+    DataManager& operator=(const DataManager&) = delete;
 
     //Create and gets instance
-    static ScarlePointers& Get()
+    static DataManager& Get()
     {
-        static ScarlePointers instance;
+        static DataManager instance;
         return instance;
     }
 
@@ -40,7 +40,7 @@ public:
     
     
     /**
-     * \brief 
+     * \brief Populates all the pointers. do once at initialization
      * \param _aspect_ratio Float value of the aspect ration
      * \param _game_data Pointer to game data
      * \param _draw_data Pointer to draw data
@@ -64,7 +64,7 @@ public:
 
 private:
     //Private constructor
-    ScarlePointers() = default;
+    DataManager() = default;
 
     //Scarle pointers
     float aspect_ratio = 0;

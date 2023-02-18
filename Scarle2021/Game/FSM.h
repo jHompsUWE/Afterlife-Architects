@@ -1,5 +1,5 @@
 #pragma once
-#include "ScarlePointers.h"
+#include "DataManager.h"
 #include "array"
 #include "StateTemplate.h"
 
@@ -11,11 +11,12 @@ public:
 
     bool init();
 
-    // Updates
+    // Update
     void Update(float& delta_time);
 
-    //Render
-    void Render();
+    //Renderers
+    void Render3D();
+    void Render2D();
     
     // M&K input queue
     void GetInput();
@@ -23,6 +24,7 @@ public:
 private:
     //Gamedata, pointer save for ease of access of the gamestate
     GameData* game_data = nullptr;
+    
     //State Array
     std::array<std::unique_ptr<StateTemplate>, 4> state_array{};
 };

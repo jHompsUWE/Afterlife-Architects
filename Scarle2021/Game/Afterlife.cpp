@@ -14,7 +14,7 @@
 #include "ObjectList.h"
 
 //Scarle pointers singleton
-#include "ScarlePointers.h"
+#include "DataManager.h"
 
 extern void ExitGame() noexcept;
 using namespace DirectX;
@@ -69,6 +69,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     // 2D rendering data
     draw_data2D = new DrawData2D();
     draw_data2D->sprites_batch.reset(new SpriteBatch(d3d_context.Get()));
+    // More fonts can be added by they have to be sprite-fonts 
     draw_data2D->main_font.reset(new SpriteFont(d3d_device.Get(), L"..\\Assets\\italic.spritefont"));
     common_states = new CommonStates(d3d_device.Get());
 
@@ -95,8 +96,8 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data->main_camera = main_cam;
     draw_data->main_light = light;
 
-    //Sets up Scarle pointers, a singleton that makes all those pointers accessible everywere
-    ScarlePointers::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
+    //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
+    DataManager::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
         d3d_device.Get(),d3d_context.Get(), effect_factory);
 
     //Inits the finite state machine
@@ -151,16 +152,20 @@ void Afterlife::Render()
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
 
-    //Begins sprite batching stuff
-    draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
+    ////----------------------------------------------------------------
 
-    //TODO::DO NOT FUCKING TRY TO RENDER BEFORE OR AFTER SPRITE BATCHING 
-    //render ****HERE****
-    finite_state_machine->Render();
+    //Draws 3D GOs
+    finite_state_machine->Render3D();
     main_cam->Draw(draw_data);
     light->Draw(draw_data);
-
-    // Stops sprite batching
+    
+    //Begins sprite batching stuff
+    draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
+    
+    //After sprite batch, rendering 2D GOs is now possible
+    finite_state_machine->Render2D();
+    
+    //Stops sprite batching
     draw_data2D->sprites_batch->End();
     
     //drawing text screws up the Depth Stencil State, this puts it back again!
@@ -423,12 +428,12 @@ void Afterlife::OnDeviceLost()
 
 void Afterlife::ReadInput()
 {
-    game_data->keybaord_state = keyboard->GetState();
-    game_data->keyboard_state_tracker.Update(game_data->keybaord_state);
+    game_data->keyboard_state = keyboard->GetState();
+    game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
     game_data->mouse_state = mouse->GetState();
     
-    //quit game on hiting escape
-    if (game_data->keybaord_state.Escape)
+    //quit game on escape press
+    if (game_data->keyboard_state.Escape)
     {
         ExitGame();
     }

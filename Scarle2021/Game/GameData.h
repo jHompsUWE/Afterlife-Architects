@@ -2,7 +2,7 @@
 #define _GAME_DATA_H_
 
 //=================================================================
-//Data to be passed by game to all Game Objects via Tick
+//Main GameData class. Needed to be provided to most GOs in update
 //=================================================================
 
 #include "GameState.h"
@@ -18,7 +18,7 @@ struct GameData
 	GameState current_game_state; //global GameState
 
 	//player input
-	Keyboard::State keybaord_state;
+	Keyboard::State keyboard_state;
 	Mouse::State mouse_state;
 	Keyboard::KeyboardStateTracker keyboard_state_tracker;
 };

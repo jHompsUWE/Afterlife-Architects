@@ -7,14 +7,18 @@ public:
     explicit GameOver(GameData* _game_data);
     ~GameOver() override;
 
-    bool init() override;
-	
-    void Update(float& delta_time) override;
-    void ScaledUpdate(float& delta_time) override;
-    void LateUpdate() override;
+	bool init() override;
 
-	void Render() override;
-	
-    void GetInput() override;
+	//Update Cycles
+	void Update(float& delta_time) override;
+	void ScaledUpdate(float& delta_time) override;
+	void LateUpdate() override;
+
+	//Renders
+	void Render2D() override;
+	void Render3D() override;
+
+	//Input
+	void GetInput() override;
 };
 

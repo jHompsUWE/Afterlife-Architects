@@ -67,11 +67,11 @@
     <Filter Include="Afterlife\Singletons">
       <UniqueIdentifier>{518271c0-e290-4a78-a594-fcf9a0b1278a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Afterlife\Interfaces">
-      <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Afterlife\GameStates\FSM">
       <UniqueIdentifier>{d913d5ff-7e28-434e-af18-dde60016132b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\GameStates\Interface">
+      <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +181,7 @@
       <Filter>Afterlife\Core Components</Filter>
     </ClInclude>
     <ClInclude Include="StateTemplate.h">
-      <Filter>Afterlife\Interfaces</Filter>
+      <Filter>Afterlife\GameStates\Interface</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Afterlife\GameStates</Filter>
@@ -195,7 +195,7 @@
     <ClInclude Include="GameOver.h">
       <Filter>Afterlife\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="ScarlePointers.h">
+    <ClInclude Include="DataManager.h">
       <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
     <ClInclude Include="FSM.h">

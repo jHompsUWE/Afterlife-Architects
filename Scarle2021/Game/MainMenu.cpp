@@ -29,14 +29,18 @@ void MainMenu::LateUpdate()
 {
 }
 
-void MainMenu::Render()
+void MainMenu::Render2D()
 {
-    text->Draw(ScarlePointers::GetDD2D());
+    text->Draw(DataManager::GetDD2D());
+}
+
+void MainMenu::Render3D()
+{
 }
 
 void MainMenu::GetInput()
 {
-    if(game_data->keybaord_state.A)
+    if(game_data->keyboard_state.A)
     {
         std::cout << "TEST" << std::endl;
         game_data->current_game_state = gs_gameplay;

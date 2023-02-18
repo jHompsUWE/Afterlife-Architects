@@ -29,9 +29,13 @@ void GamePlay::LateUpdate()
 {
 }
 
-void GamePlay::Render()
+void GamePlay::Render2D()
 {
-    text->Draw(ScarlePointers::GetDD2D());
+    text->Draw(DataManager::GetDD2D());
+}
+
+void GamePlay::Render3D()
+{
 }
 
 void GamePlay::GetInput()
