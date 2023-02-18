@@ -7,7 +7,10 @@
 #include "LevelSelect.h"
 #include "MainMenu.h"
 
-
+/**
+ * \brief This is the main game Finite State Machine, basically, our game loop!
+ * \param _game_data Pointer to GameData
+ */
 FSM::FSM(GameData* _game_data) : game_data(_game_data)
 {
     //Allocate a state to each slot of the state array
@@ -32,6 +35,15 @@ bool FSM::init()
     return true;
 }
 
+/**
+ * \brief This is the main update splitting function, here update is split in 3 different ones!
+ *
+ * Update: Normal Update
+ * Scaled Update: Delta time multiplied by scale value
+ * Late Update: Last update function called before rendering
+ * 
+ * \param delta_time DX step timer time elapsed
+ */
 void FSM::Update(float& delta_time)
 {
     //normal update
