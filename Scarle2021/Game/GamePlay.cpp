@@ -1,44 +1,38 @@
 #include "pch.h"
 #include "GamePlay.h"
 
-GamePlay::GamePlay(GameData* _game_data) : StateTemplate(_game_data)
-{
-}
+GamePlay::GamePlay()
+= default;
 
 GamePlay::~GamePlay()
 = default;
 
 bool GamePlay::init()
 {
-    text = new TextGO2D("GAMEPLAYYYYYYYYYYYYY");
-    text->SetPos(Vector2(100, 10));
-    text->SetColour(Color((float*)&Colors::Yellow));
-    
     return true;
 }
 
-void GamePlay::Update(float& delta_time)
+void GamePlay::Update(GameData* game_data)
 {
 }
 
-void GamePlay::ScaledUpdate(float& delta_time)
+void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
 {
 }
 
-void GamePlay::LateUpdate()
+void GamePlay::LateUpdate(GameData* game_data)
 {
 }
 
-void GamePlay::Render2D()
-{
-    text->Draw(DataManager::GetDD2D());
-}
-
-void GamePlay::Render3D()
+void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
 }
 
-void GamePlay::GetInput()
+void GamePlay::Render3D(DrawData* draw_data)
+{
+}
+
+void GamePlay::GetEvents(queue<AfterlifeEvent>&)
 {
 }
 

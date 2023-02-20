@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "GameOver.h"
 
-GameOver::GameOver(GameData* _game_data) : StateTemplate(_game_data)
-{
-}
+GameOver::GameOver()
+= default;
 
 GameOver::~GameOver()
 = default;
@@ -13,27 +12,27 @@ bool GameOver::init()
     return true;
 }
 
-void GameOver::Update(float& delta_time)
+void GameOver::Update(GameData* game_data)
 {
 }
 
-void GameOver::ScaledUpdate(float& delta_time)
+void GameOver::ScaledUpdate(GameData* game_data, float& scaled_dt)
 {
 }
 
-void GameOver::LateUpdate()
+void GameOver::LateUpdate(GameData* game_data)
 {
 }
 
-void GameOver::Render2D()
+void GameOver::Render2D(DrawData2D* draw_data2D)
 {
 }
 
-void GameOver::Render3D()
+void GameOver::Render3D(DrawData* draw_data)
 {
 }
 
-void GameOver::GetInput()
+void GameOver::GetEvents(queue<AfterlifeEvent>&)
 {
 }
 

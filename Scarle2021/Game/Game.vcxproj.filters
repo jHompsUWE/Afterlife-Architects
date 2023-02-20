@@ -201,6 +201,9 @@
     <ClInclude Include="FSM.h">
       <Filter>Afterlife\GameStates\FSM</Filter>
     </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Afterlife\Singletons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -286,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="FSM.cpp">
       <Filter>Afterlife\GameStates\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Afterlife\Singletons</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

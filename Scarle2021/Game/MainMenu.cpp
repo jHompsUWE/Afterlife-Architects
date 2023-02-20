@@ -1,50 +1,39 @@
 #include "pch.h"
 #include "MainMenu.h"
 
-MainMenu::MainMenu(GameData* _game_data) : StateTemplate(_game_data)
-{
-}
+MainMenu::MainMenu()
+= default;
 
 MainMenu::~MainMenu()
 = default;
 
 bool MainMenu::init()
 {
-    text = new TextGO2D("MAIN MENU");
-    text->SetPos(Vector2(100, 10));
-    text->SetColour(Color((float*)&Colors::Yellow));
-    
     return true;
 }
 
-void MainMenu::Update(float& delta_time)
+void MainMenu::Update(GameData* game_data)
 {
 } 
 
-void MainMenu::ScaledUpdate(float& delta_time)
+void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)
 {
 }
 
-void MainMenu::LateUpdate()
+void MainMenu::LateUpdate(GameData* game_data)
 {
 }
 
-void MainMenu::Render2D()
-{
-    text->Draw(DataManager::GetDD2D());
-}
-
-void MainMenu::Render3D()
+void MainMenu::Render2D(DrawData2D* draw_data2D)
 {
 }
 
-void MainMenu::GetInput()
+void MainMenu::Render3D(DrawData* draw_data)
 {
-    if(game_data->keyboard_state.A)
-    {
-        std::cout << "TEST" << std::endl;
-        game_data->current_game_state = gs_gameplay;
-    }
+}
+
+void MainMenu::GetEvents(queue<AfterlifeEvent>&)
+{
 }
 
 

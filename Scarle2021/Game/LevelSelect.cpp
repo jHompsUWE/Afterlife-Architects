@@ -1,9 +1,8 @@
 #include "pch.h"
 #include "LevelSelect.h"
 
-LevelSelect::LevelSelect(GameData* _game_data) : StateTemplate(_game_data)
-{
-}
+LevelSelect::LevelSelect()
+= default;
 
 LevelSelect::~LevelSelect()
 = default;
@@ -13,26 +12,26 @@ bool LevelSelect::init()
     return true;
 }
 
-void LevelSelect::Update(float& delta_time)
+void LevelSelect::Update(GameData* game_data)
 {
 }
 
-void LevelSelect::ScaledUpdate(float& delta_time)
+void LevelSelect::ScaledUpdate(GameData* game_data, float& scaled_dt)
 {
 }
 
-void LevelSelect::LateUpdate()
+void LevelSelect::LateUpdate(GameData* game_data)
 {
 }
 
-void LevelSelect::Render2D()
+void LevelSelect::Render2D(DrawData2D* draw_data2D)
 {
 }
 
-void LevelSelect::Render3D()
+void LevelSelect::Render3D(DrawData* draw_data)
 {
 }
 
-void LevelSelect::GetInput()
+void LevelSelect::GetEvents(queue<AfterlifeEvent>&)
 {
 }

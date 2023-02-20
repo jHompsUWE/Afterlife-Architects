@@ -15,9 +15,9 @@ struct GameData
 {
 	float delta_time;  //Delta time
 	float time_scale_factor = 1; //Scale of the scale update
-	GameState current_game_state; //global GameState
+	GameState current_game_state = gs_main_menu; //global GameState
 
-	//player input
+	//player input state, this is here mostly for debug reasons.
 	Keyboard::State keyboard_state;
 	Mouse::State mouse_state;
 	Keyboard::KeyboardStateTracker keyboard_state_tracker;
