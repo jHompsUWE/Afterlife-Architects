@@ -11,28 +11,16 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Afterlife.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/CMOGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/CMOGO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/DrawData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DrawData.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/DrawData2D.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DrawData2D.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/FSM.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GPGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GPGO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameData.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ImageGO2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ImageGO2D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameOver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GamePlay.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/LevelSelect.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/LevelSelect.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/StateTemplate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StateTemplate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/TestSound.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TestSound.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/TextGO2D.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TextGO2D.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/VBGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/VBGO.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/VBSnail.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/VBSnail.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/gameobject.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/gameobject.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/light.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/light.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +28,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared/windef.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared/winerror.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/d3d11.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/d3d11_1.h" root0="SKIP_HIGHLIGHTING" />
@@ -59,6 +48,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -133,6 +123,12 @@
       <workItem from="1676571322363" duration="9081000" />
       <workItem from="1676581312605" duration="2457000" />
       <workItem from="1676584441713" duration="3097000" />
+      <workItem from="1676623377909" duration="320000" />
+      <workItem from="1676624730679" duration="162000" />
+      <workItem from="1676625868017" duration="1025000" />
+      <workItem from="1676628250805" duration="150000" />
+      <workItem from="1676676954418" duration="2430000" />
+      <workItem from="1676837256534" duration="18711000" />
     </task>
     <servers />
   </component>
@@ -145,13 +141,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Game/pch.h</url>
-          <line>61</line>
-          <option name="timeStamp" value="60" />
+          <line>60</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/Game/pch.h</url>
-          <line>60</line>
-          <option name="timeStamp" value="61" />
+          <line>61</line>
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

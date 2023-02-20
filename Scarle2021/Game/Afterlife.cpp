@@ -14,7 +14,7 @@
 #include "ObjectList.h"
 
 //Scarle pointers singleton
-#include "ScarlePointers.h"
+#include "DataManager.h"
 
 extern void ExitGame() noexcept;
 using namespace DirectX;
@@ -41,7 +41,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     CreateDevice();
     CreateResources();
 
-    // Uncomment this for fixed 60FPS
+    //TODO: Uncomment this for fixed 60FPS
     /*
     m_timer.SetFixedTimeStep(true);
     m_timer.SetTargetElapsedSeconds(1.0 / 60);
@@ -66,15 +66,16 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     game_data = new GameData;
     game_data->current_game_state = gs_main_menu;
 
-    // 2D rendering
+    // 2D rendering data
     draw_data2D = new DrawData2D();
     draw_data2D->sprites_batch.reset(new SpriteBatch(d3d_context.Get()));
+    // More fonts can be added by they have to be sprite-fonts 
     draw_data2D->main_font.reset(new SpriteFont(d3d_device.Get(), L"..\\Assets\\italic.spritefont"));
     common_states = new CommonStates(d3d_device.Get());
 
     // Set up DirectXTK Effects system
     effect_factory = new EffectFactory(d3d_device.Get());
-    // Tell the fxFactory to look to the correct build directory to pull stuff in from
+    // Tell the effect_factory to look to the correct build directory to pull stuff in from
     ((EffectFactory*)effect_factory)->SetDirectory(L"..\\Assets");
     // Init render system for VBGOs
     VBGO::Init(d3d_device.Get());
@@ -104,39 +105,66 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data->ortho_camera = ortho_cam;
     draw_data->main_light = light;
 
-    //Sets up scarle pointers
-    ScarlePointers::Get().PopulatePointers(AR, game_data, draw_data, draw_data2D,
+    //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
+    DataManager::Get().PopulatePointers(AR, &main_window, game_data, draw_data, draw_data2D,
         d3d_device.Get(),d3d_context.Get(), effect_factory);
 
     //Inits the finite state machine
-    finite_state_machine = std::make_unique<FSM>(game_data);
+    finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
 }
 
-// Executes basic tick loop
+// Executes the basic game loop
 void Afterlife::Tick()
 {
-    //BEGINNING FOR NOW
-    ReadInput();
-    
+    //Update cycle tied to a DirectX timer
     timer.Tick([&]()
     {
         MainUpdate(timer);
+        ReadInput();
     });
-
     Render();
 }
 
 void Afterlife::MainUpdate(DX::StepTimer const& timer)
 {
-    float delta_time = float(timer.GetElapsedSeconds());
+    const float delta_time = float(timer.GetElapsedSeconds());
     game_data->delta_time = delta_time;
    
-    finite_state_machine->Update(delta_time);
+    finite_state_machine->Update(game_data);
 
     //main_cam->Tick(game_data);
     ortho_cam->Tick(game_data);
     light->Tick(game_data);
+}
+
+void Afterlife::ReadInput()
+{
+    //Updates states in GameData
+    game_data->keyboard_state = keyboard->GetState();
+    game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
+    game_data->mouse_state = mouse->GetState();
+    
+    //Clears the event queue if it not empty
+    while(!EventManager::GetEventQueue().empty())
+    {
+        EventManager::GetEventQueue().pop();
+    }
+    //Reads the input and generates events accordingly
+    EventManager::ReadInput(game_data);
+    
+    //Closes the game. Defined here so it is not dependant on the FSM
+    if (game_data->keyboard_state.Escape)
+    {
+        ExitGame();
+    }
+    
+    //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
+    /*
+    RECT _window;
+    GetWindowRect(main_window, &_window);
+    SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
+    */
 }
 
 void Afterlife::Render()
@@ -158,6 +186,13 @@ void Afterlife::Render()
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
 
+    //Renders basic scene elements
+    main_cam->Draw(draw_data);
+    light->Draw(draw_data);
+    
+    //Draws 3D GOs
+    finite_state_machine->Render3D(draw_data);
+    
     //Begins sprite batching stuff
     draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
 
@@ -419,7 +454,6 @@ void Afterlife::CreateResources()
 void Afterlife::OnDeviceLost()
 {
     // TODO: Add Direct3D resource cleanup here.
-
     depth_stencil_view.Reset();
     render_target_view.Reset();
     swap_chain.Reset();
@@ -430,26 +464,7 @@ void Afterlife::OnDeviceLost()
     CreateResources();
 }
 
-void Afterlife::ReadInput()
-{
-    game_data->keybaord_state = keyboard->GetState();
-    game_data->keyboard_state_tracker.Update(game_data->keybaord_state);
-    
-    //quit game on hiting escape
-    if (game_data->keybaord_state.Escape)
-    {
-        ExitGame();
-    }
 
-    game_data->mouse_state = mouse->GetState();
-
-    finite_state_machine->GetInput();
-    
-    //lock the cursor to the centre of the window
-    //RECT _window;
-    //GetWindowRect(main_window, &_window);
-    //SetCursorPos((_window.left + _window.right) >> 1, (_window.bottom + _window.top) >> 1);
-}
 
 
 

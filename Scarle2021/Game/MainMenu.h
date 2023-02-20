@@ -1,21 +1,26 @@
 #pragma once
 #include "StateTemplate.h"
+#include "TextGO2D.h"
 
 class MainMenu : public StateTemplate
 {
 public:
-	explicit MainMenu(GameData* _game_data);
+	MainMenu();
 	~MainMenu() override;
 
 	bool init() override;
-	
-	void Update(float& delta_time) override;
-	void ScaledUpdate(float& delta_time) override;
-	void LateUpdate() override;
 
-	void Render() override;
+	//Events
+	void GetEvents(queue<AfterlifeEvent>& event_queue) override;
 	
-	void GetInput() override;
+	//Update Cycles
+	void Update(GameData* game_data) override;
+	void ScaledUpdate(GameData* game_data, float& scaled_dt) override;
+	void LateUpdate(GameData* game_data) override;
+	
+	//Renders
+	void Render2D(DrawData2D* draw_data2D) override;
+	void Render3D(DrawData* draw_data) override;
 
 private:
 	TextGO2D* text = nullptr;

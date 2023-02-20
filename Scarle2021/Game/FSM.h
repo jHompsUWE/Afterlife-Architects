@@ -1,29 +1,29 @@
 #pragma once
-#include "ScarlePointers.h"
+#include "DataManager.h"
 #include "array"
 #include "StateTemplate.h"
 
+/**
+ * \brief This is the main game Finite State Machine, basically, our game loop!
+ */
 class FSM
 {
 public:
-    FSM(GameData* _game_data);
+    explicit FSM(GameState& _current_state);
     ~FSM() = default;
 
     bool init();
 
-    // Updates
-    void Update(float& delta_time);
+    // Update
+    void Update(GameData* game_data);
 
-    //Render
-    void Render();
-    
-    // M&K input queue
-    void GetInput();
+    // Renderers
+    void Render3D(DrawData* draw_data) const;
+    void Render2D(DrawData2D* draw_data2D) const;
 
 private:
-    //Gamedata, pointer save for ease of access of the gamestate
-    GameData* game_data = nullptr;
-    //State Array
+    GameState& current_state;
+    // State Array 
     std::array<std::unique_ptr<StateTemplate>, 4> state_array{};
 };
 

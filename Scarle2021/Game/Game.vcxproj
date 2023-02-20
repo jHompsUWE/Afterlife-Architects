@@ -169,6 +169,7 @@
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DrawData.h" />
     <ClInclude Include="DrawData2D.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FSM.h" />
@@ -190,7 +191,7 @@
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ScarlePointers.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Afterlife.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="fileVBGO.cpp" />
     <ClCompile Include="FSM.cpp" />
     <ClCompile Include="Game.cpp" />

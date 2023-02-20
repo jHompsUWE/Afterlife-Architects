@@ -67,7 +67,10 @@
     <Filter Include="Afterlife\Singletons">
       <UniqueIdentifier>{518271c0-e290-4a78-a594-fcf9a0b1278a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Afterlife\Interfaces">
+    <Filter Include="Afterlife\GameStates\FSM">
+      <UniqueIdentifier>{d913d5ff-7e28-434e-af18-dde60016132b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\GameStates\Interface">
       <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -177,11 +180,8 @@
     <ClInclude Include="ObjectList.h">
       <Filter>Afterlife\Core Components</Filter>
     </ClInclude>
-    <ClInclude Include="FSM.h">
-      <Filter>Afterlife\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="StateTemplate.h">
-      <Filter>Afterlife\Interfaces</Filter>
+      <Filter>Afterlife\GameStates\Interface</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Afterlife\GameStates</Filter>
@@ -195,11 +195,14 @@
     <ClInclude Include="GameOver.h">
       <Filter>Afterlife\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="ScarlePointers.h">
+    <ClInclude Include="DataManager.h">
       <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
-    <ClInclude Include="OrthographicCamera.h">
-      <Filter>Afterlife</Filter>
+    <ClInclude Include="FSM.h">
+      <Filter>Afterlife\GameStates\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,9 +275,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>Afterlife\Core Components\DirectX Source</Filter>
     </ClCompile>
-    <ClCompile Include="FSM.cpp">
-      <Filter>Afterlife\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Afterlife\GameStates</Filter>
     </ClCompile>
@@ -287,8 +287,11 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>Afterlife\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="OrthographicCamera.cpp">
-      <Filter>Afterlife</Filter>
+    <ClCompile Include="FSM.cpp">
+      <Filter>Afterlife\GameStates\FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Afterlife\Singletons</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

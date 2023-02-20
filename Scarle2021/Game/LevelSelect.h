@@ -4,17 +4,23 @@
 class LevelSelect : public StateTemplate
 {
 public:
-    explicit LevelSelect(GameData* _game_data);
+    LevelSelect();
     ~LevelSelect() override;
 
     bool init() override;
-	
-    void Update(float& delta_time) override;
-    auto ScaledUpdate(float& delta_time) -> void override;
-    void LateUpdate() override;
+    
+    //Events
+    void GetEvents(queue<AfterlifeEvent>&event_queue) override;
+    
+    //Update Cycles
+    void Update(GameData* game_data) override;
+    void ScaledUpdate(GameData* game_data, float& scaled_dt) override;
+    void LateUpdate(GameData* game_data) override;
 
-    void Render() override;
+    //Renders
+    void Render2D(DrawData2D* draw_data2D) override;
+    void Render3D(DrawData* draw_data) override;
 
-    void GetInput() override;
+    
 };
 
