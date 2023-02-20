@@ -1,14 +1,10 @@
 #include "pch.h"
 #include "OrthographicCamera.h"
 
-OrthographicCamera::OrthographicCamera(float _width, float _height, Vector3 _up, Vector3 _target)
-	: projection_matrix(DirectX::XMMatrixOrthographicLH(_width, _height, -1.0f, 1.0f))//near and far set to -1 and 1
+OrthographicCamera::OrthographicCamera(float left, float right, float bottom, float top, float near, float far)
+	
 {
-	width = _width;
-	height = _height;
-
-	target = _target;
-	up = _up;
+	
 }
 
 OrthographicCamera::~OrthographicCamera()

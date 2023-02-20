@@ -7,7 +7,7 @@ public:
 	//near and far values exist as well, -1 for near value and 1 for far are default
 	//which is fine for an orthographic camera
 
-	OrthographicCamera(float width, float height, Vector3 _up = Vector3::Up, Vector3 _target = Vector3::Zero);
+	OrthographicCamera(float left, float right, float bottom, float top, float near, float far);
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
@@ -33,9 +33,19 @@ private:
 	float width;
 	float height;
 
+	float left = -10.0f;
+	float right = 10.0f;
+	float bottom = -10.0f;
+	float top = 10.0f;
+	float near_plane = 0.1f;
+	float far_plane = 100.0f;
+
 protected:
-	Matrix projection_matrix;
-	Matrix view_matrix;
+	XMMATRIX projection_matrix = XMMatrixOrthographicOffCenterLH(left, right, bottom, top, near_plane, far_plane);
+	XMMATRIX view_matrix = XMMatrixIdentity();
+	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
+	//Matrix projection_matrix;
+	//Matrix view_matrix;
 	Matrix view_projection_matrix;
 
 	Vector3 _position;
