@@ -12,7 +12,7 @@ bool GameOver::init()
     return true;
 }
 
-void GameOver::GetEvents(queue<AfterlifeEvent>&event_queue)
+void GameOver::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 

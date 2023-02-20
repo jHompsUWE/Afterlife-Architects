@@ -18,11 +18,11 @@ bool MainMenu::init()
     return true;
 }
 
-void MainMenu::GetEvents(queue<AfterlifeEvent>& event_queue)
+void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
-    while (!event_queue.empty())
+    for (auto& ev : event_list)
     {
-        switch (event_queue.front())
+        switch (ev)
         {
         case input_up:
             DataManager::GetGD()->current_game_state = gs_gameplay;
@@ -40,10 +40,6 @@ void MainMenu::GetEvents(queue<AfterlifeEvent>& event_queue)
         default:
             break;
         }
-
-        std::cout << event_queue.front() << " soos" << std::endl;
-        
-        event_queue.pop();
     }
 }
 

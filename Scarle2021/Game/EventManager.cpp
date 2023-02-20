@@ -9,7 +9,7 @@ EventManager& EventManager::Get()
 }
 
 /**
- * \brief Can be called to manually add an Event to the Event Queue
+ * \brief Can be called to manually add an Event to the Event list
  * \param _event What event will be added
  */
 void EventManager::GenerateEvent(AfterlifeEvent _event)
@@ -26,18 +26,18 @@ void EventManager::ReadInput(GameData* game_data)
 }
 
 /**
- * \return std::queue of all the Events generated from the last frame 
+ * \return std::list of all the Events generated from the last frame 
  */
-std::queue<AfterlifeEvent>& EventManager::GetEventQueue()
+std::list<AfterlifeEvent>& EventManager::GetEventList()
 {
-    return Get().event_queue;
+    return Get().event_list;
 }
 
 // Internal Functions --------------------------------------------------------------------------------------------------
 
 void EventManager::IGenerateEvent(AfterlifeEvent _event)
 {
-    event_queue.push(_event);
+    event_list.push_back(_event);
 }
 
 /**
@@ -67,10 +67,10 @@ void EventManager::MapInputToEvent(const bool& pressed, AfterlifeEvent event)
 {
     if(pressed)
     {
-        //If the button is pressed update the input state map and add event to queue
+        //If the button is pressed update the input state map and add event to list
         if(!input_state[event])
         {
-            event_queue.push(event);
+            event_list.push_back(event);
             input_state[event] = true;
         }
     }

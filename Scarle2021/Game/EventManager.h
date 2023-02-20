@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include <queue>
 #include <unordered_map>
 #include "GameData.h"
 
@@ -24,7 +23,7 @@ public:
 	//Static public functions
 	static void GenerateEvent(AfterlifeEvent _event);
 	static void ReadInput(GameData* game_data);
-	static std::queue<AfterlifeEvent>& GetEventQueue();
+	static std::list<AfterlifeEvent>& GetEventList();
 
 private:
 	//Private constructor
@@ -37,6 +36,6 @@ private:
 	void MapInputToEvent(const bool& pressed, AfterlifeEvent event);
 	
 	//Event queue & input state
-	std::queue<AfterlifeEvent> event_queue{};
+	std::list<AfterlifeEvent> event_list{};
 	std::unordered_map<AfterlifeEvent, bool> input_state{};
 };

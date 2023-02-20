@@ -45,7 +45,7 @@ bool FSM::init()
 void FSM::Update(GameData* game_data)
 {
     //Events are dispatched before the first update
-    state_array[current_state]->GetEvents(EventManager::GetEventQueue());
+    state_array[current_state]->GetEvents(EventManager::GetEventList());
     
     //Update
     state_array[current_state]->Update(game_data);

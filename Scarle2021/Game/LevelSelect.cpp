@@ -12,7 +12,7 @@ bool LevelSelect::init()
     return true;
 }
 
-void LevelSelect::GetEvents(queue<AfterlifeEvent>&event_queue)
+void LevelSelect::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 

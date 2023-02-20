@@ -134,11 +134,8 @@ void Afterlife::ReadInput()
     game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
     game_data->mouse_state = mouse->GetState();
     
-    //Clears the event queue if it not empty
-    while(!EventManager::GetEventQueue().empty())
-    {
-        EventManager::GetEventQueue().pop();
-    }
+    //Clears the event list if it not empty
+    EventManager::GetEventList().clear();
     //Reads the input and generates events accordingly
     EventManager::ReadInput(game_data);
     

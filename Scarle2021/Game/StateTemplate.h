@@ -17,8 +17,8 @@ public:
     // Init
     virtual bool init() = 0;
 
-    // Event Queue
-    virtual void GetEvents(std::queue<AfterlifeEvent>& event_queue) = 0;
+    // Event List
+    virtual void GetEvents(std::list<AfterlifeEvent>& event_list) = 0;
     
     // Updates
     virtual void Update(GameData* game_data) = 0;

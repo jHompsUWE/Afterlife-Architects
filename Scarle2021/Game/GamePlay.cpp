@@ -17,7 +17,7 @@ bool GamePlay::init()
     text->SetColour(Color((float*)&Colors::Yellow));
 
     plane = new CMOGO("Platform", DataManager::GetD3DDevice(), DataManager::GetEF());
-    plane->SetPitch(0.9f);
+    plane->SetPitch(1.57f);
     cube = new FileVBGO("cube", DataManager::GetD3DDevice());
 
     float params[3];
@@ -28,14 +28,14 @@ bool GamePlay::init()
     return true;
 }
 
-void GamePlay::GetEvents(queue<AfterlifeEvent>&event_queue)
+void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 
 void GamePlay::Update(GameData* game_data)
 {
     //constantly moves 
-    plane->SetPitch(plane->GetPitch() + 0.01);
+    plane->SetYaw(plane->GetYaw() + 0.01);
     
     plane->Tick(game_data);
     cube->Tick(game_data);

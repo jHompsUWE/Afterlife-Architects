@@ -73,6 +73,9 @@
     <Filter Include="Afterlife\GameStates\Interface">
       <UniqueIdentifier>{1a8ff8ed-90c3-45d9-bcab-9b10646fbb29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs">
+      <UniqueIdentifier>{da403b41-258b-4075-a42a-811ed53d8c07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -204,6 +207,9 @@
     <ClInclude Include="EventManager.h">
       <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="OrthographicCamera.h">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -292,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>Afterlife\Singletons</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthographicCamera.cpp">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

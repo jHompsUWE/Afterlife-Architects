@@ -10,7 +10,7 @@ public:
 	bool init() override;
 
 	//Events
-	void GetEvents(queue<AfterlifeEvent>& event_queue) override;
+	void GetEvents(std::list<AfterlifeEvent>& event_list) override;
 
 	//Update Cycles
 	void Update(GameData* game_data) override;
