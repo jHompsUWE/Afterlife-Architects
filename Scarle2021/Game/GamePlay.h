@@ -1,5 +1,6 @@
 #pragma once
 #include "StateTemplate.h"
+#include "TextGO2D.h"
 
 class GamePlay : public StateTemplate
 {
@@ -8,6 +9,9 @@ public:
     ~GamePlay() override;
 
     bool init() override;
+
+    //Events
+    void GetEvents(queue<AfterlifeEvent>& event_queue) override;
 
     //Update Cycles
     void Update(GameData* game_data) override;
@@ -18,9 +22,7 @@ public:
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
 
-    //Input
-    void GetEvents(queue<AfterlifeEvent>&) override;
-
 private:
+    TextGO2D* text = nullptr;
 };
 

@@ -23,7 +23,7 @@ public:
 
 private:
     GameState& current_state;
-    
+    // State Array 
     std::array<std::unique_ptr<StateTemplate>, 4> state_array{};
 };
 

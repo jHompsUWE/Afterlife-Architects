@@ -12,6 +12,10 @@ bool GameOver::init()
     return true;
 }
 
+void GameOver::GetEvents(queue<AfterlifeEvent>&event_queue)
+{
+}
+
 void GameOver::Update(GameData* game_data)
 {
 }
@@ -31,11 +35,6 @@ void GameOver::Render2D(DrawData2D* draw_data2D)
 void GameOver::Render3D(DrawData* draw_data)
 {
 }
-
-void GameOver::GetEvents(queue<AfterlifeEvent>&)
-{
-}
-
 
 
 

@@ -11,13 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/DataManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DataManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/FSM.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameData.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GameOver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
@@ -134,7 +128,7 @@
       <workItem from="1676625868017" duration="1025000" />
       <workItem from="1676628250805" duration="150000" />
       <workItem from="1676676954418" duration="2430000" />
-      <workItem from="1676837256534" duration="17788000" />
+      <workItem from="1676837256534" duration="18711000" />
     </task>
     <servers />
   </component>

@@ -12,6 +12,10 @@ bool LevelSelect::init()
     return true;
 }
 
+void LevelSelect::GetEvents(queue<AfterlifeEvent>&event_queue)
+{
+}
+
 void LevelSelect::Update(GameData* game_data)
 {
 }
@@ -32,6 +36,3 @@ void LevelSelect::Render3D(DrawData* draw_data)
 {
 }
 
-void LevelSelect::GetEvents(queue<AfterlifeEvent>&)
-{
-}
