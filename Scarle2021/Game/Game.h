@@ -24,6 +24,7 @@ class Camera;
 class TPSCamera;
 class Light;
 class Sound;
+class OrthographicCamera;
 
 // A basic game implementation that creates a D3D11 device and
 // provides a game loop.
@@ -91,7 +92,7 @@ private:
     DrawData2D* m_DD2D = NULL;	    //Data to be passed by game to all 2D Game Objects via Draw 
 
     //Basic 3D renderers
-    Camera* m_cam = NULL; //principle camera
+    OrthographicCamera* m_cam = NULL; //principle camera
     TPSCamera* m_TPScam = NULL;//TPS cam
     Light* m_light = NULL; //base light
 

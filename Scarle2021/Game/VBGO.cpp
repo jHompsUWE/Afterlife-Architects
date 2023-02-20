@@ -232,10 +232,9 @@ void VBGO::Init(ID3D11Device* _GD)
 void VBGO::UpdateConstantBuffer(DrawData* _DD)
 {
 	//you'll need your own version of this if you use a different Constant Buffer
-	//s_pCB->view = _DD->main_camera->GetView().Transpose();
-	s_pCB->view = _DD->ortho_camera->GetViewMatrix().Transpose();
-	//s_pCB->projection = _DD->main_camera->GetProj().Transpose();
-	s_pCB->projection = _DD->ortho_camera->GetProj().Transpose();
+	s_pCB->view = _DD->main_camera->GetView().Transpose();
+	s_pCB->projection = _DD->main_camera->GetProj().Transpose();
+	
 	if (_DD->main_light)
 	{
 		s_pCB->lightCol = _DD->main_light->GetColour();

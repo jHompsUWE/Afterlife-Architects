@@ -5,7 +5,9 @@ MainMenu::MainMenu()
 = default;
 
 MainMenu::~MainMenu()
-= default;
+{
+    delete text;   
+}
 
 bool MainMenu::init()
 {
@@ -23,6 +25,7 @@ void MainMenu::GetEvents(queue<AfterlifeEvent>& event_queue)
         switch (event_queue.front())
         {
         case input_up:
+            DataManager::GetGD()->current_game_state = gs_gameplay;
             break;
             
         case input_down:
@@ -46,6 +49,7 @@ void MainMenu::GetEvents(queue<AfterlifeEvent>& event_queue)
 
 void MainMenu::Update(GameData* game_data)
 {
+    
 } 
 
 void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -63,6 +67,7 @@ void MainMenu::Render2D(DrawData2D* draw_data2D)
 
 void MainMenu::Render3D(DrawData* draw_data)
 {
+    
 }
 
 

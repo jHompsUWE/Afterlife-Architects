@@ -3,8 +3,7 @@
 #include "model.h"
 #include <windows.h>
 #include "Effects.h"
-#include "camera.h"
-#include "CommonStates.h"
+#include "OrthographicCamera.h"
 #include "DrawData.h"
 #include "Helper.h"
 

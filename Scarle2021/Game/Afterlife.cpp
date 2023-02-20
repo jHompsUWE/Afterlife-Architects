@@ -84,16 +84,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     light = new Light(Vector3(0.0f, 100.0f, 160.0f), Color(1.0f, 1.0f, 1.0f, 1.0f),
         Color(0.4f, 0.1f, 0.1f, 1.0f));
 
-    // Creates camera
-    /*main_cam = new Camera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
-        Vector3::UnitY, Vector3::Zero);
-    main_cam->SetPos(Vector3(0.0f, 200.0f, 200.0f));*/
-    main_cam = nullptr;
-    
-    // No follow camera
-    tps_cam = nullptr;
-
-    //ortho camera
+    //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
     ortho_cam = new OrthographicCamera(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
 
@@ -101,8 +92,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data = new DrawData;
     draw_data->pd3d_immediate_context = nullptr;
     draw_data->common_states = common_states;
-    //draw_data->main_camera = main_cam;
-    draw_data->ortho_camera = ortho_cam;
+    draw_data->main_camera = ortho_cam;
     draw_data->main_light = light;
 
     //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
@@ -132,8 +122,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
-
-    //main_cam->Tick(game_data);
+    
     ortho_cam->Tick(game_data);
     light->Tick(game_data);
 }
@@ -178,16 +167,14 @@ void Afterlife::Render()
     // Clear the main_window 
     Clear();
 
-    //set immediate context of the graphics device
+    //set immediate context of the graphics device, has to be done every single frame
     draw_data->pd3d_immediate_context = d3d_context.Get();
-    //Sets main cam
-    draw_data->ortho_camera = ortho_cam;
 
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
 
     //Renders basic scene elements
-    main_cam->Draw(draw_data);
+    ortho_cam->Draw(draw_data);
     light->Draw(draw_data);
     
     //Draws 3D GOs
@@ -195,15 +182,9 @@ void Afterlife::Render()
     
     //Begins sprite batching stuff
     draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
-
-    //TODO::DO NOT FUCKING TRY TO RENDER BEFORE OR AFTER SPRITE BATCHING 
-    //render HERE
-    finite_state_machine->Render();
-    //main_cam->Draw(draw_data);
-    ortho_cam->Draw(draw_data);
-    light->Draw(draw_data);
-
-    // Stops sprite batching
+    //Draws the 2D GOs
+    finite_state_machine->Render2D(draw_data2D);
+    //Stops sprite batching
     draw_data2D->sprites_batch->End();
     
     //drawing text screws up the Depth Stencil State, this puts it back again!

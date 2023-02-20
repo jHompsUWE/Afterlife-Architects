@@ -78,8 +78,7 @@ private:
     DrawData2D* draw_data2D = NULL;
 
     // 3D renders
-    Camera* main_cam = NULL;
-    TPSCamera* tps_cam = NULL; //Follow up camera
+    //Camera* main_cam = NULL;
     OrthographicCamera* ortho_cam = NULL;
     Light* light = NULL;
 

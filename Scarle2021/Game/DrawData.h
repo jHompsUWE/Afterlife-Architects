@@ -9,7 +9,6 @@
 
 using namespace DirectX;
 
-class Camera;
 class OrthographicCamera;
 class Light;
 
@@ -20,8 +19,7 @@ struct DrawData
 	CommonStates* common_states;
 
 	//Camera and light pointers
-	Camera* main_camera;
-	OrthographicCamera* ortho_camera;
+	OrthographicCamera* main_camera;
 	Light* main_light;
 };
 

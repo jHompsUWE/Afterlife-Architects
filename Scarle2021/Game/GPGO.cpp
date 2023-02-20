@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "GPGO.h"
 #include "DrawData.h"
-#include "camera.h"
+#include "OrthographicCamera.h"
 
 GPGO::GPGO(ID3D11DeviceContext* _pd3dImmediateContext, GPGO_TYPE _type, float* _colour, float* _params):m_colour(_colour),m_type(_type)
 {

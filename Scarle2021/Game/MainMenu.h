@@ -1,4 +1,6 @@
 #pragma once
+#include "CMOGO.h"
+#include "fileVBGO.h"
 #include "StateTemplate.h"
 #include "TextGO2D.h"
 

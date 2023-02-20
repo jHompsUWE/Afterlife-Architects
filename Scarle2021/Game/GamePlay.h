@@ -1,6 +1,11 @@
 #pragma once
+#include "CMOGO.h"
+#include "fileVBGO.h"
 #include "StateTemplate.h"
 #include "TextGO2D.h"
+#include "GPGO.h"
+
+class GPGO;
 
 class GamePlay : public StateTemplate
 {
@@ -23,6 +28,10 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
+    CMOGO* plane = nullptr;
+    FileVBGO* cube = nullptr;
+    GPGO* cone = nullptr;
+    
     TextGO2D* text = nullptr;
 };
 

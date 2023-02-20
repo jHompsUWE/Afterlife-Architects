@@ -149,6 +149,7 @@
     <Text Include="terrainTex.txt" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Afterlife Models\Platform.fbx" />
     <MeshContentTask Include="Bird\BirdModelV1.fbx" />
     <MeshContentTask Include="Table\table.FBX">
       <FileType>Document</FileType>

@@ -20,5 +20,6 @@
     <MeshContentTask Include="Vase\JEMINA vase -up.fbx" />
     <MeshContentTask Include="Table\table.FBX" />
     <MeshContentTask Include="Bird\BirdModelV1.fbx" />
+    <MeshContentTask Include="Afterlife Models\Platform.fbx" />
   </ItemGroup>
 </Project>

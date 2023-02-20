@@ -10,17 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Platform.cmo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Afterlife Models/Platform.fbx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameOver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Afterlife.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/CMOGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/CMOGO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/DrawData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/DrawData.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GPGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GPGO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Game.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Game.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/LevelSelect.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/LevelSelect.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/StateTemplate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StateTemplate.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/VBGO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/VBGO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Models.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Models.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Models.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Models.vcxproj.filters" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,26 +47,30 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LpcATf6Qci1rKP2oVJ9EzAUjBe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Simon\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Simon\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Simon\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Direct3D_Win32" type="CppProject" factoryName="C++ Project" temporary="true">
       <configuration_1>
@@ -129,6 +141,7 @@
       <workItem from="1676628250805" duration="150000" />
       <workItem from="1676676954418" duration="2430000" />
       <workItem from="1676837256534" duration="18711000" />
+      <workItem from="1676894371674" duration="2777000" />
     </task>
     <servers />
   </component>
@@ -136,6 +149,9 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
