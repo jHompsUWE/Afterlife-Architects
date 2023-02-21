@@ -18,6 +18,7 @@ public:
 	virtual void render(DrawData2D* _drawData)=0;
 
 	virtual void setPostion(Vector2& newPostition)=0;
+	virtual void setScale(Vector2& newScale)=0;
 
 protected:
 	

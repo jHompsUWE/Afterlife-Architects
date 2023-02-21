@@ -4,6 +4,7 @@
 #include "StateTemplate.h"
 #include "TextGO2D.h"
 #include "GPGO.h"
+#include "Button.h"
 
 class GPGO;
 
@@ -33,5 +34,7 @@ private:
     GPGO* cone = nullptr;
     
     TextGO2D* text = nullptr;
+
+    ImageGO2D* ui_frame;
 };
 

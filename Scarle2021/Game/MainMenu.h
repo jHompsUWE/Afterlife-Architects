@@ -25,6 +25,13 @@ public:
 
 private:
 	TextGO2D* text = nullptr;
-	Button* start_button = nullptr; 
+	//buttons
+	Button* start_button = nullptr;
+	Button* load_button = nullptr;
+	Button* load_scenario_button = nullptr;
+	Button* replay_intro = nullptr;
+	Button* quit_afterlife = nullptr;
+	
+	ImageGO2D* MainMenu_bg;
 };
 

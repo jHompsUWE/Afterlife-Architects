@@ -8,13 +8,17 @@ GamePlay::~GamePlay()
 {
     delete plane;
     delete cube;
+    delete ui_frame;
 }
 
 bool GamePlay::init()
 {
-    text = new TextGO2D("this ist GAMEPLAYYY");
-    text->SetPos(Vector2(100, 10));
-    text->SetColour(Color((float*)&Colors::Yellow));
+    //text = new TextGO2D("this ist GAMEPLAYYY");
+    //text->SetPos(Vector2(100, 10));
+    //text->SetColour(Color((float*)&Colors::Yellow));
+
+    ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
+    ui_frame->SetOrigin(Vector2(0,0));
 
     plane = new CMOGO("Platform", DataManager::GetD3DDevice(), DataManager::GetEF());
     plane->SetPitch(1.57f);
@@ -52,7 +56,8 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
-    text->Draw(draw_data2D);
+    //text->Draw(draw_data2D);
+    ui_frame->Draw(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)

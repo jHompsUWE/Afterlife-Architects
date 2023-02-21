@@ -326,6 +326,15 @@
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png">
       <Filter>Afterlife\Training Centers</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="MainmenuBG.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="ButtonBackgroundMM.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="UIFrame.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tiles">
@@ -390,6 +399,9 @@
     </Filter>
     <Filter Include="Afterlife\Training Centers">
       <UniqueIdentifier>{afc6b7c2-c728-4980-aa5d-1792d864e70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AfterLifeUI">
+      <UniqueIdentifier>{30c72067-f613-4341-94c2-6ac3768207cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
