@@ -1,12 +1,15 @@
 #include "pch.h"
 #include "VBQuad.h"
+#include "Helper.h"
 
 void VBQuad::init(ID3D11Device* GD)
 {
-	m_vertices = new myVertex[4];
-	WORD* indices = new WORD[4];
+	int num_verts = 6;
+	m_numPrims = 2;
+	m_vertices = new myVertex[num_verts];
+	WORD* indices = new WORD[num_verts];
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < num_verts; i++)
 	{
 		indices[i] = (WORD)i;
 		m_vertices[i].texCoord = Vector2::One;
@@ -14,16 +17,22 @@ void VBQuad::init(ID3D11Device* GD)
 
 	int vert = 0;
 	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, 1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, 1.0f);
 
 	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);	
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);	
 
 	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, -1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, -1.0f);
 
-	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, -1.0f, 0.0f);
+	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
+
+	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, -1.0f);
+
+	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, -1.0f);
 
 	for (UINT i = 0; i < m_numPrims; i++)
 	{
@@ -44,9 +53,28 @@ void VBQuad::init(ID3D11Device* GD)
 	}
 
 	BuildIB(GD, indices);
-	BuildVB(GD, 4, m_vertices);
+	BuildVB(GD, num_verts, m_vertices);
 
 	delete[] indices;
 	delete[] m_vertices;
 	m_vertices = nullptr;
+
+	// Raster state
+	D3D11_RASTERIZER_DESC rasterDesc;
+	rasterDesc.AntialiasedLineEnable = false;
+	rasterDesc.CullMode = D3D11_CULL_NONE;
+	rasterDesc.DepthBias = 0;
+	rasterDesc.DepthBiasClamp = 0.0f;
+	rasterDesc.DepthClipEnable = true;
+	rasterDesc.FillMode = D3D11_FILL_SOLID;
+	rasterDesc.FrontCounterClockwise = true;
+	rasterDesc.MultisampleEnable = false;
+	rasterDesc.ScissorEnable = false;
+	rasterDesc.SlopeScaledDepthBias = 0.0f;
+
+	HRESULT hr = GD->CreateRasterizerState(&rasterDesc, &m_pRasterState);
+
+	ID3DBlob* pPixelShaderBuffer = NULL;
+	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
+	GD->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
 }

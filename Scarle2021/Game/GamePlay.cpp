@@ -59,8 +59,8 @@ void GamePlay::Update(GameData* game_data)
     quad->Tick(game_data);
     quad->SetPitch(quad->GetPitch() + 0.01);
 
-    VBcube->Tick(game_data);
-    VBcube->SetPitch(VBcube->GetPitch() + 0.01);
+    //VBcube->Tick(game_data);
+    //VBcube->SetPitch(VBcube->GetPitch() + 0.01);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
