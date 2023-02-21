@@ -16,7 +16,7 @@ bool MainMenu::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    start_button = new Button(Vector2(1080,720),DataManager::GetD3DDevice(),
+    start_button = new Button(Vector2(540,360),DataManager::GetD3DDevice(),
         "Start Game","eevee",input_up);
     
     return true;

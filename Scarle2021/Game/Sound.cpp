@@ -8,7 +8,6 @@ Sound::Sound(AudioEngine* _audEngine, string _filename)
 	std::wstring wFilename = converter.from_bytes(fullpath.c_str());
 
 	m_sfx = std::make_unique<SoundEffect>(_audEngine, wFilename.c_str());
-
 }
 
 
