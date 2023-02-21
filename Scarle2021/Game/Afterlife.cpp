@@ -149,13 +149,11 @@ void Afterlife::ReadInput()
     if (game_data->keyboard_state.W)
     {
         ortho_cam->CameraUp();
-        std::cout << "Camera Up" << std::endl;
     }
     
     if (game_data->keyboard_state.S)
     {
         ortho_cam->CameraDown();
-        std::cout << "Camera Down" << std::endl;
     }
 
     //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW

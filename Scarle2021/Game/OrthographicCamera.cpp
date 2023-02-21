@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "OrthographicCamera.h"
+#include <iostream>
 
 OrthographicCamera::OrthographicCamera(float camera_width, float camera_height, float near, float far,
 	XMVECTOR camera_position, XMVECTOR camera_target, XMVECTOR camera_up)
@@ -37,14 +38,16 @@ void OrthographicCamera::CameraRight()
 	camera_position += XMVectorSet(camera_speed, 0.0f, 0.0f, 0.0f);
 }
 
-void OrthographicCamera::CameraUp()
-{
-	camera_position += XMVectorSet(0.0f, camera_speed, 0.0f, 0.0f);
-}
-
 void OrthographicCamera::CameraDown()
 {
+	camera_position += XMVectorSet(0.0f, camera_speed, 0.0f, 0.0f);
+	std::cout << "Camera Down" << std::endl;
+}
+
+void OrthographicCamera::CameraUp()
+{
 	camera_position += XMVectorSet(0.0f, -camera_speed, 0.0f, 0.0f);
+	std::cout << "Camera Up" << std::endl;
 }
 
 void OrthographicCamera::RecalculateViewMatrix()

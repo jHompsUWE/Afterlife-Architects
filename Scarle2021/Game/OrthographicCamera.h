@@ -34,7 +34,7 @@ public:
 	XMFLOAT3 camera_target = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);*/
 
-	XMVECTOR camera_position = XMVectorSet(0.0f, 0.0f, -0.1f, 0.0f);
+	XMVECTOR camera_position = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
 	XMVECTOR camera_target = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	XMVECTOR camera_up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
