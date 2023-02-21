@@ -28,23 +28,40 @@ void OrthographicCamera::Draw(DrawData* _DD)
 	//standard camera doesn't draw ANYTHING
 }
 
-void OrthographicCamera::CameraLeft()
+void OrthographicCamera::CameraForward(float distance)
+{
+	XMVECTOR movement = XMVectorMultiply(forward, XMVectorReplicate(distance));
+	camera_position = XMVectorAdd(camera_position, movement);
+	camera_target = XMVectorAdd(camera_target, movement);
+	view_matrix = XMMatrixLookAtLH(camera_position, camera_target, camera_up);
+
+	std::cout << "Camera Forwards" << std::endl;
+}
+
+void OrthographicCamera::CameraBackward(float distance)
+{
+	CameraForward(-distance);
+
+	std::cout << "Camera Backwards" << std::endl;
+}
+
+void OrthographicCamera::CameraRotateLeft()
 {
 	camera_position += XMVectorSet(-camera_speed, 0.0f, 0.0f, 0.0f);
 }
 
-void OrthographicCamera::CameraRight()
+void OrthographicCamera::CameraRotateRight()
 {
 	camera_position += XMVectorSet(camera_speed, 0.0f, 0.0f, 0.0f);
 }
 
-void OrthographicCamera::CameraDown()
+void OrthographicCamera::CameraRotateDown()
 {
 	camera_position += XMVectorSet(0.0f, camera_speed, 0.0f, 0.0f);
 	std::cout << "Camera Down" << std::endl;
 }
 
-void OrthographicCamera::CameraUp()
+void OrthographicCamera::CameraRotateUp()
 {
 	camera_position += XMVectorSet(0.0f, -camera_speed, 0.0f, 0.0f);
 	std::cout << "Camera Up" << std::endl;

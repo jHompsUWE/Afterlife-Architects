@@ -12,10 +12,13 @@ public:
 
 	virtual void Draw(DrawData* _DD) override;
 
-	void CameraLeft();
-	void CameraRight();
-	void CameraUp();
-	void CameraDown();
+
+	void CameraForward(float distance);
+	void CameraBackward(float distance);
+	void CameraRotateLeft();
+	void CameraRotateRight();
+	void CameraRotateUp();
+	void CameraRotateDown();
 
 	//Getters
 	Matrix GetProj() { return projection_matrix; }
@@ -47,20 +50,20 @@ private:
 	float width;
 	float height;
 
-	//values possibly work for creating orthographic perspective
+	//values used for XMMatrixOrthographicOffCenterLH
 	//float left = -10.0f;
 	//float right = 10.0f;
 	//float bottom = -10.0f;
 	//float top = 10.0f;
 	
 	//XMMatrixOrthographicOffCenterLH creates a custom orthogonal projection, requires left right etc.
-	//to be passed. Trying XMMatrixOrthographicLH, which requires 4 values to be viewwidth, viewheight,
+	//to be passed. Trying XMMatrixOrthographicLH, which requires 4 values passed to viewwidth, viewheight,
 	//near and far
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
-	float near_plane = 0.1f;
-	float far_plane = 1000.0f;
+	float near_plane = 0.0f;
+	float far_plane = 1.0f;
 
 protected:
 	XMMATRIX projection_matrix = XMMatrixOrthographicLH(camera_height, camera_width, near_plane, far_plane);
@@ -69,6 +72,7 @@ protected:
 	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
 	XMMATRIX world_view_projection_matrix = projection_matrix * view_matrix;
 
+	XMVECTOR forward = XMVector3Normalize(XMVectorSubtract(camera_target, camera_position));
 
 	//XMMATRIX view_matrix = XMMatrixIdentity();
 	//Matrix projection_matrix;
