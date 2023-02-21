@@ -12,10 +12,6 @@ bool GameOver::init()
     return true;
 }
 
-void GameOver::GetEvents(std::list<AfterlifeEvent>& event_list)
-{
-}
-
 void GameOver::Update(GameData* game_data)
 {
 }
@@ -25,6 +21,10 @@ void GameOver::ScaledUpdate(GameData* game_data, float& scaled_dt)
 }
 
 void GameOver::LateUpdate(GameData* game_data)
+{
+}
+
+void GameOver::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 

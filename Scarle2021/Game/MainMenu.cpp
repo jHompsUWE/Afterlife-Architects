@@ -6,7 +6,8 @@ MainMenu::MainMenu()
 
 MainMenu::~MainMenu()
 {
-    delete text;   
+    delete text;
+    delete start_button;
 }
 
 bool MainMenu::init()
@@ -15,10 +16,24 @@ bool MainMenu::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    start_button = new Button(Vector2(0,0),DataManager::GetD3DDevice(),
-        "Start Game","grass",input_up);
+    start_button = new Button(Vector2(1080,720),DataManager::GetD3DDevice(),
+        "Start Game","eevee",input_up);
     
     return true;
+}
+
+void MainMenu::Update(GameData* game_data)
+{
+    auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
+    start_button->update(game_data,mouse_pos);
+} 
+
+void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)
+{
+}
+
+void MainMenu::LateUpdate(GameData* game_data)
+{
 }
 
 void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
@@ -27,6 +42,10 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
     {
         switch (ev)
         {
+        case none:
+            std::cout << "soooos" << std::endl;
+            break;
+            
         case input_up:
             DataManager::GetGD()->current_game_state = gs_gameplay;
             break;
@@ -46,23 +65,10 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
     }
 }
 
-void MainMenu::Update(GameData* game_data)
-{
-    auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
-    start_button->update(game_data,mouse_pos);
-} 
-
-void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)
-{
-}
-
-void MainMenu::LateUpdate(GameData* game_data)
-{
-}
-
 void MainMenu::Render2D(DrawData2D* draw_data2D)
 {
     text->Draw(draw_data2D);
+    start_button->render(draw_data2D);
 }
 
 void MainMenu::Render3D(DrawData* draw_data)

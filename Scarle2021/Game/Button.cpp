@@ -1,16 +1,18 @@
 #include "pch.h"
 #include "Button.h"
 
+#include <iostream>
+
 
 Button::Button(Vector2 _buttonPosition, ID3D11Device*
-	_d3dDevice,std::string _text,std::string _filepath,
-	AfterlifeEvent _event):UIButtonInterFace(_event)
+               _d3dDevice,std::string _text,std::string _filepath,
+               AfterlifeEvent _event):UIButtonInterFace(_event)
 {
 	//setup for button background
 	
 	buttonBackGround = new ImageGO2D(_filepath, _d3dDevice);
 	buttonBackGround->SetOrigin(Vector2(0, 0));
-	buttonBackGround->SetScale(Vector2(1.0f, 1.0f));
+	buttonBackGround->SetScale(Vector2(1.f, 1.f));
 
 	//sets res
 	button_res = Vector2(buttonBackGround->GetRes().x
@@ -22,12 +24,11 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	buttonBackGround->SetPos(button_pos);
 
 	//setup button text
-	
 	buttonText = new TextGO2D(_text);
 	buttonText->SetColour(Color((float*)&Colors::Black));
-	buttonText->SetPos(button_pos);
-	
+	buttonText->SetPos(button_pos);	
 }
+
 Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	_d3dDevice,std::string _filepath,
 	AfterlifeEvent _event):UIButtonInterFace(_event)
@@ -36,7 +37,7 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	
 	buttonBackGround = new ImageGO2D(_filepath, _d3dDevice);
 	buttonBackGround->SetOrigin(Vector2(0, 0));
-	buttonBackGround->SetScale(Vector2(1.0f, 1.0f));
+	buttonBackGround->SetScale(Vector2(1.f, 1.f));
 
 	//sets res
 	button_res = Vector2(buttonBackGround->GetRes().x

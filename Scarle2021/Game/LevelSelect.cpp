@@ -12,10 +12,6 @@ bool LevelSelect::init()
     return true;
 }
 
-void LevelSelect::GetEvents(std::list<AfterlifeEvent>& event_list)
-{
-}
-
 void LevelSelect::Update(GameData* game_data)
 {
 }
@@ -25,6 +21,10 @@ void LevelSelect::ScaledUpdate(GameData* game_data, float& scaled_dt)
 }
 
 void LevelSelect::LateUpdate(GameData* game_data)
+{
+}
+
+void LevelSelect::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 

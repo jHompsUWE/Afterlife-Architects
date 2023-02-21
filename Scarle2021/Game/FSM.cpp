@@ -44,9 +44,6 @@ bool FSM::init()
  */
 void FSM::Update(GameData* game_data)
 {
-    //Events are dispatched before the first update
-    state_array[current_state]->GetEvents(EventManager::GetEventList());
-    
     //Update
     state_array[current_state]->Update(game_data);
 
@@ -64,6 +61,9 @@ void FSM::Update(GameData* game_data)
 
     //Runs this for last
     state_array[current_state]->LateUpdate(game_data);
+
+    //Events are dispatched at the end of the update cycle
+    state_array[current_state]->GetEvents(EventManager::GetEventList());
 }
 
 //Rendering ------------------------------------------------------------------------------------------------------------

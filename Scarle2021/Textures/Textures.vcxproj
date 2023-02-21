@@ -150,6 +150,9 @@
     <ImageContentTask Include="grass.jpg" />
     <ImageContentTask Include="white.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="eevee.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

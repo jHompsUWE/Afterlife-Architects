@@ -28,10 +28,6 @@ bool GamePlay::init()
     return true;
 }
 
-void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
-{
-}
-
 void GamePlay::Update(GameData* game_data)
 {
     //constantly moves 
@@ -47,6 +43,10 @@ void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
 }
 
 void GamePlay::LateUpdate(GameData* game_data)
+{
+}
+
+void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
 }
 

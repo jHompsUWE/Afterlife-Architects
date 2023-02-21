@@ -1,5 +1,4 @@
 #pragma once
-#include <queue>
 #include <iostream>
 
 #include "DataManager.h"
@@ -16,15 +15,15 @@ public:
 
     // Init
     virtual bool init() = 0;
-
-    // Event List
-    virtual void GetEvents(std::list<AfterlifeEvent>& event_list) = 0;
     
     // Updates
     virtual void Update(GameData* game_data) = 0;
     virtual void ScaledUpdate(GameData* game_data, float& scaled_dt) = 0;
     virtual void LateUpdate(GameData* game_data) = 0;
 
+    // Event List
+    virtual void GetEvents(std::list<AfterlifeEvent>& event_list) = 0;
+    
     // Render
     virtual void Render3D(DrawData* draw_data) = 0;
     virtual void Render2D(DrawData2D* draw_data2D) = 0;
