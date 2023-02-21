@@ -206,6 +206,7 @@
     <ClInclude Include="VBCube.h" />
     <ClInclude Include="VBGO.h" />
     <ClInclude Include="VBPillow.h" />
+    <ClInclude Include="VBQuad.h" />
     <ClInclude Include="VBSnail.h" />
     <ClInclude Include="VBspiral.h" />
     <ClInclude Include="vertex.h" />
@@ -246,6 +247,7 @@
     <ClCompile Include="treebit.cpp" />
     <ClCompile Include="VBCube.cpp" />
     <ClCompile Include="VBGO.cpp" />
+    <ClCompile Include="VBQuad.cpp" />
     <ClCompile Include="VBSnail.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

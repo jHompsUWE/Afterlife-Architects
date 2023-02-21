@@ -5,6 +5,9 @@
 #include "TextGO2D.h"
 #include "GPGO.h"
 
+#include "VBQuad.h"
+#include "VBCube.h"
+
 class GPGO;
 
 class GamePlay : public StateTemplate
@@ -28,9 +31,14 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
+    /*
     CMOGO* plane = nullptr;
     FileVBGO* cube = nullptr;
     GPGO* cone = nullptr;
+    */
+
+    VBQuad* quad = nullptr;
+    VBCube* VBcube = nullptr;
     
     TextGO2D* text = nullptr;
 };

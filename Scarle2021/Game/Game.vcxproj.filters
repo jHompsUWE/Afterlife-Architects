@@ -219,6 +219,9 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
+    <ClInclude Include="VBQuad.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -313,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="VBQuad.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
