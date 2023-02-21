@@ -153,6 +153,149 @@
   <ItemGroup>
     <ImageContentTask Include="eevee.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Tiles\Tile_Blue.png" />
+    <ImageContentTask Include="Tiles\Tile_Brown.png" />
+    <ImageContentTask Include="Tiles\Tile_Green.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Blue.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Brown.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Green.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Orange.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Purple.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Red.png" />
+    <ImageContentTask Include="Tiles\Tile_Inactive_Yellow.png" />
+    <ImageContentTask Include="Tiles\Tile_Lava.png" />
+    <ImageContentTask Include="Tiles\Tile_Orange.png" />
+    <ImageContentTask Include="Tiles\Tile_Purple.png" />
+    <ImageContentTask Include="Tiles\Tile_Red.png" />
+    <ImageContentTask Include="Tiles\Tile_Res.png" />
+    <ImageContentTask Include="Tiles\Tile_Road.png" />
+    <ImageContentTask Include="Tiles\Tile_Rock.png" />
+    <ImageContentTask Include="Tiles\Tile_Structure.png" />
+    <ImageContentTask Include="Tiles\Tile_Vibes.png" />
+    <ImageContentTask Include="Tiles\Tile_Water.png" />
+    <ImageContentTask Include="Tiles\Tile_Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Bank\Bank_T1_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Bank\Bank_T1_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Bank\Bank_T2_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Bank\Bank_T2_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Heaven_2x2.png" />
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Hell_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T1_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Gates\Gate_T1_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Gates\Gate_T2_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Gates\Gate_T2_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Gates\Gate_T3_Heaven_4x4.png" />
+    <ImageContentTask Include="Afterlife\Gates\Gate_T3_Hell_4x4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Karma\KarmaPortal.png" />
+    <ImageContentTask Include="Afterlife\Karma\KA_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Karma\KA_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Karma\KS_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Karma\KS_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Karma\KT_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Karma\KT_Hell_1x1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Limbo\Limbo_T1_2x2.png" />
+    <ImageContentTask Include="Afterlife\Limbo\Limbo_T2_3x3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_1_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_2_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_3_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_4_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_1_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_2_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_3_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_4_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_5_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Straight_1_Heaven_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Straight_2_Heaven_1x1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_1_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_2_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_3_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_4_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_1_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_2_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_3_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_4_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_5_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Straight_1_Hell_1x1.png" />
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Straight_2_Hell_1x1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Rocks\Rock_1.png" />
+    <ImageContentTask Include="Afterlife\Rocks\Rock_2.png" />
+    <ImageContentTask Include="Afterlife\Rocks\Rock_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Topias\Topias_T1_Heaven_4x4.png" />
+    <ImageContentTask Include="Afterlife\Topias\Topias_T1_Hell_4x4.png" />
+    <ImageContentTask Include="Afterlife\Topias\Topias_T2_Heaven_4x4.png" />
+    <ImageContentTask Include="Afterlife\Topias\Topias_T2_Hell_4x4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T1_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T1_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T2_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T2_Hell_3x3.png" />
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png" />
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Hell_3x3.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

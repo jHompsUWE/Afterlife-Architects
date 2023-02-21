@@ -5,5 +5,391 @@
     <ImageContentTask Include="grass.jpg" />
     <ImageContentTask Include="white.jpg" />
     <ImageContentTask Include="eevee.png" />
+    <ImageContentTask Include="Tiles\Tile_Yellow.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Blue.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Brown.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Green.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Blue.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Brown.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Green.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Orange.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Purple.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Red.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Inactive_Yellow.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Lava.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Orange.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Purple.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Red.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Res.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Road.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Rock.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Structure.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Vibes.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Water.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Bank\Bank_T1_Heaven_1x1.png">
+      <Filter>Afterlife\Bank</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Bank\Bank_T1_Hell_1x1.png">
+      <Filter>Afterlife\Bank</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Bank\Bank_T2_Heaven_2x2.png">
+      <Filter>Afterlife\Bank</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Bank\Bank_T2_Hell_2x2.png">
+      <Filter>Afterlife\Bank</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Hell_2x2.png">
+      <Filter>Afterlife\Building\Blue</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Blue</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Blue</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Blue\Building_Blue_Hell_1x1.png">
+      <Filter>Afterlife\Building\Blue</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Hell_2x2.png">
+      <Filter>Afterlife\Building\Brown</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Brown</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Brown</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Brown\Building_Brown_Hell_1x1.png">
+      <Filter>Afterlife\Building\Brown</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Everything</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Everything</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Hell_1x1.png">
+      <Filter>Afterlife\Building\Everything</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Everything\Building_Everything_Hell_2x2.png">
+      <Filter>Afterlife\Building\Everything</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Green</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Green</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Hell_1x1.png">
+      <Filter>Afterlife\Building\Green</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Green\Building_Green_Hell_2x2.png">
+      <Filter>Afterlife\Building\Green</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Yellow</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Yellow</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Hell_1x1.png">
+      <Filter>Afterlife\Building\Yellow</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Yellow\Building_Yellow_Hell_2x2.png">
+      <Filter>Afterlife\Building\Yellow</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Red</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Red</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_1x1.png">
+      <Filter>Afterlife\Building\Red</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_2x2.png">
+      <Filter>Afterlife\Building\Red</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Purple</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Purple</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_1x1.png">
+      <Filter>Afterlife\Building\Purple</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_2x2.png">
+      <Filter>Afterlife\Building\Purple</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Orange</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Heaven_2x2.png">
+      <Filter>Afterlife\Building\Orange</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Hell_1x1.png">
+      <Filter>Afterlife\Building\Orange</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Orange\Building_Orange_Hell_2x2.png">
+      <Filter>Afterlife\Building\Orange</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T1_Heaven_3x3.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T1_Hell_3x3.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T2_Heaven_3x3.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T2_Hell_3x3.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T3_Heaven_4x4.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Gates\Gate_T3_Hell_4x4.png">
+      <Filter>Afterlife\Gates</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KA_Heaven_3x3.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KA_Hell_3x3.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KarmaPortal.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KS_Heaven_3x3.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KS_Hell_3x3.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KT_Heaven_1x1.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Karma\KT_Hell_1x1.png">
+      <Filter>Afterlife\Karma</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Limbo\Limbo_T1_2x2.png">
+      <Filter>Afterlife\Limbo</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Limbo\Limbo_T2_3x3.png">
+      <Filter>Afterlife\Limbo</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_1_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_2_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_3_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Corner_4_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_1_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_2_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_3_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_4_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Intersection_5_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Straight_1_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Heaven\Road_Straight_2_Heaven_1x1.png">
+      <Filter>Afterlife\Roads\Heaven</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_1_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_2_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_3_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Corner_4_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_1_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_2_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_3_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_4_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Intersection_5_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Straight_1_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Roads\Hell\Road_Straight_2_Hell_1x1.png">
+      <Filter>Afterlife\Roads\Hell</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Rocks\Rock_1.png">
+      <Filter>Afterlife\Rocks</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Rocks\Rock_3.png">
+      <Filter>Afterlife\Rocks</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Rocks\Rock_2.png">
+      <Filter>Afterlife\Rocks</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Topias\Topias_T1_Heaven_4x4.png">
+      <Filter>Afterlife\Topias</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Topias\Topias_T1_Hell_4x4.png">
+      <Filter>Afterlife\Topias</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Topias\Topias_T2_Heaven_4x4.png">
+      <Filter>Afterlife\Topias</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Topias\Topias_T2_Hell_4x4.png">
+      <Filter>Afterlife\Topias</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T1_Heaven_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Hell_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T1_Hell_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T2_Heaven_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T2_Hell_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png">
+      <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Tiles">
+      <UniqueIdentifier>{ccd21006-cfb2-4138-9e4f-3eb265bc3386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife">
+      <UniqueIdentifier>{5b254aba-e1a5-4321-a708-03e107bfa5cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Bank">
+      <UniqueIdentifier>{26b3eeaa-f23f-47f4-b520-673e4fa47808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building">
+      <UniqueIdentifier>{f005454b-ac5b-4384-9988-6df362d68f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Blue">
+      <UniqueIdentifier>{6e10f9d0-3678-43ee-8043-bcf3126eb289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Brown">
+      <UniqueIdentifier>{f2ed650c-d60f-4833-9f81-50a10fe94049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Everything">
+      <UniqueIdentifier>{0f700ab3-7c94-4c93-9cf4-906ad971bf27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Green">
+      <UniqueIdentifier>{1f92af9c-c2e6-41cf-afad-f961047afbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Orange">
+      <UniqueIdentifier>{3dd88b05-c965-48f2-883e-3d71522229b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Purple">
+      <UniqueIdentifier>{872871ed-6421-4dd6-84d3-ea1e653dba52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Red">
+      <UniqueIdentifier>{6721ea86-c6ac-4c7d-b38a-68360757b13f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Building\Yellow">
+      <UniqueIdentifier>{b3151cc3-6e67-438c-8e6b-97a445b2c68d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Gates">
+      <UniqueIdentifier>{69154254-6d39-4cfa-8444-85b0eb022378}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Karma">
+      <UniqueIdentifier>{bbe6a6b4-d5cd-4bcb-a817-3cb8cdfb4afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Limbo">
+      <UniqueIdentifier>{20638349-b4dc-4d46-8fd9-b019668f6d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Roads">
+      <UniqueIdentifier>{6c50b595-7484-4af5-a915-4fac4ba09472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Roads\Heaven">
+      <UniqueIdentifier>{7a04a3cd-cece-4278-9919-115d96e6e532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Roads\Hell">
+      <UniqueIdentifier>{556dce00-b128-4031-8a46-96d4e1ef17a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Rocks">
+      <UniqueIdentifier>{10d016e0-f24c-4ff0-b610-52cadec24d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Topias">
+      <UniqueIdentifier>{de87ad73-18a7-401a-98e9-975dda00d72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Training Centers">
+      <UniqueIdentifier>{afc6b7c2-c728-4980-aa5d-1792d864e70b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
