@@ -36,5 +36,9 @@ private:
     TextGO2D* text = nullptr;
 
     ImageGO2D* ui_frame;
+    ImageGO2D* windowImage;
+    ImageGO2D* ui_panel;
+
+    bool window_one_open = true;
 };
 

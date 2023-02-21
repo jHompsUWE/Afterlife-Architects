@@ -8,17 +8,32 @@ GamePlay::~GamePlay()
 {
     delete plane;
     delete cube;
+    delete cone;
+    
     delete ui_frame;
+    delete windowImage;
+    delete ui_panel;
+    
 }
 
 bool GamePlay::init()
 {
-    //text = new TextGO2D("this ist GAMEPLAYYY");
-    //text->SetPos(Vector2(100, 10));
-    //text->SetColour(Color((float*)&Colors::Yellow));
-
+    // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
     ui_frame->SetOrigin(Vector2(0,0));
+
+
+    // ui window 
+    windowImage = new ImageGO2D("Window",DataManager::GetD3DDevice());
+    windowImage->SetOrigin(Vector2(0,0));
+    windowImage->SetPos(Vector2(400,200));
+    windowImage->SetScale(Vector2(0.5,0.5));
+
+    ui_panel = new ImageGO2D("UIPanel",DataManager::GetD3DDevice());
+    ui_panel->SetOrigin(Vector2(0,0));
+    ui_panel->SetPos(Vector2(0,30));
+    ui_panel->SetScale(Vector2(0.8,0.7));
+        
 
     plane = new CMOGO("Platform", DataManager::GetD3DDevice(), DataManager::GetEF());
     plane->SetPitch(1.57f);
@@ -58,6 +73,13 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
     //text->Draw(draw_data2D);
     ui_frame->Draw(draw_data2D);
+    ui_panel->Draw(draw_data2D);
+
+    // checks if window is open to render
+    if (window_one_open)
+    {
+        windowImage->Draw(draw_data2D);
+    }
 }
 
 void GamePlay::Render3D(DrawData* draw_data)

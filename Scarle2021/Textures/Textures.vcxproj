@@ -305,6 +305,12 @@
   <ItemGroup>
     <ImageContentTask Include="UIFrame.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="UIPanel.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

@@ -10,20 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/ButtonBackgroundMM.dds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/MainmenuBG.dds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/UIFrame.dds" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Textures/ButtonBackgroundMM.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Textures/MainmenuBG.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Textures/UIFrame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/UIPanel.dds" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Window.dds" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Textures/UIPanel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Textures/Window.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Button.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Button.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Button.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIButtonInterFace.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIButtonInterFace.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Textures/Textures.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Textures/Textures.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Textures/Textures.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Textures/Textures.vcxproj.filters" afterDir="false" />
     </list>
@@ -148,6 +141,10 @@
       <workItem from="1676989389784" duration="837000" />
       <workItem from="1676990605811" duration="253000" />
       <workItem from="1676990919968" duration="406000" />
+      <workItem from="1676991403552" duration="920000" />
+      <workItem from="1676992459521" duration="1453000" />
+      <workItem from="1676995539420" duration="907000" />
+      <workItem from="1676996584013" duration="684000" />
     </task>
     <servers />
   </component>
