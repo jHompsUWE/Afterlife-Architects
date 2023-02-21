@@ -96,8 +96,8 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data->main_light = light;
 
     //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
-    DataManager::Get().PopulatePointers(AR, &main_window, game_data, draw_data, draw_data2D,
-        d3d_device.Get(),d3d_context.Get(), effect_factory);
+    DataManager::Get().PopulatePointers(AR, &main_window, &output_width, &output_height, game_data,
+        draw_data, draw_data2D, d3d_device.Get(),d3d_context.Get(), effect_factory);
 
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
@@ -251,6 +251,7 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
     output_width = std::max(_width, 1);
     output_height = std::max(_height, 1);
 
+    //Recreates the DX11 device
     CreateResources();
 
     // TODO: Game main_window is being resized.
