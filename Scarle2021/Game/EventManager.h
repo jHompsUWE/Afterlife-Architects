@@ -4,6 +4,7 @@
 
 enum AfterlifeEvent
 {
+	none,
 	input_up,
 	input_down,
 	input_left,

@@ -14,6 +14,9 @@ bool MainMenu::init()
     text = new TextGO2D("This ist main menu");
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
+
+    start_button = new Button(Vector2(0,0),DataManager::GetD3DDevice(),
+        "Start Game","grass",input_up);
     
     return true;
 }
@@ -45,7 +48,8 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void MainMenu::Update(GameData* game_data)
 {
-    
+    auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
+    start_button->update(game_data,mouse_pos);
 } 
 
 void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)

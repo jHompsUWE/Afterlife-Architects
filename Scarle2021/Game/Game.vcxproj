@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Afterlife.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CMOGO.h" />
     <ClInclude Include="ConstantBuffer.h" />
@@ -201,6 +202,7 @@
     <ClInclude Include="TPSCamera.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
+    <ClInclude Include="UIButtonInterFace.h" />
     <ClInclude Include="VBCube.h" />
     <ClInclude Include="VBGO.h" />
     <ClInclude Include="VBPillow.h" />
@@ -210,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Afterlife.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
     <ClCompile Include="EventManager.cpp" />

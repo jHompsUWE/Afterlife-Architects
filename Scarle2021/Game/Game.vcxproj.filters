@@ -76,6 +76,9 @@
     <Filter Include="GameObjects\AfterlifeGOs">
       <UniqueIdentifier>{da403b41-258b-4075-a42a-811ed53d8c07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\UIButton">
+      <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -210,6 +213,12 @@
     <ClInclude Include="OrthographicCamera.h">
       <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClInclude>
+    <ClInclude Include="UIButtonInterFace.h">
+      <Filter>Afterlife\UIButton</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Afterlife\UIButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -301,6 +310,9 @@
     </ClCompile>
     <ClCompile Include="OrthographicCamera.cpp">
       <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Afterlife\UIButton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

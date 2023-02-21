@@ -56,3 +56,8 @@ void ImageGO2D::Draw(DrawData2D* _DD)
 	//right click and "Go to Defintion/Declaration" to see other version of this in DXTK
 	_DD->sprites_batch->Draw(m_pTextureRV, m_pos, nullptr, m_colour, m_rotation, m_origin, m_scale, SpriteEffects_None);
 }
+//Returns the image's resolution
+Vector2 ImageGO2D::GetRes() const
+{
+	return Vector2(m_width, m_height);
+}

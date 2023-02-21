@@ -17,9 +17,16 @@ public:
 
 	virtual void Tick(GameData* _GD);
 	virtual void Draw(DrawData2D* _DD);
+
+	//getter for image res
+	Vector2 GetRes() const;
 protected:
 
 	ID3D11ShaderResourceView* m_pTextureRV;
+	
+private:
+	float m_width = 0;
+	float m_height = 0;
 };
 
 #endif

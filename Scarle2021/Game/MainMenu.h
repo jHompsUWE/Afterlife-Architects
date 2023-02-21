@@ -3,6 +3,7 @@
 #include "fileVBGO.h"
 #include "StateTemplate.h"
 #include "TextGO2D.h"
+#include "Button.h"
 
 class MainMenu : public StateTemplate
 {
@@ -26,5 +27,6 @@ public:
 
 private:
 	TextGO2D* text = nullptr;
+	Button* start_button = nullptr; 
 };
 
