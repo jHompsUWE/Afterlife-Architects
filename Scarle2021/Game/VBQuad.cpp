@@ -2,9 +2,9 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
-void VBQuad::init(ID3D11Device* GD)
+VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 {
-	SetTexture(GD, "Tile_Inactive_Purple");
+	SetTexture(textureName);
 
 	int num_verts = 6;
 	m_numPrims = 2;
@@ -23,7 +23,7 @@ void VBQuad::init(ID3D11Device* GD)
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);	
+	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);
 
 	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -59,8 +59,8 @@ void VBQuad::init(ID3D11Device* GD)
 		m_vertices[V3].Norm = norm;
 	}
 
-	BuildIB(GD, indices);
-	BuildVB(GD, num_verts, m_vertices);
+	BuildIB(d11_device, indices);
+	BuildVB(d11_device, num_verts, m_vertices);
 
 	delete[] indices;
 	delete[] m_vertices;
@@ -79,19 +79,23 @@ void VBQuad::init(ID3D11Device* GD)
 	rasterDesc.ScissorEnable = false;
 	rasterDesc.SlopeScaledDepthBias = 0.0f;
 
-	HRESULT hr = GD->CreateRasterizerState(&rasterDesc, &m_pRasterState);
+	HRESULT hr = d11_device->CreateRasterizerState(&rasterDesc, &m_pRasterState);
 
 	ID3DBlob* pPixelShaderBuffer = NULL;
 	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
-	GD->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
+	d11_device->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
 }
 
-void VBQuad::SetTexture(ID3D11Device* GD, std::string textureName)
+/// <summary>
+/// Changes the texture of the quad
+/// </summary>
+/// <param name="textureName">Name of the texture without the data type (ex: Tile_Blue, NOT Tile_Blue.png)</param>
+void VBQuad::SetTexture(std::string textureName)
 {
 	std::string fullfilename = "../Assets/";
 	fullfilename += textureName;
 	fullfilename += ".dds";
 
-	HRESULT hr = CreateDDSTextureFromFile(GD, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
+	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
 	assert(hr == S_OK);
 }

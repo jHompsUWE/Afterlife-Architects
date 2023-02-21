@@ -31,12 +31,6 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
-    /*
-    CMOGO* plane = nullptr;
-    FileVBGO* cube = nullptr;
-    GPGO* cone = nullptr;
-    */
-
     VBQuad* quad = nullptr;
     
     TextGO2D* text = nullptr;

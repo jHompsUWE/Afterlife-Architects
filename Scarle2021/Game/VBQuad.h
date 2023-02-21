@@ -7,13 +7,15 @@
 class VBQuad : public VBGO
 {
 public:
-	VBQuad() {};
+	VBQuad(ID3D11Device* GD, std::string textureName);
 	virtual ~VBQuad() {};
 
-	void init(ID3D11Device* GD);
-	void SetTexture(ID3D11Device* GD, std::string textureName);
+	void SetTexture(std::string textureName);
 
 protected:
 	myVertex* m_vertices = nullptr;
+
+private:
+	ID3D11Device* d11_device = nullptr;
 };
 
