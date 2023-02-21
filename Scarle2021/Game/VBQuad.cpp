@@ -4,6 +4,8 @@
 
 void VBQuad::init(ID3D11Device* GD)
 {
+	SetTexture(GD, "Tile_Inactive_Purple");
+
 	int num_verts = 6;
 	m_numPrims = 2;
 	m_vertices = new myVertex[num_verts];
@@ -12,27 +14,32 @@ void VBQuad::init(ID3D11Device* GD)
 	for (int i = 0; i < num_verts; i++)
 	{
 		indices[i] = (WORD)i;
-		m_vertices[i].texCoord = Vector2::One;
 	}
 
 	int vert = 0;
-	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, 1.0f);
+	m_vertices[vert].texCoord = Vector2(0.0f, 0.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, 1.0f, 0.0f);
 
-	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);	
+	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);	
 
-	m_vertices[vert].Color = Color(1.0f, 0.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, -1.0f);
+	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, -1.0f, 0.0f);
 
-	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
+	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);
 
-	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, 0.0f, -1.0f);
+	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(-1.0f, -1.0f, 0.0f);
 
-	m_vertices[vert].Color = Color(0.0f, 1.0f, 0.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, -1.0f);
+	m_vertices[vert].texCoord = Vector2(1.0f, 1.0f);
+	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, -1.0f, 0.0f);
 
 	for (UINT i = 0; i < m_numPrims; i++)
 	{
@@ -77,4 +84,14 @@ void VBQuad::init(ID3D11Device* GD)
 	ID3DBlob* pPixelShaderBuffer = NULL;
 	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
 	GD->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
+}
+
+void VBQuad::SetTexture(ID3D11Device* GD, std::string textureName)
+{
+	std::string fullfilename = "../Assets/";
+	fullfilename += textureName;
+	fullfilename += ".dds";
+
+	HRESULT hr = CreateDDSTextureFromFile(GD, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
+	assert(hr == S_OK);
 }

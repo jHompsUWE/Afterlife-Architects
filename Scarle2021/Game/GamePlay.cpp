@@ -12,7 +12,6 @@ GamePlay::~GamePlay()
     */
 
     delete quad;
-    delete VBcube;
 }
 
 bool GamePlay::init()
@@ -30,9 +29,7 @@ bool GamePlay::init()
     quad = new VBQuad();
     quad->init(DataManager::GetD3DDevice());
     quad->SetPos(Vector3(0.0f, 0.0f, 0.0f));
-
-    VBcube = new VBCube();
-    VBcube->init(11, DataManager::GetD3DDevice());
+    quad->SetPitch(3.142);
 
     /*
     float params[3];
@@ -46,6 +43,15 @@ bool GamePlay::init()
 
 void GamePlay::Update(GameData* game_data)
 {
+    /*
+    * Changing texture on runtime
+    if (!a)
+    {
+        quad->SetTexture(DataManager::GetD3DDevice(), "Tile_Lava");
+        a = true;
+    }
+    */
+
     //constantly moves 
 
     /*
@@ -55,12 +61,6 @@ void GamePlay::Update(GameData* game_data)
     cube->Tick(game_data);
     cone->Tick(game_data);
     */
-
-    quad->Tick(game_data);
-    quad->SetPitch(quad->GetPitch() + 0.01);
-
-    //VBcube->Tick(game_data);
-    //VBcube->SetPitch(VBcube->GetPitch() + 0.01);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -89,7 +89,6 @@ void GamePlay::Render3D(DrawData* draw_data)
     */
 
     quad->Draw(draw_data);
-    //VBcube->Draw(draw_data);
 }
 
 

@@ -38,8 +38,9 @@ private:
     */
 
     VBQuad* quad = nullptr;
-    VBCube* VBcube = nullptr;
     
     TextGO2D* text = nullptr;
+
+    //bool a = false;
 };
 
