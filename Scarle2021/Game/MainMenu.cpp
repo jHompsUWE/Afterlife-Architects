@@ -47,7 +47,6 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
             
         case input_up:
-            DataManager::GetGD()->current_game_state = gs_gameplay;
             break;
             
         case input_down:
@@ -57,6 +56,7 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
             
         case input_right:
+            DataManager::GetGD()->current_game_state = gs_gameplay;
             break;
             
         default:

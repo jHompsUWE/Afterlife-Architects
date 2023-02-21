@@ -4,59 +4,80 @@
 class OrthographicCamera : public GameObject
 {
 public:
-	OrthographicCamera(float left, float right, float bottom, float top, float near, float far);
+	OrthographicCamera(float camera_width, float camera_height, float near, float far, 
+		XMVECTOR camera_position, XMVECTOR camera_target, XMVECTOR camera_up);
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
 
 	virtual void Draw(DrawData* _DD) override;
 
+	void CameraLeft();
+	void CameraRight();
+	void CameraUp();
+	void CameraDown();
+
 	//Getters
 	Matrix GetProj() { return projection_matrix; }
 	Matrix GetView() { return view_matrix; }
 
-	void SetPosition(const Vector3& position) { _position = position; void RecalculateViewMatrix(); }
-	const Vector3& GetPosition() const { return _position; }
+	void SetPosition(const Vector3& position) { camera_position = position; void RecalculateViewMatrix(); }
+	const Vector3& GetPosition() const { return camera_position; }
 
 	//not including rotation here not necessary
 
 	const Matrix& GetProjectionMatrix() const { return projection_matrix; }
 	const Matrix& GetViewMatrix() const { return view_matrix; }
-	const Matrix& GetViewProjectionMatrix() const { return view_projection_matrix; }
+	const Matrix& GetViewProjectionMatrix() const { return world_view_projection_matrix; }
 
-	XMFLOAT3 camera_position = XMFLOAT3(0.0f, 0.0f, -5.0f);
+	/* camera_position = XMFLOAT3(0.0f, 0.0f, -5.0f);
 	XMFLOAT3 camera_target = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);
+	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);*/
+
+	XMVECTOR camera_position = XMVectorSet(0.0f, 0.0f, -0.1f, 0.0f);
+	XMVECTOR camera_target = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
+	XMVECTOR camera_up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 
 private:
 	void RecalculateViewMatrix();
 
+	const float camera_speed = 0.003f;
+
 	float width;
 	float height;
 
-	//values possibly work for creating ortographic perspective
-	float left = -10.0f;
-	float right = 10.0f;
-	float bottom = -10.0f;
-	float top = 10.0f;
+	//values possibly work for creating orthographic perspective
+	//float left = -10.0f;
+	//float right = 10.0f;
+	//float bottom = -10.0f;
+	//float top = 10.0f;
+	
+	//XMMatrixOrthographicOffCenterLH creates a custom orthogonal projection, requires left right etc.
+	//to be passed. Trying XMMatrixOrthographicLH, which requires 4 values to be viewwidth, viewheight,
+	//near and far
+
+	float camera_width = 120.0f;
+	float camera_height = 60.0f;
 	float near_plane = 0.1f;
-	float far_plane = 100.0f;
+	float far_plane = 1000.0f;
 
 protected:
-	XMMATRIX projection_matrix = XMMatrixOrthographicOffCenterLH(left, right, bottom, top, near_plane, far_plane);
-	XMMATRIX view_matrix = XMMatrixLookAtLH(XMLoadFloat3(&camera_position), XMLoadFloat3(&camera_target), XMLoadFloat3(&camera_up));
+	XMMATRIX projection_matrix = XMMatrixOrthographicLH(camera_height, camera_width, near_plane, far_plane);
+	XMMATRIX view_matrix = XMMatrixLookAtLH(camera_position, camera_target, camera_up);
+
+	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
+	XMMATRIX world_view_projection_matrix = projection_matrix * view_matrix;
+
 
 	//XMMATRIX view_matrix = XMMatrixIdentity();
-	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
 	//Matrix projection_matrix;
 	//Matrix view_matrix;
-	Matrix view_projection_matrix;
-
-	Vector3 _position;
-
-	Vector3 target;
-	Vector3 up;
+	//Matrix view_projection_matrix;
+	
+	//Vector3 _position;
+	//Vector3 target;
+	//Vector3 up;
 };
 
 

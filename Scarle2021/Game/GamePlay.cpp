@@ -48,6 +48,30 @@ void GamePlay::LateUpdate(GameData* game_data)
 
 void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
+    for (auto& ev : event_list)
+    {
+        switch (ev)
+        {
+        case none:
+            std::cout << "soooos" << std::endl;
+            break;
+
+        case input_up:
+            break;
+
+        case input_down:
+            break;
+
+        case input_left:
+            break;
+
+        case input_right:
+            break;
+
+        default:
+            break;
+        }
+    }
 }
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)
