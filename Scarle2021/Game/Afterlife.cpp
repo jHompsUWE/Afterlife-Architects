@@ -102,6 +102,8 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
+
+    //Inits the audio manager
     audio_manager = std::make_unique<AudioManager>();
     audio_manager->init();
 }

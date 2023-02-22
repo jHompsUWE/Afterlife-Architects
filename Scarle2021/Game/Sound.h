@@ -19,7 +19,7 @@ public:
 
 	virtual void Tick(GameData* _GD) { _GD; };
 
-	virtual void Play();
+	bool GetPlayState();
 
 	void SetVolume(float _vol) { m_volume = _vol; }
 	float GetVolume() { return m_volume; }

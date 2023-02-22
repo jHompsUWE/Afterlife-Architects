@@ -9,19 +9,18 @@ Sound::Sound(AudioEngine* _audEngine, string _filename)
 	std::wstring wFilename = converter.from_bytes(fullpath.c_str());
 
 	m_sfx = std::make_unique<SoundEffect>(_audEngine, wFilename.c_str());
-	Play();
+	if (m_sfx)
+	{
+		m_sfx->Play(m_volume, m_pitch, m_pan);
+	}
 }
-
 
 Sound::~Sound()
 {
 	m_sfx.reset();
 }
 
-void Sound::Play()
+bool Sound::GetPlayState()
 {
-	if (m_sfx)
-	{
-		m_sfx->Play(m_volume, m_pitch, m_pan);
-	}
+	return m_sfx->IsInUse();
 }

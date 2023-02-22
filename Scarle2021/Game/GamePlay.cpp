@@ -52,32 +52,8 @@ void GamePlay::LateUpdate(GameData* game_data)
 }
 
 void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
-{/*
-    for (auto& ev : event_list)
-    {
-        switch (ev)
-        {
-        case play_sound_1:
-            PlaySound("Afterlife Theme 1");
-            break;
+{
 
-        case play_sound_2:
-            PlaySound("Demolish3");
-            break;
-
-        case play_sound_3:
-            PlaySound("InstituteHeaven");
-            break;
-
-        case play_sound_4:
-            PlaySound("Port");
-            break;
-
-        default:
-            break;
-        }
-        std::cout << ev << " soos" << std::endl;
-    }*/
 }
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)

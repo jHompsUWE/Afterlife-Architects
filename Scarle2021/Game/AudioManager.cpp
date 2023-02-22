@@ -2,14 +2,6 @@
 #include "pch.h" 
 #include "AudioManager.h" 
 
-/*
-AudioManager& AudioManager::Get()
-{
-    static AudioManager instance;
-    return instance;
-}
-*/
-
 AudioManager::AudioManager()
 = default;
 
@@ -17,6 +9,10 @@ AudioManager::~AudioManager()
 {
 }
 
+/// <summary>
+/// Generating Audio Engine within initialisation
+/// </summary>
+/// <returns></returns>
 bool AudioManager::init()
 {
     AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
@@ -27,6 +23,10 @@ bool AudioManager::init()
     return true;
 }
 
+/// <summary>
+/// Update the manager each frame to check if audio sources need to be deleted or created
+/// </summary>
+/// <param name="game_data"></param>
 void AudioManager::Update(GameData* game_data)
 {
     GetEvents(EventManager::GetEventList());
@@ -34,28 +34,42 @@ void AudioManager::Update(GameData* game_data)
     {
         //more 
     }
+    for (auto& s : s_sounds)
+    {
+        if (!s->GetPlayState())
+        {
+            /// Remove sound at this point
+            temp_sounds.push_back(s);
+        }
+    }
+    for (auto& t : temp_sounds)
+    {
+        delete t;
+        s_sounds.remove(t);
+    }
+    temp_sounds.clear();
 }
 
+/// <summary>
+/// Get sound event from Event Manager
+/// </summary>
+/// <param name="event_list"></param>
 void AudioManager::GetEvents(list<AfterlifeEvent>& event_list)
 {
     for (auto& ev : event_list)
     {
         switch (ev)
         {
-        case play_sound_1:
+        case play_sound_theme1:
             PlaySound("Afterlife Theme 1");
             break;
 
-        case play_sound_2:
-            PlaySound("Demolish3");
+        case play_sound_theme2:
+            PlaySound("Afterlife Theme 2");
             break;
 
-        case play_sound_3:
-            PlaySound("InstituteHeaven");
-            break;
-
-        case play_sound_4:
-            PlaySound("Port");
+        case play_sound_theme3:
+            PlaySound("Afterlife Theme 3");
             break;
 
         default:
@@ -65,8 +79,12 @@ void AudioManager::GetEvents(list<AfterlifeEvent>& event_list)
     }
 }
 
+/// <summary>
+/// Generate sound with given filename
+/// </summary>
+/// <param name="filename"></param>
 void AudioManager::PlaySound(string filename)
 {
     Sound* sound_eff = new Sound(audEngine.get(), filename);
-    //s_sounds.push_back(sound_eff);
+    s_sounds.push_back(sound_eff);
 }

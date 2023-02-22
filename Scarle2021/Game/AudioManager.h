@@ -13,15 +13,6 @@
 class AudioManager
 {
 public:
-    /*
-    //Deleted copy/assignment operators
-    AudioManager(const AudioManager&) = delete;
-    AudioManager& operator=(const AudioManager&) = default;
-
-    //Create class and instance
-    static AudioManager& Get();
-    */
-
     AudioManager();
     ~AudioManager();
 
@@ -34,13 +25,9 @@ public:
     void GetEvents(list<AfterlifeEvent>& event_list);
 
 private:
-    /*
-    //Private constructor
-    AudioManager() = default;
-    ~AudioManager() = default;
-    */
     void PlaySound(string filename);
 
     list<Sound*> s_sounds;
+    std::vector<Sound*> temp_sounds;
     std::unique_ptr<AudioEngine> audEngine;
 };
