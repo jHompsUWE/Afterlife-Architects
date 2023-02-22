@@ -41,7 +41,8 @@ private:
     ImageGO2D* windowImage;
     ImageGO2D* ui_panel;
 
-    Button* open_window_1 = nullptr;
+    //Button vector
+    std::vector<UIButtonInterFace*> buttons;
 
     bool window_one_open = true;
 };

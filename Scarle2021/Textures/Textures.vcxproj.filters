@@ -341,6 +341,9 @@
     <ImageContentTask Include="UIPanel.png">
       <Filter>AfterLifeUI</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="green.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tiles">
