@@ -3,5 +3,30 @@
   <ItemGroup>
     <Media Include="Explo1.wav" />
     <Media Include="NightAmbienceSimple_02.wav" />
+    <Media Include="Afterlife Theme 1.wav" />
+    <Media Include="Afterlife Theme 2.wav" />
+    <Media Include="Afterlife Theme 3.wav" />
+    <Media Include="Afterlife Theme 4.wav" />
+    <Media Include="Afterlife Theme 5.wav" />
+    <Media Include="Afterlife Theme 6.wav" />
+    <Media Include="Afterlife Theme 7.wav" />
+    <Media Include="Bank.wav" />
+    <Media Include="Click.wav" />
+    <Media Include="Click2.wav" />
+    <Media Include="Demolish1.wav" />
+    <Media Include="Demolish2.wav" />
+    <Media Include="Demolish3.wav" />
+    <Media Include="FalseClick.wav" />
+    <Media Include="GateHeaven.wav" />
+    <Media Include="GateHell.wav" />
+    <Media Include="InstituteHeaven.wav" />
+    <Media Include="InstituteHell.wav" />
+    <Media Include="Limbos.wav" />
+    <Media Include="Port.wav" />
+    <Media Include="SpecialBuildingHeaven.wav" />
+    <Media Include="SpecialBuildingHell.wav" />
+    <Media Include="Station.wav" />
+    <Media Include="TopiaHeaven.wav" />
+    <Media Include="TopiaHell.wav" />
   </ItemGroup>
 </Project>

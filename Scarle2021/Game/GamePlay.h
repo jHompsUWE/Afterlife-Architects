@@ -27,11 +27,15 @@ public:
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
 
+    void PlaySound(string filename);
+
 private:
     CMOGO* plane = nullptr;
     FileVBGO* cube = nullptr;
     GPGO* cone = nullptr;
     
     TextGO2D* text = nullptr;
+    std::unique_ptr<AudioEngine> audEngine;
+    list<Sound*> sounds;
 };
 

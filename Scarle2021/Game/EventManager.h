@@ -8,7 +8,11 @@ enum AfterlifeEvent
 	input_up,
 	input_down,
 	input_left,
-	input_right
+	input_right,
+	play_sound_1,
+	play_sound_2,
+	play_sound_3,
+	play_sound_4
 };
 
 class EventManager

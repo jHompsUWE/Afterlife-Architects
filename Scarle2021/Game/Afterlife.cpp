@@ -102,6 +102,8 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
+    audio_manager = std::make_unique<AudioManager>();
+    audio_manager->init();
 }
 
 // Executes the basic game loop
@@ -122,6 +124,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
+    audio_manager->Update(game_data);
     
     ortho_cam->Tick(game_data);
     light->Tick(game_data);

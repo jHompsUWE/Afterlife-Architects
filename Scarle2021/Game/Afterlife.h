@@ -93,5 +93,6 @@ private:
 
     //Instance of the FSM
     std::unique_ptr<FSM> finite_state_machine = nullptr;
+    std::unique_ptr<AudioManager> audio_manager = nullptr;
 };
 

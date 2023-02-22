@@ -3,6 +3,7 @@
 
 #include "DataManager.h"
 #include "EventManager.h"
+#include "AudioManager.h"
 
 /**
  * \brief This is an interface where all the
