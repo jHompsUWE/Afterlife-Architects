@@ -25,8 +25,9 @@ public:
 	virtual void Tick(GameData* _GD) = 0;
 	virtual void Draw(DrawData2D* _DD) = 0;
 
+	Vector2& ReSize(const int* window_width, const int* window_height);
+	
 	//setters
-
 	void SetPos(Vector2 _pos) { m_pos = _pos; }
 	void SetRot(float _rot) { m_rotation = _rot; }
 	void SetColour(Color _colour) { m_colour = _colour; }
@@ -39,13 +40,17 @@ public:
 	const Vector2& GetScale() { return m_scale; }
 
 protected:
+
+	//resizing and scaling
+	Vector2 resize_scale {1,1};
+	Vector2 start_res {800,600};
+
+	//GO data
 	Vector2 m_pos;
 	float m_rotation;
 	Vector2 m_scale;
 	Color m_colour;
 	Vector2 m_origin;
-
-	
 };
 
 

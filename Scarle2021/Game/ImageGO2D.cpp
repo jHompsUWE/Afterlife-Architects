@@ -33,7 +33,6 @@ ImageGO2D::ImageGO2D(string _fileName, ID3D11Device* _GD) :m_pTextureRV(nullptr)
 		SetScale(20.0f);
 		m_colour = Colors::HotPink;
 	}
-
 }
 
 ImageGO2D::~ImageGO2D()

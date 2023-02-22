@@ -24,14 +24,20 @@ public:
 	void Render3D(DrawData* draw_data) override;
 
 private:
-	TextGO2D* text = nullptr;
+	void ResizeUI();
+
+	//Button vector
+	std::vector<UIButtonInterFace*> buttons;
+	
 	//buttons
+	/*
 	Button* start_button = nullptr;
 	Button* load_button = nullptr;
 	Button* load_scenario_button = nullptr;
 	Button* replay_intro = nullptr;
 	Button* quit_afterlife = nullptr;
+	*/
 	
-	ImageGO2D* MainMenu_bg;
+	ImageGO2D* main_menu_bg = nullptr;
 };
 

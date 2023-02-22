@@ -14,8 +14,11 @@ public:
 
 	void setPostion(Vector2& _new_pos) override;
 	void setScale(Vector2& _newScale) override;
-	Vector2 getPosition() override;
-	Vector2 getWindowRes() override;
+	
+	Vector2& getPosition() override;
+	Vector2& getButtonRes() override;
+	
+	void reSize(std::pair<int*, int*> game_res) override;
 
 private:
 

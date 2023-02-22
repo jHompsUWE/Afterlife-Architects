@@ -96,6 +96,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     draw_data->main_light = light;
 
     //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
+    //TODO:: DO NOT CREATED 2D OBJECTS BEFORE DATA MANAGER IS INITIATED
     DataManager::Get().PopulatePointers(AR, &main_window, &output_width, &output_height, game_data,
         draw_data, draw_data2D, d3d_device.Get(),d3d_context.Get(), effect_factory);
 
@@ -255,6 +256,7 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
     CreateResources();
 
     // TODO: Game main_window is being resized.
+    EventManager::GenerateEvent(game_resized);
 }
 
 // Properties

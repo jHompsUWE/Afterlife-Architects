@@ -3,9 +3,7 @@
 //
 
 #include "pch.h"
-
 #include "Afterlife.h"
-#include "Game.h"
 
 using namespace DirectX;
 
@@ -145,7 +143,7 @@ LRESULT CALLBACK WndProc(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lPar
     static bool s_fullscreen = true;//Set s_fullscreen to true if defaulting to fullscreen.
 #endif  
 
-    auto game = reinterpret_cast<Game*>(GetWindowLongPtr(_hWnd, GWLP_USERDATA));
+    auto game = reinterpret_cast<Afterlife*>(GetWindowLongPtr(_hWnd, GWLP_USERDATA));
 
     switch (_message)
     {

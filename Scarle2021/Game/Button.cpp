@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Button.h"
-
 #include <iostream>
 
 
@@ -9,7 +8,6 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
                AfterlifeEvent _event,Vector2 _setScale):UIButtonInterFace(_event)
 {
 	//setup for button background
-	
 	buttonBackGround = new ImageGO2D(_filepath, _d3dDevice);
 	buttonBackGround->SetOrigin(Vector2(0, 0));
 	//buttonBackGround->SetScale(Vector2(_setScale));
@@ -18,7 +16,6 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	button_res = Vector2(buttonBackGround->GetRes().x
 		* buttonBackGround->GetScale().x, buttonBackGround->GetRes().y
 		* buttonBackGround->GetScale().y);
-
 	
 	button_pos = _buttonPosition - button_res/2;
 	buttonBackGround->SetPos(button_pos);
@@ -35,17 +32,13 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	AfterlifeEvent _event,Vector2 _setScale):UIButtonInterFace(_event)
 {
 	//setup for button background
-	
 	buttonBackGround = new ImageGO2D(_filepath, _d3dDevice);
 	buttonBackGround->SetOrigin(Vector2(0, 0));
 	buttonBackGround->SetScale(_setScale);
-
 	//sets res
 	button_res = Vector2(buttonBackGround->GetRes().x
 		* buttonBackGround->GetScale().x, buttonBackGround->GetRes().y
 		* buttonBackGround->GetScale().y);
-	
-	
 	
 	button_pos = _buttonPosition - button_res/2;
 	buttonBackGround->SetPos(button_pos);
@@ -54,17 +47,11 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 Button::~Button()
 {
 	delete buttonBackGround;
-	
-	//checks if there is a text 
-	if(buttonText != nullptr)
-	{
-		delete buttonText;
-	}
+	delete buttonText;
 }
 
 void Button::update(GameData* _gameData, Vector2& _mousePosition)
 {
-	
 	buttonBackGround->Tick(_gameData);
 	
 	if(buttonText != nullptr)
@@ -98,16 +85,34 @@ void Button::setScale(Vector2& _newScale)
 	//_newScale = Vector2(0,0);
 }
 
-Vector2 Button::getPosition()
+Vector2& Button::getPosition()
 {
 	// TODO: insert return statement here
-	return Vector2(0,0);
+	return button_res;
 }
 
-Vector2 Button::getWindowRes()
+Vector2& Button::getButtonRes()
 {
 	// TODO: insert return statement here
-	return Vector2(0,0);
+	return button_pos;
+}
+
+void Button::reSize(std::pair<int*, int*> game_res)
+{
+	//gets new res
+	const int* window_width = game_res.first;
+	const int* window_height = game_res.second;
+
+	//resizes background and text
+	auto& resize_scale = buttonBackGround->ReSize(window_width, window_height);
+	if(buttonText != nullptr)
+	{
+		buttonText->ReSize(window_width, window_height);
+	}
+
+	//Re-scale position and scale accordingly to make button work in UI 
+	button_pos = button_pos * resize_scale;
+	button_res = button_res * resize_scale;
 }
 
 bool Button::isInside(Vector2& point) const
