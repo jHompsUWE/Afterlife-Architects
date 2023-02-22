@@ -11,9 +11,14 @@ public:
 
 	virtual void Draw(DrawData* _DD) override;
 
+	void UpdateProjectionMatrix();
+
 
 	void CameraForward(float distance);
 	void CameraBackward(float distance); 
+	void ZoomIn(float amount);
+	void ZoomOut(float amount);
+
 	void CameraRotateLeft();
 	void CameraRotateRight();
 	void CameraRotateUp();
@@ -45,6 +50,7 @@ private:
 	void RecalculateViewMatrix();
 
 	const float camera_speed = 0.003f;
+	float zoom_factor;
 
 	float width;
 	float height;
@@ -61,7 +67,7 @@ private:
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
-	float near_plane = 1.0f;
+	float near_plane = 0.1f;
 	float far_plane = 1000.0f;
 
 protected:

@@ -154,6 +154,15 @@ void Afterlife::ReadInput()
         ortho_cam->CameraBackward(0.1f);
     }
 
+    if (game_data->keyboard_state.C)
+    {
+        ortho_cam->ZoomIn(0.1f);
+    }
+    if (game_data->keyboard_state.F)
+    {
+        ortho_cam->ZoomOut(0.1f);
+    }
+
     //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
     /*
     RECT _window;

@@ -27,6 +27,12 @@ void OrthographicCamera::Draw(DrawData* _DD)
 	//standard camera doesn't draw ANYTHING
 }
 
+void OrthographicCamera::UpdateProjectionMatrix()
+{
+	projection_matrix = XMMatrixOrthographicLH(camera_height * zoom_factor, camera_width * zoom_factor,
+		near_plane * zoom_factor, far_plane * zoom_factor);
+}
+
 void OrthographicCamera::CameraForward(float distance)
 {
 	XMVECTOR movement = XMVectorMultiply(forward, XMVectorReplicate(distance));
@@ -44,6 +50,24 @@ void OrthographicCamera::CameraBackward(float distance)
 	std::cout << "Camera Backwards" << std::endl;
 }
 
+void OrthographicCamera::ZoomIn(float amount)
+{
+	zoom_factor -= amount;
+	if (zoom_factor < 0.1f)
+	{
+		zoom_factor = 0.1f;
+	}
+
+	UpdateProjectionMatrix();
+}
+
+void OrthographicCamera::ZoomOut(float amount)
+{
+	zoom_factor += amount;
+
+	UpdateProjectionMatrix();
+}
+
 void OrthographicCamera::CameraRotateLeft()
 {
 	camera_position += XMVectorSet(-camera_speed, 0.0f, 0.0f, 0.0f);
@@ -57,7 +81,6 @@ void OrthographicCamera::CameraRotateRight()
 void OrthographicCamera::CameraRotateDown()
 {
 	camera_position += XMVectorSet(0.0f, camera_speed, 0.0f, 0.0f);
-	std::cout << "Camera Down" << std::endl;
 }
 
 void OrthographicCamera::CameraRotateUp()
