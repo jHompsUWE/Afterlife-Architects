@@ -4,8 +4,7 @@
 class OrthographicCamera : public GameObject
 {
 public:
-	OrthographicCamera(float camera_width, float camera_height, float near, float far, 
-		XMVECTOR camera_position, XMVECTOR camera_target, XMVECTOR camera_up);
+	OrthographicCamera();
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
@@ -14,7 +13,7 @@ public:
 
 
 	void CameraForward(float distance);
-	void CameraBackward(float distance);
+	void CameraBackward(float distance); 
 	void CameraRotateLeft();
 	void CameraRotateRight();
 	void CameraRotateUp();
@@ -62,8 +61,8 @@ private:
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
-	float near_plane = 0.0f;
-	float far_plane = 1.0f;
+	float near_plane = 1.0f;
+	float far_plane = 1000.0f;
 
 protected:
 	XMMATRIX projection_matrix = XMMatrixOrthographicLH(camera_height, camera_width, near_plane, far_plane);

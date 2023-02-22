@@ -2,8 +2,7 @@
 #include "OrthographicCamera.h"
 #include <iostream>
 
-OrthographicCamera::OrthographicCamera(float camera_width, float camera_height, float near, float far,
-	XMVECTOR camera_position, XMVECTOR camera_target, XMVECTOR camera_up)
+OrthographicCamera::OrthographicCamera()
 	
 {
 	

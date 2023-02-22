@@ -86,9 +86,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
-    ortho_cam = new OrthographicCamera(640.0f, 480.0f, 0.1f, 100.0f,
-        XMVectorSet(0.0f, 0.0f, -0.0f, 0.0f), XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f),
-        XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f));
+    ortho_cam = new OrthographicCamera();
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
