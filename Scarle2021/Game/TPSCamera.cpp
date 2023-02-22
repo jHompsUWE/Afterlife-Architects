@@ -17,11 +17,16 @@ TPSCamera::~TPSCamera()
 void TPSCamera::Tick(GameData* _GD)
 {
 	//Set up position of camera and target position of camera based on new position and orientation of target object
-	Matrix rotCam = Matrix::CreateFromYawPitchRoll(m_targetObject->GetYaw(), 0.0f, 0.0f);
+	Matrix rotCam = Matrix::CreateFromYawPitchRoll(45 * PI/180, 0, 0);
 	m_target = m_targetObject->GetPos();
 	m_pos = m_target + Vector3::Transform(m_dpos, rotCam) ;
 
 	//and then set up proj and view matrices
-	Camera::Tick(_GD);
+	m_projMat = XMMatrixOrthographicLH(40, 30, m_nearPlaneDistance, m_farPlaneDistance);
+	//m_projMat = XMMatrixOrthographicOffCenterLH(left, right, bottom, top, m_nearPlaneDistance, m_farPlaneDistance);
+	m_viewMat = XMMatrixLookAtLH(m_pos, m_target, m_up);
+	GameObject::Tick(_GD);
+
+	//Camera::Tick(_GD);
 }
 

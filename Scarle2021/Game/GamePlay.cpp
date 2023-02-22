@@ -15,9 +15,9 @@ bool GamePlay::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    quad = new VBQuad(DataManager::GetD3DDevice(), "Tile_Purple");
+    quad = new VBQuad(DataManager::GetD3DDevice(), "Tile_Lava");
     quad->SetPos(Vector3(0.0f, 0.0f, 0.0f));
-    quad->SetPitch(3.142);
+    //quad->SetPitch(3.142);
     
     return true;
 }

@@ -2,6 +2,8 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
+#define DESTROY( x ) if( x ){ x->Release(); x = nullptr;}
+
 VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 {
 	SetTexture(textureName);
@@ -19,27 +21,27 @@ VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 	int vert = 0;
 	m_vertices[vert].texCoord = Vector2(0.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, 1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(0.0f, 0.0f, 1.0f);
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
 
 	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, -1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(0.0f, 0.0f, 0.0f);
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
 
 	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(-1.0f, -1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(0.0f, 0.0f, 0.0f);
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, -1.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 0.0f);
 
 	for (UINT i = 0; i < m_numPrims; i++)
 	{
@@ -84,6 +86,12 @@ VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 	ID3DBlob* pPixelShaderBuffer = NULL;
 	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
 	d11_device->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
+}
+
+VBQuad::~VBQuad()
+{
+	DESTROY(d11_device);
+	delete m_vertices;
 }
 
 /// <summary>
