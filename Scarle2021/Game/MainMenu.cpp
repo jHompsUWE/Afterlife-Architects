@@ -30,23 +30,23 @@ bool MainMenu::init()
     // UI buttons init................
     //start button
     buttons.push_back(new Button(Vector2(109,37),DataManager::GetD3DDevice(),
-        "Start Game","ButtonBackgroundMM",input_up,Vector2(0.5,0.5)));
+        "Start Game","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
     
     //load button
     buttons.push_back(new Button(Vector2(536,37),DataManager::GetD3DDevice(),
-        "Load Game","ButtonBackgroundMM",input_up,Vector2(0.5,0.5)));
+        "Load Game","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
     
     //scenario button
     buttons.push_back(new Button(Vector2(960,37),DataManager::GetD3DDevice(),
-        "Load Scenario","ButtonBackgroundMM",input_up,Vector2(0.5,0.5)));
+        "Load Scenario","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
     
     //intro replay button
     buttons.push_back(new Button(Vector2(262,661),DataManager::GetD3DDevice(),
-        "Replay Intro","ButtonBackgroundMM",input_up,Vector2(0.5,0.5)));
+        "Replay Intro","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
 
     //Quit afterlife button
     buttons.push_back(new Button(Vector2(791,661),DataManager::GetD3DDevice(),
-        "Quit AfterLife","ButtonBackgroundMM",input_up,Vector2(0.5,0.5)));
+        "Quit AfterLife","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
     
     return true;
 }
@@ -90,11 +90,12 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
             std::cout << "soooos" << std::endl;
             break;
             
-        case input_up:
-            DataManager::GetGD()->current_game_state = gs_gameplay;
+        case enter_level_select:
+            DataManager::GetGD()->current_game_state = gs_level_select;
             break;
             
-        case input_down:
+        case enter_main_menu:
+            DataManager::GetGD()->current_game_state = gs_main_menu;
             break;
             
         case input_left:
@@ -115,12 +116,14 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void MainMenu::Render2D(DrawData2D* draw_data2D)
 {
+    main_menu_bg->Draw(draw_data2D);
+    
     for (auto& button : buttons)
     {
         button->render(draw_data2D);
     }
 
-    main_menu_bg->Draw(draw_data2D);
+    
     
     /*
     main_menu_bg->Draw(draw_data2D);

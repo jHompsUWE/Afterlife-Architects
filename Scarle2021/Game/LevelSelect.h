@@ -1,5 +1,6 @@
 #pragma once
 #include "StateTemplate.h"
+#include "Button.h"
 
 class LevelSelect : public StateTemplate
 {
@@ -20,5 +21,13 @@ public:
     
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
+    
+    private:
+    void ResizeUI();
+
+    //Button vector
+    std::vector<UIButtonInterFace*> buttons;
+	
+    ImageGO2D* main_menu_bg = nullptr;
 };
 

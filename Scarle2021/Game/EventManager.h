@@ -9,7 +9,11 @@ enum AfterlifeEvent
 	input_down,
 	input_left,
 	input_right,
-	game_resized
+	game_resized,
+	enter_main_menu,
+	enter_game_play,
+	enter_level_select,
+	test_window,
 };
 
 class EventManager

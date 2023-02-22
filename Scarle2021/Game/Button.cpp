@@ -2,6 +2,8 @@
 #include "Button.h"
 #include <iostream>
 
+#include "DataManager.h"
+
 
 Button::Button(Vector2 _buttonPosition, ID3D11Device*
                _d3dDevice,std::string _text,std::string _filepath,
@@ -61,7 +63,10 @@ void Button::update(GameData* _gameData, Vector2& _mousePosition)
 	
 	if(isInside(_mousePosition))
 	{
-		EventManager::GenerateEvent(al_event);
+		if(DataManager::GetGD()->mouse_state.leftButton)
+		{
+			EventManager::GenerateEvent(al_event);
+		}
 	}
 }
 

@@ -29,6 +29,8 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
+    void ResizeUI();
+    
     CMOGO* plane = nullptr;
     FileVBGO* cube = nullptr;
     GPGO* cone = nullptr;
@@ -38,6 +40,8 @@ private:
     ImageGO2D* ui_frame;
     ImageGO2D* windowImage;
     ImageGO2D* ui_panel;
+
+    Button* open_window_1 = nullptr;
 
     bool window_one_open = true;
 };
