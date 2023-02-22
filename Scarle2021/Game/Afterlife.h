@@ -10,10 +10,14 @@
 #include "FSM.h"
 #include "OrthographicCamera.h"
 
+//Player for debug purposes
+#include "Player.h"
+
 // Forward declarations
 struct GameData;
 struct DrawData;
 struct DrawData2D;
+
 
 //Main Game Loop
 class Afterlife
@@ -78,9 +82,12 @@ private:
     DrawData2D* draw_data2D = NULL;
 
     // 3D renders
-    //Camera* main_cam = NULL;
     OrthographicCamera* ortho_cam = NULL;
     Light* light = NULL;
+
+    // Debug
+    Camera* debug_cam = NULL;
+    Player* debug_player = NULL;  
 
     // required for the CMO model rendering system
     CommonStates* common_states = NULL;

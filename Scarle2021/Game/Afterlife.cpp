@@ -86,13 +86,20 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
-    ortho_cam = new OrthographicCamera(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
+    //ortho_cam = new OrthographicCamera(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
+
+    //this is needed for the follow cam
+    debug_player = new Player("BirdModelV1", d3d_device.Get(), effect_factory);
+    //Just a tps cam for plane debugging
+    debug_cam = new TPSCamera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
+        debug_player, Vector3::UnitY, Vector3(0.0f, 10.0f, 50.0f));
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
     draw_data->pd3d_immediate_context = nullptr;
     draw_data->common_states = common_states;
-    draw_data->main_camera = ortho_cam;
+    //draw_data->main_camera = ortho_cam;
+    draw_data->main_camera = debug_cam;
     draw_data->main_light = light;
 
     //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
@@ -123,8 +130,12 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
    
     finite_state_machine->Update(game_data);
     
-    ortho_cam->Tick(game_data);
+    //ortho_cam->Tick(game_data);
     light->Tick(game_data);
+
+    //debug
+    debug_player->Tick(game_data);
+    debug_cam->Tick(game_data);
 }
 
 void Afterlife::ReadInput()
@@ -170,8 +181,12 @@ void Afterlife::Render()
     //update the constant buffer for the rendering of VBGOs
     VBGO::UpdateConstantBuffer(draw_data);
 
+    //Debug
+    debug_player->Draw(draw_data);
+    debug_cam->Draw(draw_data);
+    
     //Renders basic scene elements
-    ortho_cam->Draw(draw_data);
+    //ortho_cam->Draw(draw_data);
     light->Draw(draw_data);
     
     //Draws 3D GOs

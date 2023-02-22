@@ -222,6 +222,9 @@
     <ClInclude Include="VBQuad.h">
       <Filter>GameObjects\3D\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -318,6 +321,9 @@
       <Filter>Afterlife\UIButton</Filter>
     </ClCompile>
     <ClCompile Include="VBQuad.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

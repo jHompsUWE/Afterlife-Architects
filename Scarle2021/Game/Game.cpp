@@ -213,7 +213,7 @@ void Game::Initialize(HWND _window, int _width, int _height)
     m_DD = new DrawData;
     m_DD->pd3d_immediate_context = nullptr;
     m_DD->common_states = m_states;
-    m_DD->main_camera = m_cam;
+    //m_DD->main_camera = m_cam;
     m_DD->main_light = m_light;
 
     //example basic 2D stuff
@@ -317,7 +317,7 @@ void Game::Render()
     m_DD->pd3d_immediate_context = m_d3dContext.Get();
 
     //set which camera to be used
-    m_DD->main_camera = m_cam;
+    //m_DD->main_camera = m_cam;
 
     //Commented out because we made our own gamestates.
     /*
