@@ -25,8 +25,8 @@ private:
 	Vector3 camera_target;
 	Vector3 camera_constraint = Vector3(10.0f, (sqrt(3) / 3) * 10, 0.0f);
 
-	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0) * (zoom_value / zoom_max);
-	Vector3 horizontal_movement = camera_speed / 4 * Vector3(1, 0, 1) * (zoom_value / zoom_max);
+	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0);
+	Vector3 horizontal_movement = camera_speed / 4 * Vector3(1, 0, 1);
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
@@ -42,8 +42,6 @@ private:
 protected:
 	XMMATRIX projection_matrix;
 	XMMATRIX view_matrix;
-
-
 	XMVECTOR camera_position;
 	Vector3 camera_up = Vector3::UnitY;
 };
