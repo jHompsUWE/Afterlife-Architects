@@ -19,6 +19,31 @@ void OrthographicCamera::Tick(GameData* _GD)
 
 	view_matrix = XMMatrixLookAtLH(camera_position, camera_target, camera_up);
 	world_view_projection_matrix = projection_matrix * view_matrix;
+
+	if (_GD->keyboard_state.W)
+	{
+		CameraForward(0.1f);
+	}
+
+	if (_GD->keyboard_state.S)
+	{
+		CameraBackward(0.1f);
+	}
+
+	if (_GD->mouse_state.scrollWheelValue < scroll_value)
+	{
+		scroll_value = _GD->mouse_state.scrollWheelValue;
+		zoom_value += 0.1f;
+
+		Zoom(zoom_value);
+	}
+	if (_GD->mouse_state.scrollWheelValue > scroll_value)
+	{
+		scroll_value = _GD->mouse_state.scrollWheelValue;
+		zoom_value -= 0.1f;
+
+		Zoom(zoom_value);
+	}
 }
 
 void OrthographicCamera::Draw(DrawData* _DD)
@@ -29,8 +54,8 @@ void OrthographicCamera::Draw(DrawData* _DD)
 
 void OrthographicCamera::UpdateProjectionMatrix()
 {
-	projection_matrix = XMMatrixOrthographicLH(camera_height * zoom_factor, camera_width * zoom_factor,
-		near_plane * zoom_factor, far_plane * zoom_factor);
+	projection_matrix = XMMatrixOrthographicLH(camera_height * zoom_value, camera_width * zoom_value,
+		near_plane * zoom_value, far_plane * zoom_value);
 }
 
 void OrthographicCamera::CameraForward(float distance)
@@ -40,30 +65,27 @@ void OrthographicCamera::CameraForward(float distance)
 	camera_target = XMVectorAdd(camera_target, movement);
 	view_matrix = XMMatrixLookAtLH(camera_position, camera_target, camera_up);
 
-	std::cout << "Camera Forwards" << std::endl;
+	std::cout << "Camera Forward" << std::endl;
 }
 
 void OrthographicCamera::CameraBackward(float distance)
 {
 	CameraForward(-distance);
 
-	std::cout << "Camera Backwards" << std::endl;
+	std::cout << "Camera Backward" << std::endl;
 }
 
-void OrthographicCamera::ZoomIn(float amount)
+void OrthographicCamera::Zoom(float amount)
 {
-	zoom_factor -= amount;
-	if (zoom_factor < 0.1f)
+	if (amount < zoom_min)
 	{
-		zoom_factor = 0.1f;
+		amount = zoom_min;
 	}
 
-	UpdateProjectionMatrix();
-}
-
-void OrthographicCamera::ZoomOut(float amount)
-{
-	zoom_factor += amount;
+	if (amount > zoom_max)
+	{
+		amount = zoom_max;
+	}
 
 	UpdateProjectionMatrix();
 }

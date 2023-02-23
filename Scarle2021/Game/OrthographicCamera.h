@@ -1,6 +1,7 @@
 #pragma once
 
 #include "gameobject.h"
+#include "GameData.h"
 class OrthographicCamera : public GameObject
 {
 public:
@@ -16,8 +17,9 @@ public:
 
 	void CameraForward(float distance);
 	void CameraBackward(float distance); 
-	void ZoomIn(float amount);
-	void ZoomOut(float amount);
+	void Zoom(float amount);
+	//void ZoomIn(float amount);
+	//void ZoomOut(float amount);
 
 	void CameraRotateLeft();
 	void CameraRotateRight();
@@ -31,8 +33,6 @@ public:
 	void SetPosition(const Vector3& position) { camera_position = position; void RecalculateViewMatrix(); }
 	const Vector3& GetPosition() const { return camera_position; }
 
-	//not including rotation here not necessary
-
 	const Matrix& GetProjectionMatrix() const { return projection_matrix; }
 	const Matrix& GetViewMatrix() const { return view_matrix; }
 	const Matrix& GetViewProjectionMatrix() const { return world_view_projection_matrix; }
@@ -41,7 +41,7 @@ public:
 	XMFLOAT3 camera_target = XMFLOAT3(0.0f, 0.0f, 0.0f);
 	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);*/
 
-	XMVECTOR camera_position = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
+	XMVECTOR camera_position = XMVectorSet(0.0f, -1.0f, 1.0f, 0.0f);
 	XMVECTOR camera_target = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
 	XMVECTOR camera_up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
@@ -50,7 +50,7 @@ private:
 	void RecalculateViewMatrix();
 
 	const float camera_speed = 0.003f;
-	float zoom_factor;
+	//float zoom_factor;
 
 	float width;
 	float height;
@@ -69,6 +69,12 @@ private:
 	float camera_height = 60.0f;
 	float near_plane = 0.1f;
 	float far_plane = 1000.0f;
+
+	float zoom_value = 1.0f;
+	float zoom_min = 1.0f;
+	float zoom_max = 5.0f;
+
+	float scroll_value = 0.0f;
 
 protected:
 	XMMATRIX projection_matrix = XMMatrixOrthographicLH(camera_height, camera_width, near_plane, far_plane);
