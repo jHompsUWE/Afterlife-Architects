@@ -12,87 +12,40 @@ public:
 
 	virtual void Draw(DrawData* _DD) override;
 
-	void UpdateProjectionMatrix();
-
-
-	void CameraForward(float distance);
-	void CameraBackward(float distance); 
-	void Zoom(float amount);
-	//void ZoomIn(float amount);
-	//void ZoomOut(float amount);
-
-	void CameraRotateLeft();
-	void CameraRotateRight();
-	void CameraRotateUp();
-	void CameraRotateDown();
-
-	//Getters
 	Matrix GetProj() { return projection_matrix; }
 	Matrix GetView() { return view_matrix; }
 
-	void SetPosition(const Vector3& position) { camera_position = position; void RecalculateViewMatrix(); }
-	const Vector3& GetPosition() const { return camera_position; }
+	void Input(GameData* _GD);
 
-	const Matrix& GetProjectionMatrix() const { return projection_matrix; }
-	const Matrix& GetViewMatrix() const { return view_matrix; }
-	const Matrix& GetViewProjectionMatrix() const { return world_view_projection_matrix; }
-
-	/* camera_position = XMFLOAT3(0.0f, 0.0f, -5.0f);
-	XMFLOAT3 camera_target = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);*/
-
-	XMVECTOR camera_position = XMVectorSet(0.0f, -1.0f, 1.0f, 0.0f);
-	XMVECTOR camera_target = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
-	XMVECTOR camera_up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-
+	void RecalculateProjViewPos();
 
 private:
-	void RecalculateViewMatrix();
+	float camera_speed = 0.7f;
 
-	const float camera_speed = 0.003f;
-	//float zoom_factor;
+	Vector3 camera_target;
+	Vector3 camera_constraint = Vector3(10.0f, (sqrt(3) / 3) * 10, 0.0f);
 
-	float width;
-	float height;
-
-	//values used for XMMatrixOrthographicOffCenterLH
-	//float left = -10.0f;
-	//float right = 10.0f;
-	//float bottom = -10.0f;
-	//float top = 10.0f;
-	
-	//XMMatrixOrthographicOffCenterLH creates a custom orthogonal projection, requires left right etc.
-	//to be passed. Trying XMMatrixOrthographicLH, which requires 4 values passed to viewwidth, viewheight,
-	//near and far
+	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0) * (zoom_value / zoom_max);
+	Vector3 horizontal_movement = camera_speed / 4 * Vector3(1, 0, 1) * (zoom_value / zoom_max);
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
 	float near_plane = 0.1f;
 	float far_plane = 1000.0f;
 
-	float zoom_value = 1.0f;
-	float zoom_min = 1.0f;
-	float zoom_max = 5.0f;
+	float zoom_value = 1.5f;
+	float zoom_min = 0.2f;
+	float zoom_max = 3.0f;
 
 	float scroll_value = 0.0f;
 
 protected:
-	XMMATRIX projection_matrix = XMMatrixOrthographicLH(camera_height, camera_width, near_plane, far_plane);
-	XMMATRIX view_matrix = XMMatrixLookAtLH(camera_position, camera_target, camera_up);
+	XMMATRIX projection_matrix;
+	XMMATRIX view_matrix;
 
-	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
-	XMMATRIX world_view_projection_matrix = projection_matrix * view_matrix;
 
-	XMVECTOR forward = XMVector3Normalize(XMVectorSubtract(camera_target, camera_position));
-
-	//XMMATRIX view_matrix = XMMatrixIdentity();
-	//Matrix projection_matrix;
-	//Matrix view_matrix;
-	//Matrix view_projection_matrix;
-	
-	//Vector3 _position;
-	//Vector3 target;
-	//Vector3 up;
+	XMVECTOR camera_position;
+	Vector3 camera_up = Vector3::UnitY;
 };
 
 
