@@ -11,7 +11,6 @@ GamePlay::~GamePlay()
     delete cone;
     
     delete ui_frame;
-    delete windowImage;
     delete ui_panel;
 
     for (auto button : buttons)
@@ -31,13 +30,6 @@ bool GamePlay::init()
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
     ui_frame->SetOrigin(Vector2(0,0));
     ui_frame->SetScale(Vector2(1,1));
-
-
-    // ui window 
-    windowImage = new ImageGO2D("Window",DataManager::GetD3DDevice());
-    windowImage->SetOrigin(Vector2(0,0));
-    windowImage->SetPos(Vector2(400,200));
-    windowImage->SetScale(Vector2(0.5,0.5));
 
     ui_panel = new ImageGO2D("UIPanel",DataManager::GetD3DDevice());
     ui_panel->SetOrigin(Vector2(0,0));
@@ -148,16 +140,14 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
-   
-    
-    //text->Draw(draw_data2D);
     ui_frame->Draw(draw_data2D);
     ui_panel->Draw(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
     {
-        windowImage->Draw(draw_data2D);
+        //render window
+        window_one->render(draw_data2D);
     }
     
     //renders buttons
@@ -166,8 +156,7 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
         button->render(draw_data2D);
     }
 
-    //render window
-    window_one->render(draw_data2D);
+    
    
 }
 
@@ -180,13 +169,14 @@ void GamePlay::Render3D(DrawData* draw_data)
 void GamePlay::ResizeUI()
 {
     ui_frame->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
-    windowImage->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
     ui_panel->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
 
     for (auto& button : buttons)
     {
         button->reSize(DataManager::GetRES());
     }
+    
+    window_one->reSize(DataManager::GetRES());
 }
 
 

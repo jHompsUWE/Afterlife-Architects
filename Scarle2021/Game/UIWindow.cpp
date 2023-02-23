@@ -22,22 +22,37 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     windowBackGround->SetPos(window_pos);
 
     //setup button text
-    windowText = new TextGO2D(_text);
-    windowText->SetColour(Color((float*)&Colors::Black));
-    windowText->SetPos(window_pos);
-    windowText->SetScale(Vector2(_setScale));
+    window_text_1 = new TextGO2D("Heaven Gate\n""Cost 100 Credits");
+    window_text_1->SetColour(Color((float*)&Colors::Black));
+    window_text_1->SetPos(Vector2(window_pos.x+ 30,window_pos.y+ 130));
+    window_text_1->SetScale(Vector2(0.3,0.3));
+
+    window_text_2 = new TextGO2D("Hell Gate\n""Cost 100 Credits");
+    window_text_2->SetColour(Color((float*)&Colors::Black));
+    window_text_2->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 130));
+    window_text_2->SetScale(Vector2(0.3,0.3));
+ 
+    window_text_3 = new TextGO2D(_text);
+    window_text_3->SetColour(Color((float*)&Colors::Black));
+    window_text_3->SetPos(window_pos);
+    window_text_3->SetScale(Vector2(_setScale));
+    
+    window_text_4 = new TextGO2D(_text);
+    window_text_4->SetColour(Color((float*)&Colors::Black));
+    window_text_4->SetPos(window_pos);
+    window_text_4->SetScale(Vector2(_setScale));
     
 
     //window buttons todo
 
     //test window
-    button_one = new Button(Vector2(window_pos.x+80,window_pos.y+50),
+    buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Heaven_3x3",
-        test_window,Vector2(1,1));
+        test_window,Vector2(1,1)));
     
-    button_two = new Button(Vector2(window_pos.x+180,window_pos.y+50),
+    buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Hell_3x3",
-        test_window,Vector2(1,1));
+        test_window,Vector2(1,1)));
     
 }
 
@@ -61,22 +76,36 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
 
 UIWindow::~UIWindow()
 {
+    for (auto button : buttons)
+    {
+        delete button;        
+    }
     delete windowBackGround;
-    delete windowText;
+    
+    delete window_text_1;
+    delete window_text_2;
+    delete window_text_3;
+    delete window_text_4;
 }
 
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
-    
-    //update window
-    button_one->update(_gameData,_mousePosition);
-    button_two->update(_gameData,_mousePosition);
+
+    //updates buttons
+    for (auto& button : buttons)
+    {
+        button->update(_gameData,_mousePosition);
+    }
+ 
     
     windowBackGround->Tick(_gameData);
 	
-    if(windowText != nullptr)
+    if(window_text_1 != nullptr)
     {
-        windowText->Tick(_gameData);
+        window_text_1->Tick(_gameData);
+        window_text_2->Tick(_gameData);
+        window_text_3->Tick(_gameData);
+        window_text_4->Tick(_gameData);
     }
 	
     if(isInside(_mousePosition))
@@ -91,15 +120,20 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 void UIWindow::render(DrawData2D* _drawData)
 {
     windowBackGround->Draw(_drawData);
-	
-    if(windowText != nullptr)
+    
+    //renders buttons
+    for (auto& button : buttons)
     {
-        windowText->Draw(_drawData);
+        button->render(_drawData);
     }
     
-    //renders window
-    button_one->render(_drawData);
-    button_two->render(_drawData);
+    if(window_text_1 != nullptr)
+    {
+        window_text_1->Draw(_drawData);
+        window_text_2->Draw(_drawData);
+        //window_text_3->Draw(_drawData);
+        //window_text_4->Draw(_drawData);
+    }
 }
 
 void UIWindow::setPostion(Vector2& _new_pos)
@@ -124,6 +158,10 @@ Vector2& UIWindow::getButtonRes()
 
 void UIWindow::reSize(std::pair<int*, int*> game_res)
 {
+    for (auto& button : buttons)
+    {
+        button->reSize(DataManager::GetRES());
+    }
 }
 
 bool UIWindow::isInside(Vector2& point) const
