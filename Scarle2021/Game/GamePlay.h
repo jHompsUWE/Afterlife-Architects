@@ -9,6 +9,8 @@
 #include "VBQuad.h"
 #include "Tilemap.h"
 
+#include "VBCube.h"
+
 class GPGO;
 
 class GamePlay : public StateTemplate
@@ -37,5 +39,12 @@ private:
     TextGO2D* text = nullptr;
 
     bool do_once = true;
+
+    bool do_once_2 = true;
+
+    Vector2 mouse_screen_pos;
+    Vector3 mouse_world_pos;
+
+    VBCube* cube = nullptr;
 };
 

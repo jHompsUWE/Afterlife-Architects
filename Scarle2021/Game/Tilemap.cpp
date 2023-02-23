@@ -32,3 +32,11 @@ void Tilemap::Draw(DrawData* _DD)
 		tile->Draw(_DD);
 	}
 }
+
+void Tilemap::ChangeAllTexture(std::string texture)
+{
+	for (auto& tile : tile_list)
+	{
+		tile->SetTexture(texture);
+	}
+}

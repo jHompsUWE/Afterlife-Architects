@@ -86,7 +86,7 @@ private:
     Light* light = NULL;
 
     // Debug
-    Camera* debug_cam = NULL;
+    TPSCamera* debug_cam = NULL;
 
     // required for the CMO model rendering system
     CommonStates* common_states = NULL;

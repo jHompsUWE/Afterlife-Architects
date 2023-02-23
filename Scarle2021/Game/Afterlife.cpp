@@ -90,7 +90,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     //Just a tps cam for plane debugging
     // sqrt(3)/3 is equal to tan(30) but scarle hates trigonometry
-    debug_cam = new TPSCamera(0.25f * XM_PI, AR, 1.0f, 10000.0f, Vector3::UnitY, Vector3(10.0f, (sqrt(3)/3)*10, 0.0f));
+    debug_cam = new TPSCamera(0.25f * XM_PI, AR, 0.0f, 10000.0f, Vector3::UnitY, Vector3(10.0f, (sqrt(3) / 3) * 10, 0.0f));
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;

@@ -37,6 +37,8 @@ public:
 	bool		IsPhysicsOn() { return m_physicsOn; }
 	float		GetDrag() { return m_drag; }
 
+	Matrix      GetWorldMatrix() { return m_worldMat; }
+
 	//setters
 	void		SetPos(Vector3 _pos) { m_pos = _pos; }
 

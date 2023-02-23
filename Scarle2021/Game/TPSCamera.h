@@ -15,18 +15,14 @@ public:
 
 	virtual void Tick(GameData* _GD) override;
 
+	float GetZoom() { return zoom; }
+
 protected:
 	Vector3	m_dpos; //I'll lurk this far behind and away from it
 
 private:
 	// None of the other pi values actually work so this is the only way
 	const float PI = 3.141592653589793238462643383279502884197169399375105820974944;
-
-	// Orthographic camera setup
-	float left = -20.0f;
-	float right = 20.0f;
-	float bottom = -15.0f;
-	float top = 15.0f;
 
 	// Movement
 	Vector3 target;

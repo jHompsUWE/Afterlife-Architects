@@ -6,6 +6,7 @@
 
 VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 {
+	SetPhysicsOn(false);
 	SetTexture(textureName);
 
 	int num_verts = 6;
@@ -104,7 +105,6 @@ void VBQuad::SetTexture(std::string textureName)
 	fullfilename += textureName;
 	fullfilename += ".dds";
 
-	delete m_pTextureRV;
 	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
 	assert(hr == S_OK);
 }

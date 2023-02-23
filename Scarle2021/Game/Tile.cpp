@@ -12,11 +12,6 @@ Tile::~Tile()
 	delete quad;
 }
 
-Vector3 Tile::GetTilePos()
-{
-	return tile_pos;
-}
-
 void Tile::Tick(GameData* game_data)
 {
 	quad->Tick(game_data);
@@ -25,4 +20,14 @@ void Tile::Tick(GameData* game_data)
 void Tile::Draw(DrawData* _DD)
 {
 	quad->Draw(_DD);
+}
+
+Vector3 Tile::GetTilePos()
+{
+	return tile_pos;
+}
+
+void Tile::SetTexture(std::string texture)
+{
+	quad->SetTexture(texture);
 }

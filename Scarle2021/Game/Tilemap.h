@@ -13,6 +13,8 @@ public:
 	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
+	void ChangeAllTexture(std::string texture);
+
 protected:
 
 private:

@@ -8,7 +8,8 @@ enum AfterlifeEvent
 	input_up,
 	input_down,
 	input_left,
-	input_right
+	input_right,
+	input_E
 };
 
 class EventManager

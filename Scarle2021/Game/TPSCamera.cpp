@@ -62,12 +62,14 @@ void TPSCamera::Tick(GameData* _GD)
 	}
 
 	//Set up position of camera and target position of camera based on new position and orientation of target object
-	Matrix rotCam = Matrix::CreateFromYawPitchRoll(PI/4, 0, 0);
-	m_pos = target + Vector3::Transform(m_dpos, rotCam) ;
+	m_yaw = PI / 4;
+	m_pitch = 0;
+	m_roll = 0;
+	m_rotMat = Matrix::CreateFromYawPitchRoll(m_yaw, m_pitch, m_roll);
+	m_pos = target + Vector3::Transform(m_dpos, m_rotMat) ;
 
 	//and then set up proj and view matrices
 	m_projMat = XMMatrixOrthographicLH(4 * zoom, 3 * zoom, m_nearPlaneDistance, m_farPlaneDistance);
 	m_viewMat = XMMatrixLookAtLH(m_pos, target, m_up);
 	GameObject::Tick(_GD);
 }
-
