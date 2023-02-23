@@ -23,10 +23,10 @@ private:
 	float camera_speed = 0.7f;
 
 	Vector3 camera_target;
-	Vector3 camera_constraint = Vector3(10.0f, 10, 0.0f);
+	Vector3 camera_constraint = Vector3(10.0f, 10.0f, 0.0f);
 
 	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0);
-	Vector3 horizontal_movement = camera_speed / 4 * Vector3(1, 0, 1);
+	Vector3 horizontal_movement = camera_speed / 4 * Vector3(0, 0, 1);
 
 	float camera_width = 120.0f;
 	float camera_height = 60.0f;
