@@ -6,7 +6,7 @@ GamePlay::GamePlay()
 
 GamePlay::~GamePlay()
 {
-    delete quad;
+    delete tilemap;
 }
 
 bool GamePlay::init()
@@ -15,23 +15,19 @@ bool GamePlay::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    quad = new VBQuad(DataManager::GetD3DDevice(), "Tile_Lava");
-    quad->SetPos(Vector3(0.0f, 0.0f, 0.0f));
-    //quad->SetPitch(3.142);
+    tilemap = new Tilemap(DataManager::GetD3DDevice(), 10);
     
     return true;
 }
 
 void GamePlay::Update(GameData* game_data)
 {
-    /*
-    * Changing texture on runtime
-    if (!a)
+    if (do_once)
     {
-        quad->SetTexture(DataManager::GetD3DDevice(), "Tile_Lava");
-        a = true;
+        do_once = false;
+        // Tick tilemap once to update position
+        tilemap->Tick(game_data);
     }
-    */
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -53,7 +49,7 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 
 void GamePlay::Render3D(DrawData* draw_data)
 {
-    quad->Draw(draw_data);
+    tilemap->Draw(draw_data);
 }
 
 

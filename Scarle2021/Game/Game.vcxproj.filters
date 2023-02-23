@@ -79,6 +79,12 @@
     <Filter Include="Afterlife\UIButton">
       <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Building System">
+      <UniqueIdentifier>{e90b4398-86ce-49c1-8f2a-b7c5bc8dfeaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Building System\Tilemap">
+      <UniqueIdentifier>{b7e7acd6-4260-4b77-af05-c0d60060209f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -219,11 +225,17 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
-    <ClInclude Include="VBQuad.h">
-      <Filter>GameObjects\3D\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBQuad.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -320,11 +332,17 @@
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
     </ClCompile>
-    <ClCompile Include="VBQuad.cpp">
-      <Filter>GameObjects\3D\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBQuad.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

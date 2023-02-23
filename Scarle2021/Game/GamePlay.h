@@ -5,8 +5,9 @@
 #include "TextGO2D.h"
 #include "GPGO.h"
 
+// Building System
 #include "VBQuad.h"
-#include "VBCube.h"
+#include "Tilemap.h"
 
 class GPGO;
 
@@ -31,10 +32,10 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
-    VBQuad* quad = nullptr;
+    Tilemap* tilemap = nullptr;
     
     TextGO2D* text = nullptr;
 
-    //bool a = false;
+    bool do_once = true;
 };
 

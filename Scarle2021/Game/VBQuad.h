@@ -4,6 +4,8 @@
 #include "vertex.h"
 #include "DDSTextureLoader.h"
 
+#include <iostream>
+
 class VBQuad : public VBGO
 {
 public:

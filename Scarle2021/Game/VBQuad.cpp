@@ -104,6 +104,7 @@ void VBQuad::SetTexture(std::string textureName)
 	fullfilename += textureName;
 	fullfilename += ".dds";
 
+	delete m_pTextureRV;
 	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
 	assert(hr == S_OK);
 }
