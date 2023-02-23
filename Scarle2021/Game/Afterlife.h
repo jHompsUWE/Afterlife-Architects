@@ -87,7 +87,6 @@ private:
 
     // Debug
     Camera* debug_cam = NULL;
-    Player* debug_player = NULL;  
 
     // required for the CMO model rendering system
     CommonStates* common_states = NULL;

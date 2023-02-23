@@ -88,12 +88,9 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
     //ortho_cam = new OrthographicCamera(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
 
-    //this is needed for the follow cam
-    debug_player = new Player("BirdModelV1", d3d_device.Get(), effect_factory);
     //Just a tps cam for plane debugging
     // sqrt(3)/3 is equal to tan(30) but scarle hates trigonometry
-    debug_cam = new TPSCamera(0.25f * XM_PI, AR, 1.0f, 10000.0f,
-        debug_player, Vector3::UnitY, Vector3(10.0f, (sqrt(3)/3)*10, 0.0f));
+    debug_cam = new TPSCamera(0.25f * XM_PI, AR, 1.0f, 10000.0f, Vector3::UnitY, Vector3(10.0f, (sqrt(3)/3)*10, 0.0f));
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
@@ -135,7 +132,6 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     light->Tick(game_data);
 
     //debug
-    debug_player->Tick(game_data);
     debug_cam->Tick(game_data);
 }
 
@@ -183,7 +179,6 @@ void Afterlife::Render()
     VBGO::UpdateConstantBuffer(draw_data);
 
     //Debug
-    debug_player->Draw(draw_data);
     debug_cam->Draw(draw_data);
     
     //Renders basic scene elements
