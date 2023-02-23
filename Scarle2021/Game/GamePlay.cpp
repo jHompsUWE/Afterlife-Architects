@@ -24,7 +24,8 @@ bool GamePlay::init()
 {
     // window init
 
-    window_one = new UIWindow(Vector2(500,500),DataManager::GetD3DDevice(),"touch me","Window",Vector2(0.5,0.5));
+    window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+        .second*0.5),DataManager::GetD3DDevice(),"touch me","Window",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
@@ -155,9 +156,6 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     {
         button->render(draw_data2D);
     }
-
-    
-   
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -175,7 +173,7 @@ void GamePlay::ResizeUI()
     {
         button->reSize(DataManager::GetRES());
     }
-    
+       
     window_one->reSize(DataManager::GetRES());
 }
 

@@ -22,25 +22,25 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     windowBackGround->SetPos(window_pos);
 
     //setup button text
-    window_text_1 = new TextGO2D("Heaven Gate\n""Cost 100 Credits");
-    window_text_1->SetColour(Color((float*)&Colors::Black));
-    window_text_1->SetPos(Vector2(window_pos.x+ 30,window_pos.y+ 130));
-    window_text_1->SetScale(Vector2(0.3,0.3));
+    text_vec.push_back(new TextGO2D("Heaven Gate\n""Cost 100 Credits"));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 30,window_pos.y+ 130));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
 
-    window_text_2 = new TextGO2D("Hell Gate\n""Cost 100 Credits");
-    window_text_2->SetColour(Color((float*)&Colors::Black));
-    window_text_2->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 130));
-    window_text_2->SetScale(Vector2(0.3,0.3));
+    text_vec.push_back(new TextGO2D("Hell Gate\n""Cost 100 Credits"));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 130));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
  
-    window_text_3 = new TextGO2D(_text);
-    window_text_3->SetColour(Color((float*)&Colors::Black));
-    window_text_3->SetPos(window_pos);
-    window_text_3->SetScale(Vector2(_setScale));
+    text_vec.push_back(new TextGO2D(_text));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(window_pos);
+    text_vec.back()->SetScale(Vector2(_setScale));
     
-    window_text_4 = new TextGO2D(_text);
-    window_text_4->SetColour(Color((float*)&Colors::Black));
-    window_text_4->SetPos(window_pos);
-    window_text_4->SetScale(Vector2(_setScale));
+    text_vec.push_back(new TextGO2D(_text));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(window_pos);
+    text_vec.back()->SetScale(Vector2(_setScale));
     
 
     //window buttons todo
@@ -76,45 +76,66 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
 
 UIWindow::~UIWindow()
 {
+    //deletes pointers
     for (auto button : buttons)
     {
         delete button;        
     }
     delete windowBackGround;
-    
-    delete window_text_1;
-    delete window_text_2;
-    delete window_text_3;
-    delete window_text_4;
+
+    for (auto text : text_vec)
+    {
+        delete text;
+    }
 }
 
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
 
     //updates buttons
-    for (auto& button : buttons)
+    for (const auto& button : buttons)
     {
         button->update(_gameData,_mousePosition);
     }
  
-    
+    //window background
     windowBackGround->Tick(_gameData);
-	
-    if(window_text_1 != nullptr)
+
+    //updates texts
+    for (const auto& text : text_vec)
     {
-        window_text_1->Tick(_gameData);
-        window_text_2->Tick(_gameData);
-        window_text_3->Tick(_gameData);
-        window_text_4->Tick(_gameData);
-    }
+        if(text != nullptr)
+        {
+            text->Tick(_gameData);
+        }
 	
+    }
+    
+    //checks if mouse inside UI window 
     if(isInside(_mousePosition))
     {
         if(DataManager::GetGD()->mouse_state.leftButton)
         {
-            std::cout<<"clicked"<<std::endl;
+            toggle_click = true;
+        }
+        else
+        {
+            toggle_click = false;
         }
     }
+    else
+    {
+        toggle_click = false;
+    }
+
+    if (toggle_click)
+    {
+        
+        const Vector2 offset = old_mouse_pos - _mousePosition;
+        windowBackGround->SetPos(windowBackGround->GetPos()-offset);
+        window_pos = windowBackGround->GetPos();
+    }
+    old_mouse_pos = _mousePosition;
 }
 
 void UIWindow::render(DrawData2D* _drawData)
@@ -122,17 +143,17 @@ void UIWindow::render(DrawData2D* _drawData)
     windowBackGround->Draw(_drawData);
     
     //renders buttons
-    for (auto& button : buttons)
+    for (const auto& button : buttons)
     {
         button->render(_drawData);
     }
-    
-    if(window_text_1 != nullptr)
+    // renders texts
+    for (const auto& text : text_vec)
     {
-        window_text_1->Draw(_drawData);
-        window_text_2->Draw(_drawData);
-        //window_text_3->Draw(_drawData);
-        //window_text_4->Draw(_drawData);
+        if(text != nullptr)
+        {
+            text->Draw(_drawData);
+        }
     }
 }
 
@@ -148,24 +169,37 @@ void UIWindow::setScale(Vector2& _newScale)
 
 Vector2& UIWindow::getPosition()
 {
-    return window_res;
+    return window_pos;
 }
 
 Vector2& UIWindow::getButtonRes()
 {
-    return window_pos;
+    return window_res;
 }
 
 void UIWindow::reSize(std::pair<int*, int*> game_res)
 {
-    for (auto& button : buttons)
+    //stores getRes
+    auto& resize = DataManager::GetRES();
+
+    //resize window background
+    windowBackGround->ReSize(resize.first,resize.second);
+
+    // resize buttons of UI window
+    for (const auto& button : buttons)
     {
-        button->reSize(DataManager::GetRES());
+        button->reSize(resize);
+    }
+    for (auto text : text_vec)
+    {
+        text->ReSize(resize.first,resize.second);
     }
 }
 
 bool UIWindow::isInside(Vector2& point) const
 {
+
+    //checks bounding box of UI window
     if(point.x >= window_pos.x && point.x <= (window_pos.x + window_res.x) &&
        point.y >= window_pos.y && point.y <= (window_pos.y + window_res.y))
            return true;

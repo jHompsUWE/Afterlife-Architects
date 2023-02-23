@@ -30,19 +30,21 @@ private:
 
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
-
+    bool toggle_click = false;
+    Vector2 old_mouse_pos{0,0};
     
     ImageGO2D* windowBackGround = nullptr;
-    
-    TextGO2D* window_text_1 = nullptr;
-    TextGO2D* window_text_2 = nullptr;
-    TextGO2D* window_text_3 = nullptr;
-    TextGO2D* window_text_4 = nullptr;
-
+  
     //vector of buttons 
     std::vector<Button*> buttons;
+    std::vector<TextGO2D*> text_vec;
     
     Vector2 window_res = {0,0};
     Vector2 window_pos = {0,0};
+
+    enum texts_enum
+    {
+        text1,text2,text3,text4,
+    };
 };
 
