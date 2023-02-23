@@ -5,6 +5,7 @@
 #include "TextGO2D.h"
 #include "GPGO.h"
 #include "Button.h"
+#include "UIWindow.h"
 
 class GPGO;
 
@@ -43,6 +44,8 @@ private:
 
     //Button vector
     std::vector<UIButtonInterFace*> buttons;
+
+    UIWindow* window_one;
 
     bool window_one_open = true;
 };

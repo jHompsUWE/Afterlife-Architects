@@ -25,8 +25,9 @@ Button::Button(Vector2 _buttonPosition, ID3D11Device*
 	//setup button text
 	buttonText = new TextGO2D(_text);
 	buttonText->SetColour(Color((float*)&Colors::Black));
-	buttonText->SetPos(button_pos);
+	buttonText->SetPos(Vector2(button_pos.x,button_pos.y));
 	buttonText->SetScale(Vector2(_setScale));
+	
 }
 
 Button::Button(Vector2 _buttonPosition, ID3D11Device*

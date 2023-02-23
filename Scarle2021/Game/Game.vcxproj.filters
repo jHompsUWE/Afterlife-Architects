@@ -79,6 +79,9 @@
     <Filter Include="Afterlife\UIButton">
       <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\UIWindow">
+      <UniqueIdentifier>{4bbe157e-0adb-4290-a984-36c803e7d3bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -219,6 +222,9 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
+    <ClInclude Include="UIWindow.h">
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -313,6 +319,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="UIWindow.cpp">
+      <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

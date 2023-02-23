@@ -18,10 +18,15 @@ GamePlay::~GamePlay()
     {
         delete button;        
     }
+    delete window_one;
 }
 
 bool GamePlay::init()
-{  
+{
+    // window init
+
+    window_one = new UIWindow(Vector2(500,500),DataManager::GetD3DDevice(),"touch me","Window",Vector2(0.5,0.5));
+    
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
     ui_frame->SetOrigin(Vector2(0,0));
@@ -90,6 +95,9 @@ void GamePlay::Update(GameData* game_data)
     cube->Tick(game_data);
     cone->Tick(game_data);
 
+    //update window
+    window_one->update(game_data,mouse_pos);
+    
     //updates buttons
     for (auto& button : buttons)
     {
@@ -157,6 +165,9 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     {
         button->render(draw_data2D);
     }
+
+    //render window
+    window_one->render(draw_data2D);
    
 }
 

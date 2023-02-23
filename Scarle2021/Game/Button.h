@@ -5,8 +5,11 @@
 class Button : public UIButtonInterFace
 {
 public:
-	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string _text,std::string _filepath,AfterlifeEvent _event,Vector2 _setScale);
-	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string _filepath,AfterlifeEvent _event,Vector2 _setScale);
+	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string
+		_text,std::string _filepath,AfterlifeEvent _event,Vector2 _setScale);
+	
+	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string
+		_filepath,AfterlifeEvent _event,Vector2 _setScale);
 	~Button() override;
 
 	void update(GameData* _gameData, Vector2& _mousePosition)override;
