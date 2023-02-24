@@ -70,6 +70,10 @@ void TPSCamera::Tick(GameData* _GD)
 	GameObject::Tick(_GD);
 }
 
+/// <summary>
+/// Get the normalized directional vector of the camera
+/// </summary>
+/// <returns>Vector3 normalized directional vector of the camera</returns>
 Vector3 TPSCamera::GetDirection()
 {
 	Vector3 cam_to_target = Vector3(target.x - m_pos.x, target.y - m_pos.y, target.z - m_pos.z);

@@ -237,6 +237,9 @@
     <ClInclude Include="Tilemap.h">
       <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
     </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -343,6 +346,9 @@
     </ClCompile>
     <ClCompile Include="Tilemap.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Raycast.cpp">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

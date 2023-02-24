@@ -8,6 +8,7 @@
 // Building System
 #include "VBQuad.h"
 #include "Tilemap.h"
+#include "Raycast.h"
 
 #include "VBCube.h"
 

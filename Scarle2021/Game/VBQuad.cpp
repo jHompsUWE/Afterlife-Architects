@@ -66,25 +66,6 @@ VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 	delete[] indices;
 	delete[] m_vertices;
 	m_vertices = nullptr;
-
-	// Raster state
-	D3D11_RASTERIZER_DESC rasterDesc;
-	rasterDesc.AntialiasedLineEnable = false;
-	rasterDesc.CullMode = D3D11_CULL_NONE;
-	rasterDesc.DepthBias = 0;
-	rasterDesc.DepthBiasClamp = 0.0f;
-	rasterDesc.DepthClipEnable = true;
-	rasterDesc.FillMode = D3D11_FILL_SOLID;
-	rasterDesc.FrontCounterClockwise = true;
-	rasterDesc.MultisampleEnable = false;
-	rasterDesc.ScissorEnable = false;
-	rasterDesc.SlopeScaledDepthBias = 0.0f;
-
-	HRESULT hr = d11_device->CreateRasterizerState(&rasterDesc, &m_pRasterState);
-
-	ID3DBlob* pPixelShaderBuffer = NULL;
-	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
-	d11_device->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &m_pPixelShader);
 }
 
 VBQuad::~VBQuad()

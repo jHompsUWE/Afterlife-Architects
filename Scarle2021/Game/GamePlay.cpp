@@ -15,7 +15,7 @@ bool GamePlay::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    tilemap = new Tilemap(DataManager::GetD3DDevice(), 10);
+    tilemap = new Tilemap(DataManager::GetD3DDevice(), 50);
 
     cube = new VBCube();
     cube->init(3, DataManager::GetD3DDevice());
@@ -69,9 +69,8 @@ void GamePlay::Render3D(DrawData* draw_data)
 {
     tilemap->Draw(draw_data);
 
-    cube->Draw(draw_data);
-
     // Translate screen pos to world pos
+    // TODO: update the screen width and height
     Vector3 temp_world_pos = XMVector3Unproject(mouse_screen_pos, 0, 0, 1080, 720,
         draw_data->main_camera->GetNearZ(),
         draw_data->main_camera->GetFarZ(),
@@ -79,14 +78,16 @@ void GamePlay::Render3D(DrawData* draw_data)
         draw_data->main_camera->GetView(), 
         draw_data->main_camera->GetWorldMatrix());
 
-    // Displacement from temp_world_pos to Y = 0 in the same direction
-    float d = -temp_world_pos.y / draw_data->main_camera->GetDirection().y;
+    mouse_world_pos = Raycast::GetPosOnY(0, draw_data->main_camera->GetDirection(), temp_world_pos);
 
-    // Parametric equation to get X and Z coordinate of the temp_world_pos when Y is zero
-    mouse_world_pos.x = temp_world_pos.x + d * draw_data->main_camera->GetDirection().x + draw_data->main_camera->GetTarget().x;
-    mouse_world_pos.z = temp_world_pos.z + d * draw_data->main_camera->GetDirection().z + draw_data->main_camera->GetTarget().z;
+    // Offset by camera movement
+    mouse_world_pos.x += draw_data->main_camera->GetTarget().x;
+    mouse_world_pos.z += draw_data->main_camera->GetTarget().z;
 
-    cube->SetPos(mouse_world_pos);
+    // Floor mouse_world_pos to tilemap grid (each tile is 1x1 unit)
+    Vector3 tile_pos = Vector3(std::floor(mouse_world_pos.x), 0, std::floor(mouse_world_pos.z));
+    cube->SetPos(tile_pos);
+    cube->Draw(draw_data);
 }
 
 

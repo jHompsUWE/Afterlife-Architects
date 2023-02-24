@@ -7,14 +7,14 @@ Tilemap::Tilemap(ID3D11Device* GD, int size)
 	{
 		for (int y = 0; y < size; y++)
 		{
-			tile_list.emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), "Tile_Red"));
+			tile_list.emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), "Tile_Yellow"));
 		}
 	}
 }
 
 Tilemap::~Tilemap()
 {
-	//tile_list.clear();
+
 }
 
 void Tilemap::Tick(GameData* game_data)

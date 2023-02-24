@@ -194,6 +194,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Raycast.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
@@ -242,6 +243,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Raycast.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TestSound.cpp" />
