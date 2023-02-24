@@ -17,6 +17,13 @@ public:
 
 	void Input(GameData* _GD);
 
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+	void ZoomIn();
+	void ZoomOut();
+
 	void RecalculateProjViewPos();
 
 private:

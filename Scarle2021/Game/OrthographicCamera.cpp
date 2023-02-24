@@ -30,25 +30,21 @@ void OrthographicCamera::Input(GameData* _GD)
 {
 	if (_GD->keyboard_state.W)
 	{
-		camera_target += vertical_movement;
-		std::cout << "Up" << std::endl;
+		MoveUp();
 	}
 
 	if (_GD->keyboard_state.S)
 	{
-		camera_target -= vertical_movement;
-		std::cout << "Down" << std::endl;
+		MoveDown();
 	}
 	if (_GD->keyboard_state.A)
 	{
-		camera_target -= horizontal_movement;
-		std::cout << "Left" << std::endl;
+		MoveLeft();
 	}
 
 	if (_GD->keyboard_state.D)
 	{
-		camera_target += horizontal_movement;
-		std::cout << "Right" << std::endl;
+		MoveRight();
 	}
 
 
@@ -72,6 +68,50 @@ void OrthographicCamera::Input(GameData* _GD)
 
 		zoom_value -= 0.1f;
 	}
+}
+
+void OrthographicCamera::MoveUp()
+{
+	camera_target += vertical_movement;
+	std::cout << "Up" << std::endl;
+}
+
+void OrthographicCamera::MoveDown()
+{
+	camera_target -= vertical_movement;
+	std::cout << "Down" << std::endl;
+}
+
+void OrthographicCamera::MoveLeft()
+{
+	camera_target -= horizontal_movement;
+	std::cout << "Left" << std::endl;
+}
+
+void OrthographicCamera::MoveRight()
+{
+	camera_target += horizontal_movement;
+	std::cout << "Right" << std::endl;
+}
+
+void OrthographicCamera::ZoomIn()
+{
+	if (zoom_value > zoom_max)
+	{
+		zoom_value = zoom_max;
+	}
+
+	zoom_value += 0.1f;
+}
+
+void OrthographicCamera::ZoomOut()
+{
+	if (zoom_value < zoom_min)
+	{
+		zoom_value = zoom_min;
+	}
+
+	zoom_value -= 0.1f;
 }
 
 void OrthographicCamera::RecalculateProjViewPos()
