@@ -81,7 +81,7 @@ void Button::render(DrawData2D* _drawData)
 	}
 }
 
-void Button::setPostion(Vector2& _new_pos)
+void Button::setPostion(Vector2 _new_pos)
 {
 	// WIP
 }
@@ -91,16 +91,16 @@ void Button::setScale(Vector2& _newScale)
 	//_newScale = Vector2(0,0);
 }
 
-Vector2& Button::getPosition()
+ Vector2& Button::getPosition()
 {
 	// TODO: insert return statement here
-	return button_res;
+	return button_pos;
 }
 
 Vector2& Button::getButtonRes()
 {
 	// TODO: insert return statement here
-	return button_pos;
+	return button_res;
 }
 
 void Button::reSize(std::pair<int*, int*> game_res)

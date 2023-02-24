@@ -15,7 +15,7 @@ public:
 	void update(GameData* _gameData, Vector2& _mousePosition)override;
 	void render(DrawData2D* _drawData)override;
 
-	void setPostion(Vector2& _new_pos) override;
+	void setPostion(Vector2 _new_pos) override;
 	void setScale(Vector2& _newScale) override;
 	
 	Vector2& getPosition() override;
@@ -27,5 +27,6 @@ private:
 
 	//mouse pointer inside button
 	bool isInside(Vector2& point) const;
+
 };
 

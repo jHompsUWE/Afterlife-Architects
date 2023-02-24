@@ -134,6 +134,18 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         const Vector2 offset = old_mouse_pos - _mousePosition;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
+       
+        for (const auto& text : text_vec)
+        {
+            text->SetPos(text->GetPos() - offset);
+        }
+
+        for (const auto& button : buttons)
+        {
+            Vector2 const button_pos = button->getPosition();
+            button->setPostion(button_pos - offset);
+           
+        }
     }
     old_mouse_pos = _mousePosition;
 }

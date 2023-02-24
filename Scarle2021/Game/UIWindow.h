@@ -44,7 +44,7 @@ private:
 
     enum texts_enum
     {
-        text1,text2,text3,text4,
+        text1, text2, text3, text4,
     };
 };
 
