@@ -86,7 +86,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
-    ortho_cam = new OrthographicCamera();
+    ortho_cam = new OrthographicCamera(output_width, output_height);
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
@@ -125,6 +125,9 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     
     ortho_cam->Tick(game_data);
     light->Tick(game_data);
+
+    //std::cout << game_data->mouse_state.x << std::endl;
+    //std::cout << game_data->mouse_state.y << std::endl;
 }
 
 void Afterlife::ReadInput()

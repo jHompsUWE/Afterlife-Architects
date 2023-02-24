@@ -2,9 +2,11 @@
 #include "OrthographicCamera.h"
 #include <iostream>
 
-OrthographicCamera::OrthographicCamera()
+OrthographicCamera::OrthographicCamera(int win_x, int win_y)
 	
 {
+	_win_x = win_x;
+	_win_y = win_y;
 	//camera_position = Vector3(4, 10, 0);
 }
 
@@ -16,6 +18,7 @@ OrthographicCamera::~OrthographicCamera()
 void OrthographicCamera::Tick(GameData* _GD)
 {
 	Input(_GD);
+	MouseInput(_GD, _win_x, _win_y);
 	RecalculateProjViewPos();
 	GameObject::Tick(_GD);
 }
@@ -51,22 +54,37 @@ void OrthographicCamera::Input(GameData* _GD)
 	if (_GD->mouse_state.scrollWheelValue < scroll_value)
 	{
 		scroll_value = _GD->mouse_state.scrollWheelValue;
-		if (zoom_value > zoom_max)
-		{
-			zoom_value = zoom_max;
-		}
+		
+		ZoomIn();
 
 		zoom_value += 0.1f;
 	}
 	if (_GD->mouse_state.scrollWheelValue > scroll_value)
 	{
 		scroll_value = _GD->mouse_state.scrollWheelValue;
-		if (zoom_value < zoom_min)
-		{
-			zoom_value = zoom_min;
-		}
+		
+		ZoomOut();
+	}
+}
 
-		zoom_value -= 0.1f;
+void OrthographicCamera::MouseInput(GameData* _GD, int win_x, int win_y)
+{
+	if (_GD->mouse_state.x > win_x - 20)
+	{
+		MoveRight();
+	}
+	if (_GD->mouse_state.x < 20)
+	{
+		MoveLeft();
+	}
+
+	if (_GD->mouse_state.y > win_y - 20)
+	{
+		MoveDown();
+	}
+	if (_GD->mouse_state.y < 20)
+	{
+		MoveUp();
 	}
 }
 

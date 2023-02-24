@@ -5,7 +5,7 @@
 class OrthographicCamera : public GameObject
 {
 public:
-	OrthographicCamera();
+	OrthographicCamera(int win_x, int win_y);
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
@@ -16,14 +16,13 @@ public:
 	Matrix GetView() { return view_matrix; }
 
 	void Input(GameData* _GD);
-
+	void MouseInput(GameData* _GD, int win_x, int win_y);
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
 	void ZoomIn();
 	void ZoomOut();
-
 	void RecalculateProjViewPos();
 
 private:
@@ -45,6 +44,9 @@ private:
 	float zoom_max = 3.0f;
 
 	float scroll_value = 0.0f;
+
+	int _win_x;
+	int _win_y;
 
 protected:
 	XMMATRIX projection_matrix;

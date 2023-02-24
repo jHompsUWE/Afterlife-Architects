@@ -219,6 +219,9 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
+    <ClInclude Include="EconomyData.h">
+      <Filter>Afterlife</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
