@@ -19,6 +19,9 @@ bool GamePlay::init()
 
     cube = new VBCube();
     cube->init(3, DataManager::GetD3DDevice());
+
+    mouse_screen_pos.z = 0;
+    mouse_world_pos.y = 0;
     
     return true;
 }
@@ -67,24 +70,23 @@ void GamePlay::Render3D(DrawData* draw_data)
     tilemap->Draw(draw_data);
 
     cube->Draw(draw_data);
-    
-    if (do_once_2)
-    {
-        do_once_2 = false;
 
-        //std::cout << draw_data->main_camera->GetPos().x << std::endl;
-        //std::cout << draw_data->main_camera->GetPos().y << std::endl;
-        //std::cout << draw_data->main_camera->GetPos().z << std::endl;
-    }
+    // Translate screen pos to world pos
+    Vector3 temp_world_pos = XMVector3Unproject(mouse_screen_pos, 0, 0, 1080, 720,
+        draw_data->main_camera->GetNearZ(),
+        draw_data->main_camera->GetFarZ(),
+        draw_data->main_camera->GetProj(),
+        draw_data->main_camera->GetView(), 
+        draw_data->main_camera->GetWorldMatrix());
 
-    Vector3 temp_pos = Vector3(mouse_screen_pos.x, mouse_screen_pos.y, 0);
+    // Displacement from temp_world_pos to Y = 0 in the same direction
+    float d = -temp_world_pos.y / draw_data->main_camera->GetDirection().y;
 
-    mouse_world_pos = XMVector3Unproject(temp_pos, 0, 0, 800, 600, 0.0f, 10000.0f, draw_data->main_camera->GetProj(),
-        draw_data->main_camera->GetView(), draw_data->main_camera->GetWorldMatrix());
+    // Parametric equation to get X and Z coordinate of the temp_world_pos when Y is zero
+    mouse_world_pos.x = temp_world_pos.x + d * draw_data->main_camera->GetDirection().x + draw_data->main_camera->GetTarget().x;
+    mouse_world_pos.z = temp_world_pos.z + d * draw_data->main_camera->GetDirection().z + draw_data->main_camera->GetTarget().z;
 
     cube->SetPos(mouse_world_pos);
-
-    //std::cout << "X: " << mouse_world_pos.x << " Y: " << mouse_world_pos.y << " Z: " << mouse_world_pos.z << std::endl;
 }
 
 

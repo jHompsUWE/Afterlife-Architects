@@ -16,6 +16,10 @@ public:
 	virtual void Tick(GameData* _GD) override;
 
 	float GetZoom() { return zoom; }
+	float GetNearZ() { return m_nearPlaneDistance; }
+	float GetFarZ() { return m_farPlaneDistance; }
+	Vector3 GetDirection();
+	Vector3 GetTarget() { return target; }
 
 protected:
 	Vector3	m_dpos; //I'll lurk this far behind and away from it

@@ -2,8 +2,6 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
-#define DESTROY( x ) if( x ){ x->Release(); x = nullptr;}
-
 VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 {
 	SetPhysicsOn(false);
@@ -91,7 +89,6 @@ VBQuad::VBQuad(ID3D11Device* GD, std::string textureName): d11_device(GD)
 
 VBQuad::~VBQuad()
 {
-	DESTROY(d11_device);
 	delete m_vertices;
 }
 

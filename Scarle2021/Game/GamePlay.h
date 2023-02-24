@@ -40,9 +40,7 @@ private:
 
     bool do_once = true;
 
-    bool do_once_2 = true;
-
-    Vector2 mouse_screen_pos;
+    Vector3 mouse_screen_pos;
     Vector3 mouse_world_pos;
 
     VBCube* cube = nullptr;

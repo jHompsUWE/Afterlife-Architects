@@ -37,39 +37,44 @@ void TPSCamera::Tick(GameData* _GD)
 		}
 	}
 
-	Vector3 verticalMove = speed * Vector3(0, 1, 0) * (zoom / max_zoom);
+	Vector3 verticalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom);
 	if (_GD->keyboard_state.W)
 	{
 		// Move UP
-		target += verticalMove;
+		target -= verticalMove;
 	}
 	if (_GD->keyboard_state.S)
 	{
 		// Move DOWN
-		target -= verticalMove;
+		target += verticalMove;
 	}
 
-	Vector3 horizontalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom);
+	Vector3 horizontalMove = speed * Vector3(1, 0, -1) * (zoom / max_zoom);
 	if (_GD->keyboard_state.A)
 	{
 		// Move LEFT
-		target -= horizontalMove;
+		target += horizontalMove;
 	}
 	if (_GD->keyboard_state.D)
 	{
 		// Move RIGHT
-		target += horizontalMove;
+		target -= horizontalMove;
 	}
 
-	//Set up position of camera and target position of camera based on new position and orientation of target object
-	m_yaw = PI / 4;
-	m_pitch = 0;
-	m_roll = 0;
-	m_rotMat = Matrix::CreateFromYawPitchRoll(m_yaw, m_pitch, m_roll);
-	m_pos = target + Vector3::Transform(m_dpos, m_rotMat) ;
+	// Set position of cam at an offset of m_dpos from target
+	m_pos = target + m_dpos;
 
-	//and then set up proj and view matrices
-	m_projMat = XMMatrixOrthographicLH(4 * zoom, 3 * zoom, m_nearPlaneDistance, m_farPlaneDistance);
+	// Setup projection and view matrices
+	m_projMat = XMMatrixOrthographicLH(3 * zoom, 2 * zoom, m_nearPlaneDistance, m_farPlaneDistance);
 	m_viewMat = XMMatrixLookAtLH(m_pos, target, m_up);
 	GameObject::Tick(_GD);
+}
+
+Vector3 TPSCamera::GetDirection()
+{
+	Vector3 cam_to_target = Vector3(target.x - m_pos.x, target.y - m_pos.y, target.z - m_pos.z);
+
+	float magnitude = sqrt(pow(cam_to_target.x, 2) + pow(cam_to_target.y, 2) + pow(cam_to_target.z, 2));
+
+	return Vector3(cam_to_target.x/magnitude, cam_to_target.y/magnitude, cam_to_target.z/magnitude);
 }
