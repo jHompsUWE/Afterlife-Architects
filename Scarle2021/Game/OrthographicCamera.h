@@ -48,6 +48,8 @@ private:
 	int _win_x;
 	int _win_y;
 
+	int boundary = 20;
+
 protected:
 	XMMATRIX projection_matrix;
 	XMMATRIX view_matrix;

@@ -69,20 +69,20 @@ void OrthographicCamera::Input(GameData* _GD)
 
 void OrthographicCamera::MouseInput(GameData* _GD, int win_x, int win_y)
 {
-	if (_GD->mouse_state.x > win_x - 20)
+	if (_GD->mouse_state.x > win_x - boundary)
 	{
 		MoveRight();
 	}
-	if (_GD->mouse_state.x < 20)
+	if (_GD->mouse_state.x < boundary)
 	{
 		MoveLeft();
 	}
 
-	if (_GD->mouse_state.y > win_y - 20)
+	if (_GD->mouse_state.y > win_y - boundary)
 	{
 		MoveDown();
 	}
-	if (_GD->mouse_state.y < 20)
+	if (_GD->mouse_state.y < boundary)
 	{
 		MoveUp();
 	}
