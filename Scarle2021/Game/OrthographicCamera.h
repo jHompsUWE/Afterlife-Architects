@@ -35,8 +35,8 @@ private:
 	Vector3 horizontal_movement = camera_speed / 4 * Vector3(0, 0, 1);
 
 	float camera_width = 100.0f;
-	float camera_height = 50.0f;
-	float near_plane = 0.1f;
+	float camera_height = 80.0f;
+	float near_plane = -100.0f;
 	float far_plane = 1000.0f;
 
 	float zoom_value = 1.5f;
