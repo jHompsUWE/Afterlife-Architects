@@ -81,9 +81,17 @@ void Button::render(DrawData2D* _drawData)
 	}
 }
 
-void Button::setPostion(Vector2 _new_pos)
+void Button::setPostion(Vector2 _buttonPosition)
 {
 	// WIP
+	button_pos = _buttonPosition;
+	buttonBackGround->SetPos(_buttonPosition);
+	
+	if(buttonText != nullptr)
+	{
+		buttonText->SetPos(_buttonPosition);
+	}
+	
 }
 
 void Button::setScale(Vector2& _newScale)

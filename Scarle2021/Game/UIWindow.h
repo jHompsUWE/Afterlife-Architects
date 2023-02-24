@@ -38,10 +38,12 @@ private:
     //vector of buttons 
     std::vector<Button*> buttons;
     std::vector<TextGO2D*> text_vec;
-    
-    Vector2 window_res = {0,0};
-    Vector2 window_pos = {0,0};
 
+    //vectors
+    Vector2 window_res {0,0};
+    Vector2 window_pos {0,0};
+
+    //enum for texts pos
     enum texts_enum
     {
         text1, text2, text3, text4,

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "UIWindow.h"
-
 #include <iostream>
 #include "DataManager.h"
 
@@ -43,9 +42,7 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     text_vec.back()->SetScale(Vector2(_setScale));
     
 
-    //window buttons todo
-
-    //test window
+    //window buttons.....................
     buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Heaven_3x3",
         test_window,Vector2(1,1)));
@@ -91,7 +88,7 @@ UIWindow::~UIWindow()
 
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
-
+    
     //updates buttons
     for (const auto& button : buttons)
     {
@@ -114,6 +111,8 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
     //checks if mouse inside UI window 
     if(isInside(_mousePosition))
     {
+
+        //if clicked
         if(DataManager::GetGD()->mouse_state.leftButton)
         {
             toggle_click = true;
@@ -128,23 +127,30 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         toggle_click = false;
     }
 
+
+    //if clicked updates pos and scale for window drag  
     if (toggle_click)
     {
-        
+
+        //new pos on click and drag 
         const Vector2 offset = old_mouse_pos - _mousePosition;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
-       
+
+
+        //text pos
         for (const auto& text : text_vec)
         {
             text->SetPos(text->GetPos() - offset);
         }
 
-        for (const auto& button : buttons)
+
+        //button pos
+        for (auto& button : buttons)
         {
             Vector2 const button_pos = button->getPosition();
             button->setPostion(button_pos - offset);
-           
+            
         }
     }
     old_mouse_pos = _mousePosition;
@@ -171,7 +177,7 @@ void UIWindow::render(DrawData2D* _drawData)
 
 void UIWindow::setPostion(Vector2& _new_pos)
 {
-    
+    window_pos = _new_pos;
 }
 
 void UIWindow::setScale(Vector2& _newScale)
@@ -194,9 +200,9 @@ void UIWindow::reSize(std::pair<int*, int*> game_res)
     //stores getRes
     auto& resize = DataManager::GetRES();
 
-    //resize window background
-    windowBackGround->ReSize(resize.first,resize.second);
-
+    //reScales background
+    window_res *= windowBackGround->ReSize(resize.first,resize.second);
+    
     // resize buttons of UI window
     for (const auto& button : buttons)
     {
