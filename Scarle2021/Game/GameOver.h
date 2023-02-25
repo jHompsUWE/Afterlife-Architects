@@ -1,5 +1,6 @@
 #pragma once
 #include "StateTemplate.h"
+#include "ImageGO2D.h"
 
 class GameOver : public StateTemplate
 {
@@ -20,5 +21,9 @@ public:
 	//Renders
 	void Render2D(DrawData2D* draw_data2D) override;
 	void Render3D(DrawData* draw_data) override;
+
+private:
+	//Visualization of pathfinding
+	std::vector<GameObject2D*> on_screen_tiles{};
 };
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Resource Files">
@@ -84,6 +84,9 @@
     </Filter>
     <Filter Include="GameObjects\AfterlifeGOs\Building System\Tilemap">
       <UniqueIdentifier>{b7e7acd6-4260-4b77-af05-c0d60060209f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\AStar Pathfinding">
+      <UniqueIdentifier>{42540fc4-1d6d-4ed8-b1c3-6aede6b9032a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +243,12 @@
     <ClInclude Include="Raycast.h">
       <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClInclude>
+    <ClInclude Include="AStarPathfinding.h">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="TileNode.h">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -349,6 +358,9 @@
     </ClCompile>
     <ClCompile Include="Raycast.cpp">
       <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfinding.cpp">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

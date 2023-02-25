@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "MainMenu.h"
+#include "AStarPathfinding.h"
 
 MainMenu::MainMenu()
 = default;
@@ -18,7 +19,7 @@ bool MainMenu::init()
 
     start_button = new Button(Vector2(540,360),DataManager::GetD3DDevice(),
         "Start Game","eevee",input_up);
-    
+
     return true;
 }
 
