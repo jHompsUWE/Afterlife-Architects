@@ -203,6 +203,7 @@
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
     <ClInclude Include="UIButtonInterFace.h" />
+    <ClInclude Include="UIPanel.h" />
     <ClInclude Include="UIWindow.h" />
     <ClInclude Include="VBCube.h" />
     <ClInclude Include="VBGO.h" />
@@ -245,6 +246,7 @@
     <ClCompile Include="TPSCamera.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />
+    <ClCompile Include="UIPanel.cpp" />
     <ClCompile Include="UIWindow.cpp" />
     <ClCompile Include="VBCube.cpp" />
     <ClCompile Include="VBGO.cpp" />

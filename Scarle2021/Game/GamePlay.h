@@ -4,7 +4,7 @@
 #include "StateTemplate.h"
 #include "TextGO2D.h"
 #include "GPGO.h"
-#include "Button.h"
+#include "UIPanel.h"
 #include "UIWindow.h"
 
 class GPGO;
@@ -39,12 +39,10 @@ private:
     TextGO2D* text = nullptr;
 
     ImageGO2D* ui_frame;
-    ImageGO2D* ui_panel;
-
-    //Button vector
-    std::vector<UIButtonInterFace*> buttons;
-
+    
     UIWindow* window_one;
+    
+    UIPanel* main_panel;
 
     bool window_one_open = true;
 };

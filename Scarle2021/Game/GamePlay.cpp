@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "GamePlay.h"
 
+#include "UIPanel.h"
+
 GamePlay::GamePlay()
 = default;
 
@@ -9,14 +11,7 @@ GamePlay::~GamePlay()
     delete plane;
     delete cube;
     delete cone;
-    
     delete ui_frame;
-    delete ui_panel;
-
-    for (auto button : buttons)
-    {
-        delete button;        
-    }
     delete window_one;
 }
 
@@ -26,43 +21,12 @@ bool GamePlay::init()
 
     window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
         .second*0.5),DataManager::GetD3DDevice(),"touch me","Window",Vector2(0.5,0.5));
-    
+
+    main_panel = new UIPanel(Vector2(10,240),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1)); 
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
     ui_frame->SetOrigin(Vector2(0,0));
     ui_frame->SetScale(Vector2(1,1));
-
-    ui_panel = new ImageGO2D("UIPanel",DataManager::GetD3DDevice());
-    ui_panel->SetOrigin(Vector2(0,0));
-    ui_panel->SetPos(Vector2(0,30));
-    ui_panel->SetScale(Vector2(0.8,0.7));
-
-    // UI game play buttons
-    buttons.push_back(new Button(Vector2(50,174),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(94,174),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(137,174),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(180,174),DataManager::GetD3DDevice()
-    ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(50,203),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(94,203),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(137,203),DataManager::GetD3DDevice()
-        ,"green",test_window,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(180,203),DataManager::GetD3DDevice()
-    ,"green",test_window,Vector2(0.8,0.7)));
-    
-    //.............
     
     plane = new CMOGO("Platform", DataManager::GetD3DDevice(), DataManager::GetEF());
     plane->SetPitch(1.57f);
@@ -91,11 +55,10 @@ void GamePlay::Update(GameData* game_data)
     //update window
     window_one->update(game_data,mouse_pos);
     
-    //updates buttons
-    for (auto& button : buttons)
-    {
-        button->update(game_data,mouse_pos);
-    }
+    //updates panel
+    main_panel->update(game_data,mouse_pos);
+    
+   
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -116,8 +79,9 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
             std::cout << "soooos" << std::endl;
             break;
             
-        case test_window:
-            window_one_open = !window_one_open; 
+        case window_1_green:
+            window_one_open = !window_one_open;
+         
             break;
             
         case enter_main_menu:
@@ -142,19 +106,15 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
     ui_frame->Draw(draw_data2D);
-    ui_panel->Draw(draw_data2D);
+
+    //renders panel
+    main_panel->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
     {
         //render window
         window_one->render(draw_data2D);
-    }
-    
-    //renders buttons
-    for (auto& button : buttons)
-    {
-        button->render(draw_data2D);
     }
 }
 
@@ -167,14 +127,8 @@ void GamePlay::Render3D(DrawData* draw_data)
 void GamePlay::ResizeUI()
 {
     ui_frame->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
-    ui_panel->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
-
-    for (auto& button : buttons)
-    {
-        button->reSize(DataManager::GetRES());
-    }
-       
     window_one->reSize(DataManager::GetRES());
+    main_panel->reSize(DataManager::GetRES());
 }
 
 

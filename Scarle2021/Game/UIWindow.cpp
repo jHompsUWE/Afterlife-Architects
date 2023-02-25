@@ -45,11 +45,11 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     //window buttons.....................
     buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Heaven_3x3",
-        test_window,Vector2(1,1)));
+        window_9_gate,Vector2(1,1)));
     
     buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Hell_3x3",
-        test_window,Vector2(1,1)));
+        window_9_gate,Vector2(1,1)));
     
 }
 
@@ -111,23 +111,23 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
     //checks if mouse inside UI window 
     if(isInside(_mousePosition))
     {
-
         //if clicked
         if(DataManager::GetGD()->mouse_state.leftButton)
         {
             toggle_click = true;
+           
         }
         else
         {
             toggle_click = false;
+            
         }
     }
     else
     {
         toggle_click = false;
     }
-
-
+    
     //if clicked updates pos and scale for window drag  
     if (toggle_click)
     {
@@ -174,6 +174,8 @@ void UIWindow::render(DrawData2D* _drawData)
         }
     }
 }
+    
+
 
 void UIWindow::setPostion(Vector2& _new_pos)
 {

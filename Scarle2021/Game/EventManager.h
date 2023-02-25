@@ -13,7 +13,30 @@ enum AfterlifeEvent
 	enter_main_menu,
 	enter_game_play,
 	enter_level_select,
-	test_window,
+	window_1_green,
+	window_2_yellow,
+	window_3_orange,
+	window_4_brown,
+	window_5_pink,
+	window_6_red,
+	window_7_blue,
+	window_8_multicolour,
+	window_9_gate,
+	window_10_roads,
+	window_11_karam_station,
+	window_12_karma_tracks,
+	window_13_topias,
+	window_14_training_centre,
+	window_15_ports,
+	window_16_siphons_banks,
+	window_17_special_buildings,
+	window_18_omnibolges_and_love_domes,
+	window_19_limbo_structures,
+	window_20_delete_structures,
+	window_21_zoom_in,
+	window_22_zoom_out,
+	
+	
 };
 
 class EventManager

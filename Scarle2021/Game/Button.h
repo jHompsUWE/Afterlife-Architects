@@ -22,11 +22,13 @@ public:
 	Vector2& getButtonRes() override;
 	
 	void reSize(std::pair<int*, int*> game_res) override;
+	
 
 private:
 
 	//mouse pointer inside button
 	bool isInside(Vector2& point) const;
+	
 
 };
 
