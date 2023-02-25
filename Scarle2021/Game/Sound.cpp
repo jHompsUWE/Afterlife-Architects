@@ -14,6 +14,11 @@ Sound::Sound(AudioEngine* _audEngine, string _filename)
 		m_sfx->Play(m_volume, m_pitch, m_pan);
 	}
 }
+void SetVolume(float _vol) 
+{ 
+	//float _vol = 1.0f;
+	//m_volume = _vol; 
+}
 
 Sound::~Sound()
 {
