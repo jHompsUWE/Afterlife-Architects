@@ -170,7 +170,7 @@
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DrawData.h" />
     <ClInclude Include="DrawData2D.h" />
-    <ClInclude Include="EconomyData.h" />
+    <ClInclude Include="EconomyManager.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
@@ -216,6 +216,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
+    <ClCompile Include="EconomyManager.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="fileVBGO.cpp" />
     <ClCompile Include="FSM.cpp" />

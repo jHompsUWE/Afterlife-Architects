@@ -219,8 +219,8 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
-    <ClInclude Include="EconomyData.h">
-      <Filter>Afterlife</Filter>
+    <ClInclude Include="EconomyManager.h">
+      <Filter>Base\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +316,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="EconomyManager.cpp">
+      <Filter>Base\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

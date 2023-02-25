@@ -102,6 +102,9 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
+
+    //Economy manager
+    economy_manager = new EconomyManager;
 }
 
 // Executes the basic game loop
@@ -126,6 +129,9 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     ortho_cam->Tick(game_data);
     light->Tick(game_data);
 
+    economy_manager->UpdateCurrency();
+
+    std::cout << economy_manager->GetCurrency();
     //std::cout << game_data->mouse_state.x << std::endl;
     //std::cout << game_data->mouse_state.y << std::endl;
 }
