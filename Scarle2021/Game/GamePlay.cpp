@@ -55,7 +55,7 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
     {
         if (event == input_E)
         {
-            tilemap->ChangeAllTexture("Tile_Inactive_Red");
+            tilemap->BoxFill("Tile_Inactive_Yellow", Vector3(0, 0, 0), Vector3(5, 0, 5));
         }
     }
 }

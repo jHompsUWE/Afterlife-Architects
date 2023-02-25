@@ -3,21 +3,25 @@
 #include <list>
 #include <memory>
 #include <iostream>
+#include <math.h>
+#include <vector>
 
 class Tilemap
 {
 public:
-	Tilemap(ID3D11Device* GD, int size);
+	Tilemap(ID3D11Device* GD, int _size);
 	~Tilemap();
 
 	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
-	void ChangeAllTexture(std::string texture);
+	void BoxFill(std::string texture, Vector3 start, Vector3 end);
+	void SetTile(Vector3 tile_pos, std::string texture);
 
 protected:
 
 private:
-	std::list<std::unique_ptr<Tile>> tile_list;
+	std::vector<std::vector<std::unique_ptr<Tile>>> tilemap;
+	float size;
 };
 
