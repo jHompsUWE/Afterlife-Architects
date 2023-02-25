@@ -79,6 +79,9 @@
     <Filter Include="Afterlife\UIButton">
       <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\AStar Pathfinding">
+      <UniqueIdentifier>{42540fc4-1d6d-4ed8-b1c3-6aede6b9032a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -219,6 +222,12 @@
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
     </ClInclude>
+    <ClInclude Include="AStarPathfinding.h">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="TileNode.h">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -313,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="AStarPathfinding.cpp">
+      <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
