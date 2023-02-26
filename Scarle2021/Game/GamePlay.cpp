@@ -25,11 +25,6 @@ bool GamePlay::init()
     cone = new GPGO(DataManager::GetD3DContext(), GPGO_CONE, (float*)&Colors::Navy,params);
     //Cone->SetPos(Vector3(-50.0f, 10.0f, -70.f));
 
-    AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-#ifdef _DEBUG 
-    eflags |= AudioEngine_Debug;
-#endif 
-    audEngine = std::make_unique<AudioEngine>(eflags);
     return true;
 }
 
@@ -66,11 +61,5 @@ void GamePlay::Render3D(DrawData* draw_data)
     plane->Draw(draw_data);
     cube->Draw(draw_data);
     cone->Draw(draw_data);
-}
-
-void GamePlay::PlaySound(string filename)
-{
-    Sound* sound_eff = new Sound(audEngine.get(), filename);
-    sounds.push_front(sound_eff);
 }
 
