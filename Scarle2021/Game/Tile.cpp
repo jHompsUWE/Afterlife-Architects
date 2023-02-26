@@ -30,6 +30,7 @@ Vector3 Tile::GetTilePos()
 
 void Tile::SetTexture(ZoneType zone_type)
 {
+	type = zone_type;
 	quad->SetTexture(GetTextureOfType(zone_type));
 }
 

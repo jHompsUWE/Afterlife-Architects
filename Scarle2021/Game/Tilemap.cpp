@@ -72,9 +72,11 @@ void Tilemap::BoxFill(ZoneType zone_type, Vector3 start, Vector3 end)
 /// <param name="zone_type">ZoneType of the tile</param>
 void Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 {
-	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
+	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0
+		|| tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == zone_type)
 	{
 		// Tile position exceeds tilemap size
+		// Don't change texture if ZoneType is the same
 		return;
 	}
 
