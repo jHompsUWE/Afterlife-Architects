@@ -82,7 +82,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     // Creates a starting light
     light = new Light(Vector3(0.0f, 100.0f, 160.0f), Color(1.0f, 1.0f, 1.0f, 1.0f),
-        Color(0.4f, 0.1f, 0.1f, 1.0f));
+        Color(0.5, 0.5, 0.5, 1.0f));
 
     //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
@@ -130,7 +130,6 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     finite_state_machine->Update(game_data);
     
     //ortho_cam->Tick(game_data);
-    light->Tick(game_data);
 
     //debug
     debug_cam->Tick(game_data);

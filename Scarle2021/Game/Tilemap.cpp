@@ -8,7 +8,7 @@ Tilemap::Tilemap(ID3D11Device* GD, int _size): size(_size)
 		tilemap.emplace_back();
 		for (int y = 0; y < size; y++)
 		{
-			tilemap[x].emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), "Tile_Yellow"));
+			tilemap[x].emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), Void));
 		}
 	}
 }
@@ -41,12 +41,12 @@ void Tilemap::Draw(DrawData* _DD)
 }
 
 /// <summary>
-/// Fills the box area from start to end with given texture
+/// Changes the box area from start to end to the given ZoneType
 /// </summary>
-/// <param name="texture">Name of texture</param>
+/// <param name="zone_type">ZoneType of the tile</param>
 /// <param name="start">Starting point of the box</param>
 /// <param name="end">End point of the box</param>
-void Tilemap::BoxFill(std::string texture, Vector3 start, Vector3 end)
+void Tilemap::BoxFill(ZoneType zone_type, Vector3 start, Vector3 end)
 {
 	//Determine directions on X and Y axis
 	int xDir = start.x < end.x ? 1 : -1;
@@ -60,23 +60,23 @@ void Tilemap::BoxFill(std::string texture, Vector3 start, Vector3 end)
 		for (int z = 0; z < zCols; z++)
 		{
 			Vector3 tile_pos = start + Vector3(x * xDir, 0, z * zDir);
-			SetTile(tile_pos, texture);
+			SetTile(tile_pos, zone_type);
 		}
 	}
 }
 
 /// <summary>
-/// Set the tile at the given position to the given texture
+/// Set the tile at the given position to the given ZoneType
 /// </summary>
-/// <param name="tile_pos"Position of tile</param>
-/// <param name="texture"Name of texture></param>
-void Tilemap::SetTile(Vector3 tile_pos, std::string texture)
+/// <param name="tile_pos">Position of tile</param>
+/// <param name="zone_type">ZoneType of the tile</param>
+void Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 {
-	if (tile_pos.x > size || tile_pos.z > size)
+	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
 	{
-		std::cout << "Tile position exceeds tilemap size" << std::endl;
+		// Tile position exceeds tilemap size
 		return;
 	}
 
-	tilemap[tile_pos.x][tile_pos.z]->SetTexture(texture);
+	tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
 }

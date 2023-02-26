@@ -326,6 +326,9 @@
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png">
       <Filter>Afterlife\Training Centers</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Void.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tiles">

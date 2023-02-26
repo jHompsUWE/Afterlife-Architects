@@ -296,6 +296,9 @@
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png" />
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Hell_3x3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Tiles\Tile_Void.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

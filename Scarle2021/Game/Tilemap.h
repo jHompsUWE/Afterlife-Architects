@@ -15,8 +15,8 @@ public:
 	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
-	void BoxFill(std::string texture, Vector3 start, Vector3 end);
-	void SetTile(Vector3 tile_pos, std::string texture);
+	void BoxFill(ZoneType zone_type, Vector3 start, Vector3 end);
+	void SetTile(Vector3 tile_pos, ZoneType zone_type);
 
 protected:
 

@@ -9,10 +9,11 @@
 class VBQuad : public VBGO
 {
 public:
-	VBQuad(ID3D11Device* GD, std::string textureName);
+	VBQuad(ID3D11Device* GD);
 	virtual ~VBQuad();
 
 	void SetTexture(std::string textureName);
+	void SetColor(Color color);
 
 protected:
 	myVertex* m_vertices = nullptr;

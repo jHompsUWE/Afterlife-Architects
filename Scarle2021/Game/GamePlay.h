@@ -6,11 +6,9 @@
 #include "GPGO.h"
 
 // Building System
-#include "VBQuad.h"
 #include "Tilemap.h"
 #include "Raycast.h"
-
-#include "VBCube.h"
+#include "PreviewQuad.h"
 
 class GPGO;
 
@@ -36,14 +34,19 @@ public:
 
 private:
     Tilemap* tilemap = nullptr;
+    PreviewQuad* preview_quad = nullptr;
+    bool show_preview_quad;
     
     TextGO2D* text = nullptr;
 
     bool do_once = true;
 
+    bool mouse_pressed;
     Vector3 mouse_screen_pos;
     Vector3 mouse_world_pos;
+    Vector3 mouse_pressed_pos;
+    Vector3 mouse_released_pos;
 
-    VBCube* cube = nullptr;
+    ZoneType selected_zone;
 };
 

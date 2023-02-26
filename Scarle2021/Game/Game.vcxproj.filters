@@ -249,6 +249,12 @@
     <ClInclude Include="TileNode.h">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="ZoneType.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="PreviewQuad.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -361,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="AStarPathfinding.cpp">
       <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="PreviewQuad.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -52,6 +52,17 @@ void EventManager::IReadInput(GameData* game_data)
 
     //TODO: Keyboard and mouse input has to be handled HERE
     //Input mapping to events
+    MapInputToEvent(kb.D0, number_0);
+    MapInputToEvent(kb.D1, number_1);
+    MapInputToEvent(kb.D2, number_2);
+    MapInputToEvent(kb.D3, number_3);
+    MapInputToEvent(kb.D4, number_4);
+    MapInputToEvent(kb.D5, number_5);
+    MapInputToEvent(kb.D6, number_6);
+    MapInputToEvent(kb.D7, number_7);
+    MapInputToEvent(kb.D8, number_8);
+    MapInputToEvent(kb.D9, number_9);
+
     MapInputToEvent(kb.W, input_up);
     MapInputToEvent(kb.S, input_down);
     MapInputToEvent(kb.A, input_left);
