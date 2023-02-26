@@ -231,6 +231,9 @@
     <ClInclude Include="TileNode.h">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="AdvisorManager.h">
+      <Filter>Afterlife\Singletons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -331,6 +334,9 @@
     </ClCompile>
     <ClCompile Include="AStarPathfinding.cpp">
       <Filter>Afterlife\AStar Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvisorManager.cpp">
+      <Filter>Afterlife\Singletons</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

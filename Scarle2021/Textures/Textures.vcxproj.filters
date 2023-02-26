@@ -326,6 +326,81 @@
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png">
       <Filter>Afterlife\Training Centers</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArA.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink2.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink3.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArE.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArIdle1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArL.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArM.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArO.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArS.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue2.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue3.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaA.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink2.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink3.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaC.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaE.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaH.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaIdle1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaM.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaWings1.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaWings2.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaY.png">
+      <Filter>Afterlife\Advisors</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tiles">
@@ -390,6 +465,9 @@
     </Filter>
     <Filter Include="Afterlife\Training Centers">
       <UniqueIdentifier>{afc6b7c2-c728-4980-aa5d-1792d864e70b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Advisors">
+      <UniqueIdentifier>{8267a285-d289-476d-8445-43bdcfde4839}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

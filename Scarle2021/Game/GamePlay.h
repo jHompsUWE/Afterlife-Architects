@@ -2,6 +2,7 @@
 #include "CMOGO.h"
 #include "fileVBGO.h"
 #include "StateTemplate.h"
+#include "AdvisorManager.h"
 #include "TextGO2D.h"
 #include "GPGO.h"
 
@@ -33,5 +34,7 @@ private:
     GPGO* cone = nullptr;
     
     TextGO2D* text = nullptr;
+
+    std::unique_ptr<AdvisorManager> adv_man = nullptr;
 };
 

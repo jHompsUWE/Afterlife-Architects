@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdvisorManager.h" />
     <ClInclude Include="Afterlife.h" />
     <ClInclude Include="AStarPathfinding.h" />
     <ClInclude Include="AudioManager.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdvisorManager.cpp" />
     <ClCompile Include="Afterlife.cpp" />
     <ClCompile Include="AStarPathfinding.cpp" />
     <ClCompile Include="AudioManager.cpp" />

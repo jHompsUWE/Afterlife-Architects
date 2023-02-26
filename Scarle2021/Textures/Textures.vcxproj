@@ -296,6 +296,33 @@
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png" />
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Hell_3x3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArA.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink2.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArBlink3.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArE.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArIdle1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArL.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArM.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArO.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArS.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue2.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\ArTongue3.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaA.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink2.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaBlink3.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaC.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaE.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaH.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaIdle1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaM.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaWings1.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaWings2.png" />
+    <ImageContentTask Include="..\..\..\AdvisorsImages\JaY.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

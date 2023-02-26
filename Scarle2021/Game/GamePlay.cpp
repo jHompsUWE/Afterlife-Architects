@@ -25,6 +25,9 @@ bool GamePlay::init()
     cone = new GPGO(DataManager::GetD3DContext(), GPGO_CONE, (float*)&Colors::Navy,params);
     //Cone->SetPos(Vector3(-50.0f, 10.0f, -70.f));
 
+    adv_man = std::make_unique<AdvisorManager>();
+    adv_man->init();
+
     return true;
 }
 
@@ -36,6 +39,8 @@ void GamePlay::Update(GameData* game_data)
     plane->Tick(game_data);
     cube->Tick(game_data);
     cone->Tick(game_data);
+
+    adv_man->Update(game_data);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
