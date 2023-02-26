@@ -37,7 +37,7 @@ private:
     std::vector<UIButtonInterFace*> buttons;
     
     ImageGO2D* panel_back_ground = nullptr;
-    TextGO2D* panel_text = nullptr;
+    //TextGO2D* panel_text = nullptr;
 
     //ImageGO2D* ui_panel;
     

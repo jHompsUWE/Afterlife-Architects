@@ -17,22 +17,22 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
         * panel_back_ground->GetScale().x, panel_back_ground->GetRes().y
         * panel_back_ground->GetScale().y);
 	
-    panel_pos = _panelPosition - panel_res/2;
+    panel_pos = _panelPosition;
     panel_back_ground->SetPos(panel_pos);
     
     // UI game play buttons
     
     //row 1...................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 50,panel_pos.y + 83),DataManager::GetD3DDevice()
+    buttons.push_back(new Button(Vector2(panel_pos.x + 51,panel_pos.y + 84),DataManager::GetD3DDevice()
         ,"green",window_1_green,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 93,panel_pos.y + 83),DataManager::GetD3DDevice()
+    buttons.push_back(new Button(Vector2(panel_pos.x + 94,panel_pos.y + 84),DataManager::GetD3DDevice()
         ,"green",window_2_yellow,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 83),DataManager::GetD3DDevice()
+    buttons.push_back(new Button(Vector2(panel_pos.x + 138,panel_pos.y + 84),DataManager::GetD3DDevice()
         ,"green",window_3_orange,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 83),DataManager::GetD3DDevice()
+    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 84),DataManager::GetD3DDevice()
     ,"green",window_4_brown,Vector2(0.8,0.7)));
     
     //row 2......................
@@ -124,6 +124,8 @@ UIPanel::~UIPanel()
 
 void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
 {
+
+    panel_back_ground->Tick(_gameData);
     //updates buttons
     for (auto& button : buttons)
     {
@@ -202,11 +204,13 @@ Vector2& UIPanel::getButtonRes()
 
 void UIPanel::reSize(std::pair<int*, int*> game_res)
 {
-    panel_back_ground->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
-
+    auto& scale = panel_back_ground->ReSize(game_res.first, game_res.second);
+    panel_pos = panel_pos * scale;
+    panel_res = panel_res * scale;
+    
     for (auto& button : buttons)
     {
-        button->reSize(DataManager::GetRES());
+        button->reSize(game_res);
     }
 }
 

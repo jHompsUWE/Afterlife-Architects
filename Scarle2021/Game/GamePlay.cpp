@@ -20,9 +20,9 @@ bool GamePlay::init()
     // window init
 
     window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
-        .second*0.5),DataManager::GetD3DDevice(),"touch me","Window",Vector2(0.5,0.5));
+        .second*0.5),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
 
-    main_panel = new UIPanel(Vector2(10,240),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1)); 
+    main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1)); 
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
     ui_frame->SetOrigin(Vector2(0,0));

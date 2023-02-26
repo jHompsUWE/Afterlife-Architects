@@ -17,7 +17,7 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         * windowBackGround->GetScale().y);
 
     // sets window pos
-    window_pos = _windowPosition - window_res/2;
+    window_pos = _windowPosition;
     windowBackGround->SetPos(window_pos);
 
     //setup button text
@@ -201,9 +201,11 @@ void UIWindow::reSize(std::pair<int*, int*> game_res)
 {
     //stores getRes
     auto& resize = DataManager::GetRES();
-
+    
+    auto& scale = windowBackGround->ReSize(resize.first,resize.second);
     //reScales background
-    window_res *= windowBackGround->ReSize(resize.first,resize.second);
+    window_res *= scale;
+    window_pos *= scale;
     
     // resize buttons of UI window
     for (const auto& button : buttons)
