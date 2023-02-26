@@ -1,7 +1,5 @@
 #pragma once
-#pragma once 
 #include "DataManager.h" 
-#include "array" 
 #include "StateTemplate.h" 
 #include "Sound.h" 
 #include <Audio.h> 

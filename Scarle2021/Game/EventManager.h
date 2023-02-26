@@ -15,7 +15,7 @@ enum AfterlifeEvent
 	play_sound_theme4,
 	play_sound_theme5,
 	play_sound_theme6,
-	play_sound_theme7,
+	play_sound_theme7
 };
 
 class EventManager

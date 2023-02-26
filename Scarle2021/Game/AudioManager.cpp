@@ -2,6 +2,7 @@
 #include "pch.h" 
 #include "AudioManager.h" 
 #include <iostream>
+
 AudioManager::AudioManager()
 = default;
 
@@ -70,7 +71,6 @@ void AudioManager::GetEvents(list<AfterlifeEvent>& event_list)
 
         case play_sound_theme3:
             PlaySound("Afterlife Theme 3");
-            float _vol = 1.0f;
             break;
 
         case play_sound_theme4:
@@ -103,5 +103,4 @@ void AudioManager::PlaySound(string filename)
 {
     Sound* sound_eff = new Sound(audEngine.get(), filename);
     s_sounds.push_back(sound_eff);
-    float _vol = 1.0f;
 }
