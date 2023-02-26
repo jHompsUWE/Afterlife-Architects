@@ -48,7 +48,18 @@ void GamePlay::LateUpdate(GameData* game_data)
 
 void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
-
+    for (auto& ev : event_list)
+    {
+        switch (ev)
+        {            
+        case input_right:
+            DataManager::GetGD()->current_game_state = gs_game_over;
+            break;
+            
+        default:
+            break;
+        }
+    }
 }
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)
