@@ -2,7 +2,7 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
-VBQuad::VBQuad(ID3D11Device* GD): d11_device(GD)
+VBQuad::VBQuad(ID3D11Device* GD, float width, float height): d11_device(GD)
 {
 	SetPhysicsOn(false);
 
@@ -19,11 +19,11 @@ VBQuad::VBQuad(ID3D11Device* GD): d11_device(GD)
 	int vert = 0;
 	m_vertices[vert].texCoord = Vector2(0.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(0.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(0.0f, 0.0f, height);
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(width, 0.0f, height);
 
 	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -31,7 +31,7 @@ VBQuad::VBQuad(ID3D11Device* GD): d11_device(GD)
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 0.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 1.0f);
+	m_vertices[vert++].Pos = Vector3(width, 0.0f, height);
 
 	m_vertices[vert].texCoord = Vector2(0.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -39,7 +39,7 @@ VBQuad::VBQuad(ID3D11Device* GD): d11_device(GD)
 
 	m_vertices[vert].texCoord = Vector2(1.0f, 1.0f);
 	m_vertices[vert].Color = Color(1.0f, 1.0f, 1.0f, 1.0f);
-	m_vertices[vert++].Pos = Vector3(1.0f, 0.0f, 0.0f);
+	m_vertices[vert++].Pos = Vector3(width, 0.0f, 0.0f);
 
 	for (UINT i = 0; i < m_numPrims; i++)
 	{

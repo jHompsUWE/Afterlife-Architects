@@ -6,7 +6,7 @@ GamePlay::GamePlay()
 
 GamePlay::~GamePlay()
 {
-    delete tilemap;
+
 }
 
 bool GamePlay::init()
@@ -15,11 +15,12 @@ bool GamePlay::init()
     text->SetPos(Vector2(100, 10));
     text->SetColour(Color((float*)&Colors::Yellow));
 
-    tilemap = new Tilemap(DataManager::GetD3DDevice(), 50);
+    tilemap = std::make_unique<Tilemap>(DataManager::GetD3DDevice(), 50);
 
-    preview_quad = new PreviewQuad(DataManager::GetD3DDevice());
+    preview_quad = std::make_unique<PreviewQuad>(DataManager::GetD3DDevice());
     preview_quad->SetPos(Vector3(0, 0.01f, 0));
-    show_preview_quad = false;
+
+    building_manager = std::make_unique<BuildingManager>(DataManager::GetD3DDevice());
 
     mouse_screen_pos.z = 0;
     mouse_world_pos.y = 0;
@@ -39,6 +40,7 @@ void GamePlay::Update(GameData* game_data)
     }
 
     preview_quad->Tick(game_data);
+    building_manager->Tick(game_data);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -72,7 +74,7 @@ void GamePlay::LateUpdate(GameData* game_data)
             mouse_pressed = false;
 
             preview_quad->ResetPreviewQuad();
-            tilemap->BoxFill(selected_zone, mouse_pressed_pos, mouse_released_pos);
+            tilemap->BoxFill(building_manager, selected_zone, mouse_pressed_pos, mouse_released_pos);
         }
     }
 }
@@ -121,6 +123,16 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
         case number_8:
             selected_zone = Void;
             preview_quad->StartPreviewQuad(selected_zone);
+            break;
+
+        case input_E:
+            Vector3 empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
+            if (empty_tile.y == 0)
+            {
+                building_manager->Create1x1House(selected_zone, empty_tile);
+                tilemap->OccupyTile(empty_tile);
+            }
+            break;
         }
     }
 }
@@ -133,6 +145,7 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 void GamePlay::Render3D(DrawData* draw_data)
 {
     tilemap->Draw(draw_data);
+    building_manager->Draw(draw_data);
     
     if (mouse_pressed)
     {

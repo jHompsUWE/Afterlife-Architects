@@ -37,28 +37,28 @@ void TPSCamera::Tick(GameData* _GD)
 		}
 	}
 
-	Vector3 verticalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom);
+	Vector3 verticalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom) * _GD->delta_time;
 	if (_GD->keyboard_state.W)
 	{
 		// Move UP
-		target -= verticalMove;
+		target += verticalMove;
 	}
 	if (_GD->keyboard_state.S)
 	{
 		// Move DOWN
-		target += verticalMove;
+		target -= verticalMove;
 	}
 
-	Vector3 horizontalMove = speed * Vector3(1, 0, -1) * (zoom / max_zoom);
+	Vector3 horizontalMove = speed * Vector3(1, 0, -1) * (zoom / max_zoom) * _GD->delta_time;
 	if (_GD->keyboard_state.A)
 	{
 		// Move LEFT
-		target += horizontalMove;
+		target -= horizontalMove;
 	}
 	if (_GD->keyboard_state.D)
 	{
 		// Move RIGHT
-		target -= horizontalMove;
+		target += horizontalMove;
 	}
 
 	// Set position of cam at an offset of m_dpos from target

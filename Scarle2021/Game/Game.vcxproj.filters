@@ -255,6 +255,12 @@
     <ClInclude Include="PreviewQuad.h">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClInclude>
+    <ClInclude Include="StructureSprite.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingManager.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -369,6 +375,12 @@
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="PreviewQuad.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureSprite.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingManager.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>

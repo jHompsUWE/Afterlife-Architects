@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "PreviewQuad.h"
 
-PreviewQuad::PreviewQuad(ID3D11Device* GD): VBQuad(GD)
+PreviewQuad::PreviewQuad(ID3D11Device* GD): VBQuad(GD, 1, 1)
 {
 }
 

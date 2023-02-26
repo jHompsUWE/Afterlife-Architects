@@ -9,6 +9,7 @@
 #include "Tilemap.h"
 #include "Raycast.h"
 #include "PreviewQuad.h"
+#include "BuildingManager.h"
 
 class GPGO;
 
@@ -33,9 +34,10 @@ public:
     void Render3D(DrawData* draw_data) override;
 
 private:
-    Tilemap* tilemap = nullptr;
-    PreviewQuad* preview_quad = nullptr;
-    bool show_preview_quad;
+    std::unique_ptr<Tilemap> tilemap;
+    std::unique_ptr<PreviewQuad> preview_quad;
+
+    std::unique_ptr<BuildingManager> building_manager;
     
     TextGO2D* text = nullptr;
 

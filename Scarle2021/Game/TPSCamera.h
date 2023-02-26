@@ -30,7 +30,7 @@ private:
 
 	// Movement
 	Vector3 target;
-	float speed = 0.5f;
+	float speed = 75.0f;
 
 	// Zoom
 	float zoom = 10.0f;

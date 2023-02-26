@@ -3,9 +3,11 @@
 
 Tile::Tile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type): tile_pos(_tile_pos), type(zone_type)
 {
-	quad = new VBQuad(GD);
+	quad = new VBQuad(GD, 1, 1);
 	quad->SetTexture(GetTextureOfType(type));
 	quad->SetPos(tile_pos);
+
+	is_occupied = false;
 }
 
 Tile::~Tile()

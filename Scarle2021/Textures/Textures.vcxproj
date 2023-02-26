@@ -219,7 +219,6 @@
     <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_2x2.png" />
   </ItemGroup>
   <ItemGroup>
-    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png" />
     <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_2x2.png" />
     <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_1x1.png" />
     <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Hell_2x2.png" />
@@ -298,6 +297,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Tiles\Tile_Void.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

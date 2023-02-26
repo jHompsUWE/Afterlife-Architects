@@ -9,7 +9,7 @@
 class VBQuad : public VBGO
 {
 public:
-	VBQuad(ID3D11Device* GD);
+	VBQuad(ID3D11Device* GD, float width, float height);
 	virtual ~VBQuad();
 
 	void SetTexture(std::string textureName);

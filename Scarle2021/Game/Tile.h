@@ -13,9 +13,11 @@ public:
 
 	Vector3 GetTilePos();
 	ZoneType GetZoneType() { return type; }
+	bool GetIsOccupied() { return is_occupied; }
 
 	void SetTexture(ZoneType zone_type);
 	void SetZoneType(ZoneType _type) { type = _type; }
+	void SetIsOccupied(bool _is_occupied) { is_occupied = _is_occupied; }
 
 	std::string GetTextureOfType(ZoneType type);
 
@@ -25,5 +27,6 @@ private:
 	VBQuad* quad = nullptr;
 	Vector3 tile_pos;
 	ZoneType type;
+	bool is_occupied;
 };
 

@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClInclude Include="Afterlife.h" />
     <ClInclude Include="AStarPathfinding.h" />
+    <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CMOGO.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="StructureSprite.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TestSound.h" />
     <ClInclude Include="TextGO2D.h" />
@@ -222,6 +224,7 @@
   <ItemGroup>
     <ClCompile Include="Afterlife.cpp" />
     <ClCompile Include="AStarPathfinding.cpp" />
+    <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
@@ -251,6 +254,7 @@
     <ClCompile Include="PreviewQuad.cpp" />
     <ClCompile Include="Raycast.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="StructureSprite.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TestSound.cpp" />
     <ClCompile Include="TextGO2D.cpp" />
