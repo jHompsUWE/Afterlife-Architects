@@ -109,6 +109,8 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Inits the audio manager
     audio_manager = std::make_unique<AudioManager>();
     audio_manager->init();
+
+    economy_manager = new EconomyManager;
 }
 
 // Executes the basic game loop
@@ -130,6 +132,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
    
     finite_state_machine->Update(game_data);
     audio_manager->Update(game_data);
+    economy_manager->UpdateCurrency();
     ortho_cam->Tick(game_data);
 }
 

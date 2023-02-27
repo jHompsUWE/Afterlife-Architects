@@ -19,6 +19,7 @@ public:
 	Vector3 GetTarget() { return camera_target; }
 
 	void ReadInput(GameData* _GD);
+	void MouseInput(GameData* _GD, int win_x, int win_y);
 
 	void MoveUp();
 	void MoveDown();
@@ -54,6 +55,10 @@ private:
 	float zoom_min = 1.0f;
 	float zoom_max = 20.0f;
 	float last_scroll_value = 0.0f;
+
+	int win_x;
+	int win_y;
+	int boundary = 20;
 };
 
 

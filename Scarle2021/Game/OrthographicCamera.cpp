@@ -6,7 +6,8 @@
 OrthographicCamera::OrthographicCamera(float _near_plane, float _far_plane, Vector3 _offset) :
 	near_plane(_near_plane), far_plane(_far_plane), offset(_offset)
 {
-
+	//win_x = _win_x;
+	//win_x = _win_y;
 }
 
 OrthographicCamera::~OrthographicCamera()
@@ -21,6 +22,7 @@ void OrthographicCamera::Tick(GameData* _GD)
 	horizontal_move = camera_speed * Vector3(1, 0, -1) * (zoom_value / zoom_max) * _GD->delta_time;
 
 	ReadInput(_GD);
+	//MouseInput(_GD, win_x, win_y);
 	RecalculateProjViewPos();
 	GameObject::Tick(_GD);
 }
@@ -63,6 +65,27 @@ void OrthographicCamera::ReadInput(GameData* _GD)
 		// Mouse scrolled up
 		last_scroll_value = _GD->mouse_state.scrollWheelValue;
 		ZoomIn();
+	}
+}
+
+void OrthographicCamera::MouseInput(GameData* _GD, int win_x, int win_y)
+{
+	if (_GD->mouse_state.x > win_x - boundary)
+	{
+		MoveRight();
+	}
+	if (_GD->mouse_state.x < boundary)
+	{
+		MoveLeft();
+	}
+
+	if (_GD->mouse_state.y > win_y - boundary)
+	{
+		MoveDown();
+	}
+	if (_GD->mouse_state.y < boundary)
+	{
+		MoveUp();
 	}
 }
 
