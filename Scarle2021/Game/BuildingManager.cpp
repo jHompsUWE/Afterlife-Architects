@@ -75,7 +75,7 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 		break;
 
 	default:
-		break;
+		return;
 	}
 
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
