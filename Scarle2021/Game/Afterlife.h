@@ -9,6 +9,7 @@
 #include "Audio.h"
 #include "FSM.h"
 #include "OrthographicCamera.h"
+#include "EconomyManager.h"
 
 //Player for debug purposes
 #include "Player.h"

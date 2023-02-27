@@ -1,62 +1,59 @@
 #pragma once
 
 #include "gameobject.h"
+
 class OrthographicCamera : public GameObject
 {
 public:
-	OrthographicCamera(float left, float right, float bottom, float top, float near, float far);
+	OrthographicCamera(int win_x, int win_y);
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
 
 	virtual void Draw(DrawData* _DD) override;
 
-	//Getters
 	Matrix GetProj() { return projection_matrix; }
 	Matrix GetView() { return view_matrix; }
 
-	void SetPosition(const Vector3& position) { _position = position; void RecalculateViewMatrix(); }
-	const Vector3& GetPosition() const { return _position; }
-
-	//not including rotation here not necessary
-
-	const Matrix& GetProjectionMatrix() const { return projection_matrix; }
-	const Matrix& GetViewMatrix() const { return view_matrix; }
-	const Matrix& GetViewProjectionMatrix() const { return view_projection_matrix; }
-
-	XMFLOAT3 camera_position = XMFLOAT3(0.0f, 0.0f, -5.0f);
-	XMFLOAT3 camera_target = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	XMFLOAT3 camera_up = XMFLOAT3(0.0f, 1.0f, 0.0f);
-
+	void Input(GameData* _GD);
+	void MouseInput(GameData* _GD, int win_x, int win_y);
+	void MoveUp();
+	void MoveDown();
+	void MoveLeft();
+	void MoveRight();
+	void ZoomIn();
+	void ZoomOut();
+	void RecalculateProjViewPos();
 
 private:
-	void RecalculateViewMatrix();
+	float camera_speed = 0.7f;
 
-	float width;
-	float height;
+	Vector3 camera_target{};
+	Vector3 camera_constraint = Vector3(10.0f, 10.0f, 0.0f);
 
-	//values possibly work for creating ortographic perspective
-	float left = -10.0f;
-	float right = 10.0f;
-	float bottom = -10.0f;
-	float top = 10.0f;
-	float near_plane = 0.1f;
-	float far_plane = 100.0f;
+	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0);
+	Vector3 horizontal_movement = camera_speed / 4 * Vector3(0, 0, 1);
+
+	float camera_width = 100.0f;
+	float camera_height = 80.0f;
+	float near_plane = -100.0f;
+	float far_plane = 1000.0f;
+
+	float zoom_value = 1.5f;
+	float zoom_min = 0.2f;
+	float zoom_max = 3.0f;
+
+	float scroll_value = 0.0f;
+
+	int _win_x;
+	int _win_y;
+	int boundary = 20;
 
 protected:
-	XMMATRIX projection_matrix = XMMatrixOrthographicOffCenterLH(left, right, bottom, top, near_plane, far_plane);
-	XMMATRIX view_matrix = XMMatrixLookAtLH(XMLoadFloat3(&camera_position), XMLoadFloat3(&camera_target), XMLoadFloat3(&camera_up));
-
-	//XMMATRIX view_matrix = XMMatrixIdentity();
-	XMMATRIX transformation_matrix = projection_matrix * view_matrix;
-	//Matrix projection_matrix;
-	//Matrix view_matrix;
-	Matrix view_projection_matrix;
-
-	Vector3 _position;
-
-	Vector3 target;
-	Vector3 up;
+	XMMATRIX projection_matrix{};
+	XMMATRIX view_matrix{};
+	XMVECTOR camera_position{};
+	Vector3 camera_up = Vector3::UnitY;
 };
 
 

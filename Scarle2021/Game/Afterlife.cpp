@@ -158,7 +158,7 @@ void Afterlife::ReadInput()
     {
         ExitGame();
     }
-    
+
     //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
     /*
     RECT _window;
