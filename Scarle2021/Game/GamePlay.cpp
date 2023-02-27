@@ -56,9 +56,6 @@ void GamePlay::Update(GameData* game_data)
     
     // mouse pos
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
-    
-    //constantly moves 
-    plane->SetYaw(plane->GetYaw() + 0.01);
 
     //update window
     window_one->update(game_data,mouse_pos);
