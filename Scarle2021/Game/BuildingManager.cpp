@@ -32,6 +32,8 @@ void BuildingManager::Draw(DrawData* _DD)
 /// <param name="tile_position">Tile position of the house</param>
 void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 {
+	// height value is calculated by dividing the texture height with witdh
+	// all the values below are set manually because division on runtime gives incorrect values
 	float height = 0;
 	std::string texture;
 
@@ -76,6 +78,7 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 		break;
 	}
 
+	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
 	structure_list.emplace_back(std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position, texture));
 }
 
