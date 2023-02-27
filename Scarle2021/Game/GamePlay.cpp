@@ -36,7 +36,10 @@ bool GamePlay::init()
     params[0] = params[1] = 20.0f; params[2] = (size_t)32;
     cone = new GPGO(DataManager::GetD3DContext(), GPGO_CONE, (float*)&Colors::Navy,params);
     //Cone->SetPos(Vector3(-50.0f, 10.0f, -70.f));
-    
+
+    adv_man = std::make_unique<AdvisorManager>();
+    adv_man->init();
+
     return true;
 }
 
@@ -59,6 +62,8 @@ void GamePlay::Update(GameData* game_data)
     main_panel->update(game_data,mouse_pos);
     
    
+
+    adv_man->Update(game_data);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -89,12 +94,13 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
             
         case input_left:
             break;
-            
-        case input_right:
-            break;
 
         case game_resized:
             ResizeUI();
+            break;
+             
+        case input_right:
+            DataManager::GetGD()->current_game_state = gs_game_over;
             break;
             
         default:
@@ -130,5 +136,4 @@ void GamePlay::ResizeUI()
     window_one->reSize(DataManager::GetRES());
     main_panel->reSize(DataManager::GetRES());
 }
-
 

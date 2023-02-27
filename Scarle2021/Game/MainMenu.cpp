@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "MainMenu.h"
+#include "AStarPathfinding.h"
 
 MainMenu::MainMenu()
 = default;

@@ -163,7 +163,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AdvisorManager.h" />
     <ClInclude Include="Afterlife.h" />
+    <ClInclude Include="AStarPathfinding.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CMOGO.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TestSound.h" />
     <ClInclude Include="TextGO2D.h" />
+    <ClInclude Include="TileNode.h" />
     <ClInclude Include="TPSCamera.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
@@ -213,7 +217,10 @@
     <ClInclude Include="vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdvisorManager.cpp" />
     <ClCompile Include="Afterlife.cpp" />
+    <ClCompile Include="AStarPathfinding.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />

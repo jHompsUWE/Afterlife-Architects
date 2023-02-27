@@ -35,8 +35,14 @@ enum AfterlifeEvent
 	window_20_delete_structures,
 	window_21_zoom_in,
 	window_22_zoom_out,
-	
-	
+	play_sound_theme1,
+	play_sound_theme2,
+	play_sound_theme3,
+	play_sound_theme4,
+	play_sound_theme5,
+	play_sound_theme6,
+	play_sound_theme7,
+	dialogue_1
 };
 
 class EventManager

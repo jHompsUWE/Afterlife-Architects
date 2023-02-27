@@ -1,6 +1,5 @@
 #pragma once
 #include "StateTemplate.h"
-#include "TextGO2D.h"
 #include "Button.h"
 
 class MainMenu : public StateTemplate

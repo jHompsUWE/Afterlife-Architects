@@ -2,6 +2,7 @@
 #include "CMOGO.h"
 #include "fileVBGO.h"
 #include "StateTemplate.h"
+#include "AdvisorManager.h"
 #include "TextGO2D.h"
 #include "GPGO.h"
 #include "UIPanel.h"
@@ -45,5 +46,7 @@ private:
     UIPanel* main_panel;
 
     bool window_one_open = true;
+
+    std::unique_ptr<AdvisorManager> adv_man = nullptr;
 };
 
