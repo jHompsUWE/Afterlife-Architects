@@ -7,6 +7,7 @@
 #include "GPGO.h"
 #include "UIPanel.h"
 #include "UIWindow.h"
+#include "EconomyManager.h"
 
 // Building System
 #include "Tilemap.h"
@@ -64,5 +65,7 @@ private:
     bool window_one_open = true;
 
     std::unique_ptr<AdvisorManager> adv_man = nullptr;
+
+    EconomyManager* economy_manager;
 };
 
