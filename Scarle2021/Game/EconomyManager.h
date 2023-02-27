@@ -1,4 +1,5 @@
 #pragma once
+
 class EconomyManager
 {
 public:
@@ -18,7 +19,6 @@ public:
 
 	float GetPassiveIncomeMultiplier();
 	void SetPassiveIncomeMultiplier(float _income_multiplier);
-
 	float GetPassiveTaxMultiplier();
 	void SetPassiveTaxMultiplier(float _tax_multiplier);
 

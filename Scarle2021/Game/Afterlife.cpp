@@ -86,13 +86,13 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
 
     //Ortho camera
     //values passed are left, right, bottom, top, near clippin plane and far clipping plane respectively
-    ortho_cam = new OrthographicCamera(output_width, output_height);
+    main_cam = new OrthographicCamera(output_width, output_height);
 
     // Create DrawData struct and populate its pointers
     draw_data = new DrawData;
     draw_data->pd3d_immediate_context = nullptr;
     draw_data->common_states = common_states;
-    draw_data->main_camera = ortho_cam;
+    draw_data->main_camera = main_cam;
     draw_data->main_light = light;
 
     //Sets up the data manager, a singleton that makes all those pointers accessible everywhere
@@ -126,7 +126,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
    
     finite_state_machine->Update(game_data);
     
-    ortho_cam->Tick(game_data);
+    main_cam->Tick(game_data);
     light->Tick(game_data);
 
     economy_manager->UpdateCurrency();
@@ -180,7 +180,7 @@ void Afterlife::Render()
     VBGO::UpdateConstantBuffer(draw_data);
 
     //Renders basic scene elements
-    ortho_cam->Draw(draw_data);
+    main_cam->Draw(draw_data);
     light->Draw(draw_data);
     
     //Draws 3D GOs

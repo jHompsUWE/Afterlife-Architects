@@ -80,7 +80,7 @@ private:
 
     // 3D renders
     //Camera* main_cam = NULL;
-    OrthographicCamera* ortho_cam = NULL;
+    OrthographicCamera* main_cam = NULL;
     Light* light = NULL;
 
     // required for the CMO model rendering system
