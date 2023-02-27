@@ -131,7 +131,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
 
     economy_manager->UpdateCurrency();
 
-    std::cout << economy_manager->GetCurrency();
+    //std::cout << economy_manager->GetCurrency();
     //std::cout << game_data->mouse_state.x << std::endl;
     //std::cout << game_data->mouse_state.y << std::endl;
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gameobject.h"
-#include "GameData.h"
+
 class OrthographicCamera : public GameObject
 {
 public:
@@ -28,7 +28,7 @@ public:
 private:
 	float camera_speed = 0.7f;
 
-	Vector3 camera_target;
+	Vector3 camera_target{};
 	Vector3 camera_constraint = Vector3(10.0f, 10.0f, 0.0f);
 
 	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0);
@@ -50,9 +50,9 @@ private:
 	int boundary = 20;
 
 protected:
-	XMMATRIX projection_matrix;
-	XMMATRIX view_matrix;
-	XMVECTOR camera_position;
+	XMMATRIX projection_matrix{};
+	XMMATRIX view_matrix{};
+	XMVECTOR camera_position{};
 	Vector3 camera_up = Vector3::UnitY;
 };
 

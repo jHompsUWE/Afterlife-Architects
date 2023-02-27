@@ -1,5 +1,5 @@
-#include "EconomyManager.h"
 #include "pch.h"
+#include "EconomyManager.h"
 #include <iostream>
 
 EconomyManager::EconomyManager()

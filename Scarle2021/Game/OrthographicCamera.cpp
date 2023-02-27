@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "OrthographicCamera.h"
+#include "GameData.h"
 #include <iostream>
 
 OrthographicCamera::OrthographicCamera(int win_x, int win_y)
