@@ -5,7 +5,7 @@
 //Data to be passed by game to all 3D Game Objects via Draw 
 //=================================================================
 
-#include "TPSCamera.h"
+#include "OrthographicCamera.h"
 #include "CommonStates.h"
 
 using namespace DirectX;
@@ -20,7 +20,7 @@ struct DrawData
 	CommonStates* common_states;
 
 	//Camera and light pointers
-	TPSCamera* main_camera;
+	OrthographicCamera* main_camera;
 	//OrthographicCamera* main_camera;
 	Light* main_light;
 };

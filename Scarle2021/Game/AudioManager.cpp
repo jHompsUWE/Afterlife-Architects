@@ -91,7 +91,6 @@ void AudioManager::GetEvents(list<AfterlifeEvent>& event_list)
         default:
             break;
         }
-        std::cout << ev << " soos" << std::endl;
     }
 }
 

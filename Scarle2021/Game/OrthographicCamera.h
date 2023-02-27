@@ -1,59 +1,59 @@
 #pragma once
 
-#include "gameobject.h"
+#include "Gameobject.h"
 
 class OrthographicCamera : public GameObject
 {
 public:
-	OrthographicCamera(int win_x, int win_y);
+	OrthographicCamera(float _near_plane, float _far_plane, Vector3 _offset);
 	~OrthographicCamera();
 
 	virtual void Tick(GameData* _GD) override;
-
-	virtual void Draw(DrawData* _DD) override;
+	virtual void Draw(DrawData* _DD) override { ; }
 
 	Matrix GetProj() { return projection_matrix; }
 	Matrix GetView() { return view_matrix; }
+	float GetNearZ() { return near_plane; }
+	float GetFarZ() { return far_plane; }
+	Vector3 GetDirection();
+	Vector3 GetTarget() { return camera_target; }
 
-	void Input(GameData* _GD);
-	void MouseInput(GameData* _GD, int win_x, int win_y);
+	void ReadInput(GameData* _GD);
+
 	void MoveUp();
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
 	void ZoomIn();
 	void ZoomOut();
+
 	void RecalculateProjViewPos();
 
-private:
-	float camera_speed = 0.7f;
-
-	Vector3 camera_target{};
-	Vector3 camera_constraint = Vector3(10.0f, 10.0f, 0.0f);
-
-	Vector3 vertical_movement = camera_speed * Vector3(0, 1, 0);
-	Vector3 horizontal_movement = camera_speed / 4 * Vector3(0, 0, 1);
-
-	float camera_width = 100.0f;
-	float camera_height = 80.0f;
-	float near_plane = -100.0f;
-	float far_plane = 1000.0f;
-
-	float zoom_value = 1.5f;
-	float zoom_min = 0.2f;
-	float zoom_max = 3.0f;
-
-	float scroll_value = 0.0f;
-
-	int _win_x;
-	int _win_y;
-	int boundary = 20;
-
 protected:
-	XMMATRIX projection_matrix{};
-	XMMATRIX view_matrix{};
-	XMVECTOR camera_position{};
-	Vector3 camera_up = Vector3::UnitY;
+
+private:
+	// Matrices for this camera
+	Matrix projection_matrix;
+	Matrix view_matrix;
+
+	// Parameters for setting up a camera
+	float near_plane;
+	float far_plane;
+
+	Vector3	offset;
+	Vector3 camera_target = Vector3::Zero;
+	const Vector3 up = Vector3::UnitY;
+
+	// Movement
+	Vector3 vertical_move;
+	Vector3 horizontal_move;
+	float camera_speed = 75.0f;
+
+	// Zoom
+	float zoom_value = 10.0f;
+	float zoom_min = 1.0f;
+	float zoom_max = 20.0f;
+	float last_scroll_value = 0.0f;
 };
 
 
