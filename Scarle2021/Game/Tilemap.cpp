@@ -40,6 +40,7 @@ void Tilemap::Draw(DrawData* _DD)
 	}
 }
 
+// Based on https://forum.unity.com/threads/tilemap-boxfill-is-horrible.502864/ by shawnblais, Oct 11, 2012
 /// <summary>
 /// Changes the box area from start to end to the given ZoneType
 /// </summary>
@@ -55,13 +56,17 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 	int xCols = 1 + abs(start.x - end.x);
 	int zCols = 1 + abs(start.z - end.z);
 
+	// Iterate through all the tiles within the box selection
 	for (int x = 0; x < xCols; x++)
 	{
 		for (int z = 0; z < zCols; z++)
 		{
 			Vector3 tile_pos = start + Vector3(x * xDir, 0, z * zDir);
+
+			// Replace the tile at tile_pos with zone_type
 			if (SetTile(tile_pos, zone_type))
 			{
+				// Tile at tile_pos is replaced, destroy structure on that tile
 				building_manager->DestroyStructure(tile_pos);
 			}
 		}
@@ -102,6 +107,7 @@ Vector3 Tilemap::FindEmpty1x1TileOfType(ZoneType zone_type)
 		{
 			if (tilemap[x][z]->GetZoneType() == zone_type && tilemap[x][z]->GetIsOccupied() == false)
 			{
+				// Tile at (x, 0, z) matches zone_type and is not occupied
 				return Vector3(x, 0, z);
 			}
 		}
@@ -120,6 +126,7 @@ bool Tilemap::IsTileOccupied(Vector3 tile_pos)
 {
 	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
 	{
+		// Tile position exceeds tilemap size
 		return true;
 	}
 
@@ -134,6 +141,7 @@ void Tilemap::OccupyTile(Vector3 tile_pos)
 {
 	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
 	{
+		// Tile position exceeds tilemap size
 		return;
 	}
 
