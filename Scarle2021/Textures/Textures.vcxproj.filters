@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ImageContentTask Include="logo_small.png" />
@@ -151,9 +151,6 @@
     </ImageContentTask>
     <ImageContentTask Include="Afterlife\Building\Red\Building_Red_Hell_2x2.png">
       <Filter>Afterlife\Building\Red</Filter>
-    </ImageContentTask>
-    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png">
-      <Filter>Afterlife\Building\Purple</Filter>
     </ImageContentTask>
     <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_2x2.png">
       <Filter>Afterlife\Building\Purple</Filter>
@@ -325,6 +322,12 @@
     </ImageContentTask>
     <ImageContentTask Include="Afterlife\Training Centers\TC_T3_Heaven_3x3.png">
       <Filter>Afterlife\Training Centers</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Void.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Building\Purple\Building_Purple_Heaven_1x1.png">
+      <Filter>Afterlife\Building\Purple</Filter>
     </ImageContentTask>
     <ImageContentTask Include="MainmenuBG.png">
       <Filter>AfterLifeUI</Filter>

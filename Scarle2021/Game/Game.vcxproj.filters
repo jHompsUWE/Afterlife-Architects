@@ -79,6 +79,12 @@
     <Filter Include="Afterlife\UIButton">
       <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Building System">
+      <UniqueIdentifier>{e90b4398-86ce-49c1-8f2a-b7c5bc8dfeaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Building System\Tilemap">
+      <UniqueIdentifier>{b7e7acd6-4260-4b77-af05-c0d60060209f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Afterlife\AStar Pathfinding">
       <UniqueIdentifier>{42540fc4-1d6d-4ed8-b1c3-6aede6b9032a}</UniqueIdentifier>
     </Filter>
@@ -231,6 +237,21 @@
     <ClInclude Include="AudioManager.h">
       <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObjects\3D\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VBQuad.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClInclude>
     <ClInclude Include="AStarPathfinding.h">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClInclude>
@@ -245,6 +266,18 @@
     </ClInclude>
     <ClInclude Include="UIPanel.h">
       <Filter>Afterlife\UIMainPanel</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneType.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="PreviewQuad.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureSprite.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingManager.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +377,21 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Afterlife\Singletons</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObjects\3D\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VBQuad.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="Raycast.cpp">
+      <Filter>GameObjects\AfterlifeGOs</Filter>
+    </ClCompile>
     <ClCompile Include="AStarPathfinding.cpp">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
@@ -355,6 +403,15 @@
     </ClCompile>
     <ClCompile Include="UIPanel.cpp">
       <Filter>Afterlife\UIMainPanel</Filter>
+    </ClCompile>
+    <ClCompile Include="PreviewQuad.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureSprite.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingManager.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -174,7 +174,7 @@ void VBGO::Init(ID3D11Device* _GD)
 
 	//default pixelshader
 	ID3DBlob* pPixelShaderBuffer = NULL;
-	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS", "ps_4_0_level_9_1", &pPixelShaderBuffer);
+	hr = CompileShaderFromFile(Helper::charToWChar("../Assets/shader.fx"), "PS2", "ps_4_0_level_9_1", &pPixelShaderBuffer);
 	_GD->CreatePixelShader(pPixelShaderBuffer->GetBufferPointer(), pPixelShaderBuffer->GetBufferSize(), NULL, &s_pPixelShader);
 
 	//default vertex layout
@@ -200,7 +200,7 @@ void VBGO::Init(ID3D11Device* _GD)
 	//default sampler
 	D3D11_SAMPLER_DESC SamDesc;
 	ZeroMemory(&SamDesc, sizeof(SamDesc));
-	SamDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	SamDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
 	SamDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	SamDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	SamDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -215,7 +215,7 @@ void VBGO::Init(ID3D11Device* _GD)
 	//Setup Raster State
 	D3D11_RASTERIZER_DESC rasterDesc;
 	rasterDesc.AntialiasedLineEnable = false;
-	rasterDesc.CullMode = D3D11_CULL_BACK;
+	rasterDesc.CullMode = D3D11_CULL_NONE;
 	rasterDesc.DepthBias = 0;
 	rasterDesc.DepthBiasClamp = 0.0f;
 	rasterDesc.DepthClipEnable = true;

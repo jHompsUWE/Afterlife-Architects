@@ -166,6 +166,7 @@
     <ClInclude Include="AdvisorManager.h" />
     <ClInclude Include="Afterlife.h" />
     <ClInclude Include="AStarPathfinding.h" />
+    <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h" />
@@ -196,12 +197,18 @@
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PreviewQuad.h" />
+    <ClInclude Include="Raycast.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="StructureSprite.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TestSound.h" />
     <ClInclude Include="TextGO2D.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Tilemap.h" />
     <ClInclude Include="TileNode.h" />
     <ClInclude Include="TPSCamera.h" />
     <ClInclude Include="Tree.h" />
@@ -212,14 +219,17 @@
     <ClInclude Include="VBCube.h" />
     <ClInclude Include="VBGO.h" />
     <ClInclude Include="VBPillow.h" />
+    <ClInclude Include="VBQuad.h" />
     <ClInclude Include="VBSnail.h" />
     <ClInclude Include="VBspiral.h" />
     <ClInclude Include="vertex.h" />
+    <ClInclude Include="ZoneType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvisorManager.cpp" />
     <ClCompile Include="Afterlife.cpp" />
     <ClCompile Include="AStarPathfinding.cpp" />
+    <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -246,10 +256,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PreviewQuad.cpp" />
+    <ClCompile Include="Raycast.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="StructureSprite.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TestSound.cpp" />
     <ClCompile Include="TextGO2D.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="TPSCamera.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />
@@ -257,6 +273,7 @@
     <ClCompile Include="UIWindow.cpp" />
     <ClCompile Include="VBCube.cpp" />
     <ClCompile Include="VBGO.cpp" />
+    <ClCompile Include="VBQuad.cpp" />
     <ClCompile Include="VBSnail.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

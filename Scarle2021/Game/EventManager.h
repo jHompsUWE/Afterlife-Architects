@@ -1,13 +1,24 @@
-﻿#pragma once
+#pragma once
 #include <unordered_map>
 #include "GameData.h"
 
 enum AfterlifeEvent
 {
 	none,
+	number_1,
+	number_2,
+	number_3,
+	number_4,
+	number_5,
+	number_6,
+	number_7,
+	number_8,
+	number_9,
+	number_0,
 	input_up,
 	input_down,
 	input_left,
+	input_E,
 	input_right,
 	game_resized,
 	enter_main_menu,
