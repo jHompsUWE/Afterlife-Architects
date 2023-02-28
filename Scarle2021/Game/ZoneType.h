@@ -17,6 +17,6 @@ enum ZoneType {
 	Inactive_Blue,
 	Rock,
 	Water,
-	Lava
+	Lava,
 };
 

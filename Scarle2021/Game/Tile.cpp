@@ -98,5 +98,4 @@ std::string Tile::GetTextureOfType(ZoneType type)
 
 	case Lava:
 		return "Tile_Lava";
-	}
 }

@@ -75,7 +75,7 @@ void EventManager::IReadInput(GameData* game_data)
     MapInputToEvent(kb.NumPad4, play_sound_theme4);
     MapInputToEvent(kb.NumPad5, play_sound_theme5);
     MapInputToEvent(kb.NumPad6, play_sound_theme6);
-    MapInputToEvent(kb.NumPad7, play_sound_theme7);
+    MapInputToEvent(kb.K, play_sound_theme7);
     MapInputToEvent(kb.NumPad8, dialogue_1);
 
 }
