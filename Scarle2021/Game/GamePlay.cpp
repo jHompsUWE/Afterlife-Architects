@@ -175,6 +175,11 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
             preview_quad->StartPreviewQuad(selected_zone);
             break;
 
+        case number_9:
+            selected_zone = Karma_Tracks;
+            preview_quad->StartPreviewQuad(selected_zone);
+            break; 
+
         case input_E:
             Vector3 empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
             if (empty_tile.y == 0)
