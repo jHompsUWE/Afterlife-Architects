@@ -23,8 +23,7 @@ bool GamePlay::init()
     main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1));
     
     //advisor
-    advisor_window = new AdvisorWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
-        .second*0.5),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
