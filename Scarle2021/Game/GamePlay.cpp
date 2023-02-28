@@ -10,6 +10,7 @@ GamePlay::~GamePlay()
 {
     delete ui_frame;
     delete window_one;
+    delete advisor_window;
 }
 
 bool GamePlay::init()
@@ -17,8 +18,13 @@ bool GamePlay::init()
     // window init
     window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
         .second*0.5),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
-
-    main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1)); 
+    
+    //build panel
+    main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1));
+    
+    //advisor
+    advisor_window = new AdvisorWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+        .second*0.5),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
@@ -64,6 +70,8 @@ void GamePlay::Update(GameData* game_data)
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
+    //update advisor
+    advisor_window->update(game_data,mouse_pos);
 
     adv_man->Update(game_data);
 
@@ -193,6 +201,9 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 
     //renders panel
     main_panel->render(draw_data2D);
+
+    //render advisor
+    advisor_window->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
@@ -235,5 +246,6 @@ void GamePlay::ResizeUI()
     ui_frame->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
     window_one->reSize(DataManager::GetRES());
     main_panel->reSize(DataManager::GetRES());
+    advisor_window->reSize(DataManager::GetRES());
 }
 

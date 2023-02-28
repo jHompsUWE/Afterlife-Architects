@@ -1,34 +1,28 @@
 #pragma once
-#include "Button.h"
-#include "GameData.h"
-#include "ImageGO2D.h"
-#include "TextGO2D.h"
-#include "EventManager.h"
-
-class UIWindow
+#include "UIWindow.h"
+class AdvisorWindow
 {
 public:
-    UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
+
+    AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _text,std::string _filepath,Vector2 _setScale);
     
-    UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
-        std::string _filepath,Vector2 _setScale);
-    ~UIWindow();
-
+    ~AdvisorWindow();
+    
     void update(GameData* _gameData, Vector2& _mousePosition);
     void render(DrawData2D* _drawData);
 
-    void setPostion(Vector2& _new_pos) ;
-    void setScale(Vector2& _newScale) ;
+    void set_postion(Vector2& _new_pos);
+    void set_scale(Vector2& _newScale);
 	
-    Vector2& getPosition() ;
-    Vector2& getButtonRes() ;
+    Vector2& getPosition();
+    Vector2& getButtonRes();
 	
     void reSize(std::pair<int*, int*> game_res);
-    bool is_visible = false;
-
+    bool is_visible = true;
+    
 private:
-
+    
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
     bool toggle_click = false;
@@ -39,15 +33,10 @@ private:
     //vector of buttons 
     std::vector<Button*> buttons;
     std::vector<TextGO2D*> text_vec;
-
+    std::vector<ImageGO2D*> image_vec;
+ 
     //vectors
     Vector2 window_res {0,0};
     Vector2 window_pos {0,0};
-
-    //enum for texts pos
-    enum texts_enum
-    {
-        text1, text2, text3, text4,
-    };
 };
 
