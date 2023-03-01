@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "EventManager.h"
+#include "Event.h"
 
 
 EventManager& EventManager::Get()
@@ -80,6 +81,12 @@ void EventManager::IReadInput(GameData* game_data)
     MapInputToEvent(kb.NumPad8, dialogue_1);
     */
 
+    //AL::Event hello{};
+
+    //
+    //hello.packet.var_a = new int(34);
+
+    //delete hello;
 }
 
 /**

@@ -163,6 +163,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionListCursor.h" />
+    <ClInclude Include="ActionListGame.h" />
+    <ClInclude Include="ActionListInput.h" />
+    <ClInclude Include="ActionListInterface.h" />
+    <ClInclude Include="ActionListPacket.h" />
     <ClInclude Include="AdvisorManager.h" />
     <ClInclude Include="Afterlife.h" />
     <ClInclude Include="AStarPathfinding.h" />
@@ -175,6 +180,7 @@
     <ClInclude Include="DrawData.h" />
     <ClInclude Include="DrawData2D.h" />
     <ClInclude Include="EconomyManager.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />

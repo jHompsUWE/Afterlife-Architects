@@ -1,6 +1,7 @@
 #pragma once
 #include <unordered_map>
 #include "GameData.h"
+#include "Event.h"
 
 enum AfterlifeEvent
 {
