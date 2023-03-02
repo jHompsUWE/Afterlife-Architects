@@ -47,6 +47,7 @@ private:
     Vector2 old_mouse_pos_panel {0,0};
 
     bool toggle_click_panel = false;
-    int year = 0;
+    float year = 0;
+    int credits = 0;
 };
 

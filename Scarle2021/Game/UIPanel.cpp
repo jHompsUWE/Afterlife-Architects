@@ -2,10 +2,11 @@
 #include "UIPanel.h"
 #include <iostream>
 
+#include "EconomyManager.h"
 
 
 UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
-    _d3dDevice, std::string _filepath,Vector2 _newScale)
+                 _d3dDevice, std::string _filepath,Vector2 _newScale)
 {
     //setup for button background
     panel_back_ground = new ImageGO2D(_filepath, _d3dDevice);
@@ -116,13 +117,15 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     
     //UI Text Vector
 
-    text.push_back(new TextGO2D("Year" + year));
+    text.push_back(new TextGO2D("Year: " + std::to_string(year)));
     text[0]->SetPos(Vector2(30,35));
     text[0]->SetScale(Vector2(0.5,0.5));
+    text[0]->SetColour(Color((float*)&Colors::Green));
 
-    text.push_back(new TextGO2D("Credits"));
+    text.push_back(new TextGO2D("Credits" + credits));
     text[1]->SetPos(Vector2(30,60));
     text[1]->SetScale(Vector2(0.5,0.5));
+    text[1]->SetColour(Color((float*)&Colors::Green));
 }
 
 UIPanel::~UIPanel()
@@ -146,7 +149,13 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
     panel_back_ground->Tick(_gameData);
     //updates buttons
 
-    year =+ year/60;
+    //converts float to string to int
+    text[0]->ChangeString("Year: " +std::to_string((int)year));
+    
+    //timer for years
+    year = year + 0.016f;
+    //credits = credits + EconomyManager::GetCurrency();
+    
     for (auto& button : buttons)
     {
         button->update(_gameData,_mousePosition);
@@ -242,7 +251,8 @@ Vector2& UIPanel::getButtonRes()
 
 void UIPanel::reSize(std::pair<int*, int*> game_res)
 {
-    auto& scale = panel_back_ground->ReSize(game_res.first, game_res.second);
+    auto& scale = panel_back_ground->ReSize
+    (game_res.first, game_res.second);
     panel_pos = panel_pos * scale;
     panel_res = panel_res * scale;
     
