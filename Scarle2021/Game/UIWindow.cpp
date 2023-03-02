@@ -23,33 +23,59 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     //setup button text
     text_vec.push_back(new TextGO2D("Heaven Gate\n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(Vector2(window_pos.x+ 30,window_pos.y+ 130));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 35,window_pos.y+ 95));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
 
-    text_vec.push_back(new TextGO2D("Hell Gate\n""Cost 100 Credits"));
+    text_vec.push_back(new TextGO2D("Heaven Gate T2\n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 130));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 95));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
  
-    text_vec.push_back(new TextGO2D(_text));
+    text_vec.push_back(new TextGO2D("Hell Gate\n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(window_pos);
-    text_vec.back()->SetScale(Vector2(_setScale));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 35,window_pos.y+ 220));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
     
-    text_vec.push_back(new TextGO2D(_text));
+    text_vec.push_back(new TextGO2D("Hell Gate T2\n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(window_pos);
-    text_vec.back()->SetScale(Vector2(_setScale));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 220));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
+
+    text_vec.push_back(new TextGO2D("Hell Gate T3\n""Cost 100 Credits"));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 240,window_pos.y+ 220));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
+
+    text_vec.push_back(new TextGO2D("Heaven Gate T3\n""Cost 100 Credits"));
+    text_vec.back()->SetColour(Color((float*)&Colors::Black));
+    text_vec.back()->SetPos(Vector2(window_pos.x+ 240,window_pos.y+ 95));
+    text_vec.back()->SetScale(Vector2(0.3,0.3));
     
 
     //window buttons.....................
     buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Heaven_3x3",
-        window_9_gate,Vector2(1,1)));
+        window_9_gate,Vector2(0.6,0.6)));
     
     buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+50),
+        DataManager::GetD3DDevice(),"Gate_T2_Heaven_3x3",
+        window_9_gate,Vector2(0.6,0.6)));
+    
+    buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+170),
         DataManager::GetD3DDevice(),"Gate_T1_Hell_3x3",
-        window_9_gate,Vector2(1,1)));
+        window_9_gate,Vector2(0.6,0.6)));
+    
+    buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+170),
+        DataManager::GetD3DDevice(),"Gate_T2_Hell_3x3",
+        window_9_gate,Vector2(0.6,0.6)));
+    
+    buttons.push_back(new Button(Vector2(window_pos.x+280,window_pos.y+170),
+        DataManager::GetD3DDevice(),"Gate_T3_Hell_4x4",
+        window_9_gate,Vector2(0.5,0.5)));
+
+    buttons.push_back(new Button(Vector2(window_pos.x+280,window_pos.y+50),
+        DataManager::GetD3DDevice(),"Gate_T3_Heaven_4x4",
+        window_9_gate,Vector2(0.5,0.5)));
     
 }
 

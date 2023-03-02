@@ -108,8 +108,21 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
     ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
 
-    
+    //advisor button
+
+    buttons.push_back(new Button(Vector2(panel_pos.x + 83,panel_pos.y + 355),DataManager::GetD3DDevice()
+    ,"green",window_20_delete_structures,Vector2(2.8, 1.5)));
     //.............
+    
+    //UI Text Vector
+
+    text.push_back(new TextGO2D("Year" + year));
+    text[0]->SetPos(Vector2(30,35));
+    text[0]->SetScale(Vector2(0.5,0.5));
+
+    text.push_back(new TextGO2D("Credits"));
+    text[1]->SetPos(Vector2(30,60));
+    text[1]->SetScale(Vector2(0.5,0.5));
 }
 
 UIPanel::~UIPanel()
@@ -119,19 +132,32 @@ UIPanel::~UIPanel()
     {
         delete button;        
     }
+
+    // updates texts
+    for (auto& text : text)
+    {
+        delete text;
+    }
     delete panel_back_ground;
 }
 
 void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
 {
-
     panel_back_ground->Tick(_gameData);
     //updates buttons
+
+    year =+ year/60;
     for (auto& button : buttons)
     {
         button->update(_gameData,_mousePosition);
     }
 
+    // updates texts
+    for (auto& text : text)
+    {
+        text->Tick(_gameData);
+    }
+    
     //checks if mouse inside UI panel 
     if(isInsidePanel(_mousePosition))
     {
@@ -143,7 +169,6 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
         else
         {
             toggle_click_panel = false;
-            
         }
     }
     else
@@ -167,6 +192,13 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
             button->setPostion(panel_pos - offset);
             
         }
+        
+        // updates texts
+        for (auto& text : text)
+        {
+            Vector2 const panel_pos = text->GetPos();
+            text->SetPos(panel_pos - offset);
+        }
     }
     old_mouse_pos_panel = _mousePosition;
 }
@@ -179,6 +211,12 @@ void UIPanel::render(DrawData2D* _drawData)
     for (auto& button : buttons)
     {
         button->render(_drawData);
+    }
+
+    // updates texts
+    for (auto& text : text)
+    {
+        text->Draw(_drawData);
     }
 }
 
@@ -211,6 +249,12 @@ void UIPanel::reSize(std::pair<int*, int*> game_res)
     for (auto& button : buttons)
     {
         button->reSize(game_res);
+    }
+
+    // updates texts
+    for (auto& text : text)
+    {
+        text->ReSize(game_res.first,game_res.second);
     }
 }
 
