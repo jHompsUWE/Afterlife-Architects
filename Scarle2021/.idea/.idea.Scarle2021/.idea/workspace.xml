@@ -11,7 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UIPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UIPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/UIWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIWindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +166,10 @@
       <workItem from="1677592955699" duration="303000" />
       <workItem from="1677593573722" duration="2077000" />
       <workItem from="1677597260094" duration="1886000" />
-      <workItem from="1677599530395" duration="5284000" />
+      <workItem from="1677599530395" duration="5406000" />
+      <workItem from="1677605324916" duration="6000" />
+      <workItem from="1677619847039" duration="1845000" />
+      <workItem from="1677755533991" duration="5007000" />
     </task>
     <servers />
   </component>
