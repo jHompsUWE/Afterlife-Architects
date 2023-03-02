@@ -42,7 +42,7 @@ bool GamePlay::init()
     selected_zone = Green;
 
     adv_man = std::make_unique<AdvisorManager>();
-    adv_man->init();
+    adv_man->init(advisor_window);
 
     economy_manager = new EconomyManager();
 

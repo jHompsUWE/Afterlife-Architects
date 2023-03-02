@@ -14,6 +14,10 @@ public:
 
     void set_postion(Vector2& _new_pos);
     void set_scale(Vector2& _newScale);
+
+    void set_text(string new_string);
+    void set_aria_image(string filename);
+    void set_jasper_image(string filename);
 	
     Vector2& getPosition();
     Vector2& getButtonRes();
