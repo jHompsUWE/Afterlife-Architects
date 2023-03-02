@@ -43,7 +43,7 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
         window_9_gate,Vector2(0.225,0.25)));
 
     //image vector
-    image_vec.push_back(new ImageGO2D("Ara",DataManager::GetD3DDevice()));
+    image_vec.push_back(new ImageGO2D("ArA",DataManager::GetD3DDevice()));
     image_vec[0]->SetPos(Vector2(window_pos.x+260,window_pos.y+80));
     image_vec[0]->SetScale(Vector2(1,1));
 
@@ -238,4 +238,28 @@ bool AdvisorWindow::isInside(Vector2& point) const
            return true;
     
     return false;
+}
+
+void AdvisorWindow::set_aria_image(string filename)
+{
+    image_vec.erase(image_vec.begin());
+    image_vec.insert(image_vec.begin(), new ImageGO2D(filename, DataManager::GetD3DDevice()));
+    image_vec[0]->SetPos(Vector2(window_pos.x + 260, window_pos.y + 80));
+    image_vec[0]->SetScale(Vector2(1, 1));
+}
+
+void AdvisorWindow::set_jasper_image(string filename)
+{
+    image_vec.erase(image_vec.begin() + 1);
+    image_vec.insert(image_vec.begin()+1, new ImageGO2D(filename, DataManager::GetD3DDevice()));
+    image_vec[1]->SetPos(Vector2(window_pos.x + 100, window_pos.y + 80));
+    image_vec[1]->SetScale(Vector2(1, 1));
+}
+
+void AdvisorWindow::set_text(string new_string)
+{
+    text_vec.erase(text_vec.begin());
+    text_vec.insert(text_vec.begin(), new TextGO2D(new_string));
+    text_vec[0]->SetPos(Vector2(window_pos.x + 120, window_pos.y + 150));
+    text_vec[0]->SetScale(Vector2(0.3, 0.3));
 }
