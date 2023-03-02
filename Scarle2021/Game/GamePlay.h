@@ -37,6 +37,9 @@ public:
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
 
+    // Building System
+    void TryCreateHouse();
+
 private:
     std::unique_ptr<Tilemap> tilemap;
     std::unique_ptr<PreviewQuad> preview_quad;

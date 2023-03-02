@@ -66,8 +66,23 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 			// Replace the tile at tile_pos with zone_type
 			if (SetTile(tile_pos, zone_type))
 			{
-				// Tile at tile_pos is replaced, destroy structure on that tile
-				building_manager->DestroyStructure(tile_pos);
+				// Tile at tile_pos is replaced
+				// Check if there is structure on tile_pos
+				std::vector<Vector3> tiles_to_remove = building_manager->GetStructureOccupiedTiles(tile_pos);
+				if (!tiles_to_remove.empty())
+				{				
+					// Replace the tiles that this structure occupy to Void
+					for (auto& temp_pos : tiles_to_remove)
+					{
+						if (temp_pos != tile_pos)
+						{
+							SetTile(temp_pos, Void);
+						}
+					}
+
+					// Destroy structure on tile_pos
+					building_manager->DestroyStructure(tile_pos);
+				}
 			}
 		}
 	}
@@ -118,6 +133,50 @@ Vector3 Tilemap::FindEmpty1x1TileOfType(ZoneType zone_type)
 }
 
 /// <summary>
+/// Finds an non-occupied 2x2 tile of the given ZoneType
+/// </summary>
+/// <param name="zone_type">The ZoneType of the desired empty tile</param>
+/// <returns>Vector3 position of the empty tile, returns Y = 1 if no valid tile is found</returns>
+Vector3 Tilemap::FindEmpty2x2TileOfType(ZoneType zone_type)
+{
+	for (int x = 0; x < tilemap.size(); x++)
+	{
+		for (int z = 0; z < tilemap[x].size(); z++)
+		{
+			Vector3 tile_pos = Vector3(x, 0, z);
+			std::vector<Vector3> tile_list;
+			tile_list.emplace_back(tile_pos);
+			tile_list.emplace_back(tile_pos + Vector3(1, 0, 0));
+			tile_list.emplace_back(tile_pos + Vector3(0, 0, 1));
+			tile_list.emplace_back(tile_pos + Vector3(1, 0, 1));
+
+			int tile_found = 0;
+			for(auto& pos : tile_list)
+			{
+				if (pos.x > size - 1 || pos.z > size - 1 || pos.x < 0 || pos.z < 0)
+				{
+					break;
+				}
+
+				if (tilemap[pos.x][pos.z]->GetZoneType() == zone_type && tilemap[pos.x][pos.z]->GetIsOccupied() == false)
+				{
+					tile_found += 1;
+				}
+			}
+
+			// 2x2 empty tiles are found around this tile_pos
+			if (tile_found == 4)
+			{
+				return tile_pos;
+			}
+		}
+	}
+
+	// Return Y = 1 if no valid tile is found
+	return Vector3(0, 1, 0);
+}
+
+/// <summary>
 /// Checks if the tile at the given position is occupied by a structure
 /// </summary>
 /// <param name="tile_pos">Tile position</param>
@@ -134,10 +193,11 @@ bool Tilemap::IsTileOccupied(Vector3 tile_pos)
 }
 
 /// <summary>
-/// Marks the given tile as occupied
+/// Marks the area around tile_pos of the given size as occupied
 /// </summary>
-/// <param name="tile_pos">Position of the tile to be occupied</param>
-void Tilemap::OccupyTile(Vector3 tile_pos)
+/// <param name="tile_pos">The tile to be marked as occupied</param>
+/// <param name="_size">The size of the area in positive X and Z direction to be marked as occupied</param>
+void Tilemap::OccupyTile(Vector3 tile_pos, int _size)
 {
 	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
 	{
@@ -146,4 +206,12 @@ void Tilemap::OccupyTile(Vector3 tile_pos)
 	}
 
 	tilemap[tile_pos.x][tile_pos.z]->SetIsOccupied(true);
+
+	for (int x = 0; x < _size; x++)
+	{
+		for (int z = 0; z < _size; z++)
+		{
+			tilemap[tile_pos.x + x][tile_pos.z + z]->SetIsOccupied(true);
+		}
+	}
 }

@@ -176,12 +176,7 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
 
         case input_E:
-            Vector3 empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
-            if (empty_tile.y == 0)
-            {
-                building_manager->Create1x1House(selected_zone, empty_tile);
-                tilemap->OccupyTile(empty_tile);
-            }
+            TryCreateHouse();
             break;
         }
     }
@@ -189,6 +184,7 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
+    /*
     ui_frame->Draw(draw_data2D);
 
     //renders panel
@@ -200,6 +196,7 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
         //render window
         window_one->render(draw_data2D);
     }
+    */
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -230,6 +227,26 @@ void GamePlay::Render3D(DrawData* draw_data)
     // Floor mouse_world_pos to tilemap grid (each tile is 1x1 unit)
     mouse_world_pos = Vector3(std::floor(mouse_world_pos.x), 0, std::floor(mouse_world_pos.z));
 }
+
+void GamePlay::TryCreateHouse()
+{
+    Vector3 empty_tile = tilemap->FindEmpty2x2TileOfType(selected_zone);
+    if (empty_tile.y == 0)
+    {
+        building_manager->Create2x2House(selected_zone, empty_tile);
+        tilemap->OccupyTile(empty_tile, 2);
+    }
+    else
+    {
+        empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
+        if (empty_tile.y == 0)
+        {
+            building_manager->Create1x1House(selected_zone, empty_tile);
+            tilemap->OccupyTile(empty_tile, 1);
+        }
+    }
+}
+
 void GamePlay::ResizeUI()
 {
     ui_frame->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);

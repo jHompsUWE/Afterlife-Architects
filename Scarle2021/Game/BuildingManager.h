@@ -14,7 +14,9 @@ public:
 	void Draw(DrawData* _DD);
 
 	void Create1x1House(ZoneType zone_type, Vector3 tile_position);
+	void Create2x2House(ZoneType zone_type, Vector3 tile_position);
 	void DestroyStructure(Vector3 tile_position);
+	std::vector<Vector3> GetStructureOccupiedTiles(Vector3 tile_position);
 
 protected:
 
