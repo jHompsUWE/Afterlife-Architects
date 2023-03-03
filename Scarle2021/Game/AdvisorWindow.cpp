@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "AdvisorWindow.h"
+#include <iostream>
 
 #include "DataManager.h"
 
@@ -43,14 +44,18 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
         window_9_gate,Vector2(0.225,0.25)));
 
     //image vector
-    image_vec.push_back(new ImageGO2D("ArA",DataManager::GetD3DDevice()));
-    image_vec[0]->SetPos(Vector2(window_pos.x+260,window_pos.y+80));
-    image_vec[0]->SetScale(Vector2(1,1));
-
-    image_vec.push_back(new ImageGO2D("JaA",DataManager::GetD3DDevice()));
-    image_vec[1]->SetPos(Vector2(window_pos.x+100,window_pos.y+80));
-    image_vec[1]->SetScale(Vector2(1,1));
-
+    for (int i = 0; i < 13; i++)
+    {
+        image_vec_ar.push_back(new ImageGO2D(advisor_filenames_ar[i], DataManager::GetD3DDevice()));
+        image_vec_ar[i]->SetPos(Vector2(window_pos.x + 260, window_pos.y + 80));
+        image_vec_ar[i]->SetScale(Vector2(1, 1));
+    }
+    for (int j = 0; j < 12; j++)
+    {
+        image_vec_ja.push_back(new ImageGO2D(advisor_filenames_ja[j], DataManager::GetD3DDevice()));
+        image_vec_ja[j]->SetPos(Vector2(window_pos.x + 100, window_pos.y + 80));
+        image_vec_ja[j]->SetScale(Vector2(1, 1));
+    }
     //text vector
     text_vec.push_back(new TextGO2D("ok what the hell do i write here"));
     text_vec[0]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));
@@ -71,7 +76,12 @@ AdvisorWindow::~AdvisorWindow()
         delete text;
     }
     
-    for (auto image : image_vec)
+    for (auto image : image_vec_ar)
+    {
+        delete image;        
+    }
+
+    for (auto image : image_vec_ja)
     {
         delete image;        
     }
@@ -85,9 +95,13 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
         button->update(_gameData,_mousePosition);
     }
     //updates image
-    for (auto image : image_vec)
+    for (auto image_ar : image_vec_ar)
     {
-        image->Tick(_gameData);      
+        image_ar->Tick(_gameData);      
+    }
+    for (auto image_ja : image_vec_ja)
+    {
+        image_ja->Tick(_gameData);      
     }
 
     //updates image
@@ -141,12 +155,17 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
         }
 
         //image pos
-        for (auto& image : image_vec)
+        for (auto& image : image_vec_ar)
         {
             Vector2 const button_pos = image->GetPos();
             image->SetPos(button_pos - offset);
         }
-        //image pos
+        for (auto& image : image_vec_ja)
+        {
+            Vector2 const button_pos = image->GetPos();
+            image->SetPos(button_pos - offset);
+        }
+        //text pos
         for (auto& text : text_vec)
         {
             Vector2 const button_pos = text->GetPos();
@@ -171,11 +190,22 @@ void AdvisorWindow::render(DrawData2D* _drawData)
         text->Draw(_drawData);
     }
     
-    for (auto image : image_vec)
+    for (int i = 0; i < 13; i++)
     {
-        image->Draw(_drawData);       
+        if (i == pointed_image_ar)
+        {
+            image_vec_ar[i]->Draw(_drawData);
+        }
     }
-    
+
+    for (int j = 0; j < 12; j++)
+    {
+        if (j == pointed_image_ja)
+        {
+            image_vec_ja[j]->Draw(_drawData);
+        }
+    }
+
     for (auto text : text_vec)
     {
         text->Draw(_drawData);       
@@ -220,7 +250,11 @@ void AdvisorWindow::reSize(std::pair<int*, int*> game_res)
     {
         text->ReSize(resize.first,resize.second);
     }
-    for (auto image : image_vec)
+    for (auto image : image_vec_ar)
+    {
+        image->ReSize(resize.first,resize.second);      
+    }
+    for (auto image : image_vec_ja)
     {
         image->ReSize(resize.first,resize.second);      
     }
@@ -242,18 +276,24 @@ bool AdvisorWindow::isInside(Vector2& point) const
 
 void AdvisorWindow::set_aria_image(string filename)
 {
-    image_vec.erase(image_vec.begin());
-    image_vec.insert(image_vec.begin(), new ImageGO2D(filename, DataManager::GetD3DDevice()));
-    image_vec[0]->SetPos(Vector2(window_pos.x + 260, window_pos.y + 80));
-    image_vec[0]->SetScale(Vector2(1, 1));
+    for (int i = 0; i < 13; i++)
+    {
+        if (advisor_filenames_ar[i] == filename)
+        {
+            pointed_image_ar = i;
+        }
+    }
 }
 
 void AdvisorWindow::set_jasper_image(string filename)
 {
-    image_vec.erase(image_vec.begin() + 1);
-    image_vec.insert(image_vec.begin()+1, new ImageGO2D(filename, DataManager::GetD3DDevice()));
-    image_vec[1]->SetPos(Vector2(window_pos.x + 100, window_pos.y + 80));
-    image_vec[1]->SetScale(Vector2(1, 1));
+    for (int i = 0; i < 12 ; i ++)
+    {
+        if (advisor_filenames_ja[i] == filename)
+        {
+            pointed_image_ja = i;
+        }
+    }
 }
 
 void AdvisorWindow::set_text(string new_string)

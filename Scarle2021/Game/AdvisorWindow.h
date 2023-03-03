@@ -37,10 +37,17 @@ private:
     //vector of buttons 
     std::vector<Button*> buttons;
     std::vector<TextGO2D*> text_vec;
-    std::vector<ImageGO2D*> image_vec;
+    std::vector<ImageGO2D*> image_vec_ar;
+    std::vector<ImageGO2D*> image_vec_ja;
  
     //vectors
     Vector2 window_res {0,0};
     Vector2 window_pos {0,0};
+
+    //filenames for adivsor images
+    string advisor_filenames_ar[13] = { "ArA", "ArE", "ArL", "ArM", "ArO", "ArS", "ArBlink1", "ArBlink2", "ArBlink3", "ArTongue1", "ArTongue2", "ArTongue3", "ArIdle1"};
+    string advisor_filenames_ja[12] = { "JaA", "JaC", "JaE", "JaH", "JaM", "JaY", "JaBlink1", "JaBlink2", "JaBlink3", "JaWings1", "JaWings2", "JaIdle1"};
+    int pointed_image_ar = 12;
+    int pointed_image_ja = 11;
 };
 

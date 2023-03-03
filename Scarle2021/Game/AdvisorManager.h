@@ -46,7 +46,7 @@ private:
 
     DialogueState dia_state = Finished;
     float dia_time_tracker = 0;
-    float dia_time_scale = 0.25;
+    float dia_time_scale = 0.15;
     int dia_string_length = 0;
     int dia_current_index = -1;
 
