@@ -2,6 +2,8 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
+#define DESTROY( x ) if( x ){ x->Release(); x = nullptr;}
+
 VBQuad::VBQuad(ID3D11Device* GD, float width, float height): d11_device(GD)
 {
 	SetPhysicsOn(false);
@@ -81,6 +83,8 @@ void VBQuad::SetTexture(std::string textureName)
 	std::string fullfilename = "../Assets/";
 	fullfilename += textureName;
 	fullfilename += ".dds";
+
+	DESTROY(m_pTextureRV);
 
 	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
 	assert(hr == S_OK);
