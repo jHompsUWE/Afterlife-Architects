@@ -28,7 +28,7 @@ void BuildingManager::Draw(DrawData* _DD)
 /// <summary>
 /// Creates a 1x1 house of the given ZoneType at the given tile position
 /// </summary>
-/// <param name="zone_type">ZoneType fo the house to be built</param>
+/// <param name="zone_type">ZoneType of the house to be built</param>
 /// <param name="tile_position">Tile position of the house</param>
 void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 {
@@ -78,9 +78,15 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 	}
 
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
-	structure_list.emplace_back(std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position, 1, texture));
+	structure_list.emplace_back(std::make_unique<StructureSprite>(
+		d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position, 1, texture));
 }
 
+/// <summary>
+/// Creates a 2x2 house of the given ZoneType at the given tile position
+/// </summary>
+/// <param name="zone_type">ZoneType of the house to be built</param>
+/// <param name="tile_position">Tile position of the house</param>
 void BuildingManager::Create2x2House(ZoneType zone_type, Vector3 tile_position)
 {
 	// height value is calculated by dividing the texture height with witdh
@@ -129,7 +135,32 @@ void BuildingManager::Create2x2House(ZoneType zone_type, Vector3 tile_position)
 	}
 
 	// sqrt(2) * 2 is the size of the quad needed to fit structure to a 2x2 unit isometric tile
-	structure_list.emplace_back(std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position, 2, texture));
+	structure_list.emplace_back(std::make_unique<StructureSprite>(
+		d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position, 2, texture));
+}
+
+/// <summary>
+/// Creates a structure of the given type at the given tile position
+/// </summary>
+/// <param name="structure_type">The type of the structure</param>
+/// <param name="tile_position">The position of the strucutre</param>
+void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile_position)
+{
+	// height value is calculated by dividing the texture height with witdh
+	float height = 0;
+	std::string texture;
+	int size = GetSizeOfStructure(structure_type);
+
+	switch (structure_type)
+	{
+	case Gate:
+		height = 90.0f / 95.0f;
+		texture = "Gate_T1_Heaven_3x3";
+		break;
+	}
+
+	structure_list.emplace_back(std::make_unique<StructureSprite>(
+		d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position, size, texture));
 }
 
 /// <summary>
@@ -170,4 +201,20 @@ std::vector<Vector3> BuildingManager::GetStructureOccupiedTiles(Vector3 tile_pos
 			}
 		}
 	}
+}
+
+/// <summary>
+/// Get how many tiles a structure occupy
+/// </summary>
+/// <param name="structure_type">The type of structure</param>
+/// <returns>Int of the size of the structure</returns>
+int BuildingManager::GetSizeOfStructure(StructureType structure_type)
+{
+	switch (structure_type)
+	{
+	case Gate:
+		return 3;
+	}
+
+	return 0;
 }

@@ -25,10 +25,13 @@ public:
 	bool IsTileOccupied(Vector3 tile_pos);
 	void OccupyTile(Vector3 tile_pos, int _size);
 
+	bool IsPosValid(Vector3 tile_pos);
+	bool IsAreaValid(Vector3 start, int _size);
+
 protected:
 
 private:
 	std::vector<std::vector<std::unique_ptr<Tile>>> tilemap;
-	float size;
+	float size; // Size of the tilemap
 };
 

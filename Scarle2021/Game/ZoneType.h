@@ -15,6 +15,7 @@ enum ZoneType {
 	Inactive_Purple,
 	Inactive_Red,
 	Inactive_Blue,
+	Structure,
 	Rock,
 	Water,
 	Lava

@@ -90,6 +90,9 @@ std::string Tile::GetTextureOfType(ZoneType type)
 	case Inactive_Blue:
 		return "Tile_Inactive_Blue";
 
+	case Structure:
+		return "Tile_Structure";
+
 	case Rock:
 		return "Tile_Rock";
 

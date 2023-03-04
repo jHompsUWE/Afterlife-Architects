@@ -13,7 +13,7 @@ PreviewQuad::~PreviewQuad()
 /// Changes the color of the preview quad according to the ZoneType
 /// </summary>
 /// <param name="zone_type">the selected ZoneType</param>
-void PreviewQuad::StartPreviewQuad(ZoneType zone_type)
+void PreviewQuad::ChangePreviewQuadColor(ZoneType zone_type)
 {
 	switch (zone_type)
 	{
@@ -46,6 +46,7 @@ void PreviewQuad::StartPreviewQuad(ZoneType zone_type)
 		break;
 
 	case Void:
+	case Structure:
 		SetColor(Color(1, 1, 1, 0.5));
 		break;
 	}
@@ -78,6 +79,12 @@ void PreviewQuad::ResizePreviewQuad(Vector3 start, Vector3 end)
 
 	SetPos(temp_pos);
 	SetScale(Vector3(xCols * xDir, 1, zCols * zDir));
+}
+
+void PreviewQuad::CreatePreviewQuadOfSize(Vector3 start, int size)
+{
+	Vector3 end = Vector3(start.x + size - 1.0f, 0, start.z + size - 1.0f);
+	ResizePreviewQuad(start, end);
 }
 
 void PreviewQuad::ResetPreviewQuad()

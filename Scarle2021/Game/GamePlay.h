@@ -39,9 +39,12 @@ public:
 
     // Building System
     void TryCreateHouse();
+    void UpdateMousePos(DrawData* draw_data);
 
 private:
     std::unique_ptr<Tilemap> tilemap;
+
+    bool show_preview_quad;
     std::unique_ptr<PreviewQuad> preview_quad;
 
     std::unique_ptr<BuildingManager> building_manager;
@@ -57,6 +60,7 @@ private:
     Vector3 mouse_pressed_pos;
     Vector3 mouse_released_pos;
 
+    StructureType selected_structure;
     ZoneType selected_zone;
 
     ImageGO2D* ui_frame;

@@ -64,7 +64,7 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 			Vector3 tile_pos = start + Vector3(x * xDir, 0, z * zDir);
 
 			// Replace the tile at tile_pos with zone_type
-			if (SetTile(tile_pos, zone_type))
+			if (SetTile(tile_pos, zone_type) || zone_type == Structure)
 			{
 				// Tile at tile_pos is replaced
 				// Check if there is structure on tile_pos
@@ -96,8 +96,8 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 /// <returns>true if tile is changed, false if tile is not changed</returns>
 bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 {
-	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0
-		|| tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == zone_type)
+	if (!IsPosValid(tile_pos) ||
+		tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == zone_type)
 	{
 		// Tile position exceeds tilemap size
 		// Don't change texture if ZoneType is the same
@@ -183,9 +183,8 @@ Vector3 Tilemap::FindEmpty2x2TileOfType(ZoneType zone_type)
 /// <returns>true if occupied, false if not occupied</returns>
 bool Tilemap::IsTileOccupied(Vector3 tile_pos)
 {
-	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
+	if (!IsPosValid(tile_pos))
 	{
-		// Tile position exceeds tilemap size
 		return true;
 	}
 
@@ -199,13 +198,10 @@ bool Tilemap::IsTileOccupied(Vector3 tile_pos)
 /// <param name="_size">The size of the area in positive X and Z direction to be marked as occupied</param>
 void Tilemap::OccupyTile(Vector3 tile_pos, int _size)
 {
-	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
+	if (!IsPosValid(tile_pos))
 	{
-		// Tile position exceeds tilemap size
 		return;
 	}
-
-	tilemap[tile_pos.x][tile_pos.z]->SetIsOccupied(true);
 
 	for (int x = 0; x < _size; x++)
 	{
@@ -214,4 +210,40 @@ void Tilemap::OccupyTile(Vector3 tile_pos, int _size)
 			tilemap[tile_pos.x + x][tile_pos.z + z]->SetIsOccupied(true);
 		}
 	}
+}
+
+/// <summary>
+/// Checks if the given tile position is within the tilemap
+/// </summary>
+/// <param name="tile_pos">Vector 3 position of the tile position</param>
+/// <returns>True if valid, false if invalid</returns>
+bool Tilemap::IsPosValid(Vector3 tile_pos)
+{
+	if (tile_pos.x > size - 1 || tile_pos.z > size - 1 || tile_pos.x < 0 || tile_pos.z < 0)
+	{
+		// Tile position exceeds tilemap size
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
+/// Checks if every tile of the box area at the given position with the given size is within the tilemap
+/// </summary>
+/// <param name="start">Starting point of the box area</param>
+/// <param name="_size">Size of the box</param>
+/// <returns>True if valid, false if invalid</returns>
+bool Tilemap::IsAreaValid(Vector3 start, int _size)
+{
+	for (int x = 0; x < _size; x++)
+	{
+		for (int z = 0; z < _size; z++)
+		{
+			if (!IsPosValid(Vector3(start.x + x, 0, start.z + z)))
+			{
+				return false;
+			}
+		}
+	}
+	return true;
 }
