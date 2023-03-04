@@ -28,6 +28,18 @@ Afterlife::Afterlife() noexcept :
 {
 }
 
+Afterlife::~Afterlife()
+{
+    //Fixes the memory leak that comes with the Scarle
+    delete game_data;
+    delete draw_data;
+    delete draw_data2D;
+    delete common_states;
+    delete effect_factory;
+    delete light;
+    delete ortho_cam;
+}
+
 void Afterlife::Initialize(HWND _window, int _width, int _height)
 {
     main_window = _window;
@@ -50,14 +62,15 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     // Seed random gen
     srand((UINT)time(NULL));
 
-    // Set up keyboard and mouse system
+    // Set up keyboard, mouse and gamepad
     // Documentation here: https://github.com/microsoft/DirectXTK/wiki/Mouse-and-keyboard-input
     keyboard = std::make_unique<Keyboard>();
-    mouse = std::make_unique<Mouse>();
-    mouse->SetWindow(_window);
+    gamepad = std::make_unique<GamePad>();
     
     //ABSOLUTE: px position of the screen
     //RELATIVE: Movement vector of the cursor
+    mouse = std::make_unique<Mouse>();
+    mouse->SetWindow(_window);
     mouse->SetMode(Mouse::MODE_ABSOLUTE);
     // Mouse Pointer visible?
     ShowCursor(true);
@@ -139,11 +152,18 @@ void Afterlife::ReadInput()
     game_data->keyboard_state = keyboard->GetState();
     game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
     game_data->mouse_state = mouse->GetState();
+    const auto pad = gamepad->GetState(gamepad_index);
+
+    //If the controller is connected do controller stuff!
+    if(pad.IsConnected())
+    {
+        //Controller stuff happens here!   
+    }
     
     //Clears the event list if it not empty
-    EventManager::GetEventList().clear();
+    OldEventManager::GetEventList().clear();
     //Reads the input and generates events accordingly
-    EventManager::ReadInput(game_data);
+    OldEventManager::ReadInput(game_data);
     
     //Closes the game. Defined here so it is not dependant on the FSM
     if (game_data->keyboard_state.Escape)
@@ -260,7 +280,7 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
     CreateResources();
 
     // TODO: Game main_window is being resized.
-    EventManager::GenerateEvent(game_resized);
+    OldEventManager::GenerateEvent(game_resized);
 }
 
 // Properties

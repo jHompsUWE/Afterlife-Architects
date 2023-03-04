@@ -66,7 +66,7 @@ void Button::update(GameData* _gameData, Vector2& _mousePosition)
 	{
 		if(DataManager::GetGD()->mouse_state.leftButton)
 		{
-			EventManager::GenerateEvent(al_event);
+			OldEventManager::GenerateEvent(al_event);
 		}
 	}
 }

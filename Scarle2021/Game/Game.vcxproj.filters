@@ -106,6 +106,15 @@
     <Filter Include="Afterlife\Singletons\Events\Action Lists">
       <UniqueIdentifier>{fce2428b-c3b2-428b-9e25-141a1b887d79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\Singletons\Events\Old Event Manager">
+      <UniqueIdentifier>{c8a35665-ff52-44e4-b511-11131c4c91f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Events\Event Manager">
+      <UniqueIdentifier>{0a147045-d82e-4f6c-bfd7-41240ccfe598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Design Patterns">
+      <UniqueIdentifier>{abf780c9-c19a-46a4-a9e9-4041b6da116a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -285,17 +294,11 @@
     <ClInclude Include="EconomyManager.h">
       <Filter>Base\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Afterlife\Singletons\Events</Filter>
-    </ClInclude>
     <ClInclude Include="AdvisorManager.h">
       <Filter>Afterlife\Singletons\Advisors</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Afterlife\Singletons\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Afterlife\Singletons\Events</Filter>
     </ClInclude>
     <ClInclude Include="ActionListCursor.h">
       <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
@@ -311,6 +314,24 @@
     </ClInclude>
     <ClInclude Include="ActionListPacket.h">
       <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="OldEventManager.h">
+      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Afterlife\Design Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserverEvent.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -440,14 +461,17 @@
     <ClCompile Include="EconomyManager.cpp">
       <Filter>Base\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Afterlife\Singletons\Events</Filter>
-    </ClCompile>
     <ClCompile Include="AdvisorManager.cpp">
       <Filter>Afterlife\Singletons\Advisors</Filter>
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Afterlife\Singletons\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="OldEventManager.cpp">
+      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

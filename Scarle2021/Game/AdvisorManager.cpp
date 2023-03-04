@@ -38,7 +38,7 @@ bool AdvisorManager::init()
 void AdvisorManager::Update(GameData* game_data)
 {
     // Check for events
-    GetEvents(EventManager::GetEventList());
+    GetEvents(OldEventManager::GetEventList());
 
     if (dia_state == Talking)
     {

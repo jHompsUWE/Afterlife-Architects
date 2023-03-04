@@ -4,15 +4,29 @@
 #include "ActionListInput.h"
 #include "ActionListInterface.h"
 #include "ActionListGame.h"
-#include "ActionListPacket.h"
-#include "GameState.h"
 
 namespace AL
 {
+    //Type of events
+    enum EventType
+    {
+        unknown = 0,
+        event_input,
+        event_cursor_click,
+        event_cursor_scroll,
+        sound_event_start,
+        sound_event_stop,
+        event_ui,
+        event_game
+    };
+
+    //Normal input event
     class Event
     {
     public:
-
+        Event(EventType _type) : type(_type){}
+        ~Event(){}
+        
         /**
          * \brief Event for actions related to input such as button presses
          * \var action = action to process 
@@ -41,7 +55,7 @@ namespace AL
         /**
          * \brief Event linked to scrolling with the cursor
          * \var action = action to process 
-         * \var ticks = how much scrolling should be applied
+         * \var ticks = how much scrolling has taken place
          */
         struct CursorEventScroll
         {
@@ -87,49 +101,9 @@ namespace AL
             Game::Action action = Game::Action::unknown;
         };
 
-        struct PacketEvent
-        {
-            Packet::Action action = Packet::Action::unknown;
-
-            void* var_a = nullptr;
-            void* var_b = nullptr;
-            void* var_c = nullptr;
-            void* var_d = nullptr;
-
-            ~PacketEvent()
-            {
-                if(var_a != nullptr)
-                {
-                    free(var_a);
-                }
-                if(var_b != nullptr)
-                {
-                    free(var_b);
-                }
-                if(var_c != nullptr)
-                {
-                    free(var_c);
-                }
-                if(var_d != nullptr)
-                {
-                    free(var_d);
-                }
-            }
-        };
-
         //What kind of general event is this
-        enum EventType
-        {
-            input_event,
-            cursor_event,
-            ui_event,
-            game_event
-        };
-        EventType type;
-
-        //Game State targeted by the Event
-        GameState target;
-
+        EventType type = unknown;
+        
         //Linking structs to keywords
         union
         {
@@ -140,7 +114,7 @@ namespace AL
             SoundEventStop sound_stop;
             InterfaceEvent ui;
             GameEvent game;
-            PacketEvent packet;
         };
     };
 }
+
