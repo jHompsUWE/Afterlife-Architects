@@ -168,6 +168,7 @@
     <ClInclude Include="AStarPathfinding.h" />
     <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="AudioManager.h" />
+    <ClInclude Include="BuildingSystem.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CMOGO.h" />
@@ -233,6 +234,7 @@
     <ClCompile Include="AStarPathfinding.cpp" />
     <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BuildingSystem.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />

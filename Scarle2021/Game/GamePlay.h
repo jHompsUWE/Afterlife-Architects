@@ -10,10 +10,8 @@
 #include "EconomyManager.h"
 
 // Building System
-#include "Tilemap.h"
+#include "BuildingSystem.h"
 #include "Raycast.h"
-#include "PreviewQuad.h"
-#include "BuildingManager.h"
 
 class GPGO;
 
@@ -37,30 +35,19 @@ public:
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
 
-    // Building System
-    void TryCreateHouse();
-    void CreateStructure(StructureType structure_type);
-    void UpdateMousePos(DrawData* draw_data);
-
 private:
-    std::unique_ptr<Tilemap> tilemap;
-
-    bool show_preview_quad;
-    std::unique_ptr<PreviewQuad> preview_quad;
-
-    std::unique_ptr<BuildingManager> building_manager;
     void ResizeUI();
+
+    // Mouse
+    void UpdateMousePos(DrawData* draw_data);
     
+    // Building System
+    std::unique_ptr<BuildingSystem> building_system;
+
     TextGO2D* text = nullptr;
 
-    bool mouse_pressed;
     Vector3 mouse_screen_pos;
-    Vector3 mouse_world_pos;
-    Vector3 mouse_pressed_pos;
-    Vector3 mouse_released_pos;
-
-    StructureType selected_structure;
-    ZoneType selected_zone;
+    std::shared_ptr<Vector3> mouse_world_pos;
 
     ImageGO2D* ui_frame;
     

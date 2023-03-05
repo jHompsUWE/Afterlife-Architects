@@ -285,6 +285,9 @@
     <ClInclude Include="StructureType.h">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClInclude>
+    <ClInclude Include="BuildingSystem.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -421,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="EconomyManager.cpp">
       <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingSystem.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

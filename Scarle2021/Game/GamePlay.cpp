@@ -25,20 +25,12 @@ bool GamePlay::init()
     ui_frame->SetOrigin(Vector2(0,0));
     ui_frame->SetScale(Vector2(1,1));
     
-    // vvv Building System vvv
-    tilemap = std::make_unique<Tilemap>(DataManager::GetD3DDevice(), 50);
-
-    show_preview_quad = false;
-    preview_quad = std::make_unique<PreviewQuad>(DataManager::GetD3DDevice());
-    preview_quad->SetPos(Vector3(0, 0.01f, 0));
-
-    building_manager = std::make_unique<BuildingManager>(DataManager::GetD3DDevice());
-
+    // Mouse
     mouse_screen_pos.z = 0;
-    mouse_world_pos.y = 0;
+    mouse_world_pos = std::make_shared<Vector3>(0, 0, 0);
 
-    selected_zone = Green;
-    // ^^^ Building System ^^^
+    // Building System
+    building_system = std::make_unique<BuildingSystem>(mouse_world_pos, DataManager::GetD3DDevice());
 
     adv_man = std::make_unique<AdvisorManager>();
     adv_man->init();
@@ -74,64 +66,15 @@ void GamePlay::LateUpdate(GameData* game_data)
     mouse_screen_pos.x = game_data->mouse_state.x;
     mouse_screen_pos.y = game_data->mouse_state.y;
 
-    if (game_data->mouse_state.leftButton)
-    {
-        if (!mouse_pressed)
-        {
-            // Mouse Pressed
-            mouse_pressed_pos = mouse_world_pos;
-            mouse_pressed = true;
-            show_preview_quad = true;
-        }
-
-        // Mouse Hold
-        if (selected_zone != Structure)
-        {
-            // Resize preview quad when NOT placing a Structure
-            preview_quad->ResizePreviewQuad(mouse_pressed_pos, mouse_world_pos);
-        }
-    }
-    else
-    {
-        if (mouse_pressed)
-        {
-            // Mouse Released
-            mouse_released_pos = mouse_world_pos;
-            mouse_pressed = false;
-            show_preview_quad = false;
-            preview_quad->ResetPreviewQuad();
-
-            if (selected_zone != Structure)
-            {
-                // Place zone on mouse release
-                tilemap->BoxFill(building_manager, selected_zone, mouse_pressed_pos, mouse_released_pos);
-            }
-            else
-            {
-                // Place structure on mouse release
-                int size = BuildingManager::GetSizeOfStructure(selected_structure);
-                Vector3 end = Vector3(mouse_released_pos.x + size - 1.0f, 0, mouse_released_pos.z + size - 1.0f);
-
-                if (tilemap->IsAreaValid(mouse_released_pos, size))
-                {
-                    // Structure is within the tilemap
-                    tilemap->BoxFill(building_manager, Structure, mouse_released_pos, end);
-                    tilemap->OccupyTile(mouse_released_pos, size);
-                    building_manager->CreateStructure(selected_structure, mouse_released_pos);
-                }
-            }
-        }
-    }
-
-    if (selected_zone == Structure && !mouse_pressed)
-    {
-        // Move structure preview to mouse pos
-        preview_quad->SetPos(Vector3(mouse_world_pos.x, 0.01f, mouse_world_pos.z));
-    }
+    // Building System
+    building_system->Tick(game_data);
 }
 
 void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
 {
+    // BuildingSystem
+    building_system->GetEvents(event_list);
+
     for (auto& event : event_list)
     {
         switch (event)
@@ -139,80 +82,24 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
         case none:
             std::cout << "soooos" << std::endl;
             break;
-            
+
         case window_1_green:
             window_one_open = !window_one_open;
-         
+
             break;
-            
+
         case enter_main_menu:
             break;
-            
+
         case input_left:
             break;
 
         case game_resized:
             ResizeUI();
             break;
-             
+
         case input_right:
             DataManager::GetGD()->current_game_state = gs_game_over;
-            break;
-
-        case number_1:
-            selected_zone = Green;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_2:
-            selected_zone = Yellow;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_3:
-            selected_zone = Orange;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_4:
-            selected_zone = Brown;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_5:
-            selected_zone = Purple;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_6:
-            selected_zone = Red;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_7:
-            selected_zone = Blue;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_8:
-            selected_zone = Void;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case input_E:
-            TryCreateHouse();
-            break;
-
-        case input_G:
-            CreateStructure(Gate);
-            break;
-
-        case input_H:
-            CreateStructure(Topia);
-            break;
-
-        case input_J:
-            CreateStructure(TrainingCenter);
             break;
         }
     }
@@ -238,42 +125,9 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 void GamePlay::Render3D(DrawData* draw_data)
 {
     UpdateMousePos(draw_data);
-
-    tilemap->Draw(draw_data);
-    building_manager->Draw(draw_data);
     
-    if (show_preview_quad)
-    {
-        preview_quad->Draw(draw_data);
-    }
-}
-
-void GamePlay::TryCreateHouse()
-{
-    Vector3 empty_tile = tilemap->FindEmpty2x2TileOfType(selected_zone);
-    if (empty_tile.y == 0)
-    {
-        building_manager->Create2x2House(selected_zone, empty_tile);
-        tilemap->OccupyTile(empty_tile, 2);
-    }
-    else
-    {
-        empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
-        if (empty_tile.y == 0)
-        {
-            building_manager->Create1x1House(selected_zone, empty_tile);
-            tilemap->OccupyTile(empty_tile, 1);
-        }
-    }
-}
-
-void GamePlay::CreateStructure(StructureType structure_type)
-{
-    selected_structure = structure_type;
-    selected_zone = Structure;
-    show_preview_quad = true;
-    preview_quad->ChangePreviewQuadColor(selected_zone);
-    preview_quad->CreatePreviewQuadOfSize(mouse_world_pos, BuildingManager::GetSizeOfStructure(selected_structure));
+    // Building System
+    building_system->Render3D(draw_data);
 }
 
 void GamePlay::UpdateMousePos(DrawData* draw_data)
@@ -287,14 +141,14 @@ void GamePlay::UpdateMousePos(DrawData* draw_data)
         draw_data->main_camera->GetView(),
         draw_data->main_camera->GetWorldMatrix());
 
-    mouse_world_pos = Raycast::GetPosOnY(0, draw_data->main_camera->GetDirection(), temp_world_pos);
+    *mouse_world_pos = Raycast::GetPosOnY(0, draw_data->main_camera->GetDirection(), temp_world_pos);
 
     // Offset by camera movement
-    mouse_world_pos.x += draw_data->main_camera->GetTarget().x;
-    mouse_world_pos.z += draw_data->main_camera->GetTarget().z;
+    mouse_world_pos->x += draw_data->main_camera->GetTarget().x;
+    mouse_world_pos->z += draw_data->main_camera->GetTarget().z;
 
     // Floor mouse_world_pos to tilemap grid (each tile is 1x1 unit)
-    mouse_world_pos = Vector3(std::floor(mouse_world_pos.x), 0, std::floor(mouse_world_pos.z));
+    *mouse_world_pos = Vector3(std::floor(mouse_world_pos->x), 0, std::floor(mouse_world_pos->z));
 }
 
 void GamePlay::ResizeUI()
