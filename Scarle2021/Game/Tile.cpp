@@ -15,9 +15,9 @@ Tile::~Tile()
 	delete quad;
 }
 
-void Tile::Tick(GameData* game_data)
+void Tile::Tick()
 {
-	quad->Tick(game_data);
+	quad->UpdateWorldMatrix();
 }
 
 void Tile::Draw(DrawData* _DD)

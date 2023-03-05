@@ -15,7 +15,6 @@ public:
 	Tilemap(ID3D11Device* GD, int _size);
 	~Tilemap();
 
-	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
 	void BoxFill(std::unique_ptr<BuildingManager> & building_manager, ZoneType zone_type, Vector3 start, Vector3 end);

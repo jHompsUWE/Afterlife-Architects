@@ -12,6 +12,8 @@ public:
 	VBQuad(ID3D11Device* GD, float width, float height);
 	virtual ~VBQuad();
 
+	void UpdateWorldMatrix();
+
 	void SetTexture(std::string textureName);
 	void SetColor(Color color);
 

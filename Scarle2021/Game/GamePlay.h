@@ -52,8 +52,6 @@ private:
     
     TextGO2D* text = nullptr;
 
-    bool do_once = true;
-
     bool mouse_pressed;
     Vector3 mouse_screen_pos;
     Vector3 mouse_world_pos;

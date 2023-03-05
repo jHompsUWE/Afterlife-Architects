@@ -75,6 +75,18 @@ VBQuad::~VBQuad()
 }
 
 /// <summary>
+/// Updates the world matrix
+/// </summary>
+void VBQuad::UpdateWorldMatrix()
+{
+	Matrix  scaleMat = Matrix::CreateScale(m_scale);
+	m_rotMat = Matrix::CreateFromYawPitchRoll(m_yaw, m_pitch, m_roll);
+	Matrix  transMat = Matrix::CreateTranslation(m_pos);
+
+	m_worldMat = m_fudge * scaleMat * m_rotMat * transMat;
+}
+
+/// <summary>
 /// Changes the texture of the quad
 /// </summary>
 /// <param name="textureName">Name of the texture without the data type (ex: Tile_Blue, NOT Tile_Blue.png)</param>

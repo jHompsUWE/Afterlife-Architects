@@ -8,7 +8,7 @@ public:
 	Tile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type);
 	~Tile();
 
-	void Tick(GameData* game_data);
+	void Tick();
 	void Draw(DrawData* _DD);
 
 	Vector3 GetTilePos();

@@ -12,7 +12,6 @@ public:
 	BuildingManager(ID3D11Device* GD);
 	~BuildingManager();
 
-	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
 	void Create1x1House(ZoneType zone_type, Vector3 tile_position);

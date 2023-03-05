@@ -9,14 +9,6 @@ BuildingManager::~BuildingManager()
 {
 }
 
-void BuildingManager::Tick(GameData* game_data)
-{
-	for (auto& structure : structure_list)
-	{
-		structure->Tick(game_data);
-	}
-}
-
 void BuildingManager::Draw(DrawData* _DD)
 {
 	for (auto& structure : structure_list)
@@ -80,6 +72,7 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
 	structure_list.emplace_back(std::make_unique<StructureSprite>(
 		d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position, 1, texture));
+	structure_list.back()->UpdateWorldMatrix();
 }
 
 /// <summary>
@@ -137,6 +130,7 @@ void BuildingManager::Create2x2House(ZoneType zone_type, Vector3 tile_position)
 	// sqrt(2) * 2 is the size of the quad needed to fit structure to a 2x2 unit isometric tile
 	structure_list.emplace_back(std::make_unique<StructureSprite>(
 		d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position, 2, texture));
+	structure_list.back()->UpdateWorldMatrix();
 }
 
 /// <summary>
@@ -161,6 +155,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 
 	structure_list.emplace_back(std::make_unique<StructureSprite>(
 		d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position, size, texture));
+	structure_list.back()->UpdateWorldMatrix();
 }
 
 /// <summary>

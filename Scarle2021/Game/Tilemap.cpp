@@ -9,6 +9,7 @@ Tilemap::Tilemap(ID3D11Device* GD, int _size): size(_size)
 		for (int y = 0; y < size; y++)
 		{
 			tilemap[x].emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), Void));
+			tilemap[x][y]->Tick();
 		}
 	}
 }
@@ -16,17 +17,6 @@ Tilemap::Tilemap(ID3D11Device* GD, int _size): size(_size)
 Tilemap::~Tilemap()
 {
 
-}
-
-void Tilemap::Tick(GameData* game_data)
-{
-	for (auto& x : tilemap)
-	{
-		for (auto& y : x)
-		{
-			y->Tick(game_data);
-		}
-	}
 }
 
 void Tilemap::Draw(DrawData* _DD)

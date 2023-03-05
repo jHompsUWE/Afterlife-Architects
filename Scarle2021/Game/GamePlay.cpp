@@ -49,17 +49,7 @@ bool GamePlay::init()
 }
 
 void GamePlay::Update(GameData* game_data)
-{
-    if (do_once)
-    {
-        do_once = false;
-        // Tick tilemap once to update position
-        tilemap->Tick(game_data);
-    }
-
-    preview_quad->Tick(game_data);
-    building_manager->Tick(game_data);
-    
+{   
     // mouse pos
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
 

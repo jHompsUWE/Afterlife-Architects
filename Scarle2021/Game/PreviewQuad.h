@@ -8,6 +8,8 @@ public:
 	PreviewQuad(ID3D11Device* GD);
 	~PreviewQuad();
 
+	void SetPos(Vector3 pos);
+
 	void ChangePreviewQuadColor(ZoneType zone_type);
 	void ResizePreviewQuad(Vector3 start, Vector3 end);
 	void CreatePreviewQuadOfSize(Vector3 start, int size);

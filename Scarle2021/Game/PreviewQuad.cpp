@@ -9,6 +9,12 @@ PreviewQuad::~PreviewQuad()
 {
 }
 
+void PreviewQuad::SetPos(Vector3 pos)
+{
+	m_pos = pos;
+	UpdateWorldMatrix();
+}
+
 /// <summary>
 /// Changes the color of the preview quad according to the ZoneType
 /// </summary>
@@ -79,15 +85,18 @@ void PreviewQuad::ResizePreviewQuad(Vector3 start, Vector3 end)
 
 	SetPos(temp_pos);
 	SetScale(Vector3(xCols * xDir, 1, zCols * zDir));
+	UpdateWorldMatrix();
 }
 
 void PreviewQuad::CreatePreviewQuadOfSize(Vector3 start, int size)
 {
 	Vector3 end = Vector3(start.x + size - 1.0f, 0, start.z + size - 1.0f);
 	ResizePreviewQuad(start, end);
+	UpdateWorldMatrix();
 }
 
 void PreviewQuad::ResetPreviewQuad()
 {
 	SetScale(Vector3::One);
+	UpdateWorldMatrix();
 }
