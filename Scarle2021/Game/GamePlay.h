@@ -39,6 +39,7 @@ public:
 
     // Building System
     void TryCreateHouse();
+    void CreateStructure(StructureType structure_type);
     void UpdateMousePos(DrawData* draw_data);
 
 private:

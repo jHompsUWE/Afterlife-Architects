@@ -1,5 +1,7 @@
 #pragma once
 enum StructureType {
-	Gate
+	Gate,
+	Topia,
+	TrainingCenter
 };
 

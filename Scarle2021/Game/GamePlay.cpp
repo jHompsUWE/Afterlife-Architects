@@ -204,11 +204,15 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
 
         case input_G:
-            selected_structure = Gate;
-            selected_zone = Structure;
-            show_preview_quad = true;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            preview_quad->CreatePreviewQuadOfSize(mouse_world_pos, BuildingManager::GetSizeOfStructure(selected_structure));
+            CreateStructure(Gate);
+            break;
+
+        case input_H:
+            CreateStructure(Topia);
+            break;
+
+        case input_J:
+            CreateStructure(TrainingCenter);
             break;
         }
     }
@@ -261,6 +265,15 @@ void GamePlay::TryCreateHouse()
             tilemap->OccupyTile(empty_tile, 1);
         }
     }
+}
+
+void GamePlay::CreateStructure(StructureType structure_type)
+{
+    selected_structure = structure_type;
+    selected_zone = Structure;
+    show_preview_quad = true;
+    preview_quad->ChangePreviewQuadColor(selected_zone);
+    preview_quad->CreatePreviewQuadOfSize(mouse_world_pos, BuildingManager::GetSizeOfStructure(selected_structure));
 }
 
 void GamePlay::UpdateMousePos(DrawData* draw_data)

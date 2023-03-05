@@ -151,6 +151,16 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		height = 90.0f / 95.0f;
 		texture = "Gate_T1_Heaven_3x3";
 		break;
+
+	case Topia:
+		height = 138.0f / 128.0f;
+		texture = "Topias_T1_Heaven_4x4";
+		break;
+
+	case TrainingCenter:
+		height = 102.0f / 95.0f;
+		texture = "TC_T1_Heaven_3x3";
+		break;
 	}
 
 	structure_list.emplace_back(std::make_unique<StructureSprite>(
@@ -208,6 +218,12 @@ int BuildingManager::GetSizeOfStructure(StructureType structure_type)
 	switch (structure_type)
 	{
 	case Gate:
+		return 3;
+
+	case Topia:
+		return 4;
+
+	case TrainingCenter:
 		return 3;
 	}
 
