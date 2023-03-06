@@ -6,7 +6,7 @@ namespace AL
 	{
 		enum Action
 		{
-			unknown = 0
+			unknown = 0 //Not handled
 		};
 	};
 }

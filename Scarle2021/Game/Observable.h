@@ -1,27 +1,12 @@
 ﻿#pragma once
 #include <vector>
 
-
-/**
- * \brief Base interface for an observer.
- * Get Notified will be called by its observable
- */
-class IObserver
-{
-public:
-	virtual ~IObserver() = default;
-	
-	/**
-	 * \brief Main connection point to the Observable
-	 */
-	virtual void ReceiveData() = 0;
-};
-
 /**
  * \brief Base interface for an observable
  * Contains the functionality to add and remove observers
  * Notify will update all the observers 
  */
+template<class ObserverType>
 class IObservable
 {
 public:
@@ -30,7 +15,7 @@ public:
 	/**
 	 * \param observer Adds the specified observer to the observer list
 	 */
-	virtual void AddObserver(IObserver* observer)
+	virtual void AddObserver(ObserverType* observer)
 	{
 		observers.push_back(observer);
 	}
@@ -38,7 +23,7 @@ public:
 	/**
 	 * \param observer Removes the specified observer from the list
 	 */
-	virtual void RemoveObserver(IObserver* observer)
+	virtual void RemoveObserver(ObserverType* observer)
 	{
 		observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 	}
@@ -49,5 +34,5 @@ public:
 	virtual void BroadcastData() = 0;
 
 protected:
-	std::vector<IObserver*> observers{};
+	std::vector<ObserverType*> observers{};
 };

@@ -12,8 +12,8 @@ namespace AL
     {
         unknown = 0,
         event_input,
-        event_cursor_click,
-        event_cursor_scroll,
+        event_cursor_move,
+        event_cursor_interact,
         sound_event_start,
         sound_event_stop,
         event_ui,
@@ -24,65 +24,61 @@ namespace AL
     class Event
     {
     public:
-        Event(EventType _type) : type(_type){}
-        ~Event(){}
-        
+        //Explicit constructor as event type is needed for sorting
+        explicit Event(EventType _type) : type(_type){}
+        ~Event() = default;
+
         /**
-         * \brief Event for actions related to input such as button presses
+         * \brief Event is fired for input entries that are mapped to this Event
          * \var action = action to process 
-         * \var active = is action currently on (toggle)
+         * \var active = is button currently being pressed
          */
         struct InputEvent
         {
             Input::Action action = Input::Action::unknown;
             bool active = NULL;
         };
-        
+
         /**
-         * \brief Event linked to the use of the cursor
-         * \var action = action to process 
-         * \var active = if the action should be handled as a start or finish of this event
-         * \var pos_x, pos_y = click location
+         * \brief Event is fired when the position of the cursor has changed
          */
-        struct CursorEventClick
+        struct CursorEventMove
         {
-            Cursor::Action action = Cursor::Action::unknown;
-            bool active = NULL;
             int pos_x = NULL;
             int pos_y = NULL;
         };
-
+        
         /**
-         * \brief Event linked to scrolling with the cursor
+         * \brief Event is fired when a "interact" action is performed
          * \var action = action to process 
-         * \var ticks = how much scrolling has taken place
+         * \var active = if the action should be handled as a start or finish of this event
          */
-        struct CursorEventScroll
+        struct CursorEventInteract
         {
-            Scroll::Action action = Scroll::Action::unknown;
-            float ticks = NULL;
+            Cursor::Action action = Cursor::Action::unknown;
+            bool active = NULL;
         };
         
         /**
          * \brief Event to start to play a sound
-         * \var filename = filename as seen in the asset pipeline, no file extension
+        * \var filename = filename as seen in the asset pipeline, no file extension, max 31 chars.
          * \var volume
-         * \var bool = will it loop?
+         * \var loop = will it loop?
          */
         struct SoundEventStart
         {
-            std::string filename = nullptr;
+            char filename[32] = "unknown";
             float volume = NULL;
             bool loop = NULL;
         };
 
         /**
          * \brief Event to a sound from playing
-         * \var filename = filename as seen in the asset pipeline, no file extension
+         * \var filename = filename as seen in the asset pipeline, no file extension, max 31 chars.
          */
         struct SoundEventStop
         {
-            std::string filename = nullptr;
+            char filename[32] = "unknown";
         };
 
         /**
@@ -94,7 +90,7 @@ namespace AL
         };
         
         /**
-         * \brief Event to redirect an action to the game
+         * \brief Event to be redirect an action to the game
          */
         struct GameEvent
         {
@@ -108,8 +104,8 @@ namespace AL
         union
         {
             InputEvent input;
-            CursorEventClick cursor_click;
-            CursorEventScroll cursor_scroll;
+            CursorEventMove cursor_moved;
+            CursorEventInteract cursor_interact;
             SoundEventStart sound_start;
             SoundEventStop sound_stop;
             InterfaceEvent ui;

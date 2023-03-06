@@ -181,8 +181,8 @@
     <ClInclude Include="DrawData2D.h" />
     <ClInclude Include="EconomyManager.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="IObserver.h" />
-    <ClInclude Include="IObserverEvent.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="OldEventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />

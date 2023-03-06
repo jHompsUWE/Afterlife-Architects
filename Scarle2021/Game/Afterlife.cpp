@@ -115,6 +115,9 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     DataManager::Get().PopulatePointers(AR, &main_window, &output_width, &output_height, game_data,
         draw_data, draw_data2D, d3d_device.Get(),d3d_context.Get(), effect_factory);
 
+    //Saves a pointer to the event manager
+    event_manager = &AL::EventManager::Get();
+
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
@@ -154,12 +157,14 @@ void Afterlife::ReadInput()
     game_data->mouse_state = mouse->GetState();
     const auto pad = gamepad->GetState(gamepad_index);
 
-    //If the controller is connected do controller stuff!
-    if(pad.IsConnected())
-    {
-        //Controller stuff happens here!   
-    }
+    //TODO::PROPERLY SET THIS UP
+    //Temporary set up for the new event manager
+    event_manager->PollKeyboard(game_data->keyboard_state);
+    event_manager->PollMouse(game_data->mouse_state);
+    event_manager->PollGamepad(pad);
     
+
+    //TODO:: GET RID OF OLD EVENT MANAGER 
     //Clears the event list if it not empty
     OldEventManager::GetEventList().clear();
     //Reads the input and generates events accordingly

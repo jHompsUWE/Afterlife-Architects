@@ -10,30 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Game/IObserver.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/IObserverEvent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/OldEventManager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/OldEventManager.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/Packet.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/Observable.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/Observer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AdvisorManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AdvisorManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorManager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/ActionListCursor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListCursor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/ActionListGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListGame.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/ActionListInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListInterface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/ActionListPacket.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListPacket.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Afterlife.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AudioManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AudioManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AudioManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AudioManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Button.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Event.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Event.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/EventManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/EventManager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/EventManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/EventManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameData.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameData.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/StateTemplate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StateTemplate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIButtonInterFace.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIButtonInterFace.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIWindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/IObserver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/IObserverEvent.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +45,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/memory" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/vcruntime.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/vector" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/xmemory" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Backup stuff/Event.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/AudioManager.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/AudioManager.h" root0="FORCE_HIGHLIGHTING" />
@@ -200,7 +193,8 @@
       <workItem from="1677763570776" duration="5905000" />
       <workItem from="1677862813569" duration="736000" />
       <workItem from="1677894749250" duration="4030000" />
-      <workItem from="1677952879443" duration="8312000" />
+      <workItem from="1677952879443" duration="24362000" />
+      <workItem from="1678066506348" duration="4666000" />
     </task>
     <servers />
   </component>

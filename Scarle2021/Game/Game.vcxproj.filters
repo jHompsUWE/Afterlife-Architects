@@ -115,6 +115,9 @@
     <Filter Include="Afterlife\Design Patterns">
       <UniqueIdentifier>{abf780c9-c19a-46a4-a9e9-4041b6da116a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\Design Patterns\Observer Pattern">
+      <UniqueIdentifier>{c4b3dfc8-0f70-4f3b-b161-b6d9e72a6d2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -327,11 +330,11 @@
     <ClInclude Include="Packet.h">
       <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClInclude>
-    <ClInclude Include="IObserver.h">
-      <Filter>Afterlife\Design Patterns</Filter>
+    <ClInclude Include="Observer.h">
+      <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
     </ClInclude>
-    <ClInclude Include="IObserverEvent.h">
-      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    <ClInclude Include="Observable.h">
+      <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
