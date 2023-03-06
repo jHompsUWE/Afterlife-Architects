@@ -65,6 +65,7 @@ void BuildingSystem::Tick(GameData* game_data)
                     tilemap->BoxFill(building_manager, Structure, mouse_released_pos, end);
                     tilemap->OccupyTile(mouse_released_pos, size);
                     building_manager->CreateStructure(selected_structure, mouse_released_pos);
+                    tilemap->VibeChange(*mouse_world_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
                 }
             }
         }
@@ -168,7 +169,7 @@ void BuildingSystem::TryCreateHouse()
     {
         building_manager->Create2x2House(selected_zone, empty_tile);
         tilemap->OccupyTile(empty_tile, 2);
-        tilemap->VibeChange2x2(empty_tile, 5);
+        tilemap->VibeChange(empty_tile, 5, 2);
     }
     else
     {
@@ -177,7 +178,7 @@ void BuildingSystem::TryCreateHouse()
         {
             building_manager->Create1x1House(selected_zone, empty_tile);
             tilemap->OccupyTile(empty_tile, 1);
-            tilemap->VibeChange1x1(empty_tile, 5);
+            tilemap->VibeChange(empty_tile, 5, 1);
         }
     }
 }
