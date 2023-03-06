@@ -111,17 +111,13 @@ Vector2& Button::getButtonRes()
 	return button_res;
 }
 
-void Button::reSize(std::pair<int*, int*> game_res)
+void Button::reSize(Vector2 game_res)
 {
-	//gets new res
-	const int* window_width = game_res.first;
-	const int* window_height = game_res.second;
-
 	//resizes background and text
-	auto& resize_scale = buttonBackGround->ReSize(window_width, window_height);
+	auto& resize_scale = buttonBackGround->ReSize(game_res.x, game_res.y);
 	if(buttonText != nullptr)
 	{
-		buttonText->ReSize(window_width, window_height);
+		buttonText->ReSize(game_res.x, game_res.y);
 	}
 
 	//Re-scale position and scale accordingly to make button work in UI 

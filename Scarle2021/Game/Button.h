@@ -21,7 +21,7 @@ public:
 	Vector2& getPosition() override;
 	Vector2& getButtonRes() override;
 	
-	void reSize(std::pair<int*, int*> game_res) override;
+	void reSize(Vector2 game_res) override;
 	
 
 private:

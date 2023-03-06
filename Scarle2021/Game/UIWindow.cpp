@@ -223,12 +223,9 @@ Vector2& UIWindow::getButtonRes()
     return window_res;
 }
 
-void UIWindow::reSize(std::pair<int*, int*> game_res)
-{
-    //stores getRes
-    auto& resize = DataManager::GetRES();
-    
-    auto& scale = windowBackGround->ReSize(resize.first,resize.second);
+void UIWindow::reSize(Vector2 game_res)
+{   
+    auto& scale = windowBackGround->ReSize(game_res.x, game_res.y);
     //reScales background
     window_res *= scale;
     window_pos *= scale;
@@ -236,11 +233,11 @@ void UIWindow::reSize(std::pair<int*, int*> game_res)
     // resize buttons of UI window
     for (const auto& button : buttons)
     {
-        button->reSize(resize);
+        button->reSize(game_res);
     }
     for (auto text : text_vec)
     {
-        text->ReSize(resize.first,resize.second);
+        text->ReSize(game_res.x, game_res.y);
     }
 }
 

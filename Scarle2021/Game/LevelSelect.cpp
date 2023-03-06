@@ -111,10 +111,11 @@ void LevelSelect::Render3D(DrawData* draw_data)
 
 void LevelSelect::ResizeUI()
 {
-    main_menu_bg->ReSize(DataManager::GetRES().first, DataManager::GetRES().second);
+    Vector2 game_res = Vector2(*DataManager::GetRES().first, *DataManager::GetRES().second);
+    main_menu_bg->ReSize(game_res.x, game_res.y);
     
     for (auto& button : buttons)
     {
-        button->reSize(DataManager::GetRES());
+        button->reSize(game_res);
     }
 }

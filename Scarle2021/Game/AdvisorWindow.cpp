@@ -231,12 +231,9 @@ Vector2& AdvisorWindow::getButtonRes()
     return window_res;
 }
 
-void AdvisorWindow::reSize(std::pair<int*, int*> game_res)
-{
-    //stores getRes
-    auto& resize = DataManager::GetRES();
-    
-    auto& scale = windowBackGround->ReSize(resize.first,resize.second);
+void AdvisorWindow::reSize(Vector2 game_res)
+{   
+    auto& scale = windowBackGround->ReSize(game_res.x, game_res.y);
     //reScales background
     window_res *= scale;
     window_pos *= scale;
@@ -244,23 +241,23 @@ void AdvisorWindow::reSize(std::pair<int*, int*> game_res)
     // resize buttons of UI window
     for (const auto& button : buttons)
     {
-        button->reSize(resize);
+        button->reSize(game_res);
     }
     for (auto text : text_vec)
     {
-        text->ReSize(resize.first,resize.second);
+        text->ReSize(game_res.x, game_res.y);
     }
     for (auto image : image_vec_ar)
     {
-        image->ReSize(resize.first,resize.second);      
+        image->ReSize(game_res.x, game_res.y);
     }
     for (auto image : image_vec_ja)
     {
-        image->ReSize(resize.first,resize.second);      
+        image->ReSize(game_res.x, game_res.y);
     }
     for (auto text : text_vec)
     {
-        text->ReSize(resize.first,resize.second);      
+        text->ReSize(game_res.x, game_res.y);
     }
 }
 

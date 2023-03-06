@@ -38,17 +38,17 @@ void OrthographicCamera::ReadInput(GameData* _GD)
 		MoveUp();
 	}
 
-	else if (_GD->keyboard_state.S)
+	if (_GD->keyboard_state.S)
 	{
 		MoveDown();
 	}
 
-	else if (_GD->keyboard_state.A)
+	if (_GD->keyboard_state.A)
 	{
 		MoveLeft();
 	}
 
-	else if (_GD->keyboard_state.D)
+	if (_GD->keyboard_state.D)
 	{
 		MoveRight();
 	}

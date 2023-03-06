@@ -26,7 +26,7 @@ public:
     Vector2& getPosition();
     Vector2& getButtonRes();
 	
-    void reSize(std::pair<int*, int*> game_res);
+    void reSize(Vector2 game_res);
 	
 
 private:

@@ -285,6 +285,12 @@
     <ClInclude Include="AdvisorWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
+    <ClInclude Include="StructureType.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingSystem.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -424,6 +430,9 @@
     </ClCompile>
     <ClCompile Include="AdvisorWindow.cpp">
       <Filter>Afterlife\UIWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingSystem.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -249,10 +249,10 @@ Vector2& UIPanel::getButtonRes()
     return panel_res;
 }
 
-void UIPanel::reSize(std::pair<int*, int*> game_res)
+void UIPanel::reSize(Vector2 game_res)
 {
     auto& scale = panel_back_ground->ReSize
-    (game_res.first, game_res.second);
+    (game_res.x, game_res.y);
     panel_pos = panel_pos * scale;
     panel_res = panel_res * scale;
     
@@ -264,7 +264,7 @@ void UIPanel::reSize(std::pair<int*, int*> game_res)
     // updates texts
     for (auto& text : text)
     {
-        text->ReSize(game_res.first,game_res.second);
+        text->ReSize(game_res.x,game_res.y);
     }
 }
 

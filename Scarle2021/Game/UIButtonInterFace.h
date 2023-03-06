@@ -20,7 +20,7 @@ public:
 	virtual void setPostion(Vector2 newPostition)=0;
 	virtual void setScale(Vector2& newScale)=0;
 
-	virtual void reSize(std::pair<int*, int*> game_res)=0;
+	virtual void reSize(Vector2 game_res)=0;
 
 protected:
 	

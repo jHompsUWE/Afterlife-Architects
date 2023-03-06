@@ -2,6 +2,8 @@
 #include "VBQuad.h"
 #include "Helper.h"
 
+#define DESTROY( x ) if( x ){ x->Release(); x = nullptr;}
+
 VBQuad::VBQuad(ID3D11Device* GD, float width, float height): d11_device(GD)
 {
 	SetPhysicsOn(false);
@@ -73,6 +75,18 @@ VBQuad::~VBQuad()
 }
 
 /// <summary>
+/// Updates the world matrix
+/// </summary>
+void VBQuad::UpdateWorldMatrix()
+{
+	Matrix  scaleMat = Matrix::CreateScale(m_scale);
+	m_rotMat = Matrix::CreateFromYawPitchRoll(m_yaw, m_pitch, m_roll);
+	Matrix  transMat = Matrix::CreateTranslation(m_pos);
+
+	m_worldMat = m_fudge * scaleMat * m_rotMat * transMat;
+}
+
+/// <summary>
 /// Changes the texture of the quad
 /// </summary>
 /// <param name="textureName">Name of the texture without the data type (ex: Tile_Blue, NOT Tile_Blue.png)</param>
@@ -81,6 +95,8 @@ void VBQuad::SetTexture(std::string textureName)
 	std::string fullfilename = "../Assets/";
 	fullfilename += textureName;
 	fullfilename += ".dds";
+
+	DESTROY(m_pTextureRV);
 
 	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
 	assert(hr == S_OK);

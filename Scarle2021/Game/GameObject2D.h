@@ -25,7 +25,7 @@ public:
 	virtual void Tick(GameData* _GD) = 0;
 	virtual void Draw(DrawData2D* _DD) = 0;
 
-	Vector2& ReSize(const int* window_width, const int* window_height);
+	Vector2& ReSize(float window_width, float window_height);
 	
 	//setters
 	void SetPos(Vector2 _pos) { m_pos = _pos; }
