@@ -115,6 +115,9 @@ std::string Tile::GetTextureOfType(ZoneType type)
 
 	case Lava:
 		return "Tile_Lava";
+
+	case Karma_Tracks:
+		return "Tile_Res";
 	}
 }
 
