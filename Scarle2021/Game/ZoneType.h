@@ -18,6 +18,7 @@ enum ZoneType {
 	Structure,
 	Rock,
 	Water,
-	Lava
+	Lava,
+	Karma_Tracks
 };
 
