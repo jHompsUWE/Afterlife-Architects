@@ -37,6 +37,7 @@ bool GamePlay::init()
 
     // Building System
     building_system = std::make_unique<BuildingSystem>(mouse_world_pos, DataManager::GetD3DDevice());
+    do_once = true;
 
     adv_man = std::make_unique<AdvisorManager>();
     adv_man->init(advisor_window);
@@ -48,6 +49,12 @@ bool GamePlay::init()
 
 void GamePlay::Update(GameData* game_data)
 {   
+    if (do_once)
+    {
+        ResizeUI();
+        do_once = false;
+    }
+
     // mouse pos
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
 

@@ -38,6 +38,8 @@ public:
 private:
     void ResizeUI();
 
+    bool do_once;
+
     // Mouse
     void UpdateMousePos(DrawData* draw_data);
     Vector2 screen_size;
