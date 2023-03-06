@@ -32,6 +32,6 @@ private:
 	ZoneType type;
 	bool is_occupied;
 	int vibe_value = 0;
-	float colour_scaling = 0.5;
+	float colour_scaling = 10.0f;
 };
 

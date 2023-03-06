@@ -142,6 +142,10 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
         case input_P:
             show_vibes = !show_vibes;
             break;
+
+        case input_R:
+            show_vibes = !show_vibes;
+            break;
         }
     }
 }
@@ -164,6 +168,7 @@ void BuildingSystem::TryCreateHouse()
     {
         building_manager->Create2x2House(selected_zone, empty_tile);
         tilemap->OccupyTile(empty_tile, 2);
+        tilemap->VibeChange2x2(empty_tile, 5);
     }
     else
     {
@@ -172,6 +177,7 @@ void BuildingSystem::TryCreateHouse()
         {
             building_manager->Create1x1House(selected_zone, empty_tile);
             tilemap->OccupyTile(empty_tile, 1);
+            tilemap->VibeChange1x1(empty_tile, 5);
         }
     }
 }

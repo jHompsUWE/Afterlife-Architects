@@ -27,6 +27,10 @@ public:
 	bool IsPosValid(Vector3 tile_pos);
 	bool IsAreaValid(Vector3 start, int _size);
 
+	void VibeChange1x1(Vector3 tile_pos, int vibe_diff);
+	void VibeChange2x2(Vector3 tile_pos, int vibe_diff);
+	void VibeChange3x3(Vector3 tile_pos, int vibe_diff);
+
 protected:
 
 private:

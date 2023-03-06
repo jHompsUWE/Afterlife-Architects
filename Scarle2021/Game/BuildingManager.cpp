@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "BuildingManager.h"
+#include <iostream>
 
 BuildingManager::BuildingManager(ID3D11Device* GD): d11_device(GD)
 {
@@ -172,7 +173,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 /// Destroy the structure at the given tile position
 /// </summary>
 /// <param name="tile_position">Tile position of the structure to be destroyed</param>
-void BuildingManager::DestroyStructure(Vector3 tile_position)
+Vector3 BuildingManager::DestroyStructure(Vector3 tile_position)
 {
 	auto it = structure_list.begin();
 	for (; it != structure_list.end(); it++)
@@ -181,11 +182,14 @@ void BuildingManager::DestroyStructure(Vector3 tile_position)
 		{
 			if (temp_pos == tile_position)
 			{
+				Vector3 origin_point = (*(*it)->GetOccupiedTiles().begin());
+				origin_point.y = (*it)->GetTileSize();
 				structure_list.erase(it);
-				return;
+				return origin_point;
 			}
 		}
 	}
+	return Vector3(0,-1,0);
 }
 
 /// <summary>

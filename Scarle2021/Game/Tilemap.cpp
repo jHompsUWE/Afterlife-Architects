@@ -71,7 +71,22 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 					}
 
 					// Destroy structure on tile_pos
-					building_manager->DestroyStructure(tile_pos);
+					Vector3 origin_point = building_manager->DestroyStructure(tile_pos);
+					int temp_int = origin_point.y;
+					switch (temp_int)
+					{
+						case 1:
+							VibeChange1x1(origin_point, -5);
+							break;
+						case 2:
+							VibeChange2x2(origin_point, -5);
+							break;
+						case 3:
+							VibeChange3x3(origin_point, -5);
+							break;
+						default:
+							break;
+					}
 				}
 			}
 		}
@@ -236,4 +251,73 @@ bool Tilemap::IsAreaValid(Vector3 start, int _size)
 		}
 	}
 	return true;
+}
+
+/// <summary>
+/// Change tilemap's vibes system at certain tile pos and value for a 1 by 1 building
+/// </summary>
+/// <param name="tile_pos"></param>
+/// <param name="vibe_diff"></param>
+void Tilemap::VibeChange1x1(Vector3 tile_pos, int vibe_diff)
+{
+	tilemap[tile_pos.x][tile_pos.z]->ChangeVibe(vibe_diff);
+	if (tile_pos.x > 0)
+	{
+		tilemap[tile_pos.x-1][tile_pos.z]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.x < 99)
+	{
+		tilemap[tile_pos.x+1][tile_pos.z]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.z > 0)
+	{
+		tilemap[tile_pos.x][tile_pos.z-1]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.z < 99)
+	{
+		tilemap[tile_pos.x][tile_pos.z+1]->ChangeVibe(vibe_diff);
+	}
+}
+
+/// <summary>
+/// Change tilemap's vibes system at certain tile pos and value for a 2 by 2 building
+/// </summary>
+/// <param name="tile_pos"></param>
+/// <param name="vibe_diff"></param>
+void Tilemap::VibeChange2x2(Vector3 tile_pos, int vibe_diff)
+{
+	tilemap[tile_pos.x][tile_pos.z]->ChangeVibe(vibe_diff);
+	tilemap[tile_pos.x+1][tile_pos.z]->ChangeVibe(vibe_diff);
+	tilemap[tile_pos.x][tile_pos.z+1]->ChangeVibe(vibe_diff);
+	tilemap[tile_pos.x+1][tile_pos.z+1]->ChangeVibe(vibe_diff);
+	if (tile_pos.x > 0)
+	{
+		tilemap[tile_pos.x - 1][tile_pos.z]->ChangeVibe(vibe_diff);
+		tilemap[tile_pos.x - 1][tile_pos.z+1]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.x < 98)
+	{
+		tilemap[tile_pos.x + 2][tile_pos.z]->ChangeVibe(vibe_diff);
+		tilemap[tile_pos.x + 2][tile_pos.z+1]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.z > 0)
+	{
+		tilemap[tile_pos.x][tile_pos.z - 1]->ChangeVibe(vibe_diff);
+		tilemap[tile_pos.x+1][tile_pos.z - 1]->ChangeVibe(vibe_diff);
+	}
+	if (tile_pos.z < 98)
+	{
+		tilemap[tile_pos.x][tile_pos.z + 2]->ChangeVibe(vibe_diff);
+		tilemap[tile_pos.x+1][tile_pos.z + 2]->ChangeVibe(vibe_diff);
+	}
+}
+
+/// <summary>
+/// Change tilemap's vibes system at certain tile pos and value for a 3 by 3 building
+/// </summary>
+/// <param name="tile_pos"></param>
+/// <param name="vibe_diff"></param>
+void Tilemap::VibeChange3x3(Vector3 tile_pos, int vibe_diff)
+{
+
 }

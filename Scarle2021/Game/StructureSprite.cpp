@@ -9,8 +9,8 @@
 /// <param name="tile_pos">Position of structure</param>
 /// <param name="tile_size">The number of tiles this structure occupies</param>
 /// <param name="texture">The texture attached to the VBQuad</param>
-StructureSprite::StructureSprite(ID3D11Device* GD, Vector2 width_height, Vector3 tile_pos, int tile_size, std::string texture)
-	: VBQuad(GD, width_height.x, width_height.y)
+StructureSprite::StructureSprite(ID3D11Device* GD, Vector2 width_height, Vector3 tile_pos, int _tile_size, std::string texture)
+	: VBQuad(GD, width_height.x, width_height.y), tile_size(_tile_size)
 {
 	SetPitch(-30 * PI / 180);
 	SetYaw(45 * PI / 180);
