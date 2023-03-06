@@ -13,11 +13,14 @@
 //Player for debug purposes
 #include "Player.h"
 
+//Json file manager
+#include "../json/single_include/nlohmann/json.hpp"
+using json = nlohmann::json;
+
 // Forward declarations
 struct GameData;
 struct DrawData;
 struct DrawData2D;
-
 
 //Main Game Loop
 class Afterlife

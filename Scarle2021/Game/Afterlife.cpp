@@ -46,7 +46,6 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     timer.SetFixedTimeStep(true);
     timer.SetTargetElapsedSeconds(1.0 / 60);
     
-    
     // Seed random gen
     srand((UINT)time(NULL));
 
