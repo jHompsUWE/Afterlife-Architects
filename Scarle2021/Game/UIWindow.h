@@ -27,6 +27,8 @@ public:
     void reSize(std::pair<int*, int*> game_res);
     bool is_visible = false;
 
+    Vector2 getwindowRes() { return window_res; }
+
 private:
 
     //mouse pointer inside window
