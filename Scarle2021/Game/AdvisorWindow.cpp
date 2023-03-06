@@ -298,8 +298,5 @@ void AdvisorWindow::set_jasper_image(string filename)
 
 void AdvisorWindow::set_text(string new_string)
 {
-    text_vec.erase(text_vec.begin());
-    text_vec.insert(text_vec.begin(), new TextGO2D(new_string));
-    text_vec[0]->SetPos(Vector2(window_pos.x + 120, window_pos.y + 150));
-    text_vec[0]->SetScale(Vector2(0.3, 0.3));
+    text_vec[0]->ChangeString(new_string);
 }
