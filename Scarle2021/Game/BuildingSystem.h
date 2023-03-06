@@ -37,6 +37,7 @@ private:
 
 	// Tilemap
 	std::unique_ptr<Tilemap> tilemap;
+	bool show_vibes = false;
 
 	// Preview Quad
 	bool show_preview_quad;

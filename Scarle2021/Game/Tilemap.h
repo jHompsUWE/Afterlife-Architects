@@ -15,7 +15,7 @@ public:
 	Tilemap(ID3D11Device* GD, int _size);
 	~Tilemap();
 
-	void Draw(DrawData* _DD);
+	void Draw(DrawData* _DD, bool show_vibe);
 
 	void BoxFill(std::unique_ptr<BuildingManager> & building_manager, ZoneType zone_type, Vector3 start, Vector3 end);
 	bool SetTile(Vector3 tile_pos, ZoneType zone_type);

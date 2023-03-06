@@ -138,13 +138,17 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
         case input_J:
             CreateStructure(TrainingCenter);
             break;
+
+        case input_P:
+            show_vibes = !show_vibes;
+            break;
         }
     }
 }
 
 void BuildingSystem::Render3D(DrawData* draw_data)
 {
-    tilemap->Draw(draw_data);
+    tilemap->Draw(draw_data, show_vibes);
     building_manager->Draw(draw_data);
 
     if (show_preview_quad)

@@ -9,7 +9,7 @@ public:
 	~Tile();
 
 	void Tick();
-	void Draw(DrawData* _DD);
+	void Draw(DrawData* _DD, bool show_vibe);
 
 	Vector3 GetTilePos();
 	ZoneType GetZoneType() { return type; }
@@ -21,12 +21,17 @@ public:
 
 	std::string GetTextureOfType(ZoneType type);
 
+	void ChangeVibe(int vibe_diff);
+
 protected:
 
 private:
 	VBQuad* quad = nullptr;
+	VBQuad* vibe_quad = nullptr;
 	Vector3 tile_pos;
 	ZoneType type;
 	bool is_occupied;
+	int vibe_value = 0;
+	float colour_scaling = 0.5;
 };
 

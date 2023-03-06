@@ -19,13 +19,13 @@ Tilemap::~Tilemap()
 
 }
 
-void Tilemap::Draw(DrawData* _DD)
+void Tilemap::Draw(DrawData* _DD, bool show_vibe)
 {
 	for (auto& x : tilemap)
 	{
 		for (auto& y : x)
 		{
-			y->Draw(_DD);
+			y->Draw(_DD, show_vibe);
 		}
 	}
 }
