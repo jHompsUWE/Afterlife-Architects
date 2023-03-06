@@ -282,6 +282,9 @@
     <ClInclude Include="EconomyManager.h">
       <Filter>Base\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AdvisorWindow.h">
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -418,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="EconomyManager.cpp">
       <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvisorWindow.cpp">
+      <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

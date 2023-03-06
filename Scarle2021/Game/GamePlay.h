@@ -10,6 +10,7 @@
 #include "EconomyManager.h"
 
 // Building System
+#include "AdvisorWindow.h"
 #include "Tilemap.h"
 #include "Raycast.h"
 #include "PreviewQuad.h"
@@ -57,12 +58,11 @@ private:
     ZoneType selected_zone;
 
     ImageGO2D* ui_frame;
-    
     UIWindow* window_one;
-    
     UIPanel* main_panel;
+    AdvisorWindow* advisor_window;
 
-    bool window_one_open = true;
+    bool window_one_open = false;
 
     std::unique_ptr<AdvisorManager> adv_man = nullptr;
 

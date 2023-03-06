@@ -10,24 +10,13 @@ AdvisorManager::~AdvisorManager()
 }
 
 /// <summary>
-/// Initialise advisors UI
+/// Initialise advisors with UI ref
 /// </summary>
 /// <returns></returns>
-bool AdvisorManager::init()
+bool AdvisorManager::init(AdvisorWindow* adv_wind)
 {
     srand(time(0));
-    // WILL GET ASSISTANCE FOR UI GENERATION 27th MONDAY
-    // Generate Back Window
-    
-    // Generate Aria Img
-    
-    // Generate Jasper Img
-    
-    // Generate Option Buttons
-    
-    // Generate Exit Button
-    
-    // Generate Dialogue Box
+    advisor_window = adv_wind;
     return 0;
 }
 
@@ -55,7 +44,8 @@ void AdvisorManager::Update(GameData* game_data)
             {
                 // If not more dialogue is after
                 dia_state = Finished;
-                // CHANGE TEXTBOX TO BLANK
+                // Clear textbox
+                advisor_window->set_text("");
             }
         }
         else
@@ -109,7 +99,7 @@ void AdvisorManager::AnimationUpdate()
             // Update img based on char for Aria
             TalkingAria();
             // Update img idle for Jasper
-            TalkingJasper();
+            IdleJasper();
         }
     }
     else
@@ -131,7 +121,7 @@ void AdvisorManager::GenerateAdvise(int index)
 {
     dia_time_tracker = 0;
     dia_current_index = index;
-    // CHANGE TEXT BOX TO dia_array_string[index];
+    advisor_window->set_text(dia_array_string[index]);
     // CHANGE TEXT COLOUR BASED ON ARIA OR JASPER
     dia_string_length = dia_array_string[index].length();
     dia_state = Talking;
@@ -142,37 +132,48 @@ void AdvisorManager::GenerateAdvise(int index)
 /// </summary>
 void AdvisorManager::IdleAria()
 {
-    aria_blink_timer--;
-    aria_tongue_timer--;
-    if (aria_blink_timer == 2)
+    aria_blink_timer-=1;
+    aria_tongue_timer-=1;
+
+    if (aria_blink_timer <= 0)
     {
-        // CHANGE IMAGE BOX TO BLINK 1
+        aria_blink_timer = 600 + (rand() % 600);
     }
-    else if (aria_blink_timer == 1)
+    else if (aria_blink_timer <= 5)
     {
-        // CHANGE IMAGE BOX TO BLINK 2
+        advisor_window->set_aria_image("ArBlink3");
     }
-    else if (aria_blink_timer <= 0)
+    else if (aria_blink_timer <= 10)
     {
-        // CHANGE IMAGE BOX TO BLINK 3
-        aria_blink_timer = 120 + (rand() % 120);
+        advisor_window->set_aria_image("ArBlink2");
     }
-    else if (aria_tongue_timer == 2)
+    else if (aria_blink_timer <= 15)
     {
-        // CHANGE IMAGE BOX TO TONGUE 1
-    }
-    else if (aria_tongue_timer == 1)
-    {
-        // CHANGE IMAGE BOX TO TONGUE 2
+        advisor_window->set_aria_image("ArBlink1");
     }
     else if (aria_tongue_timer <= 0)
     {
-        // CHANGE IMAGE BOX TO TONGUE 3
-        aria_tongue_timer = 240 + (rand() % 120);
+        aria_tongue_timer = 1200 + (rand() % 600);
+    }
+    else if (aria_tongue_timer <= 10)
+    {
+        advisor_window->set_aria_image("ArTongue2");
+    }
+    else if (aria_tongue_timer <= 20)
+    {
+        advisor_window->set_aria_image("ArTongue3");
+    }
+    else if (aria_tongue_timer <= 30)
+    {
+        advisor_window->set_aria_image("ArTongue2");
+    }
+    else if (aria_tongue_timer <= 40)
+    {
+        advisor_window->set_aria_image("ArTongue1");
     }
     else
     {
-        // CHANGE IMAGE BOX TO IDLE 1
+        advisor_window->set_aria_image("ArIdle1");
     }
 }
 
@@ -185,11 +186,11 @@ void AdvisorManager::TalkingAria()
     int index = GetCharIndex();
     if (index < 0)
     {
-        // CHANGE IMAGE BOX TO IDLE 1
+        advisor_window->set_aria_image("ArIdle1");
     }
     else
     {
-        // CHANGE IMAGE BOX TO aria_images[aria_img_pointers[index]];
+        advisor_window->set_aria_image(aria_images[aria_img_pointers[index]]);
     }
 }
 
@@ -200,35 +201,41 @@ void AdvisorManager::IdleJasper()
 {
     jasper_blink_timer--;
     jasper_wing_timer--;
-    if (jasper_blink_timer == 2)
+    if (jasper_blink_timer <= 0)
     {
-        // CHANGE IMAGE BOX TO BLINK 1
+        jasper_blink_timer = 600 + (rand() % 600);
     }
-    else if (jasper_blink_timer == 1)
+    else if (jasper_blink_timer <= 5)
     {
-        // CHANGE IMAGE BOX TO BLINK 2
+        advisor_window->set_jasper_image("JaBlink3");
     }
-    else if (jasper_blink_timer <= 0)
+    else if (jasper_blink_timer <= 10)
     {
-        // CHANGE IMAGE BOX TO BLINK 3
-        jasper_blink_timer = 120 + (rand() % 120);
+        advisor_window->set_jasper_image("JaBlink2");
     }
-    else if (jasper_wing_timer == 2)
+    else if (jasper_blink_timer <= 15)
     {
-        // CHANGE IMAGE BOX TO WING 1
-    }
-    else if (jasper_wing_timer == 1)
-    {
-        // CHANGE IMAGE BOX TO WING 2
+        advisor_window->set_jasper_image("JaBlink1");
     }
     else if (jasper_wing_timer <= 0)
     {
-        // CHANGE IMAGE BOX TO WING 1
-        jasper_wing_timer = 240 + (rand() % 120);
+        jasper_wing_timer = 1200 + (rand() % 600);
+    }
+    else if (jasper_wing_timer <= 10)
+    {
+        advisor_window->set_jasper_image("JaWings1");
+    }
+    else if (jasper_wing_timer <= 20)
+    {
+        advisor_window->set_jasper_image("JaWings2");
+    }
+    else if (jasper_wing_timer <= 30)
+    {
+        advisor_window->set_jasper_image("JaWings1");
     }
     else
     {
-        // CHANGE IMAGE BOX TO IDLE 1
+        advisor_window->set_jasper_image("JaIdle1");
     }
 }
 
@@ -241,11 +248,11 @@ void AdvisorManager::TalkingJasper()
     int index = GetCharIndex();
     if (index < 0)
     {
-        // CHANGE IMAGE BOX TO IDLE 1
+        advisor_window->set_jasper_image("JaIdle1");
     }
     else
     {
-        // CHANGE IMAGE BOX TO jasper_images[jasper_img_pointers[index]];
+        advisor_window->set_jasper_image(jasper_images[jasper_img_pointers[index]]);
     }
 }
 
@@ -255,7 +262,7 @@ void AdvisorManager::TalkingJasper()
 void AdvisorManager::StopAdvise()
 {
     dia_time_tracker = 0;
-    // CHANGE TEXT BOX TO BLANK
+    advisor_window->set_text("");
     dia_state = Finished;
 }
 

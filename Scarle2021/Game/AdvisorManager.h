@@ -1,6 +1,7 @@
 #pragma once
 #include "DataManager.h" 
 #include "EventManager.h"
+#include "AdvisorWindow.h"
 #include <unordered_map>
 
 enum DialogueState
@@ -19,7 +20,7 @@ public:
     AdvisorManager();
     ~AdvisorManager();
 
-    bool init();
+    bool init(AdvisorWindow* adv_wind);
 
     // Update 
     void Update(GameData* game_data);
@@ -41,9 +42,11 @@ private:
 
     int GetCharIndex();
 
+    AdvisorWindow* advisor_window = nullptr;
+
     DialogueState dia_state = Finished;
     float dia_time_tracker = 0;
-    float dia_time_scale = 0.25;
+    float dia_time_scale = 0.15;
     int dia_string_length = 0;
     int dia_current_index = -1;
 
@@ -64,9 +67,9 @@ private:
     // Index for what character is what image
     int aria_img_pointers[26] = { 0 , 3 , 5 , 1 , 1 , 5 , 4 , 0 , 1 , 1 , 1 , 2 , 3 , 3 , 4 , 1 , 4 , 1 , 5 , 1 , 4 , 1 , 3 , 1 , 4 , 1 };
 
-    int jasper_wing_timer = 150;
-    int jasper_blink_timer = 60;
-    int aria_tongue_timer = 120;
-    int aria_blink_timer = 30;
+    int jasper_wing_timer = 1200;
+    int jasper_blink_timer = 600;
+    int aria_tongue_timer = 1800;
+    int aria_blink_timer = 300;
 };
 

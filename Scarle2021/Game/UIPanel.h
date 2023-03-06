@@ -35,6 +35,7 @@ private:
 
     //Button vector
     std::vector<UIButtonInterFace*> buttons;
+    std::vector<TextGO2D*> text;
     
     ImageGO2D* panel_back_ground = nullptr;
     //TextGO2D* panel_text = nullptr;
@@ -46,5 +47,7 @@ private:
     Vector2 old_mouse_pos_panel {0,0};
 
     bool toggle_click_panel = false;
+    float year = 0;
+    int credits = 0;
 };
 

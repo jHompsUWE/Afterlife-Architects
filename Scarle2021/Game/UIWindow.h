@@ -25,7 +25,9 @@ public:
     Vector2& getButtonRes() ;
 	
     void reSize(std::pair<int*, int*> game_res);
-    bool is_visible = true;
+    bool is_visible = false;
+
+    Vector2 getwindowRes() { return window_res; }
 
 private:
 

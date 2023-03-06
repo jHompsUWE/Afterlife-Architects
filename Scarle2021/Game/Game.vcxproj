@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AdvisorManager.h" />
+    <ClInclude Include="AdvisorWindow.h" />
     <ClInclude Include="Afterlife.h" />
     <ClInclude Include="AStarPathfinding.h" />
     <ClInclude Include="BuildingManager.h" />
@@ -228,6 +229,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdvisorManager.cpp" />
+    <ClCompile Include="AdvisorWindow.cpp" />
     <ClCompile Include="Afterlife.cpp" />
     <ClCompile Include="AStarPathfinding.cpp" />
     <ClCompile Include="BuildingManager.cpp" />

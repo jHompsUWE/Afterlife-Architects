@@ -19,3 +19,8 @@ void TextGO2D::Draw(DrawData2D* _DD)
 	//right click and "Go to Defintion/Declaration" to see other version of this in DXTK
 	_DD->main_font->DrawString(_DD->sprites_batch.get(), Helper::charToWChar(m_text.c_str()), m_pos, m_colour,m_rotation,m_origin,m_scale);
 }
+
+void TextGO2D::ChangeString(string new_string)
+{
+	m_text = new_string;
+}

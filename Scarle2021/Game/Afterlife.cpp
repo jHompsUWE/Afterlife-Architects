@@ -42,10 +42,10 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     CreateResources();
 
     //TODO: Uncomment this for fixed 60FPS
-    /*
-    m_timer.SetFixedTimeStep(true);
-    m_timer.SetTargetElapsedSeconds(1.0 / 60);
-    */
+    
+    timer.SetFixedTimeStep(true);
+    timer.SetTargetElapsedSeconds(1.0 / 60);
+    
     
     // Seed random gen
     srand((UINT)time(NULL));
