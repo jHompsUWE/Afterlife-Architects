@@ -124,6 +124,9 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
             preview_quad->ChangePreviewQuadColor(selected_zone);
             break;
 
+        case number_9:
+            selected_zone = Karma_Tracks;
+            break;
         case input_E:
             TryCreateHouse();
             break;
