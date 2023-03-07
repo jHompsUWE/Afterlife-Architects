@@ -2,8 +2,16 @@
 #include "BuildingManager.h"
 #include <iostream>
 
-BuildingManager::BuildingManager(ID3D11Device* GD): d11_device(GD)
+BuildingManager::BuildingManager(ID3D11Device* GD, int _size, Vector3 _start): d11_device(GD), start(_start)
 {
+	for (int x = 0; x < _size; x++)
+	{
+		structure_map.emplace_back();
+		for (int y = 0; y < _size; y++)
+		{
+			structure_map[x].emplace_back(nullptr);
+		}
+	}
 }
 
 BuildingManager::~BuildingManager()
@@ -12,9 +20,15 @@ BuildingManager::~BuildingManager()
 
 void BuildingManager::Draw(DrawData* _DD)
 {
-	for (auto& structure : structure_list)
+	for (auto& x : structure_map)
 	{
-		structure->Draw(_DD);
+		for (auto& y : x)
+		{
+			if (y)
+			{
+				y->Draw(_DD);
+			}
+		}
 	}
 }
 
@@ -71,9 +85,9 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 	}
 
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
-	structure_list.emplace_back(std::make_unique<StructureSprite>(
-		d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position, 1, texture));
-	structure_list.back()->UpdateWorldMatrix();
+	structure_map[tile_position.x][tile_position.z] = 
+		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position + start, 1, texture);
+	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 
 /// <summary>
@@ -129,9 +143,9 @@ void BuildingManager::Create2x2House(ZoneType zone_type, Vector3 tile_position)
 	}
 
 	// sqrt(2) * 2 is the size of the quad needed to fit structure to a 2x2 unit isometric tile
-	structure_list.emplace_back(std::make_unique<StructureSprite>(
-		d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position, 2, texture));
-	structure_list.back()->UpdateWorldMatrix();
+	structure_map[tile_position.x][tile_position.z] =
+		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position + start, 2, texture);
+	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 
 /// <summary>
@@ -164,32 +178,21 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		break;
 	}
 
-	structure_list.emplace_back(std::make_unique<StructureSprite>(
-		d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position, size, texture));
-	structure_list.back()->UpdateWorldMatrix();
+	structure_map[tile_position.x][tile_position.z] = 
+		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
+	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 
 /// <summary>
 /// Destroy the structure at the given tile position
 /// </summary>
 /// <param name="tile_position">Tile position of the structure to be destroyed</param>
-Vector3 BuildingManager::DestroyStructure(Vector3 tile_position)
+void BuildingManager::DestroyStructure(Vector3 tile_position)
 {
-	auto it = structure_list.begin();
-	for (; it != structure_list.end(); it++)
+	if (structure_map[tile_position.x][tile_position.z])
 	{
-		for (auto& temp_pos : (*it)->GetOccupiedTiles())
-		{
-			if (temp_pos == tile_position)
-			{
-				Vector3 origin_point = (*(*it)->GetOccupiedTiles().begin());
-				origin_point.y = (*it)->GetTileSize();
-				structure_list.erase(it);
-				return origin_point;
-			}
-		}
+		structure_map[tile_position.x][tile_position.z] = nullptr;
 	}
-	return Vector3(0,-1,0);
 }
 
 /// <summary>
@@ -199,16 +202,9 @@ Vector3 BuildingManager::DestroyStructure(Vector3 tile_position)
 /// <returns>A Vector (C++ dynamic list) of Vector3 (x, y, z) that contains the occupied tiles</returns>
 std::vector<Vector3> BuildingManager::GetStructureOccupiedTiles(Vector3 tile_position)
 {
-	auto it = structure_list.begin();
-	for (; it != structure_list.end(); it++)
+	if (structure_map[tile_position.x][tile_position.z])
 	{
-		for (auto& temp_pos : (*it)->GetOccupiedTiles())
-		{
-			if (temp_pos == tile_position)
-			{
-				return (*it)->GetOccupiedTiles();
-			}
-		}
+		return structure_map[tile_position.x][tile_position.z]->GetOccupiedTiles();
 	}
 }
 

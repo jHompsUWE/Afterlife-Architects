@@ -4,13 +4,14 @@
 BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device* GD):
 	mouse_world_pos(mouse_pos), d11_device(GD)
 {
-    tilemap = std::make_unique<Tilemap>(d11_device, 50);
+    Vector3 start_heaven = Vector3(-5, 0, -5);
+    tilemap = std::make_unique<Tilemap>(d11_device, 50, start_heaven);
+    vibe_tilemap = std::make_unique<VibeTilemap>(d11_device, 50, start_heaven);
+    building_manager = std::make_unique<BuildingManager>(d11_device, 50, start_heaven);
 
     show_preview_quad = false;
     preview_quad = std::make_unique<PreviewQuad>(d11_device);
     preview_quad->SetPos(Vector3(0, 0.01f, 0));
-
-    building_manager = std::make_unique<BuildingManager>(d11_device);
 
     selected_zone = Green;
 }
@@ -26,7 +27,9 @@ void BuildingSystem::Tick(GameData* game_data)
         if (!mouse_pressed)
         {
             // Mouse Pressed
-            mouse_pressed_pos = *mouse_world_pos;
+            mouse_pressed_world_pos = *mouse_world_pos;
+            mouse_pressed_heaven_pos = tilemap->WorldToLocalPos(mouse_pressed_world_pos);
+
             mouse_pressed = true;
             show_preview_quad = true;
         }
@@ -35,7 +38,7 @@ void BuildingSystem::Tick(GameData* game_data)
         if (selected_zone != Structure)
         {
             // Resize preview quad when NOT placing a Structure
-            preview_quad->ResizePreviewQuad(mouse_pressed_pos, *mouse_world_pos);
+            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, *mouse_world_pos);
         }
     }
     else
@@ -43,7 +46,9 @@ void BuildingSystem::Tick(GameData* game_data)
         if (mouse_pressed)
         {
             // Mouse Released
-            mouse_released_pos = *mouse_world_pos;
+            mouse_released_world_pos = *mouse_world_pos;
+            mouse_released_heaven_pos = tilemap->WorldToLocalPos(mouse_released_world_pos);
+
             mouse_pressed = false;
             show_preview_quad = false;
             preview_quad->ResetPreviewQuad();
@@ -51,21 +56,26 @@ void BuildingSystem::Tick(GameData* game_data)
             if (selected_zone != Structure)
             {
                 // Place zone on mouse release
-                tilemap->BoxFill(building_manager, selected_zone, mouse_pressed_pos, mouse_released_pos);
+                tilemap->BoxFill(building_manager, vibe_tilemap, selected_zone, mouse_pressed_heaven_pos, mouse_released_heaven_pos);
             }
             else
             {
                 // Place structure on mouse release
                 int size = BuildingManager::GetSizeOfStructure(selected_structure);
-                Vector3 end = Vector3(mouse_released_pos.x + size - 1.0f, 0, mouse_released_pos.z + size - 1.0f);
+                Vector3 end = Vector3(mouse_released_heaven_pos.x + size - 1.0f, 0, mouse_released_heaven_pos.z + size - 1.0f);
 
-                if (tilemap->IsAreaValid(mouse_released_pos, size))
+                if (tilemap->IsAreaValid(mouse_released_heaven_pos, size))
                 {
                     // Structure is within the tilemap
-                    tilemap->BoxFill(building_manager, Structure, mouse_released_pos, end);
-                    tilemap->OccupyTile(mouse_released_pos, size);
-                    building_manager->CreateStructure(selected_structure, mouse_released_pos);
-                    tilemap->VibeChange(*mouse_world_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
+                    // Fill the area of the structure and mark is as occupied
+                    tilemap->BoxFill(building_manager, vibe_tilemap, Structure, mouse_released_heaven_pos, end);
+                    tilemap->OccupyTile(mouse_released_heaven_pos, size);
+
+                    // Create a structure
+                    building_manager->CreateStructure(selected_structure, mouse_released_heaven_pos);
+
+                    // Change the vibe of the tiles around the structure
+                    vibe_tilemap->VibeChange(mouse_released_heaven_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
                 }
             }
         }
@@ -146,18 +156,22 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
         case input_P:
             show_vibes = !show_vibes;
             break;
-
-        case input_R:
-            show_vibes = !show_vibes;
-            break;
         }
     }
 }
 
 void BuildingSystem::Render3D(DrawData* draw_data)
 {
-    tilemap->Draw(draw_data, show_vibes);
     building_manager->Draw(draw_data);
+
+    if (show_vibes)
+    {
+        vibe_tilemap->Draw(draw_data);
+    }
+    else
+    {
+        tilemap->Draw(draw_data);
+    }
 
     if (show_preview_quad)
     {
@@ -172,7 +186,7 @@ void BuildingSystem::TryCreateHouse()
     {
         building_manager->Create2x2House(selected_zone, empty_tile);
         tilemap->OccupyTile(empty_tile, 2);
-        tilemap->VibeChange(empty_tile, 5, 2);
+        vibe_tilemap->VibeChange(empty_tile, 5, 2);
     }
     else
     {
@@ -181,11 +195,15 @@ void BuildingSystem::TryCreateHouse()
         {
             building_manager->Create1x1House(selected_zone, empty_tile);
             tilemap->OccupyTile(empty_tile, 1);
-            tilemap->VibeChange(empty_tile, 5, 1);
+            vibe_tilemap->VibeChange(empty_tile, 5, 1);
         }
     }
 }
 
+/// <summary>
+/// Allows player to create a structure of the given type at mouse click location
+/// </summary>
+/// <param name="structure_type">The type of structure to be created</param>
 void BuildingSystem::CreateStructure(StructureType structure_type)
 {
     selected_structure = structure_type;

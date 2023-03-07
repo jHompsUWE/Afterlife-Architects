@@ -8,16 +8,18 @@
 
 #include "Tile.h"
 #include "BuildingManager.h"
+#include "VibeTilemap.h"
 
 class Tilemap
 {
 public:
-	Tilemap(ID3D11Device* GD, int _size);
+	Tilemap(ID3D11Device* GD, int _size, Vector3 _start);
 	~Tilemap();
 
-	void Draw(DrawData* _DD, bool show_vibe);
+	void Draw(DrawData* _DD);
 
-	void BoxFill(std::unique_ptr<BuildingManager> & building_manager, ZoneType zone_type, Vector3 start, Vector3 end);
+	void BoxFill(std::unique_ptr<BuildingManager>& building_manager, std::unique_ptr<VibeTilemap>& vibe_tilemap,
+		ZoneType zone_type, Vector3 start, Vector3 end);
 	bool SetTile(Vector3 tile_pos, ZoneType zone_type);
 	Vector3 FindEmpty1x1TileOfType(ZoneType zone_type);
 	Vector3 FindEmpty2x2TileOfType(ZoneType zone_type);
@@ -27,15 +29,15 @@ public:
 	bool IsPosValid(Vector3 tile_pos);
 	bool IsAreaValid(Vector3 start, int _size);
 
-	//void VibeChange1x1(Vector3 tile_pos, int vibe_diff);
-	//void VibeChange2x2(Vector3 tile_pos, int vibe_diff);
-	//void VibeChange3x3(Vector3 tile_pos, int vibe_diff);
-	void VibeChange(Vector3 tile_pos, int vibe_diff, int size);
+	Vector3 WorldToLocalPos(Vector3 world_pos);
+	Vector3 LocalToWorldPos(Vector3 local_pos);
 
 protected:
-
-private:
 	std::vector<std::vector<std::unique_ptr<Tile>>> tilemap;
 	float size; // Size of the tilemap
+	Vector3 start; // Starting/Origin point of the tilemap
+
+private:
+
 };
 

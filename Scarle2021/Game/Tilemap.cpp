@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "Tilemap.h"
 
-Tilemap::Tilemap(ID3D11Device* GD, int _size): size(_size)
+Tilemap::Tilemap(ID3D11Device* GD, int _size, Vector3 _start): size(_size), start(_start)
 {
 	for (int x = 0; x < size; x++)
 	{
 		tilemap.emplace_back();
 		for (int y = 0; y < size; y++)
 		{
-			tilemap[x].emplace_back(std::make_unique<Tile>(GD, Vector3(x, 0, y), Void));
-			tilemap[x][y]->Tick();
+			tilemap[x].emplace_back(std::make_unique<Tile>(GD, start + Vector3(x, 0, y), Void));
+			tilemap[x][y]->UpdateWorldMatrix();
 		}
 	}
 }
@@ -19,13 +19,13 @@ Tilemap::~Tilemap()
 
 }
 
-void Tilemap::Draw(DrawData* _DD, bool show_vibe)
+void Tilemap::Draw(DrawData* _DD)
 {
 	for (auto& x : tilemap)
 	{
 		for (auto& y : x)
 		{
-			y->Draw(_DD, show_vibe);
+			y->Draw(_DD);
 		}
 	}
 }
@@ -37,7 +37,8 @@ void Tilemap::Draw(DrawData* _DD, bool show_vibe)
 /// <param name="zone_type">ZoneType of the tile</param>
 /// <param name="start">Starting point of the box</param>
 /// <param name="end">End point of the box</param>
-void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneType zone_type, Vector3 start, Vector3 end)
+void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, std::unique_ptr<VibeTilemap>& vibe_tilemap,
+	ZoneType zone_type, Vector3 start, Vector3 end)
 {
 	//Determine directions on X and Y axis
 	int xDir = start.x < end.x ? 1 : -1;
@@ -57,23 +58,33 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, ZoneTy
 			if (SetTile(tile_pos, zone_type) || zone_type == Structure)
 			{
 				// Tile at tile_pos is replaced
+				
 				// Check if there is structure on tile_pos
-				std::vector<Vector3> tiles_to_remove = building_manager->GetStructureOccupiedTiles(tile_pos);
-				if (!tiles_to_remove.empty())
-				{				
-					// Replace the tiles that this structure occupy to Void
+				Vector3 origin = tilemap[tile_pos.x][tile_pos.z]->GetStructureOrigin();
+				if (origin.y == 0)
+				{
+					// There is a structure on tile_pos
+
+					// Get the tiles that this structure occupy
+					std::vector<Vector3> tiles_to_remove = building_manager->GetStructureOccupiedTiles(origin);
 					for (auto& temp_pos : tiles_to_remove)
 					{
+						temp_pos = WorldToLocalPos(temp_pos);
 						if (temp_pos != tile_pos)
 						{
+							// Replace the tiles that this structure occupy to Void
 							SetTile(temp_pos, Void);
 						}
 					}
 
 					// Destroy structure on tile_pos
-					Vector3 origin_point = building_manager->DestroyStructure(tile_pos);
-					VibeChange(origin_point, -5, origin_point.y);
+					building_manager->DestroyStructure(origin);
+
+					// Adjust the vibe of the tiles around the structure destroyed
+					vibe_tilemap->VibeChange(origin, -5, sqrt(tiles_to_remove.size()));
 				}
+
+				tilemap[tile_pos.x][tile_pos.z]->UnoccupyTile();
 			}
 		}
 	}
@@ -96,7 +107,6 @@ bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 	}
 
 	tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
-	tilemap[tile_pos.x][tile_pos.z]->SetIsOccupied(false);
 	return true;
 }
 
@@ -111,7 +121,7 @@ Vector3 Tilemap::FindEmpty1x1TileOfType(ZoneType zone_type)
 	{
 		for (int z = 0; z < tilemap[x].size(); z++)
 		{
-			if (tilemap[x][z]->GetZoneType() == zone_type && tilemap[x][z]->GetIsOccupied() == false)
+			if (tilemap[x][z]->GetZoneType() == zone_type && tilemap[x][z]->IsTileOccupied() == false)
 			{
 				// Tile at (x, 0, z) matches zone_type and is not occupied
 				return Vector3(x, 0, z);
@@ -149,7 +159,7 @@ Vector3 Tilemap::FindEmpty2x2TileOfType(ZoneType zone_type)
 					break;
 				}
 
-				if (tilemap[pos.x][pos.z]->GetZoneType() == zone_type && tilemap[pos.x][pos.z]->GetIsOccupied() == false)
+				if (tilemap[pos.x][pos.z]->GetZoneType() == zone_type && tilemap[pos.x][pos.z]->IsTileOccupied() == false)
 				{
 					tile_found += 1;
 				}
@@ -179,7 +189,7 @@ bool Tilemap::IsTileOccupied(Vector3 tile_pos)
 		return true;
 	}
 
-	return tilemap[tile_pos.x][tile_pos.z]->GetIsOccupied();
+	return tilemap[tile_pos.x][tile_pos.z]->IsTileOccupied();
 }
 
 /// <summary>
@@ -198,7 +208,7 @@ void Tilemap::OccupyTile(Vector3 tile_pos, int _size)
 	{
 		for (int z = 0; z < _size; z++)
 		{
-			tilemap[tile_pos.x + x][tile_pos.z + z]->SetIsOccupied(true);
+			tilemap[tile_pos.x + x][tile_pos.z + z]->OccupyTile(Vector3(tile_pos.x, 0, tile_pos.z));
 		}
 	}
 }
@@ -239,120 +249,22 @@ bool Tilemap::IsAreaValid(Vector3 start, int _size)
 	return true;
 }
 
-/*
 /// <summary>
-/// Change tilemap's vibes system at certain tile pos and value for a 1 by 1 building
+/// Converts world poistion to local position
 /// </summary>
-/// <param name="tile_pos"></param>
-/// <param name="vibe_diff"></param>
-void Tilemap::VibeChange1x1(Vector3 tile_pos, int vibe_diff)
+/// <param name="world_pos">World position to be converted</param>
+/// <returns>Local position</returns>
+Vector3 Tilemap::WorldToLocalPos(Vector3 world_pos)
 {
-	tilemap[tile_pos.x][tile_pos.z]->ChangeVibe(vibe_diff);
-	if (tile_pos.x > 0)
-	{
-		tilemap[tile_pos.x-1][tile_pos.z]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.x < 99)
-	{
-		tilemap[tile_pos.x+1][tile_pos.z]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.z > 0)
-	{
-		tilemap[tile_pos.x][tile_pos.z-1]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.z < 99)
-	{
-		tilemap[tile_pos.x][tile_pos.z+1]->ChangeVibe(vibe_diff);
-	}
+	return Vector3(world_pos.x - start.x, 0, world_pos.z - start.z);
 }
 
 /// <summary>
-/// Change tilemap's vibes system at certain tile pos and value for a 2 by 2 building
+/// Converts local position to world position
 /// </summary>
-/// <param name="tile_pos"></param>
-/// <param name="vibe_diff"></param>
-void Tilemap::VibeChange2x2(Vector3 tile_pos, int vibe_diff)
+/// <param name="local_pos">Local position to be converted</param>
+/// <returns>Word position</returns>
+Vector3 Tilemap::LocalToWorldPos(Vector3 local_pos)
 {
-	tilemap[tile_pos.x][tile_pos.z]->ChangeVibe(vibe_diff);
-	tilemap[tile_pos.x+1][tile_pos.z]->ChangeVibe(vibe_diff);
-	tilemap[tile_pos.x][tile_pos.z+1]->ChangeVibe(vibe_diff);
-	tilemap[tile_pos.x+1][tile_pos.z+1]->ChangeVibe(vibe_diff);
-	if (tile_pos.x > 0)
-	{
-		tilemap[tile_pos.x - 1][tile_pos.z]->ChangeVibe(vibe_diff);
-		tilemap[tile_pos.x - 1][tile_pos.z+1]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.x < 98)
-	{
-		tilemap[tile_pos.x + 2][tile_pos.z]->ChangeVibe(vibe_diff);
-		tilemap[tile_pos.x + 2][tile_pos.z+1]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.z > 0)
-	{
-		tilemap[tile_pos.x][tile_pos.z - 1]->ChangeVibe(vibe_diff);
-		tilemap[tile_pos.x+1][tile_pos.z - 1]->ChangeVibe(vibe_diff);
-	}
-	if (tile_pos.z < 98)
-	{
-		tilemap[tile_pos.x][tile_pos.z + 2]->ChangeVibe(vibe_diff);
-		tilemap[tile_pos.x+1][tile_pos.z + 2]->ChangeVibe(vibe_diff);
-	}
-}
-
-/// <summary>
-/// Change tilemap's vibes system at certain tile pos and value for a 3 by 3 building
-/// </summary>
-/// <param name="tile_pos"></param>
-/// <param name="vibe_diff"></param>
-void Tilemap::VibeChange3x3(Vector3 tile_pos, int vibe_diff)
-{
-
-}
-*/
-
-/// <summary>
-/// Change tilemap's vibes system at certain tile position at a certain scale and value
-/// </summary>
-/// <param name="tile_pos"></param>
-/// <param name="vibe_diff"></param>
-/// <param name="tile_size"></param>
-void Tilemap::VibeChange(Vector3 tile_pos, int vibe_diff, int tile_size)
-{
-	for (int x = 0; x < tile_size; x++)
-	{
-		for (int z = 0; z < tile_size; z++)
-		{
-			tilemap[tile_pos.x + x][tile_pos.z + z]->ChangeVibe(vibe_diff);
-		}
-	}
-
-	if (tile_pos.x > 0)
-	{
-		for (int z = 0; z < tile_size; z++)
-		{
-			tilemap[tile_pos.x - 1][tile_pos.z + z]->ChangeVibe(vibe_diff);
-		}
-	}
-	if (tile_pos.x < 100 - tile_size)
-	{
-		for (int z = 0; z < tile_size; z++)
-		{
-			tilemap[tile_pos.x + tile_size][tile_pos.z + z]->ChangeVibe(vibe_diff);
-		}
-	}
-
-	if (tile_pos.z > 0)
-	{
-		for (int x = 0; x < tile_size; x++)
-		{
-			tilemap[tile_pos.x + x][tile_pos.z - 1]->ChangeVibe(vibe_diff);
-		}
-	}
-	if (tile_pos.z < 100 - tile_size)
-	{
-		for (int x = 0; x < tile_size; x++)
-		{
-			tilemap[tile_pos.x + x][tile_pos.z + tile_size]->ChangeVibe(vibe_diff);
-		}
-	}
+	return Vector3(local_pos.x + start.x, 0, local_pos.z + start.z);
 }

@@ -4,6 +4,7 @@
 #include "EventManager.h"
 
 #include "Tilemap.h"
+#include "VibeTilemap.h"
 #include "PreviewQuad.h"
 #include "BuildingManager.h"
 
@@ -32,11 +33,14 @@ private:
 
 	// Mouse
 	bool mouse_pressed;
-	Vector3 mouse_pressed_pos;
-	Vector3 mouse_released_pos;
+	Vector3 mouse_pressed_world_pos;
+	Vector3 mouse_released_world_pos;
+	Vector3 mouse_pressed_heaven_pos;
+	Vector3 mouse_released_heaven_pos;
 
 	// Tilemap
 	std::unique_ptr<Tilemap> tilemap;
+	std::unique_ptr<VibeTilemap> vibe_tilemap;
 	bool show_vibes = false;
 
 	// Preview Quad

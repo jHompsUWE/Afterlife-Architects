@@ -229,6 +229,8 @@
     <ClInclude Include="VBSnail.h" />
     <ClInclude Include="VBspiral.h" />
     <ClInclude Include="vertex.h" />
+    <ClInclude Include="VibeTilemap.h" />
+    <ClInclude Include="VibeTile.h" />
     <ClInclude Include="ZoneType.h" />
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +286,8 @@
     <ClCompile Include="VBGO.cpp" />
     <ClCompile Include="VBQuad.cpp" />
     <ClCompile Include="VBSnail.cpp" />
+    <ClCompile Include="VibeTilemap.cpp" />
+    <ClCompile Include="VibeTile.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
