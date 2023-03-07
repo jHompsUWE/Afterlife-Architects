@@ -8,30 +8,30 @@ public:
 	Tile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type);
 	~Tile();
 
-	void Tick();
-	void Draw(DrawData* _DD, bool show_vibe);
+	void UpdateWorldMatrix();
+	void Draw(DrawData* _DD);
 
 	Vector3 GetTilePos();
+	Vector3 GetStructureOrigin() { return structure_origin; }
 	ZoneType GetZoneType() { return type; }
-	bool GetIsOccupied() { return is_occupied; }
+	bool IsTileOccupied() { return is_occupied; }
 
 	void SetTexture(ZoneType zone_type);
 	void SetZoneType(ZoneType _type) { type = _type; }
-	void SetIsOccupied(bool _is_occupied) { is_occupied = _is_occupied; }
+	void OccupyTile(Vector3 structure_origin_pos);
+	void UnoccupyTile();
 
 	std::string GetTextureOfType(ZoneType type);
 
-	void ChangeVibe(int vibe_diff);
-
 protected:
-
-private:
 	VBQuad* quad = nullptr;
-	VBQuad* vibe_quad = nullptr;
+
 	Vector3 tile_pos;
+	Vector3 structure_origin;
 	ZoneType type;
 	bool is_occupied;
-	int vibe_value = 0;
-	float colour_scaling = 10.0f;
+
+private:
+
 };
 

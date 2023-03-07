@@ -8,35 +8,23 @@ Tile::Tile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type): tile_pos(_t
 	quad->SetTexture(GetTextureOfType(type));
 	quad->SetPos(tile_pos);
 
-	vibe_quad = new VBQuad(GD, 1, 1);
-	vibe_quad->SetTexture("Tile_Vibes");
-	vibe_quad->SetPos(tile_pos);
-
+	structure_origin = Vector3(0, -1, 0);
 	is_occupied = false;
 }
 
 Tile::~Tile()
 {
 	delete quad;
-	delete vibe_quad;
 }
 
-void Tile::Tick()
+void Tile::UpdateWorldMatrix()
 {
-	vibe_quad->UpdateWorldMatrix();
 	quad->UpdateWorldMatrix();
 }
 
-void Tile::Draw(DrawData* _DD, bool show_vibe)
+void Tile::Draw(DrawData* _DD)
 {
-	if (show_vibe)
-	{
-		vibe_quad->Draw(_DD);
-	}
-	else
-	{
-		quad->Draw(_DD);
-	}
+	quad->Draw(_DD);
 }
 
 Vector3 Tile::GetTilePos()
@@ -48,6 +36,18 @@ void Tile::SetTexture(ZoneType zone_type)
 {
 	type = zone_type;
 	quad->SetTexture(GetTextureOfType(zone_type));
+}
+
+void Tile::OccupyTile(Vector3 structure_origin_pos)
+{
+	structure_origin = structure_origin_pos;
+	is_occupied = true;
+}
+
+void Tile::UnoccupyTile()
+{
+	structure_origin = Vector3(0, -1, 0);
+	is_occupied = false;
 }
 
 /// <summary>
@@ -118,38 +118,8 @@ std::string Tile::GetTextureOfType(ZoneType type)
 
 	case Karma_Tracks:
 		return "Tile_Res";
-	}
-}
 
-/// <summary>
-/// Changes individual tile colour and vibe value
-/// </summary>
-/// <param name="vibe_diff"></param>
-void Tile::ChangeVibe(int vibe_diff)
-{
-	vibe_value += vibe_diff;
-	// Create temporary int and colour to produce required colour
-	Color new_color;
-	int temp_int = vibe_value;
-	// Make vibe value absolute
-	if (vibe_value < 0)
-	{
-		temp_int = -temp_int;
+	case Vibe:
+		return "Tile_Vibes";
 	}
-	// Scale colour down to 0,0,0
-	new_color.x = (255.0f - (temp_int * colour_scaling))/255.0f;
-	new_color.y = (255.0f - (temp_int * colour_scaling))/255.0f;
-	new_color.z = (255.0f - (temp_int * colour_scaling))/255.0f;
-
-	// If positive vibe, lean towards green
-	if (vibe_value > 0)
-	{
-		new_color.y = 1;
-	}
-	// If negative vibe, lean towards red
-	else if (vibe_value < 0)
-	{
-		new_color.x = 1;
-	}
-	vibe_quad->SetColor(new_color);
 }

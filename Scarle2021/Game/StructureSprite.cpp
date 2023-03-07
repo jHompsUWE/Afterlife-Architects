@@ -14,7 +14,7 @@ StructureSprite::StructureSprite(ID3D11Device* GD, Vector2 width_height, Vector3
 {
 	SetPitch(-30 * PI / 180);
 	SetYaw(45 * PI / 180);
-	SetPos(tile_pos + Vector3(-0.5, 0, 0.5) * tile_size);
+	SetPos(tile_pos + Vector3(-0.5, 0, 0.5) * tile_size + Vector3(0.1, 0, 0.1));
 	SetTexture(texture);
 	AddOccupiedTiles(tile_pos, tile_size);
 }

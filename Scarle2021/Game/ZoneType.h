@@ -19,6 +19,7 @@ enum ZoneType {
 	Rock,
 	Water,
 	Lava,
-	Karma_Tracks
+	Karma_Tracks,
+	Vibe
 };
 
