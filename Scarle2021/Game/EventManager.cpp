@@ -69,6 +69,7 @@ void EventManager::IReadInput(GameData* game_data)
     MapInputToEvent(kb.J, input_J);
     MapInputToEvent(kb.P, input_P);
     MapInputToEvent(kb.R, input_R);
+    MapInputToEvent(kb.L, input_L);
 
     /*
     MapInputToEvent(kb.W, input_up);

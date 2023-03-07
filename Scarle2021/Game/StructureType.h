@@ -2,6 +2,7 @@
 enum StructureType {
 	Gate,
 	Topia,
+	KarmaPortal,
 	TrainingCenter
 };
 

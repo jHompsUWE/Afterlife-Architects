@@ -127,6 +127,7 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
         case number_9:
             selected_zone = Karma_Tracks;
             break;
+
         case input_E:
             TryCreateHouse();
             break;
@@ -141,6 +142,10 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
 
         case input_J:
             CreateStructure(TrainingCenter);
+            break;
+
+        case input_L:
+            CreateStructure(KarmaPortal);
             break;
 
         case input_P:
