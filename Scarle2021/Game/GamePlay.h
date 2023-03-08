@@ -7,6 +7,7 @@
 #include "GPGO.h"
 #include "UIPanel.h"
 #include "UIWindow.h"
+#include "KaraStationWindow.h"
 #include "EconomyManager.h"
 
 // Building System
@@ -53,7 +54,8 @@ private:
     std::shared_ptr<Vector3> mouse_world_pos;
 
     ImageGO2D* ui_frame;
-    UIWindow* window_one;
+    UIWindow* window_one_gate;
+    KaraStationWindow* window_two_kara_station;
     UIPanel* main_panel;
     AdvisorWindow* advisor_window;
 

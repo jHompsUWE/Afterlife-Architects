@@ -9,7 +9,7 @@ GamePlay::GamePlay()
 GamePlay::~GamePlay()
 {
     delete ui_frame;
-    delete window_one;
+    delete window_one_gate;
     delete advisor_window;
 }
 
@@ -17,7 +17,7 @@ bool GamePlay::init()
 {
     EventManager::GenerateEvent(play_sound_theme1);
     // window init
-    window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+    window_one_gate = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
         .second*0.5),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     //build panel
@@ -25,6 +25,8 @@ bool GamePlay::init()
     
     //advisor
     advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    //karma station
+    window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
@@ -59,12 +61,14 @@ void GamePlay::Update(GameData* game_data)
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
 
     //update window
-    window_one->update(game_data,mouse_pos);
+    window_one_gate->update(game_data,mouse_pos);
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
     //update advisor
     advisor_window->update(game_data,mouse_pos);
+
+    window_two_kara_station->update(game_data,mouse_pos);
 
     adv_man->Update(game_data);
 
@@ -128,14 +132,17 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     main_panel->render(draw_data2D);
 
     //render advisor
-    //advisor_window->render(draw_data2D);
+    advisor_window->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
     {
         //render window
-        //window_one->render(draw_data2D);
+        window_one_gate->render(draw_data2D);
+        
     }
+    //karma station
+    window_two_kara_station->render(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -171,8 +178,9 @@ void GamePlay::ResizeUI()
 {
     screen_size = Vector2(*DataManager::GetRES().first, *DataManager::GetRES().second);
     ui_frame->ReSize(screen_size.x, screen_size.y);
-    window_one->reSize(screen_size);
+    window_one_gate->reSize(screen_size);
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
+    window_two_kara_station->reSize(screen_size);
 }
 

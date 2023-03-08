@@ -300,6 +300,9 @@
     <ClInclude Include="VibeTile.h">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
     </ClInclude>
+    <ClInclude Include="KaraStationWindow.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -448,6 +451,9 @@
     </ClCompile>
     <ClCompile Include="VibeTile.cpp">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+    </ClCompile>
+    <ClCompile Include="KaraStationWindow.cpp">
+      <Filter>Base\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
