@@ -29,7 +29,7 @@ public:
 	/**
 	 * \brief Connection function to the Event Manager
 	 */
-	virtual void ReceiveEvents(AL::Event* event) = 0;
+	virtual void ReceiveEvents(const AL::Event& event) = 0;
 };
 
 

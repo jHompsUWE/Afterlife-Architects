@@ -336,6 +336,9 @@
     <ClInclude Include="Observable.h">
       <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
     </ClInclude>
+    <ClInclude Include="ActionListBuildSys.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">

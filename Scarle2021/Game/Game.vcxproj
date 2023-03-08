@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionListBuildSys.h" />
     <ClInclude Include="ActionListCursor.h" />
     <ClInclude Include="ActionListGame.h" />
     <ClInclude Include="ActionListInput.h" />

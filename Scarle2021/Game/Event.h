@@ -4,6 +4,7 @@
 #include "ActionListInput.h"
 #include "ActionListInterface.h"
 #include "ActionListGame.h"
+#include "ActionListBuildSys.h"
 
 namespace AL
 {
@@ -14,9 +15,10 @@ namespace AL
         event_input,
         event_cursor_move,
         event_cursor_interact,
-        sound_event_start,
-        sound_event_stop,
+        event_sound_start,
+        event_sound_stop,
         event_ui,
+        event_build_sys,
         event_game
     };
 
@@ -88,6 +90,14 @@ namespace AL
         {
             UI::Action action = UI::Action::unknown;
         };
+
+        /**
+         * \brief Event to redirect an action to the UI
+         */
+        struct BuildSysEvent
+        {
+            BuildSys::Action action = BuildSys::Action::unknown;
+        };
         
         /**
          * \brief Event to be redirect an action to the game
@@ -101,6 +111,8 @@ namespace AL
         EventType type = unknown;
         
         //Linking structs to keywords
+        //A union will make it so that each element will share the same
+        //memory, therefore making events lightweight
         union
         {
             InputEvent input;
@@ -108,6 +120,7 @@ namespace AL
             CursorEventInteract cursor_interact;
             SoundEventStart sound_start;
             SoundEventStop sound_stop;
+            BuildSysEvent build_sys;
             InterfaceEvent ui;
             GameEvent game;
         };

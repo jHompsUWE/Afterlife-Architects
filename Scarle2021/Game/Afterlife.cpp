@@ -145,6 +145,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
+    finite_state_machine->DispatchEvents(event_manager->GetEventList());
     audio_manager->Update(game_data);
     ortho_cam->Tick(game_data);
 }
@@ -155,10 +156,11 @@ void Afterlife::ReadInput()
     game_data->keyboard_state = keyboard->GetState();
     game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
     game_data->mouse_state = mouse->GetState();
-    const auto pad = gamepad->GetState(gamepad_index);
+    const auto pad= gamepad->GetState(gamepad_index);
 
     //TODO::PROPERLY SET THIS UP
     //Temporary set up for the new event manager
+    event_manager->FlushEventList();
     event_manager->PollKeyboard(game_data->keyboard_state);
     event_manager->PollMouse(game_data->mouse_state);
     event_manager->PollGamepad(pad);
