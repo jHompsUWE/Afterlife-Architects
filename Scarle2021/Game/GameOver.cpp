@@ -151,24 +151,35 @@ bool GameOver::init()
         std::cout << random_num << std::endl;
     }
 
-    std::mt19937_64 ses(std::rand());
+    std::mt19937_64 ses(43534);
     
-    auto noise_map = MapAssembler::GenerateNoiseMap(100, 100, ses, 5, 1.7f, 0.8f, 3.f, Vector2{0,0});
+    auto noise_map = MapAssembler::GenerateNoiseMap(100, 100, ses, 5, 2.71f, 0.5f, 1.5f, Vector2{0,0});
 
+    float lowest = 432543455;
+    float highest = -234234234;
+    
     for (auto vec : noise_map)
     {
         for (auto point : vec)
         {
             char c = ' ';
             if (point > 0.8) c = '@';
-            // else if (point > 0.6) c = '#';
-            // else if (point > 0.4) c = 'x';
-            // else if (point > 0.2) c = '-';
+            else if (point > 0.6) c = '#';
+            else if (point > 0.4) c = 'x';
+            else if (point > 0.2) c = '-';
             //else c = '/';
             std::cout << c;
+
+            if(point < lowest)
+            {lowest = point;}
+            else if(point > highest)
+            {highest = point;}
+            
         }
         std::cout << std::endl;
     }
+
+    std::cout << "\n" << lowest << ", " << highest << std::endl;
     
     return true;
 }

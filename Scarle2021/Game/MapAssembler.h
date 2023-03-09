@@ -67,8 +67,8 @@ public:
                 for (int i = 0; i < octaves; ++i)
                 {
                     //Scales the X and Y value
-                    float scaled_x = (x-half_width) / scale * frequency + octaves_offset[i].x;
-                    float scaled_y = (y-half_height) / scale * frequency - octaves_offset[i].y;
+                    float scaled_x = ((x-half_width) / 10) / scale * frequency + octaves_offset[i].x;
+                    float scaled_y = ((y-half_height) / 10) / scale * frequency - octaves_offset[i].y;
 
                     //a -1 is applied to allow the value to be both negative and positive
                     float perlin_value = PerlinNoise::GenerateNoise(scaled_x, scaled_y) * 2 - 1;
@@ -78,7 +78,7 @@ public:
                     frequency *= lacunarity;
                 }
                 
-                noise_map[x][y] = noise_height;
+                noise_map[x][y] = (noise_height + 1) / 2;
             }
         }
 
