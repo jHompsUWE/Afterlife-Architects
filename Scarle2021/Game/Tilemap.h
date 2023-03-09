@@ -26,8 +26,14 @@ public:
 	bool IsTileOccupied(Vector3 tile_pos);
 	void OccupyTile(Vector3 tile_pos, int _size);
 
+	ZoneType GetActiveZone(ZoneType zone_type);
+	ZoneType GetInactiveZone(ZoneType zone_type);
+
 	bool IsPosValid(Vector3 tile_pos);
 	bool IsAreaValid(Vector3 start, int _size);
+	bool IsRoadNearby(Vector3 tile_pos);
+	void ActivateNearbyTile(Vector3 tile_pos);
+	void DeactivateNearbyTile(Vector3 tile_pos);
 
 	Vector3 WorldToLocalPos(Vector3 world_pos);
 	Vector3 LocalToWorldPos(Vector3 local_pos);

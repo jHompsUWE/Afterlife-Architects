@@ -106,6 +106,54 @@ bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 		return false;
 	}
 
+	switch (zone_type)
+	{
+	case Green:
+	case Yellow:
+	case Orange:
+	case Brown:
+	case Purple:
+	case Red:
+	case Blue:
+		if (!IsRoadNearby(tile_pos))
+		{
+			// Turn zone to inactive if there is no road nearby
+			zone_type = GetInactiveZone(zone_type);
+		}
+		break;
+
+	case Inactive_Green:
+	case Inactive_Yellow:
+	case Inactive_Orange:
+	case Inactive_Brown:
+	case Inactive_Purple:
+	case Inactive_Red:
+	case Inactive_Blue:
+		if (IsRoadNearby(tile_pos))
+		{
+			// Dont set tile as inactive if there is a road nearby
+			return false;
+		}
+		break;
+
+	case Road:
+		// Activate inactive tiles near road
+		tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
+		ActivateNearbyTile(tile_pos);
+		return true;
+
+	default:
+		break;
+	}
+
+	if (tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == Road)
+	{
+		// Deactivate nearby tiles if road is replaced
+		tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
+		DeactivateNearbyTile(tile_pos);
+		return true;
+	}
+
 	tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
 	return true;
 }
@@ -214,6 +262,76 @@ void Tilemap::OccupyTile(Vector3 tile_pos, int _size)
 }
 
 /// <summary>
+/// Get the active tile counterpart of a ZoneType
+/// </summary>
+/// <param name="zone_type">The ZoneType</param>
+/// <returns>Active ZoneType of the inactive tile of the given zone</returns>
+ZoneType Tilemap::GetActiveZone(ZoneType zone_type)
+{
+	switch (zone_type)
+	{
+	case Inactive_Green:
+		return Green;
+
+	case Inactive_Yellow:
+		return Yellow;
+
+	case Inactive_Orange:
+		return Orange;
+
+	case Inactive_Brown:
+		return Brown;
+
+	case Inactive_Purple:
+		return Purple;
+
+	case Inactive_Red:
+		return Red;
+
+	case Inactive_Blue:
+		return Blue;
+
+	default:
+		return zone_type;
+	}
+}
+
+/// <summary>
+/// Get the inactive tile counterpart of a ZoneType
+/// </summary>
+/// <param name="zone_type">The ZoneType</param>
+/// <returns>Inactive ZoneType of the inactive tile of the given zone</returns>
+ZoneType Tilemap::GetInactiveZone(ZoneType zone_type)
+{
+	switch (zone_type)
+	{
+	case Green:
+		return Inactive_Green;
+
+	case Yellow:
+		return Inactive_Yellow;
+
+	case Orange:
+		return Inactive_Orange;
+
+	case Brown:
+		return Inactive_Brown;
+
+	case Purple:
+		return Inactive_Purple;
+
+	case Red:
+		return Inactive_Red;
+
+	case Blue:
+		return Inactive_Blue;
+
+	default:
+		return zone_type;
+	}
+}
+
+/// <summary>
 /// Checks if the given tile position is within the tilemap
 /// </summary>
 /// <param name="tile_pos">Vector 3 position of the tile position</param>
@@ -247,6 +365,97 @@ bool Tilemap::IsAreaValid(Vector3 start, int _size)
 		}
 	}
 	return true;
+}
+
+/// <summary>
+/// Checks if there is a road in a 3 tile radius around the tilePos
+/// </summary>
+/// <param name="tile_pos">Position of tile to be checked</param>
+/// <returns>True if there is a road, False if there is no road</returns>
+bool Tilemap::IsRoadNearby(Vector3 tile_pos)
+{
+	for (int x = -3; x <= 3; x++)
+	{
+		for (int z = -3; z <= 3; z++)
+		{
+			if (IsPosValid(Vector3(tile_pos.x + x, 0, tile_pos.z + z)))
+			{
+				if (tilemap[tile_pos.x + x][tile_pos.z + z]->GetZoneType() == Road)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+/// <summary>
+/// Activates the tiles in a 3 tile radius around the tile pos
+/// </summary>
+/// <param name="tile_pos">Vector3 tile position</param>
+void Tilemap::ActivateNearbyTile(Vector3 tile_pos)
+{
+	for (int x = -3; x <= 3; x++)
+	{
+		for (int z = -3; z <= 3; z++)
+		{
+			if (IsPosValid(Vector3(tile_pos.x + x, 0, tile_pos.z + z)))
+			{
+				ZoneType zone_type = GetActiveZone(tilemap[tile_pos.x + x][tile_pos.z + z]->GetZoneType());
+				switch (zone_type)
+				{
+				case Green:
+				case Yellow:
+				case Orange:
+				case Brown:
+				case Purple:
+				case Red:
+				case Blue:
+					// Activate this tile
+					SetTile(Vector3(tile_pos.x + x, 0, tile_pos.z + z), zone_type);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+	}
+}
+
+/// <summary>
+/// Deactivates the tiles in a 3 tile radius around the tile pos
+/// </summary>
+/// <param name="tile_pos">Vector3 tile position</param>
+void Tilemap::DeactivateNearbyTile(Vector3 tile_pos)
+{
+	for (int x = -3; x <= 3; x++)
+	{
+		for (int z = -3; z <= 3; z++)
+		{
+			if (IsPosValid(Vector3(tile_pos.x + x, 0, tile_pos.z + z)))
+			{
+				ZoneType zone_type = GetInactiveZone(tilemap[tile_pos.x + x][tile_pos.z + z]->GetZoneType());
+				switch (zone_type)
+				{
+				case Inactive_Green:
+				case Inactive_Yellow:
+				case Inactive_Orange:
+				case Inactive_Brown:
+				case Inactive_Purple:
+				case Inactive_Red:
+				case Inactive_Blue:
+					// Deactivate this tile
+					SetTile(Vector3(tile_pos.x + x, 0, tile_pos.z + z), zone_type);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+	}
 }
 
 /// <summary>

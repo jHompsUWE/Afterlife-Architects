@@ -51,8 +51,7 @@ void PreviewQuad::ChangePreviewQuadColor(ZoneType zone_type)
 		SetColor(Color(0.5, 0.5, 1, 0.5));
 		break;
 
-	case Void:
-	case Structure:
+	default:
 		SetColor(Color(1, 1, 1, 0.5));
 		break;
 	}
