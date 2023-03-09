@@ -21,8 +21,11 @@ public:
 protected:
 
 private:
+	Vector3 ClampMouseToAxis(Vector3 start, Vector3 end);
+
 	void TryCreateHouse();
-	void CreateStructure(StructureType structure_type);
+	void StartCreateStructure(StructureType structure_type);
+	void PlaceSelectedStructure();
 
 	std::shared_ptr<Vector3> mouse_world_pos;
 	ID3D11Device* d11_device = nullptr;

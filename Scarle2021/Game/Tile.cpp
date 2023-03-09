@@ -121,5 +121,8 @@ std::string Tile::GetTextureOfType(ZoneType type)
 
 	case Vibe:
 		return "Tile_Vibes";
+
+	case Road:
+		return "Tile_Rock";
 	}
 }
