@@ -5,6 +5,7 @@
 //TODO::REMOVE THIS
 #include <random>
 
+#include "MapAssembler.h"
 #include "PerlinNoise.h"
 
 GameOver::GameOver()
@@ -128,7 +129,7 @@ bool GameOver::init()
     std::cout << std::endl;
     
     //Random num gen test
-    const int seed = 897;
+    int seed = 897;
     std::mt19937_64 rng(seed);
 
     //Number distribution?
@@ -137,6 +138,36 @@ bool GameOver::init()
     for(int i = 0; i < 10; i++) {
         const int random_num = range(rng);
         std::cout << random_num << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    //Random num gen test
+    seed = 34699753579;
+    std::mt19937_64 prng(seed);
+
+    for(int i = 0; i < 10; i++) {
+        const int random_num = range(prng);
+        std::cout << random_num << std::endl;
+    }
+
+    std::mt19937_64 ses(std::rand());
+    
+    auto noise_map = MapAssembler::GenerateNoiseMap(100, 100, ses, 5, 1.7f, 0.8f, 3.f, Vector2{0,0});
+
+    for (auto vec : noise_map)
+    {
+        for (auto point : vec)
+        {
+            char c = ' ';
+            if (point > 0.8) c = '@';
+            // else if (point > 0.6) c = '#';
+            // else if (point > 0.4) c = 'x';
+            // else if (point > 0.2) c = '-';
+            //else c = '/';
+            std::cout << c;
+        }
+        std::cout << std::endl;
     }
     
     return true;
