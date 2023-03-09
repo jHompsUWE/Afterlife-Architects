@@ -301,7 +301,10 @@
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
     </ClInclude>
     <ClInclude Include="KaraStationWindow.h">
-      <Filter>Base\Header Files</Filter>
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="TopiasWinowUI.h">
+      <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -453,7 +456,10 @@
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
     </ClCompile>
     <ClCompile Include="KaraStationWindow.cpp">
-      <Filter>Base\Source Files</Filter>
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="TopiasWinowUI.cpp">
+      <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

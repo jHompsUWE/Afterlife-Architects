@@ -217,6 +217,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="TileNode.h" />
+    <ClInclude Include="TopiasWindowUI.h" />
     <ClInclude Include="TPSCamera.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
@@ -352,6 +353,7 @@
     <ClCompile Include="TextGO2D.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="TopiasWinowUI.cpp" />
     <ClCompile Include="TPSCamera.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />

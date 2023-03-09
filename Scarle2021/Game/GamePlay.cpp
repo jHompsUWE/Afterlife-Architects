@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "GamePlay.h"
 
-#include "UIPanel.h"
 
 GamePlay::GamePlay()
 = default;
@@ -11,6 +10,8 @@ GamePlay::~GamePlay()
     delete ui_frame;
     delete window_one_gate;
     delete advisor_window;
+    delete window_two_kara_station;
+    delete Window_three_topias;
 }
 
 bool GamePlay::init()
@@ -24,9 +25,14 @@ bool GamePlay::init()
     main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1));
     
     //advisor
-    advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::
+        GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
     //karma station
-    window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
+    window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
+    //topias
+    Window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
@@ -67,8 +73,11 @@ void GamePlay::Update(GameData* game_data)
     main_panel->update(game_data,mouse_pos);
     //update advisor
     advisor_window->update(game_data,mouse_pos);
-
+    
+    //karma station
     window_two_kara_station->update(game_data,mouse_pos);
+    //Topais
+    Window_three_topias->update(game_data,mouse_pos);
 
     adv_man->Update(game_data);
 
@@ -143,6 +152,8 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     }
     //karma station
     window_two_kara_station->render(draw_data2D);
+    //Topias
+    Window_three_topias->render(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -182,5 +193,6 @@ void GamePlay::ResizeUI()
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
     window_two_kara_station->reSize(screen_size);
+    Window_three_topias->reSize(screen_size);
 }
 
