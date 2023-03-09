@@ -190,6 +190,7 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="StructureGate.h" />
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
@@ -209,6 +210,8 @@
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
     <ClInclude Include="StructureSprite.h" />
+    <ClInclude Include="StructureTopia.h" />
+    <ClInclude Include="StructureTrainingCenter.h" />
     <ClInclude Include="StructureType.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TestSound.h" />
@@ -253,6 +256,7 @@
     <ClCompile Include="GameObject2D.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="StructureGate.cpp" />
     <ClCompile Include="GPGO.cpp" />
     <ClCompile Include="ImageGO2D.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
@@ -272,6 +276,8 @@
     <ClCompile Include="Raycast.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StructureSprite.cpp" />
+    <ClCompile Include="StructureTopia.cpp" />
+    <ClCompile Include="StructureTrainingCenter.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TestSound.cpp" />
     <ClCompile Include="TextGO2D.cpp" />

@@ -18,6 +18,20 @@ BuildingManager::~BuildingManager()
 {
 }
 
+void BuildingManager::Tick(GameData* game_data)
+{
+	for (auto& x : structure_map)
+	{
+		for (auto& y : x)
+		{
+			if (y)
+			{
+				y->TickStructure(game_data);
+			}
+		}
+	}
+}
+
 void BuildingManager::Draw(DrawData* _DD)
 {
 	for (auto& x : structure_map)
@@ -85,7 +99,7 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 	}
 
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
-	structure_map[tile_position.x][tile_position.z] = 
+	structure_map[tile_position.x][tile_position.z] =
 		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position + start, 1, texture);
 	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
@@ -157,29 +171,39 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 {
 	// height value is calculated by dividing the texture height with witdh
 	float height = 0;
-	std::string texture;
 	int size = GetSizeOfStructure(structure_type);
+	std::string texture;
 
 	switch (structure_type)
 	{
 	case Gate:
 		height = 90.0f / 95.0f;
 		texture = "Gate_T1_Heaven_3x3";
+
+		// Create StructureGate derived from StructureSprite base class
+		structure_map[tile_position.x][tile_position.z] =
+			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
 		break;
 
 	case Topia:
 		height = 138.0f / 128.0f;
 		texture = "Topias_T1_Heaven_4x4";
+
+		// Create StructureTopia derived from StructureSprite base class
+		structure_map[tile_position.x][tile_position.z] =
+			std::make_unique<StructureTopia>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
 		break;
 
 	case TrainingCenter:
 		height = 102.0f / 95.0f;
 		texture = "TC_T1_Heaven_3x3";
+
+		// Create StructureTrainingCenter derived from StructureSprite base class
+		structure_map[tile_position.x][tile_position.z] =
+			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
 		break;
 	}
 
-	structure_map[tile_position.x][tile_position.z] = 
-		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
 	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 

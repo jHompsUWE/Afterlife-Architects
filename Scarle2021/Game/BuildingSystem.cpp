@@ -22,6 +22,9 @@ BuildingSystem::~BuildingSystem()
 
 void BuildingSystem::Tick(GameData* game_data)
 {
+    building_manager->Tick(game_data);
+
+    // TEMPORARY mouse stuff
     if (game_data->mouse_state.leftButton)
     {
         if (!mouse_pressed)

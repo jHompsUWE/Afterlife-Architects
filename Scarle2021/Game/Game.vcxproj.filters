@@ -97,6 +97,9 @@
     <Filter Include="GameObjects\AfterlifeGOs\Vibe">
       <UniqueIdentifier>{c1ecafa7-560c-45ee-addd-65e3da54a2a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Building System\Structure">
+      <UniqueIdentifier>{411baae6-c812-449c-9469-c2b64bfd03af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -300,6 +303,15 @@
     <ClInclude Include="VibeTile.h">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
     </ClInclude>
+    <ClInclude Include="StructureGate.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureTopia.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureTrainingCenter.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -448,6 +460,15 @@
     </ClCompile>
     <ClCompile Include="VibeTile.cpp">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureGate.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureTopia.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureTrainingCenter.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

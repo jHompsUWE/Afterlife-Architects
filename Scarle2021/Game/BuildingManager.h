@@ -6,12 +6,17 @@
 #include "ZoneType.h"
 #include "StructureType.h"
 
+#include "StructureGate.h"
+#include "StructureTopia.h"
+#include "StructureTrainingCenter.h"
+
 class BuildingManager
 {
 public:
 	BuildingManager(ID3D11Device* GD, int _size, Vector3 _start);
 	~BuildingManager();
 
+	void Tick(GameData* game_data);
 	void Draw(DrawData* _DD);
 
 	void Create1x1House(ZoneType zone_type, Vector3 tile_position);
