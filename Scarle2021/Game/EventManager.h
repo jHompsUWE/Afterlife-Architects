@@ -25,6 +25,8 @@ enum AfterlifeEvent
 	input_P,
 	input_R,
 	input_L,
+	input_M,
+	input_N,
 	input_right,
 	game_resized,
 	enter_main_menu,
