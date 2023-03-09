@@ -122,7 +122,7 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     text[0]->SetScale(Vector2(0.5,0.5));
     text[0]->SetColour(Color((float*)&Colors::Green));
 
-    text.push_back(new TextGO2D("Credits" + std::to_string(EconomyManager::GetCurrency())));
+    text.push_back(new TextGO2D("Credits: " + std::to_string(EconomyManager::GetCurrency())));
     text[1]->SetPos(Vector2(30,60));
     text[1]->SetScale(Vector2(0.5,0.5));
     text[1]->SetColour(Color((float*)&Colors::Green));
