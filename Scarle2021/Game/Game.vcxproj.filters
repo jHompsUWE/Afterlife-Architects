@@ -97,6 +97,9 @@
     <Filter Include="GameObjects\AfterlifeGOs\Vibe">
       <UniqueIdentifier>{c1ecafa7-560c-45ee-addd-65e3da54a2a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\WorldGen">
+      <UniqueIdentifier>{f2e63d2e-da66-4198-9fc6-b866dc5b5a87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -299,6 +302,12 @@
     </ClInclude>
     <ClInclude Include="VibeTile.h">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+    </ClInclude>
+    <ClInclude Include="AssembleNoiseMap.h">
+      <Filter>Afterlife\WorldGen</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoise.h">
+      <Filter>Afterlife\WorldGen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

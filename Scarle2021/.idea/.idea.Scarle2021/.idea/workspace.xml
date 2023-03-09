@@ -10,56 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/adl_serializer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/byte_container_with_subtype.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/abi_macros.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/conversions/from_json.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/conversions/to_chars.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/conversions/to_json.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/exceptions.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/hash.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/binary_reader.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/input_adapters.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/json_sax.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/lexer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/parser.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/input/position_t.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/internal_iterator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/iter_impl.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/iteration_proxy.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/iterator_traits.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/json_reverse_iterator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/iterators/primitive_iterator.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/json_pointer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/json_ref.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/macro_scope.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/macro_unscope.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/call_std/begin.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/call_std/end.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/cpp_future.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/detected.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/identity_tag.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/is_sax.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/std_fs.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/type_traits.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/meta/void_t.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/output/binary_writer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/output/output_adapters.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/output/serializer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/string_concat.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/string_escape.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/detail/value_t.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/json.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/json_fwd.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/ordered_map.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/thirdparty/hedley/hedley.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/include/nlohmann/thirdparty/hedley/hedley_undef.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json/single_include/nlohmann/json.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/MapAssembler.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Game/PerlinNoise.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Direct3D_Win32/Direct3D_Win32.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Direct3D_Win32/Direct3D_Win32.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Afterlife.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,6 +174,8 @@
       <workItem from="1677755533991" duration="6819000" />
       <workItem from="1677786980173" duration="3268000" />
       <workItem from="1678115269135" duration="1033000" />
+      <workItem from="1678352001923" duration="4168000" />
+      <workItem from="1678359879309" duration="1135000" />
     </task>
     <servers />
   </component>

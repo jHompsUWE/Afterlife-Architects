@@ -190,6 +190,7 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="MapAssembler.h" />
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
+    <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreviewQuad.h" />
     <ClInclude Include="Raycast.h" />

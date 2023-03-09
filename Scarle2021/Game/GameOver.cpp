@@ -2,6 +2,11 @@
 #include "GameOver.h"
 #include "AStarPathfinding.h"
 
+//TODO::REMOVE THIS
+#include <random>
+
+#include "PerlinNoise.h"
+
 GameOver::GameOver()
 = default;
 
@@ -82,6 +87,56 @@ bool GameOver::init()
     else
     {
         std::cout << "pathfinding is not possible in this current map iteration" << std::endl;
+    }
+
+    //Map gen test iteration
+
+    // Generate Perlin noise at sample points
+    for (float y = 0; y < 10; y += 0.1)
+    {
+        for (float x = 0; x < 10; x += 0.1)
+        {
+            float noise = 0;
+            float amplitude = 1;
+            float frequency = 1;
+            float persistence = 0.5;
+            float total_amplitude = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                noise += amplitude * PerlinNoise::GenerateNoise(x * frequency, y * frequency);
+                total_amplitude += amplitude;
+                amplitude *= persistence;
+                frequency *= 2;
+            }
+
+            float result = noise / total_amplitude;
+
+            // Do something with noise value
+
+            //Makes a console representation of the noise
+            char c = ' ';
+            if (result > 0.8) c = '@';
+            else if (result > 0.6) c = '#';
+            else if (result > 0.4) c = 'x';
+            else if (result > 0.2) c = '-';
+            std::cout << c;
+        }
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+    
+    //Random num gen test
+    const int seed = 897;
+    std::mt19937_64 rng(seed);
+
+    //Number distribution?
+    std::uniform_int_distribution<int> range(1,100);
+
+    for(int i = 0; i < 10; i++) {
+        const int random_num = range(rng);
+        std::cout << random_num << std::endl;
     }
     
     return true;
