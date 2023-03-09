@@ -127,7 +127,7 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     main_panel->render(draw_data2D);
 
     //render advisor
-    //advisor_window->render(draw_data2D);
+    advisor_window->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)

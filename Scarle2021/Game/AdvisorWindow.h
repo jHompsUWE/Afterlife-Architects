@@ -1,5 +1,6 @@
 #pragma once
 #include "UIWindow.h"
+
 class AdvisorWindow
 {
 public:
@@ -18,6 +19,7 @@ public:
     void set_text(string new_string);
     void set_aria_image(string filename);
     void set_jasper_image(string filename);
+    void set_option_box(int box_num, int indicator, string title);
 	
     Vector2& getPosition();
     Vector2& getButtonRes();
@@ -39,6 +41,10 @@ private:
     std::vector<TextGO2D*> text_vec;
     std::vector<ImageGO2D*> image_vec_ar;
     std::vector<ImageGO2D*> image_vec_ja;
+    std::vector<ImageGO2D*> indicators_ar;
+    std::vector<ImageGO2D*> indicators_ja;
+    bool show_ind_ar[5];
+    bool show_ind_ja[5];
  
     //vectors
     Vector2 window_res {0,0};

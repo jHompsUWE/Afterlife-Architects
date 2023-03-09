@@ -352,6 +352,10 @@
   <ItemGroup>
     <ImageContentTask Include="ButtonAdvisor.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Afterlife\Advisors\adv_heaven.png" />
+    <ImageContentTask Include="Afterlife\Advisors\adv_hell.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

@@ -22,26 +22,26 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
     window_pos = _windowPosition;
     windowBackGround->SetPos(window_pos);
     
-    //window buttons.....................
-    buttons.push_back(new Button(Vector2(window_pos.x+66,window_pos.y+158),
-        DataManager::GetD3DDevice(),"ButtonAdvisor",
-        window_9_gate,Vector2(0.225,0.25)));
-    
-    buttons.push_back(new Button(Vector2(window_pos.x+66,window_pos.y+172),
-        DataManager::GetD3DDevice(),"ButtonAdvisor",
-        window_9_gate,Vector2(0.225,0.25)));
-    //window buttons.....................
-    buttons.push_back(new Button(Vector2(window_pos.x+66,window_pos.y+187),
-        DataManager::GetD3DDevice(),"ButtonAdvisor",
-        window_9_gate,Vector2(0.225,0.25)));
-    
-    buttons.push_back(new Button(Vector2(window_pos.x+66,window_pos.y+202),
-        DataManager::GetD3DDevice(),"ButtonAdvisor",
-        window_9_gate,Vector2(0.225,0.25)));
-    
-    buttons.push_back(new Button(Vector2(window_pos.x+66,window_pos.y+217),
-        DataManager::GetD3DDevice(),"ButtonAdvisor",
-        window_9_gate,Vector2(0.225,0.25)));
+    // ---------------CHANGE EACH BUTTON EVENT TO NEW EVENT CALLED ADVISOR BUTTON 1,2,3,4,5-------------------
+
+    // Window Buttons and Texts
+    for (int i = 0; i < 5; i++)
+    {
+        buttons.push_back(new Button(Vector2(window_pos.x + 66, window_pos.y + 158 + (i*15)),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            window_9_gate, Vector2(0.225, 0.25)));
+
+        indicators_ar.push_back(new ImageGO2D("adv_heaven", DataManager::GetD3DDevice()));
+        indicators_ar[i]->SetPos(Vector2(window_pos.x + 26, window_pos.y + 158 + (i*15)));
+        indicators_ar[i]->SetScale(Vector2(1,1));
+        indicators_ja.push_back(new ImageGO2D("adv_hell", DataManager::GetD3DDevice()));
+        indicators_ja[i]->SetPos(Vector2(window_pos.x + 106, window_pos.y + 158 + (i*15)));
+        indicators_ja[i]->SetScale(Vector2(1,1));
+
+        text_vec.push_back(new TextGO2D("Box"));
+        text_vec[i]->SetPos(Vector2(window_pos.x + 46, window_pos.y + 148 + (i*15)));
+        text_vec[i]->SetScale(Vector2(0.3, 0.3));
+    }
 
     //image vector
     for (int i = 0; i < 13; i++)
@@ -57,9 +57,9 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
         image_vec_ja[j]->SetScale(Vector2(1, 1));
     }
     //text vector
-    text_vec.push_back(new TextGO2D("ok what the hell do i write here"));
-    text_vec[0]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));
-    text_vec[0]->SetScale(Vector2(0.3,0.3));
+    text_vec.push_back(new TextGO2D("press num pad 8 for temporary dialogue"));
+    text_vec[5]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));
+    text_vec[5]->SetScale(Vector2(0.3,0.3));
 }
 AdvisorWindow::~AdvisorWindow()
 {
@@ -102,6 +102,14 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
     for (auto image_ja : image_vec_ja)
     {
         image_ja->Tick(_gameData);      
+    }
+    for (auto ind_ar : indicators_ar)
+    {
+        ind_ar->Tick(_gameData);      
+    }
+    for (auto ind_ja : indicators_ja)
+    {
+        ind_ja->Tick(_gameData);      
     }
 
     //updates image
@@ -165,6 +173,16 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
             Vector2 const button_pos = image->GetPos();
             image->SetPos(button_pos - offset);
         }
+        for (auto& image : indicators_ar)
+        {
+            Vector2 const button_pos = image->GetPos();
+            image->SetPos(button_pos - offset);
+        }
+        for (auto& image : indicators_ja)
+        {
+            Vector2 const button_pos = image->GetPos();
+            image->SetPos(button_pos - offset);
+        }
         //text pos
         for (auto& text : text_vec)
         {
@@ -179,17 +197,18 @@ void AdvisorWindow::render(DrawData2D* _drawData)
 {
     windowBackGround->Draw(_drawData);
     
-    //renders buttons
+    // Renders buttons
     for (const auto& button : buttons)
     {
         button->render(_drawData);
     }
-    // renders texts
+    // Renders texts
     for (const auto& text : text_vec)
     {
         text->Draw(_drawData);
     }
     
+    // Render Images
     for (int i = 0; i < 13; i++)
     {
         if (i == pointed_image_ar)
@@ -197,7 +216,6 @@ void AdvisorWindow::render(DrawData2D* _drawData)
             image_vec_ar[i]->Draw(_drawData);
         }
     }
-
     for (int j = 0; j < 12; j++)
     {
         if (j == pointed_image_ja)
@@ -205,10 +223,16 @@ void AdvisorWindow::render(DrawData2D* _drawData)
             image_vec_ja[j]->Draw(_drawData);
         }
     }
-
-    for (auto text : text_vec)
+    for (int k = 0; k < 5; k++)
     {
-        text->Draw(_drawData);       
+        if (show_ind_ar[k])
+        {
+            indicators_ar[k]->Draw(_drawData);
+        }
+        if (show_ind_ja[k])
+        {
+            indicators_ja[k]->Draw(_drawData);
+        }
     }
 }
 
@@ -255,6 +279,14 @@ void AdvisorWindow::reSize(Vector2 game_res)
     {
         image->ReSize(game_res.x, game_res.y);
     }
+    for (auto image : indicators_ar)
+    {
+        image->ReSize(game_res.x, game_res.y);
+    }
+    for (auto image : indicators_ja)
+    {
+        image->ReSize(game_res.x, game_res.y);
+    }
     for (auto text : text_vec)
     {
         text->ReSize(game_res.x, game_res.y);
@@ -295,5 +327,29 @@ void AdvisorWindow::set_jasper_image(string filename)
 
 void AdvisorWindow::set_text(string new_string)
 {
-    text_vec[0]->ChangeString(new_string);
+    text_vec[5]->ChangeString(new_string);
+}
+
+void AdvisorWindow::set_option_box(int box_num, int indicator, string title)
+{
+    text_vec[box_num]->ChangeString(title);
+    switch (indicator)
+    {
+    case 0:
+        show_ind_ar[box_num] = true;
+        show_ind_ja[box_num] = false;
+        break;
+    case 1:
+        show_ind_ar[box_num] = false;
+        show_ind_ja[box_num] = true;
+        break;
+    case 2:
+        show_ind_ar[box_num] = true;
+        show_ind_ja[box_num] = true;
+        break;
+    case 3:
+        show_ind_ar[box_num] = false;
+        show_ind_ja[box_num] = false;
+        break;
+    }
 }

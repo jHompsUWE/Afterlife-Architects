@@ -428,6 +428,12 @@
     <ImageContentTask Include="ButtonAdvisor.png">
       <Filter>AfterLifeUI</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Advisors\adv_heaven.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Afterlife\Advisors\adv_hell.png">
+      <Filter>AfterLifeUI</Filter>
+    </ImageContentTask>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tiles">
