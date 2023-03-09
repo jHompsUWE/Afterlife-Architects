@@ -17,6 +17,7 @@
 #include "BuildingSystem.h"
 #include "Raycast.h"
 #include "TopiasWindowUI.h"
+#include "TrainCentersWindow.h"
 
 class GPGO;
 
@@ -67,7 +68,8 @@ private:
     UIWindow* window_one_gate;
     KaraStationWindow* window_two_kara_station;
     AdvisorWindow* advisor_window;
-    TopiasWindowUI* Window_three_topias;
+    TopiasWindowUI* window_three_topias;
+    TrainCentersWindow* window_four_training_centers_window;
 
     bool window_one_open = false;
 

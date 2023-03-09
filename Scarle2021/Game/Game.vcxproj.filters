@@ -303,7 +303,10 @@
     <ClInclude Include="KaraStationWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
-    <ClInclude Include="TopiasWinowUI.h">
+    <ClInclude Include="TopiasWindowUI.h">
+      <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrainCentersWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
   </ItemGroup>
@@ -459,6 +462,9 @@
       <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="TopiasWinowUI.cpp">
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="TrainCentersWindow.cpp">
       <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
   </ItemGroup>

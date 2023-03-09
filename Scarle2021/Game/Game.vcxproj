@@ -219,6 +219,7 @@
     <ClInclude Include="TileNode.h" />
     <ClInclude Include="TopiasWindowUI.h" />
     <ClInclude Include="TPSCamera.h" />
+    <ClInclude Include="TrainCentersWindow.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
     <ClInclude Include="UIButtonInterFace.h" />
@@ -355,6 +356,7 @@
     <ClCompile Include="Tilemap.cpp" />
     <ClCompile Include="TopiasWinowUI.cpp" />
     <ClCompile Include="TPSCamera.cpp" />
+    <ClCompile Include="TrainCentersWindow.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />
     <ClCompile Include="UIPanel.cpp" />

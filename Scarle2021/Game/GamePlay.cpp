@@ -11,7 +11,8 @@ GamePlay::~GamePlay()
     delete window_one_gate;
     delete advisor_window;
     delete window_two_kara_station;
-    delete Window_three_topias;
+    delete window_three_topias;
+    delete window_four_training_centers_window;
 }
 
 bool GamePlay::init()
@@ -31,7 +32,10 @@ bool GamePlay::init()
     window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //topias
-    Window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
+    window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
+    //training center
+    window_four_training_centers_window = new TrainCentersWindow(Vector2(0,70),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
@@ -67,17 +71,20 @@ void GamePlay::Update(GameData* game_data)
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
 
     //update window
-    window_one_gate->update(game_data,mouse_pos);
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
+    //gates
+    window_one_gate->update(game_data,mouse_pos);
     //update advisor
     advisor_window->update(game_data,mouse_pos);
-    
     //karma station
     window_two_kara_station->update(game_data,mouse_pos);
     //Topais
-    Window_three_topias->update(game_data,mouse_pos);
+    window_three_topias->update(game_data,mouse_pos);
+    //training centre
+    window_four_training_centers_window->update(game_data,mouse_pos);
+    
 
     adv_man->Update(game_data);
 
@@ -148,12 +155,13 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     {
         //render window
         window_one_gate->render(draw_data2D);
-        
     }
     //karma station
     window_two_kara_station->render(draw_data2D);
     //Topias
-    Window_three_topias->render(draw_data2D);
+    window_three_topias->render(draw_data2D);
+    //training centre
+    window_four_training_centers_window->render(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -193,6 +201,7 @@ void GamePlay::ResizeUI()
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
     window_two_kara_station->reSize(screen_size);
-    Window_three_topias->reSize(screen_size);
+    window_three_topias->reSize(screen_size);
+    window_four_training_centers_window->reSize(screen_size);
 }
 
