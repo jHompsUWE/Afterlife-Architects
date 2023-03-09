@@ -1,35 +1,58 @@
 #pragma once
+#include <chrono>
 
 class EconomyManager
 {
 public:
-	EconomyManager();
-	~EconomyManager();
+	static EconomyManager& Get();
 
-	void UpdateCurrency();
-	void UpdateSouls();
+	static void UpdateCurrency();
+	static void UpdateSouls();
 
-	float GetCurrency();
-	void SetCurrency(float _currency);
+	static int GetYear();
 
-	float GetPassiveIncome();
-	void SetPassiveIncome(float _passive_income);
-	float GetPassiveTax();
-	void SetPassiveTax(float _passive_tax);
+	static int GetCurrency();
+	static void SetCurrency(float _currency);
 
-	float GetPassiveIncomeMultiplier();
-	void SetPassiveIncomeMultiplier(float _income_multiplier);
-	float GetPassiveTaxMultiplier();
-	void SetPassiveTaxMultiplier(float _tax_multiplier);
+	static int GetSouls();
+	static void SetSouls(int _souls);
+
+	static float GetTax();
+	static void SetTax(float _tax);
+
+
 
 private:
-	float currency = 1000.0f;
+	EconomyManager() = default;
+	~EconomyManager() = default;
 
-	float passive_income = 0.0f;
-	float passive_tax = 0.0f;
+	void IUpdateCurrency();
+	void IUpdateSouls();
 
-	float passive_income_multiplier = 1.0f;
-	float passive_tax_multiplier = 1.0f;
+	int IGetYear();
+
+	int IGetCurrency();
+	void ISetCurrency(float _currency);
+
+	int IGetSouls();
+	void ISetSouls(int _souls_total);
+
+	float IGetTax();
+	void ISetTax(float _tax);
+
+	//float IGetSoulRateMultiplier();
+	//void ISetSoulRateMultiplier(float _soul_rate_multiplier);
+	//float IGetPassiveTaxMultiplier();
+	//void ISetPassiveTaxMultiplier(float _tax_multiplier);
+
+	int year = 1;
+	int currency = 1000;
+
+	float soul_rate = 0.0f;
+	float tax = 0.0f;
+
+	float soul_rate_multiplier = 1.0f;
+	float tax_multiplier = 1.0f;
 
 
 	int souls_heaven_green = 0;
@@ -49,5 +72,7 @@ private:
 	int souls_hell_blue = 0;
 
 	int souls_total = 0;
+
+	std::chrono::time_point<std::chrono::steady_clock> previous_time = std::chrono::steady_clock::now();;
 };
 

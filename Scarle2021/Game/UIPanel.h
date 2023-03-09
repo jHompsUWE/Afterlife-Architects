@@ -7,6 +7,7 @@
 #include "UIButtonInterFace.h"
 #include "Button.h"
 #include "DataManager.h"
+#include "EconomyManager.h"
 
 
 class UIPanel
@@ -47,7 +48,7 @@ private:
     Vector2 old_mouse_pos_panel {0,0};
 
     bool toggle_click_panel = false;
-    float year = 0;
-    int credits = 0;
+    //float year = 0;
+    //int credits = 0;
 };
 

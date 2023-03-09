@@ -42,8 +42,6 @@ bool GamePlay::init()
     adv_man = std::make_unique<AdvisorManager>();
     adv_man->init(advisor_window);
 
-    economy_manager = new EconomyManager();
-
     return true;
 }
 
@@ -67,8 +65,7 @@ void GamePlay::Update(GameData* game_data)
     advisor_window->update(game_data,mouse_pos);
 
     adv_man->Update(game_data);
-
-    economy_manager->UpdateCurrency();
+    EconomyManager::UpdateCurrency();
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)

@@ -117,12 +117,12 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     
     //UI Text Vector
 
-    text.push_back(new TextGO2D("Year: " + std::to_string(year)));
+    text.push_back(new TextGO2D("Year: " + std::to_string(EconomyManager::GetYear())));
     text[0]->SetPos(Vector2(30,35));
     text[0]->SetScale(Vector2(0.5,0.5));
     text[0]->SetColour(Color((float*)&Colors::Green));
 
-    text.push_back(new TextGO2D("Credits" + credits));
+    text.push_back(new TextGO2D("Credits" + std::to_string(EconomyManager::GetCurrency())));
     text[1]->SetPos(Vector2(30,60));
     text[1]->SetScale(Vector2(0.5,0.5));
     text[1]->SetColour(Color((float*)&Colors::Green));
@@ -150,10 +150,12 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
     //updates buttons
 
     //converts float to string to int
-    text[0]->ChangeString("Year: " +std::to_string((int)year));
+    text[0]->ChangeString("Year: " +std::to_string((int)EconomyManager::GetYear()));
     
     //timer for years
-    year = year + 0.016f;
+    // 
+    //year = year + 0.016f;
+    // 
     //credits = credits + EconomyManager::GetCurrency();
     
     for (auto& button : buttons)

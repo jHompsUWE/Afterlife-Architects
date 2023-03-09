@@ -60,7 +60,5 @@ private:
     bool window_one_open = false;
 
     std::unique_ptr<AdvisorManager> adv_man = nullptr;
-
-    EconomyManager* economy_manager;
 };
 
