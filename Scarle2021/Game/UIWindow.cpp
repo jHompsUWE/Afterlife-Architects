@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "UIWindow.h"
 #include <iostream>
-#include "DataManager.h"
+
 
 UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     std::string _text, std::string _filepath,Vector2 _setScale)
@@ -96,7 +96,10 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     window_pos = _windowPosition - window_res/2;
     windowBackGround->SetPos(window_pos);
 }
-
+UIWindow::UIWindow()
+{
+    
+}
 UIWindow::~UIWindow()
 {
     //deletes pointers

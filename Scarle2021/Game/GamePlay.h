@@ -5,13 +5,20 @@
 #include "AdvisorManager.h"
 #include "TextGO2D.h"
 #include "GPGO.h"
+//UI systems
 #include "UIPanel.h"
 #include "UIWindow.h"
+#include "SoulViewWindow.h"
+#include "KaraStationWindow.h"
+#include "TopiasWindowUI.h"
+//
 #include "EconomyManager.h"
 
 // Building System
 #include "BuildingSystem.h"
 #include "Raycast.h"
+#include "TopiasWindowUI.h"
+#include "TrainCentersWindow.h"
 
 class GPGO;
 
@@ -52,10 +59,19 @@ private:
     Vector3 mouse_screen_pos;
     std::shared_ptr<Vector3> mouse_world_pos;
 
+    //ui Boarder
     ImageGO2D* ui_frame;
-    UIWindow* window_one;
+    
+    //main build panel
     UIPanel* main_panel;
+    
+    // UI windows
+    UIWindow* window_one_gate;
+    KaraStationWindow* window_two_kara_station;
     AdvisorWindow* advisor_window;
+    TopiasWindowUI* window_three_topias;
+    TrainCentersWindow* window_four_training_centers_window;
+    SoulViewWindow* soul_view;
 
     bool window_one_open = false;
 

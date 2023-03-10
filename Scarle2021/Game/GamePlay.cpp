@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "GamePlay.h"
 
-#include "UIPanel.h"
 
 GamePlay::GamePlay()
 = default;
@@ -9,21 +8,37 @@ GamePlay::GamePlay()
 GamePlay::~GamePlay()
 {
     delete ui_frame;
-    delete window_one;
+    delete window_one_gate;
     delete advisor_window;
+    delete window_two_kara_station;
+    delete window_three_topias;
+    delete window_four_training_centers_window;
 }
 
 bool GamePlay::init()
 {
     // window init
-    window_one = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+    window_one_gate = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
         .second*0.5),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     //build panel
     main_panel = new UIPanel(Vector2(0,30),DataManager::GetD3DDevice(),"UIPanel",Vector2(1,1));
     
     //advisor
-    advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::
+        GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    //advisor
+    soul_view = new SoulViewWindow(Vector2(400,120),DataManager::
+        GetD3DDevice(),"","SoulView",Vector2(1,1));
+    //karma station
+    window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
+    //topias
+    window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
+    //training center
+    window_four_training_centers_window = new TrainCentersWindow(Vector2(0,70),DataManager::
+        GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
     ui_frame = new ImageGO2D("UIFrame",DataManager::GetD3DDevice());
@@ -56,12 +71,22 @@ void GamePlay::Update(GameData* game_data)
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
 
     //update window
-    window_one->update(game_data,mouse_pos);
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
+    //gates
+    window_one_gate->update(game_data,mouse_pos);
     //update advisor
     advisor_window->update(game_data,mouse_pos);
+    //update soul view
+    soul_view->update(game_data,mouse_pos);
+    //karma station
+    window_two_kara_station->update(game_data,mouse_pos);
+    //Topais
+    window_three_topias->update(game_data,mouse_pos);
+    //training centre
+    window_four_training_centers_window->update(game_data,mouse_pos);
+    
 
     adv_man->Update(game_data);
     EconomyManager::UpdateCurrency();
@@ -108,6 +133,10 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
         case game_resized:
             ResizeUI();
             break;
+            /* TESTING SOUL GENERATION, DO NOT USE
+        case play_sound_theme1:
+            soul_view->generateRandSoul();
+            break;*/
 
         case input_right:
             DataManager::GetGD()->current_game_state = gs_game_over;
@@ -124,14 +153,23 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     main_panel->render(draw_data2D);
 
     //render advisor
-    //advisor_window->render(draw_data2D);
+    advisor_window->render(draw_data2D);
+
+    //render soul view
+    soul_view->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
     {
         //render window
-        //window_one->render(draw_data2D);
+        window_one_gate->render(draw_data2D);
     }
+    //karma station
+    window_two_kara_station->render(draw_data2D);
+    //Topias
+    window_three_topias->render(draw_data2D);
+    //training centre
+    window_four_training_centers_window->render(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)
@@ -167,8 +205,12 @@ void GamePlay::ResizeUI()
 {
     screen_size = Vector2(*DataManager::GetRES().first, *DataManager::GetRES().second);
     ui_frame->ReSize(screen_size.x, screen_size.y);
-    window_one->reSize(screen_size);
+    window_one_gate->reSize(screen_size);
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
+    soul_view->reSize(screen_size);
+    window_two_kara_station->reSize(screen_size);
+    window_three_topias->reSize(screen_size);
+    window_four_training_centers_window->reSize(screen_size);
 }
 

@@ -175,6 +175,18 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
             StartCreateStructure(TrainingCenter);
             break;
 
+        case input_L:
+            CreateStructure(KarmaPortal);
+            break;
+
+        case input_M:
+            CreateStructure(KarmaStation);
+            break;
+
+        case input_N:
+            CreateStructure(KarmaT);
+            break;
+
         case input_P:
             show_vibes = !show_vibes;
             break;

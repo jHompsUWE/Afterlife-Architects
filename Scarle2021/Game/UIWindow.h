@@ -4,6 +4,8 @@
 #include "ImageGO2D.h"
 #include "TextGO2D.h"
 #include "EventManager.h"
+#include "DataManager.h"
+
 
 class UIWindow
 {
@@ -13,6 +15,7 @@ public:
     
     UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _filepath,Vector2 _setScale);
+    UIWindow();
     ~UIWindow();
 
     void update(GameData* _gameData, Vector2& _mousePosition);
@@ -29,7 +32,7 @@ public:
 
     Vector2 getwindowRes() { return window_res; }
 
-private:
+protected:
 
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
