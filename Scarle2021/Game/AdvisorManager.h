@@ -14,6 +14,11 @@ enum Advisor
     Jasper, Aria
 };
 
+enum HeavenOrHell
+{
+    Heaven, Hell, Both, Neither
+};
+
 class AdvisorManager
 {
 public:
@@ -39,6 +44,11 @@ private:
     void TalkingJasper();
     void IdleAria();
     void TalkingAria();
+    
+    // Fault handling
+    void AddFault(int index);
+    void RemoveFault(int index);
+    void UpdateButtons();
 
     int GetCharIndex();
 
@@ -51,12 +61,13 @@ private:
     int dia_current_index = -1;
 
     // String for every dialogue
-    string dia_array_string[5] = {"First Dialogue","Second Dialogue","Third Dialogue","Fourth Dialogue","Fifth Dialogue"};
+    string dia_array_string[5] = {"Starting first issue box!","Continuing first issue!","Ending first issue","Second issue start!","Second issue end!"};
     // NOT POINTERS but instead directs the next dialogue index
     int dia_array_pointers[5] = { 1,2,3,4,-1 };
     // Dictates who is saying what
     Advisor dia_array_advisor[5] = { Jasper,Aria,Aria,Jasper,Aria };
 
+    // ----------------ANIMATION-----------------
     // All images for Jasper dialogue (CHARACTERS)
     string jasper_images[20] = { "JaA", "JaC", "JaE", "JaH", "JaM", "JaY" };
     // Index for what character is what image
@@ -66,10 +77,16 @@ private:
     string aria_images[20] = { "ArA", "ArE", "ArL", "ArM", "ArO", "ArS"};
     // Index for what character is what image
     int aria_img_pointers[26] = { 0 , 3 , 5 , 1 , 1 , 5 , 4 , 0 , 1 , 1 , 1 , 2 , 3 , 3 , 4 , 1 , 4 , 1 , 5 , 1 , 4 , 1 , 3 , 1 , 4 , 1 };
+    // ------------------------------------------
 
     int jasper_wing_timer = 1200;
     int jasper_blink_timer = 600;
     int aria_tongue_timer = 1800;
     int aria_blink_timer = 300;
+
+    vector<int> current_faults = { -1,-1,-1,-1,-1 };
+    vector<int> dialogue_starts = {0,3};
+    vector<string> dialogue_titles = {"Start","Another"};
+    vector<HeavenOrHell> dialogue_standpoints = {Both, Heaven};
 };
 

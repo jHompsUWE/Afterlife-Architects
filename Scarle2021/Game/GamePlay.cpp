@@ -17,7 +17,6 @@ GamePlay::~GamePlay()
 
 bool GamePlay::init()
 {
-    EventManager::GenerateEvent(play_sound_theme1);
     // window init
     window_one_gate = new UIWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
         .second*0.5),DataManager::GetD3DDevice(),"","Window",Vector2(0.5,0.5));

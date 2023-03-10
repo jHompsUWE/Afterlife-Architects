@@ -68,10 +68,19 @@ void AdvisorManager::GetEvents(list<AfterlifeEvent>& event_list)
     {
         switch (ev)
         {
+            // FUNCTIONS WITH CURRENT EVENT SYSTEM, CHANGE TO NEW IN MERGE
+            
         case dialogue_1:
             GenerateAdvise(0);
+            RemoveFault(0);
             break;
-
+        case play_sound_theme1:
+            AddFault(0);
+            break;
+        case play_sound_theme2:
+            AddFault(1);
+            break;
+            
         default:
             break;
         }
@@ -282,4 +291,81 @@ int AdvisorManager::GetCharIndex()
     char_temp = toupper(char_temp);
     int_temp = (int)char_temp - 65;
     return int_temp;
+}
+
+/// <summary>
+/// Add new fault to fault list dependant on an event
+/// </summary>
+/// <param name="index"></param>
+void AdvisorManager::AddFault(int index)
+{
+    // Checks if fault is already shown
+    bool contains_fault = false;
+    int last_point = -1;
+    for (int i = 0; i < 5; i++)
+    {
+        if (current_faults[i] == index)
+        {
+            contains_fault = true;
+        }
+        if (current_faults[i] != -1)
+        {
+            last_point = i;
+        }
+    }
+
+    // If fault is not already shown and there is space to show this fault
+    if (!contains_fault && current_faults[4] == -1)
+    {
+        current_faults[last_point + 1] = index;
+        UpdateButtons();
+    }
+}
+
+/// <summary>
+/// Remove an existing fault of the list dependant on an event
+/// </summary>
+/// <param name="index"></param>
+void AdvisorManager::RemoveFault(int index)
+{
+    // Checks if fault is already shown
+    bool contains_fault = false;
+    int fault_point = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        if (current_faults[i] == index)
+        {
+            contains_fault = true;
+            fault_point = i;
+        }
+    }
+
+    // If fault is not already shown and there is space to show this fault
+    if (contains_fault)
+    {
+        for (int j = fault_point; j < 4; j++)
+        {
+            current_faults[j] = current_faults[j + 1];
+        }
+        current_faults[4] = -1;
+        UpdateButtons();
+    }
+}
+
+/// <summary>
+/// Update all option buttons after fault addition or removal
+/// </summary>
+void AdvisorManager::UpdateButtons()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        if (current_faults[i] != -1)
+        {
+            advisor_window->set_option_box(i, dialogue_standpoints[current_faults[i]], dialogue_titles[current_faults[i]]);
+        }
+        else
+        {
+            advisor_window->set_option_box(i, Neither, "");
+        }
+    }
 }
