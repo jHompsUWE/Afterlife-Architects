@@ -176,6 +176,21 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		height = 102.0f / 95.0f;
 		texture = "TC_T1_Heaven_3x3";
 		break;
+
+	case KarmaPortal:
+		height = 102.0f / 95.0f;
+		texture = "KA_Heaven_3x3";	
+		break;
+
+	case KarmaStation:
+		height = 138.0f / 95.0f;
+		texture = "KS_Heaven_3x3";
+		break;
+
+	case KarmaT:
+		height = 138.0f / 95.0f;
+		texture = "KT_Heaven_1x1";
+		break;
 	}
 
 	structure_map[tile_position.x][tile_position.z] = 
@@ -225,7 +240,15 @@ int BuildingManager::GetSizeOfStructure(StructureType structure_type)
 
 	case TrainingCenter:
 		return 3;
-	}
 
+	case KarmaPortal:
+		return 3;
+
+	case KarmaStation:
+		return 3;
+
+	case KarmaT:
+		return 1;
+	}
 	return 0;
 }
