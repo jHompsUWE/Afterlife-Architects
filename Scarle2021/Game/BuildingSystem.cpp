@@ -176,15 +176,15 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
 
         case input_L:
-            CreateStructure(KarmaPortal);
+            StartCreateStructure(KarmaPortal);
             break;
 
         case input_M:
-            CreateStructure(KarmaStation);
+            StartCreateStructure(KarmaStation);
             break;
 
         case input_N:
-            CreateStructure(KarmaT);
+            StartCreateStructure(KarmaT);
             break;
 
         case input_P:
