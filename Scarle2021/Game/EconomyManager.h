@@ -1,15 +1,17 @@
 #pragma once
 #include <chrono>
+#include "GameData.h"
 
 class EconomyManager
 {
 public:
 	static EconomyManager& Get();
 
-	static void UpdateCurrency();
+	static void UpdateCurrency(GameData* game_data);
 	static void UpdateSouls();
 
 	static int GetYear();
+	static void ResetEconomy();
 
 	static int GetCurrency();
 	static void SetCurrency(float _currency);
@@ -63,7 +65,7 @@ private:
 	EconomyManager() = default;
 	~EconomyManager() = default;
 
-	void IUpdateCurrency();
+	void IUpdateCurrency(GameData* game_data);
 	void IUpdateSouls();
 
 	int IGetYear();
@@ -145,8 +147,8 @@ private:
 
 	int souls_total = 0;
 
-	std::chrono::time_point<std::chrono::steady_clock> previous_time = std::chrono::steady_clock::now();;
+	float timer = 0;
 
-	int year_update_interval = 1;
+	float year_update_interval = 0.5f;
 };
 

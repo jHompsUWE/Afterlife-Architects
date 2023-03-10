@@ -65,7 +65,7 @@ void GamePlay::Update(GameData* game_data)
     advisor_window->update(game_data,mouse_pos);
 
     adv_man->Update(game_data);
-    EconomyManager::UpdateCurrency();
+    EconomyManager::UpdateCurrency(game_data);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)

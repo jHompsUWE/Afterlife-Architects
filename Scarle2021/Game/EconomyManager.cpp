@@ -8,9 +8,9 @@ EconomyManager& EconomyManager::Get()
 	return instance;
 }
 
-void EconomyManager::UpdateCurrency()
+void EconomyManager::UpdateCurrency(GameData* game_data)
 {
-	Get().IUpdateCurrency();
+	Get().IUpdateCurrency(game_data);
 }
 void EconomyManager::UpdateSouls()
 {
@@ -20,6 +20,12 @@ void EconomyManager::UpdateSouls()
 int EconomyManager::GetYear()
 {
 	return Get().IGetYear();
+}
+
+void EconomyManager::ResetEconomy()
+{
+	Get().timer = 0;
+	Get().year = 1;
 }
 
 int EconomyManager::GetCurrency()
@@ -202,14 +208,17 @@ void EconomyManager::SetSoulsHellBlue(int _souls_hell_blue)
 	Get().ISetSoulsHellBlue(_souls_hell_blue);
 }
 
-void EconomyManager::IUpdateCurrency()
+void EconomyManager::IUpdateCurrency(GameData* game_data)
 {
+	timer += game_data->delta_time;
 	//currency = currency += (passive_income * passive_income_multiplier);
 	//currency = currency -= (passive_tax * passive_tax_multiplier);
-	auto current_time = std::chrono::steady_clock::now();
-	if (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() > 5)
+	//auto current_time = std::chrono::steady_clock::now();
+	//if (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() >= year_update_interval)
+	//{
+	while (timer >= year_update_interval)
 	{
-		current_time = previous_time;
+		timer -= year_update_interval;
 		soul_rate = (souls_total / year) * soul_rate_multiplier;
 		currency = currency + soul_rate;
 		year++;
