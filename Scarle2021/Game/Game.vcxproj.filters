@@ -303,10 +303,13 @@
     <ClInclude Include="VibeTile.h">
       <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
     </ClInclude>
-    <ClInclude Include="AssembleNoiseMap.h">
+    <ClInclude Include="PerlinNoise.h">
       <Filter>Afterlife\WorldGen</Filter>
     </ClInclude>
-    <ClInclude Include="PerlinNoise.h">
+    <ClInclude Include="MapAssembler.h">
+      <Filter>Afterlife\WorldGen</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneAssembler.h">
       <Filter>Afterlife\WorldGen</Filter>
     </ClInclude>
   </ItemGroup>

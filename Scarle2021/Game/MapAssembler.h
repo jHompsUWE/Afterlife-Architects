@@ -54,6 +54,8 @@ public:
         float half_width = map_width * 0.5f;
         float half_height = map_height * 0.5f;
 
+        PerlinNoise perlin_noise(1234);
+
         //using perlin noise generates the noise map
         for (int y = 0; y < map_height; ++y)
         {
@@ -71,7 +73,7 @@ public:
                     float scaled_y = ((y-half_height) / 10) / scale * frequency - octaves_offset[i].y;
 
                     //a -1 is applied to allow the value to be both negative and positive
-                    float perlin_value = PerlinNoise::GenerateNoise(scaled_x, scaled_y) * 2 - 1;
+                    float perlin_value = perlin_noise.GenerateNoise(scaled_x, scaled_y) * 2 - 1;
                     noise_height += perlin_value * amplitude;
 
                     amplitude *= persistance;

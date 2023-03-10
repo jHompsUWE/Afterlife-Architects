@@ -204,6 +204,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="PlaneAssembler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreviewQuad.h" />
     <ClInclude Include="Raycast.h" />

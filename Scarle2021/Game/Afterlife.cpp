@@ -150,6 +150,11 @@ void Afterlife::ReadInput()
         ExitGame();
     }
 
+    if (game_data->keyboard_state.Up)
+    {
+        game_data->current_game_state = gs_game_over;
+    }
+
     //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
     /*
     RECT _window;
