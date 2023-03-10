@@ -35,7 +35,7 @@ public:
         std::vector<Vector2> octaves_offset;
 
         //Sets a fixed range for the octaves offset
-        std::uniform_real_distribution<float> range(-100000, 100000);
+        std::uniform_int_distribution<int> range(-100000, 100000);
 
         //Octaves offsets are initialized
         for (int i = 0; i < octaves; ++i)
@@ -53,8 +53,8 @@ public:
         
         float half_width = map_width * 0.5f;
         float half_height = map_height * 0.5f;
-
-        PerlinNoise perlin_noise(1234);
+        
+        PerlinNoise perlin_noise(range(prng));
 
         //using perlin noise generates the noise map
         for (int y = 0; y < map_height; ++y)

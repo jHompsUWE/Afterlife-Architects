@@ -14,8 +14,7 @@ public:
 	void Update(GameData* game_data) override;
 	void ScaledUpdate(GameData* game_data, float& scaled_dt) override;
 	void LateUpdate(GameData* game_data) override;
-
-	void regenPerlin();
+	
 	void regenPerlin(int seed);
 	
 	//Events
@@ -29,8 +28,6 @@ private:
 	//Visualization of pathfinding
 	std::vector<GameObject2D*> on_screen_tiles{};
 
-	float scale = 0.50f;
-	float persitance = 0.65f;
-	float lacunarity = 4.0f;
+	bool pressed = false;
 };
 

@@ -12,7 +12,7 @@ public:
         std::iota(std::begin(p), std::end(p), 0);
 
         //Shuffle the permutation table based on the seed value
-        //seed is taken for the noise to be reproduced with the same sound 
+        //seed is taken for the noise to be reproduced with the same sound
         std::default_random_engine engine(seed);
         std::shuffle(std::begin(p), std::end(p), engine);
     }
@@ -78,5 +78,5 @@ private:
         return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
     }
 
-    int p[512]{}; // Permutation table
+    int p[512]{}; // Permutation table generated at runtime 
 };

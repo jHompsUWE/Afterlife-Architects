@@ -6,7 +6,6 @@
 #include <random>
 
 #include "MapAssembler.h"
-#include "PerlinNoise.h"
 #include "PlaneAssembler.h"
 
 GameOver::GameOver()
@@ -101,63 +100,8 @@ bool GameOver::init()
     //     }
     //     std::cout << std::endl;
     // }
-
-    std::cout << std::endl;
     
-    //Random num gen test
-    int seed = 897;
-    std::mt19937_64 rng(seed);
-
-    //Number distribution?
-    std::uniform_int_distribution<int> range(1,100);
-
-    for(int i = 0; i < 10; i++) {
-        const int random_num = range(rng);
-        std::cout << random_num << std::endl;
-    }
-
-    std::cout << std::endl;
-
-    //Random num gen test
-    seed = 34699753579;
-    std::mt19937_64 prng(seed);
-
-    for(int i = 0; i < 10; i++) {
-        const int random_num = range(prng);
-        std::cout << random_num << std::endl;
-    }
-
-    std::mt19937_64 ses(43534);
-    
-    auto noise_map = MapAssembler::GenerateNoiseMap(100, 100, ses, 5, 2.71f, 0.8f, 1.5f, Vector2{0,0});
-
-    float lowest = 432543455;
-    float highest = -234234234;
-    
-    for (auto vec : noise_map)
-    {
-        for (auto point : vec)
-        {
-            char c = ' ';
-            if (point > 0.8) c = '@';
-             else if (point > 0.6) c = '#';
-             else if (point > 0.4) c = 'x';
-             else if (point > 0.2) c = '-';
-            //else c = '/';
-            std::cout << c;
-
-            if(point < lowest)
-            {lowest = point;}
-            else if(point > highest)
-            {highest = point;}
-            
-        }
-        std::cout << std::endl;
-    }
-
-    std::cout << "\n" << lowest << ", " << highest << std::endl;
-
-    regenPerlin();
+    std::srand(std::time(nullptr));
     
     return true;
 }
@@ -168,58 +112,20 @@ void GameOver::Update(GameData* game_data)
     {
         obj->Tick(game_data);
     }
-
-    if(game_data->keyboard_state.U)
-    {
-        scale += 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
-        std::cout << lacunarity << " lacunarity" << std::endl;
-    }
-    else if(game_data->keyboard_state.J)
-    {
-        scale -= 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
-        std::cout << lacunarity << " lacunarity" << std::endl;
-    }
     
-    if(game_data->keyboard_state.I)
+    if(game_data->keyboard_state.Enter )
     {
-        persitance += 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
+        if(pressed != true)
+        {
+            pressed = true;
+            int seed = (std::rand() % 1000000) + 10000;
+            regenPerlin(seed);
+        }
     }
-    else if(game_data->keyboard_state.K)
+    else
     {
-        persitance -= 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
-        std::cout << lacunarity << " lacunarity" << std::endl;
+        pressed = false;
     }
-
-    if(game_data->keyboard_state.O)
-    {
-        lacunarity += 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
-        std::cout << lacunarity << " lacunarity" << std::endl;
-    }
-    else if(game_data->keyboard_state.L)
-    {
-        lacunarity -= 0.01f;
-        std::cout << scale << " scale" << std::endl;
-        std::cout << persitance << " persitance" << std::endl;
-        std::cout << lacunarity << " lacunarity" << std::endl;
-    }
-
-    if(game_data->keyboard_state.Enter)
-    {
-        int seed = (std::rand() % 1000000) + 10000;
-        regenPerlin(seed);
-    }
-
-    
 }
 
 void GameOver::ScaledUpdate(GameData* game_data, float& scaled_dt)
@@ -230,50 +136,6 @@ void GameOver::LateUpdate(GameData* game_data)
 {
 }
 
-void GameOver::regenPerlin()
-{
-    for (auto tile : on_screen_tiles)
-    {
-        delete tile;
-    }
-    on_screen_tiles.clear();
-
-    int seed = (std::rand() % 1000000) + 10000;
-    std::cout << seed << " <- that is seed" << std::endl;
-    std::mt19937_64 ses(seed);
-    
-    //How big is the map?
-    int map_x = 100;
-    int map_y = 100;
-
-    auto noise_map = MapAssembler::GenerateNoiseMap(map_x, map_y, ses, 5, scale, persitance, lacunarity, Vector2{0,0});
-
-    //This is just the scaled resolution of each tile, so they don't get rendered overlapped
-    Vector2 offset {5,5};
-    
-    //Initiates the cost vector, and sets by deafult all the cost tiles to 0
-    for(int x = 0; x < map_x; x++)
-    {
-        for(int y = 0; y < map_y; y++)
-        {
-            if(noise_map[x][y] > 0.8f)
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Green", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
-            else
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Red", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
-        }
-    }
-}
-
 void GameOver::regenPerlin(int seed)
 {
     for (auto tile : on_screen_tiles)
@@ -282,52 +144,62 @@ void GameOver::regenPerlin(int seed)
     }
     on_screen_tiles.clear();
     
-    std::cout << seed << " <- that is seed" << std::endl;
+    std::cout << "Generating" << std::endl;
     
-    //How big is the map?
-    int map_x = 100;
-    int map_y = 100;
-
-    auto noise_map = *PlaneAssembler::GenerateTerrainSt(seed);
-
-    //This is just the scaled resolution of each tile, so they don't get rendered overlapped
     Vector2 offset {5,5};
+
+    //This generates the position of the resurrect station, so calling it once and then
+    //generating the planes will make them share the position
+    PlaneAssembler::RefreshResSeed();
+
+    //This will generate a std::vector of Vector3, where x and y are the tile coordinates and Y the tile type
+    // 0 is void
+    // 1 is rock
+    // 2 is river
+    // 3 is res station
+    const auto noise_map_vec = PlaneAssembler::GeneratePlaneAsVector3();
     
-    //Initiates the cost vector, and sets by deafult all the cost tiles to 0
-    for(int x = 0; x < map_x; x++)
+    //PlaneAssembler::SetResSeed(567);
+    //const auto noise_map_vec = PlaneAssembler::GeneratePlaneAsVector3(567);
+
+    for (const auto& element : noise_map_vec)
     {
-        for(int y = 0; y < map_y; y++)
+        int x = element.x;
+        int y = element.y;
+        int tile = element.z;
+        
+        if(tile == 0)
         {
-            if(noise_map[x][y] == 0)
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Void", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
-            if(noise_map[x][y] == 1)
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Rock", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
-            if(noise_map[x][y] == 2)
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Water", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
-            else
-            {
-                ImageGO2D* tile = new ImageGO2D("Tile_Blue", DataManager::GetD3DDevice());
-                tile->SetPos(Vector2(x * 5,y * 5) + offset);
-                tile->SetScale(Vector2(0.05f, 0.05f));
-                on_screen_tiles.push_back(tile);
-            }
+            ImageGO2D* tile = new ImageGO2D("Tile_Void", DataManager::GetD3DDevice());
+            tile->SetPos(Vector2(x * 5,y * 5) + offset);
+            tile->SetScale(Vector2(0.05f, 0.05f));
+            on_screen_tiles.push_back(tile);
+        }
+        else if(tile == 1)
+        {
+            ImageGO2D* tile = new ImageGO2D("Tile_Rock", DataManager::GetD3DDevice());
+            tile->SetPos(Vector2(x * 5,y * 5) + offset);
+            tile->SetScale(Vector2(0.05f, 0.05f));
+            on_screen_tiles.push_back(tile);
+        }
+        else if(tile == 2)
+        {
+            ImageGO2D* tile = new ImageGO2D("Tile_Water", DataManager::GetD3DDevice());
+            tile->SetPos(Vector2(x * 5,y * 5) + offset);
+            tile->SetScale(Vector2(0.05f, 0.05f));
+            on_screen_tiles.push_back(tile);
+        }
+        else
+        {
+            ImageGO2D* tile = new ImageGO2D("Tile_Purple", DataManager::GetD3DDevice());
+            tile->SetPos(Vector2(x * 5,y * 5) + offset);
+            tile->SetScale(Vector2(0.05f, 0.05f));
+            on_screen_tiles.push_back(tile);
         }
     }
+
+    std::cout << "Generated" << std::endl;
+
 }
 
 void GameOver::GetEvents(std::list<AfterlifeEvent>& event_list)
