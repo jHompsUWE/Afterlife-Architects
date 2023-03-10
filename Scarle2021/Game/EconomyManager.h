@@ -146,5 +146,7 @@ private:
 	int souls_total = 0;
 
 	std::chrono::time_point<std::chrono::steady_clock> previous_time = std::chrono::steady_clock::now();;
+
+	int year_update_interval = 1;
 };
 
