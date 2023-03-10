@@ -207,7 +207,7 @@ void EconomyManager::IUpdateCurrency()
 	//currency = currency += (passive_income * passive_income_multiplier);
 	//currency = currency -= (passive_tax * passive_tax_multiplier);
 	auto current_time = std::chrono::steady_clock::now();
-	if (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() > year_update_interval)
+	if (std::chrono::duration_cast<std::chrono::seconds>(current_time - previous_time).count() > 5)
 	{
 		current_time = previous_time;
 		soul_rate = (souls_total / year) * soul_rate_multiplier;
