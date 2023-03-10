@@ -89,7 +89,7 @@ void GamePlay::Update(GameData* game_data)
     
 
     adv_man->Update(game_data);
-    EconomyManager::UpdateCurrency();
+    EconomyManager::UpdateCurrency(game_data);
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)

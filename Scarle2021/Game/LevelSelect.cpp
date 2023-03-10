@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "EconomyManager.h"
 #include "LevelSelect.h"
 
 LevelSelect::LevelSelect()
@@ -73,6 +74,7 @@ void LevelSelect::GetEvents(std::list<AfterlifeEvent>& event_list)
             
         case enter_game_play:
             DataManager::GetGD()->current_game_state = gs_gameplay;
+            EconomyManager::ResetEconomy();
             break;
             
         case enter_main_menu:

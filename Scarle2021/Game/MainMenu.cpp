@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "MainMenu.h"
+#include "EconomyManager.h"
 #include "AStarPathfinding.h"
 
 MainMenu::MainMenu()
@@ -104,6 +105,7 @@ void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
             
         case input_right:
             DataManager::GetGD()->current_game_state = gs_gameplay;
+            EconomyManager::ResetEconomy();
             break;
 
         case game_resized:
