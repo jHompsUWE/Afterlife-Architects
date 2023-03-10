@@ -27,7 +27,5 @@ public:
 private:
 	//Visualization of pathfinding
 	std::vector<GameObject2D*> on_screen_tiles{};
-
-	bool pressed = false;
 };
 
