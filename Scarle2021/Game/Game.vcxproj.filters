@@ -309,6 +309,9 @@
     <ClInclude Include="TrainCentersWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
+    <ClInclude Include="SoulViewWindow.h">
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -465,6 +468,9 @@
       <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="TrainCentersWindow.cpp">
+      <Filter>Afterlife\UIWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="SoulViewWindow.cpp">
       <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
   </ItemGroup>

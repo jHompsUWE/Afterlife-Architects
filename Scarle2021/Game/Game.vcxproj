@@ -206,6 +206,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreviewQuad.h" />
     <ClInclude Include="Raycast.h" />
+    <ClInclude Include="SoulViewWindow.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
@@ -345,6 +346,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PreviewQuad.cpp" />
     <ClCompile Include="Raycast.cpp" />
+    <ClCompile Include="SoulViewWindow.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="StructureSprite.cpp" />
     <ClCompile Include="Terrain.cpp" />

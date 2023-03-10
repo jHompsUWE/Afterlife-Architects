@@ -8,6 +8,7 @@
 //UI systems
 #include "UIPanel.h"
 #include "UIWindow.h"
+#include "SoulViewWindow.h"
 #include "KaraStationWindow.h"
 #include "TopiasWindowUI.h"
 //
@@ -70,6 +71,7 @@ private:
     AdvisorWindow* advisor_window;
     TopiasWindowUI* window_three_topias;
     TrainCentersWindow* window_four_training_centers_window;
+    SoulViewWindow* soul_view;
 
     bool window_one_open = false;
 

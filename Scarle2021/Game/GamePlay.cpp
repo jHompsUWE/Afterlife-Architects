@@ -28,6 +28,9 @@ bool GamePlay::init()
     //advisor
     advisor_window = new AdvisorWindow(Vector2(675,30),DataManager::
         GetD3DDevice(),"","AdvisorBackground",Vector2(0.5,0.5));
+    //advisor
+    soul_view = new SoulViewWindow(Vector2(400,120),DataManager::
+        GetD3DDevice(),"","SoulView",Vector2(1,1));
     //karma station
     window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
@@ -78,6 +81,8 @@ void GamePlay::Update(GameData* game_data)
     window_one_gate->update(game_data,mouse_pos);
     //update advisor
     advisor_window->update(game_data,mouse_pos);
+    //update soul view
+    soul_view->update(game_data,mouse_pos);
     //karma station
     window_two_kara_station->update(game_data,mouse_pos);
     //Topais
@@ -132,6 +137,10 @@ void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
         case game_resized:
             ResizeUI();
             break;
+            /* TESTING SOUL GENERATION, DO NOT USE
+        case play_sound_theme1:
+            soul_view->generateRandSoul();
+            break;*/
 
         case input_right:
             DataManager::GetGD()->current_game_state = gs_game_over;
@@ -149,6 +158,9 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
 
     //render advisor
     advisor_window->render(draw_data2D);
+
+    //render soul view
+    soul_view->render(draw_data2D);
     
     // checks if window is open to render
     if (window_one_open)
@@ -200,6 +212,7 @@ void GamePlay::ResizeUI()
     window_one_gate->reSize(screen_size);
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
+    soul_view->reSize(screen_size);
     window_two_kara_station->reSize(screen_size);
     window_three_topias->reSize(screen_size);
     window_four_training_centers_window->reSize(screen_size);
