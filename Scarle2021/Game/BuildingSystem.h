@@ -27,8 +27,13 @@ private:
 	void StartCreateStructure(StructureType structure_type);
 	void PlaceSelectedStructure();
 
+	bool CallEverySeconds(float dt, float time_interval);
+
 	std::shared_ptr<Vector3> mouse_world_pos;
 	ID3D11Device* d11_device = nullptr;
+
+	// Timer
+	float timer;
 
 	// Player
 	StructureType selected_structure;

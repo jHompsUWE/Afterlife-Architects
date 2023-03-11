@@ -58,6 +58,11 @@ public:
 	static int GetSoulsHellBlue();
 	static void SetSoulsHellBlue(int _souls_hell_blue);
 
+	static int GetAngels() { return Get().IGetAngels(); }
+	static void SetAngels(int _angels) { Get().ISetAngels(_angels); }
+	static int GetDemons() { return Get().IGetDemons(); }
+	static void SetDemons(int _demons) { Get().ISetDemons(_demons); }
+
 
 private:
 	EconomyManager() = default;
@@ -117,6 +122,11 @@ private:
 	int IGetSoulsHellBlue();
 	void ISetSoulsHellBlue(int _souls_hell_blue);
 
+	int IGetAngels() { return angels; }
+	void ISetAngels(int _angels) { angels = _angels; }
+	int IGetDemons() { return demons; }
+	void ISetDemons(int _demons) { demons = _demons; }
+
 	int year = 1;
 	int currency = 1000;
 
@@ -134,6 +144,7 @@ private:
 	int souls_heaven_purple = 0;
 	int souls_heaven_red = 0;
 	int souls_heaven_blue = 0;
+	int angels = 0;
 
 	int souls_hell_green = 0;
 	int souls_hell_yellow = 0;
@@ -142,6 +153,7 @@ private:
 	int souls_hell_purple = 0;
 	int souls_hell_red = 0;
 	int souls_hell_blue = 0;
+	int demons = 0;
 
 	int souls_total = 0;
 

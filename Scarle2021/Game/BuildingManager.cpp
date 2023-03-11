@@ -12,6 +12,9 @@ BuildingManager::BuildingManager(ID3D11Device* GD, int _size, Vector3 _start): d
 			structure_map[x].emplace_back(nullptr);
 		}
 	}
+
+	econ_manager = &EconomyManager::Get();
+	population_manager = std::make_shared<PopulationManager>();
 }
 
 BuildingManager::~BuildingManager()
@@ -100,7 +103,8 @@ void BuildingManager::Create1x1House(ZoneType zone_type, Vector3 tile_position)
 
 	// sqrt(2) is the size of the quad needed to fit structure to a 1x1 unit isometric tile
 	structure_map[tile_position.x][tile_position.z] =
-		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position + start, 1, texture);
+		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2), sqrt(2) * height), tile_position + start, 1, texture,
+			Heaven);
 	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 
@@ -158,7 +162,8 @@ void BuildingManager::Create2x2House(ZoneType zone_type, Vector3 tile_position)
 
 	// sqrt(2) * 2 is the size of the quad needed to fit structure to a 2x2 unit isometric tile
 	structure_map[tile_position.x][tile_position.z] =
-		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position + start, 2, texture);
+		std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * 2, sqrt(2) * height * 2), tile_position + start, 2, texture,
+			Heaven);
 	structure_map[tile_position.x][tile_position.z]->UpdateWorldMatrix();
 }
 
@@ -182,7 +187,8 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 
 		// Create StructureGate derived from StructureSprite base class
 		structure_map[tile_position.x][tile_position.z] =
-			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
+			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture, 
+				Heaven, 5, econ_manager);
 		break;
 
 	case Topia:
@@ -191,7 +197,8 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 
 		// Create StructureTopia derived from StructureSprite base class
 		structure_map[tile_position.x][tile_position.z] =
-			std::make_unique<StructureTopia>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
+			std::make_unique<StructureTopia>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture,
+				Heaven, 50, population_manager);
 		break;
 
 	case TrainingCenter:
@@ -200,7 +207,8 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 
 		// Create StructureTrainingCenter derived from StructureSprite base class
 		structure_map[tile_position.x][tile_position.z] =
-			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture);
+			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * height * size), tile_position + start, size, texture,
+				Heaven, 10, econ_manager, population_manager);
 		break;
 	}
 

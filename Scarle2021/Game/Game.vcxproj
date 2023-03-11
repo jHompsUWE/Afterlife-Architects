@@ -190,6 +190,8 @@
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GamePlay.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="PlaneType.h" />
+    <ClInclude Include="PopulationManager.h" />
     <ClInclude Include="StructureGate.h" />
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
@@ -256,6 +258,7 @@
     <ClCompile Include="GameObject2D.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GamePlay.cpp" />
+    <ClCompile Include="PopulationManager.cpp" />
     <ClCompile Include="StructureGate.cpp" />
     <ClCompile Include="GPGO.cpp" />
     <ClCompile Include="ImageGO2D.cpp" />

@@ -312,6 +312,12 @@
     <ClInclude Include="StructureTrainingCenter.h">
       <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
     </ClInclude>
+    <ClInclude Include="PlaneType.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
+    <ClInclude Include="PopulationManager.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -469,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="StructureTrainingCenter.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="PopulationManager.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

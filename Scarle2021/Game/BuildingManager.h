@@ -2,9 +2,12 @@
 #include <memory>
 #include <vector>
 
+#include "EconomyManager.h"
+
 #include "StructureSprite.h"
 #include "ZoneType.h"
 #include "StructureType.h"
+#include "PopulationManager.h"
 
 #include "StructureGate.h"
 #include "StructureTopia.h"
@@ -34,5 +37,7 @@ private:
 	Vector3 start;
 	std::vector<std::vector<std::unique_ptr<StructureSprite>>> structure_map;
 
+	EconomyManager* econ_manager = nullptr;
+	std::shared_ptr<PopulationManager> population_manager;
 };
 

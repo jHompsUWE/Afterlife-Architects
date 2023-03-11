@@ -14,6 +14,8 @@ BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device*
     preview_quad->SetPos(Vector3(0, 0.01f, 0));
 
     selected_zone = Green;
+
+    timer = 0;
 }
 
 BuildingSystem::~BuildingSystem()
@@ -22,7 +24,10 @@ BuildingSystem::~BuildingSystem()
 
 void BuildingSystem::Tick(GameData* game_data)
 {
-    building_manager->Tick(game_data);
+    if (CallEverySeconds(game_data->delta_time, 0.5))
+    {
+        building_manager->Tick(game_data);
+    }
 
     // TEMPORARY mouse stuff
     if (game_data->mouse_state.leftButton)
@@ -291,4 +296,21 @@ void BuildingSystem::PlaceSelectedStructure()
         // Change the vibe of the tiles around the structure
         vibe_tilemap->VibeChange(mouse_released_heaven_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
     }
+}
+
+/// <summary>
+/// A timer that can be used to call a function at every given time interval
+/// </summary>
+/// <param name="dt">Delta time</param>
+/// <param name="time_interval">Time interval per call</param>
+/// <returns>True if time interval has passed, False if not</returns>
+bool BuildingSystem::CallEverySeconds(float dt, float time_interval)
+{
+    timer += dt;
+    if (timer > time_interval)
+    {
+        timer = 0;
+        return true;
+    }
+    return false;
 }
