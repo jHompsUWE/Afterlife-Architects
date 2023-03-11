@@ -4,12 +4,21 @@
 BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device* GD):
 	mouse_world_pos(mouse_pos), d11_device(GD)
 {
-    Vector3 start_heaven = Vector3(-5, 0, -5);
+    Vector3 start_heaven = Vector3(60, 0, 60);
+    Vector3 start_hell = Vector3(-60, 0, -60);
 
-    tilemap = std::make_unique<Tilemap>(d11_device, 100, start_heaven);
-    vibe_tilemap = std::make_unique<VibeTilemap>(d11_device, 100, start_heaven);
-    building_manager = std::make_unique<BuildingManager>(d11_device, 100, start_heaven);
-    GenerateTerrain();
+    texture_manager = std::make_shared<TextureManager>(GD);
+
+    tilemap_heaven = std::make_unique<Tilemap>(d11_device, texture_manager, 100, start_heaven);
+    vibe_tilemap_heaven = std::make_unique<VibeTilemap>(d11_device, texture_manager, 100, start_heaven);
+    building_manager_heaven = std::make_unique<BuildingManager>(d11_device, texture_manager, 100, start_heaven, Heaven);
+
+    tilemap_hell = std::make_unique<Tilemap>(d11_device, texture_manager, 100, start_hell);
+    vibe_tilemap_hell = std::make_unique<VibeTilemap>(d11_device, texture_manager, 100, start_hell);
+    building_manager_hell = std::make_unique<BuildingManager>(d11_device, texture_manager, 100, start_hell, Hell);
+
+    GenerateTerrain(tilemap_heaven, vibe_tilemap_heaven, building_manager_heaven, Heaven);
+    GenerateTerrain(tilemap_hell, vibe_tilemap_hell, building_manager_hell, Hell);
 
     show_preview_quad = false;
     preview_quad = std::make_unique<PreviewQuad>(d11_device);
@@ -28,7 +37,7 @@ void BuildingSystem::Tick(GameData* game_data)
 {
     if (CallEverySeconds(game_data->delta_time, 1))
     {
-        building_manager->Tick(game_data);
+        building_manager_heaven->Tick(game_data);
     }
 
     // TEMPORARY mouse stuff
@@ -38,7 +47,8 @@ void BuildingSystem::Tick(GameData* game_data)
         {
             // Mouse Pressed
             mouse_pressed_world_pos = *mouse_world_pos;
-            mouse_pressed_heaven_pos = tilemap->WorldToLocalPos(mouse_pressed_world_pos);
+            mouse_pressed_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_pressed_world_pos);
+            mouse_pressed_hell_pos = tilemap_hell->WorldToLocalPos(mouse_pressed_world_pos);
 
             mouse_pressed = true;
             show_preview_quad = true;
@@ -74,7 +84,8 @@ void BuildingSystem::Tick(GameData* game_data)
         {
             // Mouse Released
             mouse_released_world_pos = *mouse_world_pos;
-            mouse_released_heaven_pos = tilemap->WorldToLocalPos(mouse_released_world_pos);
+            mouse_released_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_released_world_pos);
+            mouse_released_hell_pos = tilemap_hell->WorldToLocalPos(mouse_released_world_pos);
 
             mouse_pressed = false;
             show_preview_quad = false;
@@ -91,18 +102,21 @@ void BuildingSystem::Tick(GameData* game_data)
             case Blue:
             case Void:
                 // Place zone on mouse release
-                tilemap->BoxFill(building_manager, vibe_tilemap, selected_zone, mouse_pressed_heaven_pos, mouse_released_heaven_pos);
+                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, mouse_released_heaven_pos);
+                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos, mouse_released_hell_pos);
                 break;
 
             case Structure:
                 // Place structure on mouse release
-                PlaceSelectedStructure();
+                PlaceSelectedStructure(GetPositionPlane(mouse_released_world_pos));
                 break;
 
             case Road:
                 // Turn boxfill to line fill
-                tilemap->BoxFill(building_manager, vibe_tilemap, Road, mouse_pressed_heaven_pos, 
+                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, Road, mouse_pressed_heaven_pos, 
                     ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
+                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, Road, mouse_pressed_hell_pos,
+                    ClampMouseToAxis(mouse_pressed_hell_pos, mouse_released_hell_pos));
                 break;
 
             default:
@@ -170,19 +184,20 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
             break;
 
         case input_E:
-            TryCreateHouse();
+            TryCreateHouse(tilemap_heaven, vibe_tilemap_heaven, building_manager_heaven, selected_zone);
+            TryCreateHouse(tilemap_hell, vibe_tilemap_hell, building_manager_hell, selected_zone);
             break;
 
         case input_G:
-            StartCreateStructure(Gate);
+            StartCreateStructure(Gate_T2);
             break;
 
         case input_H:
-            StartCreateStructure(Topia);
+            StartCreateStructure(Topia_T2);
             break;
 
         case input_J:
-            StartCreateStructure(TrainingCenter);
+            StartCreateStructure(TrainingCenter_T3);
             break;
 
         case input_P:
@@ -199,15 +214,18 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
 
 void BuildingSystem::Render3D(DrawData* draw_data)
 {
-    building_manager->Draw(draw_data);
+    building_manager_heaven->Draw(draw_data);
+    building_manager_hell->Draw(draw_data);
 
     if (show_vibes)
     {
-        vibe_tilemap->Draw(draw_data);
+        vibe_tilemap_heaven->Draw(draw_data);
+        vibe_tilemap_hell->Draw(draw_data);
     }
     else
     {
-        tilemap->Draw(draw_data);
+        tilemap_heaven->Draw(draw_data);
+        tilemap_hell->Draw(draw_data);
     }
 
     if (show_preview_quad)
@@ -216,7 +234,21 @@ void BuildingSystem::Render3D(DrawData* draw_data)
     }
 }
 
-void BuildingSystem::GenerateTerrain()
+/// <summary>
+/// Checks which plane the given positon is in
+/// </summary>
+/// <param name="position">Vector3 position</param>
+/// <returns>Heaven or Hell of PlaneType</returns>
+PlaneType BuildingSystem::GetPositionPlane(Vector3 position)
+{
+    if (tilemap_heaven->IsPosValid(tilemap_heaven->WorldToLocalPos(position)))
+    {
+        return Heaven;
+    }
+    return Hell;
+}
+
+void BuildingSystem::GenerateTerrain(std::unique_ptr<Tilemap>& tilemap, std::unique_ptr<VibeTilemap>& vibe, std::unique_ptr<BuildingManager>& building_manager, PlaneType plane)
 {
     const auto noise_map_vec = PlaneAssembler::GeneratePlaneAsVector3();
 
@@ -225,23 +257,55 @@ void BuildingSystem::GenerateTerrain()
         // 0 is Void
         // 1 is Rock
         // 2 is River
-        // 3 is Karma Portal
+        // 3 is Karma Anchor
         int tile_id = tile.z;
         switch (tile_id)
         {
         case 1:
-            // Create Rock
-            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Rock);
+            // Create Random Rock
+
+            tilemap->BoxFill(building_manager, vibe, Rock, Vector3(tile.x, 0, tile.y), Vector3(tile.x, 0, tile.y));
+
+            switch (rand() % 2)
+            {
+            case 0:
+                building_manager->CreateStructure(Rock_1, Vector3(tile.x, 0, tile.y));
+                break;
+
+            case 1:
+                building_manager->CreateStructure(Rock_2, Vector3(tile.x, 0, tile.y));
+                break;
+
+            case 2:
+                building_manager->CreateStructure(Rock_3, Vector3(tile.x, 0, tile.y));
+                break;
+            }
             break;
 
         case 2:
             // Create River
-            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Water);
+
+            switch (plane)
+            {
+            case Heaven:
+                tilemap->SetTile(Vector3(tile.x, 0, tile.y), Water);
+                break;
+
+            case Hell:
+                tilemap->SetTile(Vector3(tile.x, 0, tile.y), Lava);
+                break;
+            }
             break;
 
         case 3:
-            // Create Karma Portal
-            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Lava);
+            // Create Karma Anchor
+
+            if (!tilemap->IsTileOccupied(Vector3(tile.x, 0, tile.y)))
+            {
+                tilemap->BoxFill(building_manager, vibe, Karma_Anchor, Vector3(tile.x, 0, tile.y), Vector3(tile.x + 2, 0, tile.y + 2));
+                tilemap->OccupyTile(Vector3(tile.x, 0, tile.y), 3);
+                building_manager->CreateStructure(KarmaAnchor, Vector3(tile.x, 0, tile.y));
+            }
             break;
         }
     }
@@ -274,24 +338,108 @@ Vector3 BuildingSystem::ClampMouseToAxis(Vector3 start, Vector3 end)
     return Vector3();
 }
 
-void BuildingSystem::TryCreateHouse()
+/// <summary>
+/// Tries to create a 2x2 or 1x1 building in a valid zone within the tilemap
+/// </summary>
+/// <param name="zone">ZoneType to be built on</param>
+/// <returns>True if a building is built, False otherwise</returns>
+bool BuildingSystem::TryCreateHouse(std::unique_ptr<Tilemap>& tilemap, std::unique_ptr<VibeTilemap>& vibe, std::unique_ptr<BuildingManager>& building_manager, ZoneType zone)
 {
+    // Try finding a 2x2 spot within the plane
     Vector3 empty_tile = tilemap->FindEmpty2x2TileOfType(selected_zone);
     if (empty_tile.y == 0)
     {
-        building_manager->Create2x2House(selected_zone, empty_tile);
         tilemap->OccupyTile(empty_tile, 2);
-        vibe_tilemap->VibeChange(empty_tile, 5, 2);
+
+        vibe->VibeChange(empty_tile, 5, 2);
+
+        switch (zone)
+        {
+        case Green:
+            building_manager->CreateStructure(Building_Green_T2, empty_tile);
+            break;
+            
+        case Yellow:
+            building_manager->CreateStructure(Building_Yellow_T2, empty_tile);
+            break;
+
+        case Orange:
+            building_manager->CreateStructure(Building_Orange_T2, empty_tile);
+            break;
+
+        case Brown:
+            building_manager->CreateStructure(Building_Brown_T2, empty_tile);
+            break;
+             
+        case Purple:
+            building_manager->CreateStructure(Building_Purple_T2, empty_tile);
+            break;
+
+        case Red:
+            building_manager->CreateStructure(Building_Red_T2, empty_tile);
+            break;
+
+        case Blue:
+            building_manager->CreateStructure(Building_Blue_T2, empty_tile);
+            break;
+
+        default:
+            return false;
+        }
+
+        return true;
+    }
+
+    // If a 2x2 spot is not found, try find a 1x1 spot
+    empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
+    if (empty_tile.y == 0)
+    {
+        tilemap->OccupyTile(empty_tile, 1);
+
+        vibe->VibeChange(empty_tile, 5, 1);
+
+        switch (zone)
+        {
+        case Green:
+            building_manager->CreateStructure(Building_Green_T1, empty_tile);
+            break;
+
+        case Yellow:
+            building_manager->CreateStructure(Building_Yellow_T1, empty_tile);
+            break;
+
+        case Orange:
+            building_manager->CreateStructure(Building_Orange_T1, empty_tile);
+            break;
+
+        case Brown:
+            building_manager->CreateStructure(Building_Brown_T1, empty_tile);
+            break;
+
+        case Purple:
+            building_manager->CreateStructure(Building_Purple_T1, empty_tile);
+            break;
+
+        case Red:
+            building_manager->CreateStructure(Building_Red_T1, empty_tile);
+            break;
+
+        case Blue:
+            building_manager->CreateStructure(Building_Blue_T1, empty_tile);
+            break;
+
+        default:
+            return false;
+        }
+
+        tilemap->OccupyTile(empty_tile, 1);
+        vibe->VibeChange(empty_tile, 5, 1);
+        return true;
     }
     else
     {
-        empty_tile = tilemap->FindEmpty1x1TileOfType(selected_zone);
-        if (empty_tile.y == 0)
-        {
-            building_manager->Create1x1House(selected_zone, empty_tile);
-            tilemap->OccupyTile(empty_tile, 1);
-            vibe_tilemap->VibeChange(empty_tile, 5, 1);
-        }
+        // No valid spot is found
+        return false;
     }
 }
 
@@ -311,23 +459,46 @@ void BuildingSystem::StartCreateStructure(StructureType structure_type)
 /// <summary>
 /// Places the selected structure at the mouse released position
 /// </summary>
-void BuildingSystem::PlaceSelectedStructure()
+void BuildingSystem::PlaceSelectedStructure(PlaneType plane)
 {
     int size = BuildingManager::GetSizeOfStructure(selected_structure);
-    Vector3 end = Vector3(mouse_released_heaven_pos.x + size - 1.0f, 0, mouse_released_heaven_pos.z + size - 1.0f);
+    Vector3 end;
 
-    if (tilemap->IsAreaValid(mouse_released_heaven_pos, size))
+    switch (plane)
     {
-        // Structure is within the tilemap
-        // Fill the area of the structure and mark is as occupied
-        tilemap->BoxFill(building_manager, vibe_tilemap, Structure, mouse_released_heaven_pos, end);
-        tilemap->OccupyTile(mouse_released_heaven_pos, size);
+    case Heaven:
+        end = Vector3(mouse_released_heaven_pos.x + size - 1.0f, 0, mouse_released_heaven_pos.z + size - 1.0f);
+        if (tilemap_heaven->IsAreaValid(mouse_released_heaven_pos, size))
+        {
+            // Structure is within the tilemap
+            // Fill the area of the structure and mark is as occupied
+            tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, Structure, mouse_released_heaven_pos, end);
+            tilemap_heaven->OccupyTile(mouse_released_heaven_pos, size);
 
-        // Create a structure
-        building_manager->CreateStructure(selected_structure, mouse_released_heaven_pos);
+            // Create a structure
+            building_manager_heaven->CreateStructure(selected_structure, mouse_released_heaven_pos);
 
-        // Change the vibe of the tiles around the structure
-        vibe_tilemap->VibeChange(mouse_released_heaven_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
+            // Change the vibe of the tiles around the structure
+            vibe_tilemap_heaven->VibeChange(mouse_released_heaven_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
+        }
+        break;
+
+    case Hell:
+        end = Vector3(mouse_released_hell_pos.x + size - 1.0f, 0, mouse_released_hell_pos.z + size - 1.0f);
+        if (tilemap_hell->IsAreaValid(mouse_released_hell_pos, size))
+        {
+            // Structure is within the tilemap
+            // Fill the area of the structure and mark is as occupied
+            tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, Structure, mouse_released_hell_pos, end);
+            tilemap_hell->OccupyTile(mouse_released_hell_pos, size);
+
+            // Create a structure
+            building_manager_hell->CreateStructure(selected_structure, mouse_released_hell_pos);
+
+            // Change the vibe of the tiles around the structure
+            vibe_tilemap_hell->VibeChange(mouse_released_hell_pos, 5, BuildingManager::GetSizeOfStructure(selected_structure));
+        }
+        break;
     }
 }
 

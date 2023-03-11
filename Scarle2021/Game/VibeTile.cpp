@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "VibeTile.h"
 
-VibeTile::VibeTile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type): Tile(GD, _tile_pos, zone_type)
+VibeTile::VibeTile(ID3D11Device* GD, ID3D11ShaderResourceView* texture, Vector3 _tile_pos, ZoneType zone_type):
+	Tile(GD, _tile_pos, zone_type)
 {
-	quad = new VBQuad(GD, 1, 1);
-	quad->SetTexture(GetTextureOfType(type));
-	quad->SetPos(tile_pos);
+	quad->SetTexture(texture);
 
 	is_occupied = true;
 }

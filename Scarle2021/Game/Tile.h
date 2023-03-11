@@ -16,12 +16,10 @@ public:
 	ZoneType GetZoneType() { return type; }
 	bool IsTileOccupied() { return is_occupied; }
 
-	void SetTexture(ZoneType zone_type);
+	void SetTexture(ID3D11ShaderResourceView* texture);
 	void SetZoneType(ZoneType _type) { type = _type; }
 	void OccupyTile(Vector3 structure_origin_pos);
 	void UnoccupyTile();
-
-	std::string GetTextureOfType(ZoneType type);
 
 protected:
 	VBQuad* quad = nullptr;

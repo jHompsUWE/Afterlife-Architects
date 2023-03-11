@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "Tilemap.h"
 
-Tilemap::Tilemap(ID3D11Device* GD, int _size, Vector3 _start): size(_size), start(_start)
+Tilemap::Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start) :
+	size(_size), start(_start), texture_manager(_texture_manager)
 {
 	for (int x = 0; x < size; x++)
 	{
@@ -9,6 +10,7 @@ Tilemap::Tilemap(ID3D11Device* GD, int _size, Vector3 _start): size(_size), star
 		for (int y = 0; y < size; y++)
 		{
 			tilemap[x].emplace_back(std::make_unique<Tile>(GD, start + Vector3(x, 0, y), Void));
+			tilemap[x][y]->SetTexture(texture_manager->GetTextureZone(Void));
 			tilemap[x][y]->UpdateWorldMatrix();
 		}
 	}
@@ -138,7 +140,8 @@ bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 
 	case Road:
 		// Activate inactive tiles near road
-		tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
+		tilemap[tile_pos.x][tile_pos.z]->SetTexture(texture_manager->GetTextureZone(zone_type));
+		tilemap[tile_pos.x][tile_pos.z]->SetZoneType(zone_type);
 		ActivateNearbyTile(tile_pos);
 		return true;
 
@@ -149,12 +152,14 @@ bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 	if (tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == Road)
 	{
 		// Deactivate nearby tiles if road is replaced
-		tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
+		tilemap[tile_pos.x][tile_pos.z]->SetTexture(texture_manager->GetTextureZone(zone_type));
+		tilemap[tile_pos.x][tile_pos.z]->SetZoneType(zone_type);
 		DeactivateNearbyTile(tile_pos);
 		return true;
 	}
 
-	tilemap[tile_pos.x][tile_pos.z]->SetTexture(zone_type);
+	tilemap[tile_pos.x][tile_pos.z]->SetTexture(texture_manager->GetTextureZone(zone_type));
+	tilemap[tile_pos.x][tile_pos.z]->SetZoneType(zone_type);
 	return true;
 }
 

@@ -9,11 +9,12 @@
 #include "Tile.h"
 #include "BuildingManager.h"
 #include "VibeTilemap.h"
+#include "TextureManager.h"
 
 class Tilemap
 {
 public:
-	Tilemap(ID3D11Device* GD, int _size, Vector3 _start);
+	Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start);
 	~Tilemap();
 
 	void Draw(DrawData* _DD);
@@ -44,6 +45,6 @@ protected:
 	Vector3 start; // Starting/Origin point of the tilemap
 
 private:
-
+	std::shared_ptr<TextureManager> texture_manager;
 };
 

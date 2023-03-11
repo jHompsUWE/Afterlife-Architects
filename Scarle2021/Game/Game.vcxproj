@@ -192,6 +192,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="PlaneType.h" />
     <ClInclude Include="PopulationManager.h" />
+    <ClInclude Include="StructureBuilding.h" />
     <ClInclude Include="StructureGate.h" />
     <ClInclude Include="MapAssembler.h" />
     <ClInclude Include="GPGO.h" />
@@ -214,6 +215,8 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="StateTemplate.h" />
     <ClInclude Include="StepTimer.h" />
+    <ClInclude Include="StructureKarmaAnchor.h" />
+    <ClInclude Include="StructureKarmaStation.h" />
     <ClInclude Include="StructureSprite.h" />
     <ClInclude Include="StructureTopia.h" />
     <ClInclude Include="StructureTrainingCenter.h" />
@@ -224,6 +227,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tilemap.h" />
     <ClInclude Include="TileNode.h" />
+    <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TPSCamera.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
@@ -262,6 +266,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="PopulationManager.cpp" />
+    <ClCompile Include="StructureBuilding.cpp" />
     <ClCompile Include="StructureGate.cpp" />
     <ClCompile Include="GPGO.cpp" />
     <ClCompile Include="ImageGO2D.cpp" />
@@ -281,6 +286,8 @@
     <ClCompile Include="PreviewQuad.cpp" />
     <ClCompile Include="Raycast.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="StructureKarmaAnchor.cpp" />
+    <ClCompile Include="StructureKarmaStation.cpp" />
     <ClCompile Include="StructureSprite.cpp" />
     <ClCompile Include="StructureTopia.cpp" />
     <ClCompile Include="StructureTrainingCenter.cpp" />
@@ -289,6 +296,7 @@
     <ClCompile Include="TextGO2D.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tilemap.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TPSCamera.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />

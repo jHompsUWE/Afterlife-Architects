@@ -8,7 +8,7 @@
 class StructureSprite : public VBQuad
 {
 public:
-	StructureSprite(ID3D11Device* GD, Vector2 width_height, Vector3 tile_pos, int _tile_size, std::string texture, PlaneType _plane);
+	StructureSprite(ID3D11Device* GD, Vector2 width_height, Vector3 tile_pos, int _tile_size, ID3D11ShaderResourceView* texture, PlaneType _plane);
 	~StructureSprite();
 
 	virtual void TickStructure(GameData* game_data) {}

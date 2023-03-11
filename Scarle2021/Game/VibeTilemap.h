@@ -1,11 +1,13 @@
 #pragma once
-#include "VibeTile.h"
 #include <vector>
+
+#include "TextureManager.h"
+#include "VibeTile.h"
 
 class VibeTilemap
 {
 public:
-	VibeTilemap(ID3D11Device* GD, int _size, Vector3 _start);
+	VibeTilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start);
 	~VibeTilemap();
 
 	void Draw(DrawData* _DD);

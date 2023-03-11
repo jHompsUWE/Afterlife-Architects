@@ -282,9 +282,6 @@
     <ClInclude Include="PreviewQuad.h">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClInclude>
-    <ClInclude Include="StructureSprite.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
-    </ClInclude>
     <ClInclude Include="BuildingManager.h">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClInclude>
@@ -329,6 +326,21 @@
     </ClInclude>
     <ClInclude Include="PlaneAssembler.h">
       <Filter>Afterlife\WorldGen</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureBuilding.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureKarmaAnchor.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureKarmaStation.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureSprite.h">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -458,9 +470,6 @@
     <ClCompile Include="PreviewQuad.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
-    <ClCompile Include="StructureSprite.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
-    </ClCompile>
     <ClCompile Include="BuildingManager.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
     </ClCompile>
@@ -490,6 +499,21 @@
     </ClCompile>
     <ClCompile Include="PopulationManager.cpp">
       <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureBuilding.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureKarmaAnchor.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureKarmaStation.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureSprite.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
