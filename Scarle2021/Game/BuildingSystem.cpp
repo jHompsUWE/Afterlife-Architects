@@ -54,6 +54,11 @@ void BuildingSystem::Tick(GameData* game_data)
             preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
             break;
 
+        // Clamp the preview quad to a line
+        case Karma_Tracks:
+            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
+            break;
+
         default:
             break;
         }
@@ -94,6 +99,11 @@ void BuildingSystem::Tick(GameData* game_data)
                 tilemap->BoxFill(building_manager, vibe_tilemap, Road, mouse_pressed_heaven_pos, 
                     ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
                 break;
+
+            // Turn boxfill to line fill
+            case Karma_Tracks:
+                tilemap->BoxFill(building_manager, vibe_tilemap, Karma_Tracks, mouse_pressed_heaven_pos,
+                    ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
 
             default:
                 break;
@@ -154,7 +164,7 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
             preview_quad->ChangePreviewQuadColor(selected_zone);
             break;
 
-        case number_9:
+        case input_K:
             selected_zone = Karma_Tracks;
             preview_quad->ChangePreviewQuadColor(selected_zone);
             break;
@@ -185,6 +195,10 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
 
         case input_N:
             StartCreateStructure(KarmaT);
+            break;
+
+        case input_B:
+            StartCreateStructure(KarmaAnchor);
             break;
 
         case input_P:

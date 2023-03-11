@@ -56,7 +56,7 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
         ,"green",window_10_roads,Vector2(0.8,0.7)));
     
     buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 143),DataManager::GetD3DDevice()
-        ,"green",window_11_karam_station,Vector2(0.8,0.7)));
+        ,"green",window_11_karma_station,Vector2(0.8,0.7)));
     
     buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 143),DataManager::GetD3DDevice()
     ,"green",window_12_karma_tracks,Vector2(0.8,0.7)));

@@ -5,6 +5,7 @@ enum StructureType {
 	KarmaPortal,
 	KarmaStation,
 	KarmaT,
+	KarmaAnchor,
 	TrainingCenter
 };
 
