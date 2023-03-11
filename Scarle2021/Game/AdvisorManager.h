@@ -16,7 +16,7 @@ enum Advisor
 
 enum HeavenOrHell
 {
-    Heaven, Hell, Both, Neither
+    Adv_Heaven, Adv_Hell, Both, Neither
 };
 
 class AdvisorManager
@@ -87,6 +87,6 @@ private:
     vector<int> current_faults = { -1,-1,-1,-1,-1 };
     vector<int> dialogue_starts = {0,3};
     vector<string> dialogue_titles = {"Start","Another"};
-    vector<HeavenOrHell> dialogue_standpoints = {Both, Heaven};
+    vector<HeavenOrHell> dialogue_standpoints = {Both, Adv_Heaven};
 };
 

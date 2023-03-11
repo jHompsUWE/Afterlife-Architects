@@ -124,11 +124,6 @@ void BuildingSystem::Tick(GameData* game_data)
                     ClampMouseToAxis(mouse_pressed_hell_pos, mouse_released_hell_pos));
                 break;
 
-            // Turn boxfill to line fill
-            case Karma_Tracks:
-                tilemap->BoxFill(building_manager, vibe_tilemap, Karma_Tracks, mouse_pressed_heaven_pos,
-                    ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
-
             default:
                 break;
             }
@@ -216,10 +211,6 @@ void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
 
         case input_M:
             StartCreateStructure(KarmaStation);
-            break;
-
-        case input_N:
-            StartCreateStructure(KarmaT);
             break;
 
         case input_B:
