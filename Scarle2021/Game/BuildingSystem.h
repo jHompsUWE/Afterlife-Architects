@@ -7,6 +7,9 @@
 #include "VibeTilemap.h"
 #include "PreviewQuad.h"
 #include "BuildingManager.h"
+#include "TextureManager.h"
+
+#include "PlaneAssembler.h"
 
 class BuildingSystem
 {
@@ -18,17 +21,26 @@ public:
 	void GetEvents(std::list<AfterlifeEvent>& event_list);
 	void Render3D(DrawData* draw_data);
 
+	PlaneType GetPositionPlane(Vector3 position);
+
 protected:
 
 private:
+	void GenerateTerrain(std::unique_ptr<Tilemap>& tilemap, std::unique_ptr<VibeTilemap>& vibe, std::unique_ptr<BuildingManager>& building_manager, PlaneType plane);
+
 	Vector3 ClampMouseToAxis(Vector3 start, Vector3 end);
 
-	void TryCreateHouse();
+	bool TryCreateHouse(std::unique_ptr<Tilemap>& tilemap, std::unique_ptr<VibeTilemap>& vibe, std::unique_ptr<BuildingManager>& building_manager, ZoneType zone);
 	void StartCreateStructure(StructureType structure_type);
-	void PlaceSelectedStructure();
+	void PlaceSelectedStructure(PlaneType plane);
+
+	bool CallEverySeconds(float dt, float time_interval);
 
 	std::shared_ptr<Vector3> mouse_world_pos;
 	ID3D11Device* d11_device = nullptr;
+
+	// Timer
+	float timer;
 
 	// Player
 	StructureType selected_structure;
@@ -38,19 +50,29 @@ private:
 	bool mouse_pressed;
 	Vector3 mouse_pressed_world_pos;
 	Vector3 mouse_released_world_pos;
+
 	Vector3 mouse_pressed_heaven_pos;
 	Vector3 mouse_released_heaven_pos;
 
-	// Tilemap
-	std::unique_ptr<Tilemap> tilemap;
-	std::unique_ptr<VibeTilemap> vibe_tilemap;
+	Vector3 mouse_pressed_hell_pos;
+	Vector3 mouse_released_hell_pos;
+
+	// Heaven
+	std::unique_ptr<Tilemap> tilemap_heaven;
+	std::unique_ptr<VibeTilemap> vibe_tilemap_heaven;
+	std::unique_ptr<BuildingManager> building_manager_heaven;
+
+	// Hell
+	std::unique_ptr<Tilemap> tilemap_hell;
+	std::unique_ptr<VibeTilemap> vibe_tilemap_hell;
+	std::unique_ptr<BuildingManager> building_manager_hell;
+
 	bool show_vibes = false;
+
+	std::shared_ptr<TextureManager> texture_manager;
 
 	// Preview Quad
 	bool show_preview_quad;
 	std::unique_ptr<PreviewQuad> preview_quad;
-
-	// Buildings
-	std::unique_ptr<BuildingManager> building_manager;
 };
 

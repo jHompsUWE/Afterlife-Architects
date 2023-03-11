@@ -66,7 +66,7 @@ VBGO::~VBGO()
 	DESTROY(m_pVertexShader);
 	DESTROY(m_pVertexLayout);
 	DESTROY(m_pPixelShader);
-	DESTROY(m_pTextureRV);
+	//DESTROY(m_pTextureRV);
 	DESTROY(m_pConstantBuffer);
 	//if (m_pCB) delete m_pCB; delete this where created as there will know its type
 	DESTROY(m_pSampler);

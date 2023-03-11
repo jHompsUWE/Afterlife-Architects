@@ -90,16 +90,9 @@ void VBQuad::UpdateWorldMatrix()
 /// Changes the texture of the quad
 /// </summary>
 /// <param name="textureName">Name of the texture without the data type (ex: Tile_Blue, NOT Tile_Blue.png)</param>
-void VBQuad::SetTexture(std::string textureName)
+void VBQuad::SetTexture(ID3D11ShaderResourceView* texture)
 {
-	std::string fullfilename = "../Assets/";
-	fullfilename += textureName;
-	fullfilename += ".dds";
-
-	DESTROY(m_pTextureRV);
-
-	HRESULT hr = CreateDDSTextureFromFile(d11_device, Helper::charToWChar(fullfilename.c_str()), nullptr, &m_pTextureRV);
-	assert(hr == S_OK);
+	m_pTextureRV = texture;
 }
 
 /// <summary>

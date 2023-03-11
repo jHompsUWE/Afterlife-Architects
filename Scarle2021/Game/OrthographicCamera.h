@@ -53,7 +53,7 @@ private:
 	// Zoom
 	float zoom_value = 10.0f;
 	float zoom_min = 1.0f;
-	float zoom_max = 20.0f;
+	float zoom_max = 40.0f;
 	float last_scroll_value = 0.0f;
 
 	int win_x;

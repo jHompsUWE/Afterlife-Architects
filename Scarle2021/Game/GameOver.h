@@ -14,7 +14,9 @@ public:
 	void Update(GameData* game_data) override;
 	void ScaledUpdate(GameData* game_data, float& scaled_dt) override;
 	void LateUpdate(GameData* game_data) override;
-
+	
+	void regenPerlin(int seed);
+	
 	//Events
 	void GetEvents(std::list<AfterlifeEvent>& event_list) override;
 

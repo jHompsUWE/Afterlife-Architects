@@ -10,6 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/GameOver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.h" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Game/TrainCentersWindow.cpp" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Game/TrainCentersWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
@@ -24,6 +26,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/numeric" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../../../../Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/include/vector" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/AudioManager.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/AudioManager.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Game/Button.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +53,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.45383412&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -176,6 +181,8 @@
       <workItem from="1677755533991" duration="6819000" />
       <workItem from="1677786980173" duration="3268000" />
       <workItem from="1678115269135" duration="1033000" />
+      <workItem from="1678352001923" duration="4168000" />
+      <workItem from="1678359879309" duration="9170000" />
       <workItem from="1678304825523" duration="4456000" />
       <workItem from="1678358593088" duration="1137000" />
       <workItem from="1678360435875" duration="4423000" />

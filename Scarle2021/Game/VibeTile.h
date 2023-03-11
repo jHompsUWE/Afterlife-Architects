@@ -4,7 +4,7 @@
 class VibeTile : public Tile
 {
 public:
-	VibeTile(ID3D11Device* GD, Vector3 _tile_pos, ZoneType zone_type);
+	VibeTile(ID3D11Device* GD, ID3D11ShaderResourceView* texture, Vector3 _tile_pos, ZoneType zone_type);
 	~VibeTile();
 
 	void ChangeVibe(int vibe_diff);

@@ -14,7 +14,7 @@ public:
 
 	void UpdateWorldMatrix();
 
-	void SetTexture(std::string textureName);
+	void SetTexture(ID3D11ShaderResourceView* texture);
 	void SetColor(Color color);
 
 protected:

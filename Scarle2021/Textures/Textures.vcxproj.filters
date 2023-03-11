@@ -428,6 +428,12 @@
     <ImageContentTask Include="ButtonAdvisor.png">
       <Filter>AfterLifeUI</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Karma_Portal.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
+    <ImageContentTask Include="Tiles\Tile_Karma_Track.png">
+      <Filter>Tiles</Filter>
+    </ImageContentTask>
     <ImageContentTask Include="Afterlife\Soul View\SoulView.png">
       <Filter>AfterLifeUI</Filter>
     </ImageContentTask>

@@ -1,14 +1,15 @@
 #include "pch.h"
 #include "VibeTilemap.h"
 
-VibeTilemap::VibeTilemap(ID3D11Device* GD, int _size, Vector3 _start): size(_size), start(_start)
+VibeTilemap::VibeTilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start):
+	size(_size), start(_start)
 {
 	for (int x = 0; x < size; x++)
 	{
 		vibe_tilemap.emplace_back();
 		for (int y = 0; y < size; y++)
 		{
-			vibe_tilemap[x].emplace_back(std::make_unique<VibeTile>(GD, start + Vector3(x, 0, y), Vibe));
+			vibe_tilemap[x].emplace_back(std::make_unique<VibeTile>(GD, _texture_manager->GetTextureZone(Vibe), start + Vector3(x, 0, y), Vibe));
 			vibe_tilemap[x][y]->UpdateWorldMatrix();
 		}
 	}
