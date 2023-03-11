@@ -165,6 +165,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionListBuildSys.h" />
+    <ClInclude Include="ActionListCursor.h" />
+    <ClInclude Include="ActionListGame.h" />
+    <ClInclude Include="ActionListInput.h" />
+    <ClInclude Include="ActionListInterface.h" />
+    <ClInclude Include="ActionListPacket.h" />
     <ClInclude Include="AdvisorManager.h" />
     <ClInclude Include="AdvisorWindow.h" />
     <ClInclude Include="Afterlife.h" />
@@ -179,6 +185,9 @@
     <ClInclude Include="DrawData.h" />
     <ClInclude Include="DrawData2D.h" />
     <ClInclude Include="EconomyManager.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="Observable.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
@@ -204,8 +213,10 @@
     <ClInclude Include="Loop.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MarchCubes.h" />
+    <ClInclude Include="NewEventManager.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="OrthographicCamera.h" />
+    <ClInclude Include="Packet.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="PerlinNoise.h" />
@@ -280,6 +291,7 @@
     <ClCompile Include="Loop.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarchCubes.cpp" />
+    <ClCompile Include="NewEventManager.cpp" />
     <ClCompile Include="OrthographicCamera.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

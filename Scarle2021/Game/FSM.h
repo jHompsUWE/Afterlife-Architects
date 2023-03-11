@@ -1,6 +1,7 @@
 #pragma once
 #include "DataManager.h"
 #include "array"
+#include "Event.h"
 #include "StateTemplate.h"
 
 /**
@@ -16,6 +17,9 @@ public:
 
     // Update
     void Update(GameData* game_data);
+
+    // Events
+    void DispatchEvents(std::vector<AL::Event>& event_list);
 
     // Renderers
     void Render3D(DrawData* draw_data) const;

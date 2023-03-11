@@ -94,6 +94,30 @@
     <Filter Include="Afterlife\UIMainPanel">
       <UniqueIdentifier>{e5250314-cc53-4c70-9134-4e1d52e17ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Afterlife\Singletons\Advisors">
+      <UniqueIdentifier>{c2777624-4860-4369-90e9-2c36a3d004f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Audio">
+      <UniqueIdentifier>{4b3400ad-4035-4481-91dc-6fe2daa019d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Events">
+      <UniqueIdentifier>{5f8cfa18-802c-41ae-91a7-d3ab05e932ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Events\Action Lists">
+      <UniqueIdentifier>{fce2428b-c3b2-428b-9e25-141a1b887d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Events\Old Event Manager">
+      <UniqueIdentifier>{c8a35665-ff52-44e4-b511-11131c4c91f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Singletons\Events\Event Manager">
+      <UniqueIdentifier>{0a147045-d82e-4f6c-bfd7-41240ccfe598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Design Patterns">
+      <UniqueIdentifier>{abf780c9-c19a-46a4-a9e9-4041b6da116a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Design Patterns\Observer Pattern">
+      <UniqueIdentifier>{c4b3dfc8-0f70-4f3b-b161-b6d9e72a6d2b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameObjects\AfterlifeGOs\Vibe">
       <UniqueIdentifier>{c1ecafa7-560c-45ee-addd-65e3da54a2a9}</UniqueIdentifier>
     </Filter>
@@ -231,9 +255,6 @@
     <ClInclude Include="FSM.h">
       <Filter>Afterlife\GameStates\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Afterlife\Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="OrthographicCamera.h">
       <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClInclude>
@@ -242,9 +263,6 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Afterlife\UIButton</Filter>
-    </ClInclude>
-    <ClInclude Include="AudioManager.h">
-      <Filter>Afterlife\Singletons</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>GameObjects\3D\Header Files</Filter>
@@ -267,9 +285,6 @@
     <ClInclude Include="TileNode.h">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="AdvisorManager.h">
-      <Filter>Afterlife\Singletons</Filter>
-    </ClInclude>
     <ClInclude Include="UIWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
     </ClInclude>
@@ -287,6 +302,48 @@
     </ClInclude>
     <ClInclude Include="EconomyManager.h">
       <Filter>Base\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvisorManager.h">
+      <Filter>Afterlife\Singletons\Advisors</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Afterlife\Singletons\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListCursor.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListGame.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListInput.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListInterface.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListPacket.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="NewEventManager.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable.h">
+      <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionListBuildSys.h">
+      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="AdvisorWindow.h">
       <Filter>Afterlife\UIWindow</Filter>
@@ -440,17 +497,11 @@
     <ClCompile Include="FSM.cpp">
       <Filter>Afterlife\GameStates\FSM</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Afterlife\Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="OrthographicCamera.cpp">
       <Filter>GameObjects\AfterlifeGOs</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Afterlife\UIButton</Filter>
-    </ClCompile>
-    <ClCompile Include="AudioManager.cpp">
-      <Filter>Afterlife\Singletons</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
@@ -470,9 +521,6 @@
     <ClCompile Include="AStarPathfinding.cpp">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
-    <ClCompile Include="AdvisorManager.cpp">
-      <Filter>Afterlife\Singletons</Filter>
-    </ClCompile>
     <ClCompile Include="UIWindow.cpp">
       <Filter>Afterlife\UIWindow</Filter>
     </ClCompile>
@@ -487,6 +535,18 @@
     </ClCompile>
     <ClCompile Include="EconomyManager.cpp">
       <Filter>Base\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdvisorManager.cpp">
+      <Filter>Afterlife\Singletons\Advisors</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Afterlife\Singletons\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="NewEventManager.cpp">
+      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClCompile>
     <ClCompile Include="AdvisorWindow.cpp">
       <Filter>Afterlife\UIWindow</Filter>

@@ -28,6 +28,18 @@ Afterlife::Afterlife() noexcept :
 {
 }
 
+Afterlife::~Afterlife()
+{
+    //Fixes the memory leak that comes with the Scarle
+    delete game_data;
+    delete draw_data;
+    delete draw_data2D;
+    delete common_states;
+    delete effect_factory;
+    delete light;
+    delete ortho_cam;
+}
+
 void Afterlife::Initialize(HWND _window, int _width, int _height)
 {
     main_window = _window;
@@ -49,14 +61,15 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     // Seed random gen
     srand((UINT)time(NULL));
 
-    // Set up keyboard and mouse system
+    // Set up keyboard, mouse and gamepad
     // Documentation here: https://github.com/microsoft/DirectXTK/wiki/Mouse-and-keyboard-input
     keyboard = std::make_unique<Keyboard>();
-    mouse = std::make_unique<Mouse>();
-    mouse->SetWindow(_window);
+    gamepad = std::make_unique<GamePad>();
     
     //ABSOLUTE: px position of the screen
     //RELATIVE: Movement vector of the cursor
+    mouse = std::make_unique<Mouse>();
+    mouse->SetWindow(_window);
     mouse->SetMode(Mouse::MODE_ABSOLUTE);
     // Mouse Pointer visible?
     ShowCursor(true);
@@ -101,6 +114,9 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     DataManager::Get().PopulatePointers(AR, &main_window, &output_width, &output_height, game_data,
         draw_data, draw_data2D, d3d_device.Get(),d3d_context.Get(), effect_factory);
 
+    //Saves a pointer to the event manager
+    event_manager = &AL::NewEventManager::Get();
+
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
     finite_state_machine->init();
@@ -128,6 +144,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
+    finite_state_machine->DispatchEvents(event_manager->GetEventList());
     audio_manager->Update(game_data);
     ortho_cam->Tick(game_data);
 }
@@ -138,7 +155,17 @@ void Afterlife::ReadInput()
     game_data->keyboard_state = keyboard->GetState();
     game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
     game_data->mouse_state = mouse->GetState();
+    const auto pad= gamepad->GetState(gamepad_index);
+
+    //TODO::PROPERLY SET THIS UP
+    //Temporary set up for the new event manager
+    event_manager->FlushEventList();
+    event_manager->PollKeyboard(game_data->keyboard_state);
+    event_manager->PollMouse(game_data->mouse_state);
+    event_manager->PollGamepad(pad);
     
+
+    //TODO:: GET RID OF OLD EVENT MANAGER 
     //Clears the event list if it not empty
     EventManager::GetEventList().clear();
     //Reads the input and generates events accordingly

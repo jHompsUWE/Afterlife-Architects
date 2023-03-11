@@ -6,11 +6,13 @@
 #include "../DirectXTK/Inc/Effects.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include "GamePad.h"
 #include "Audio.h"
 #include "FSM.h"
 #include "OrthographicCamera.h"
 
 //Player for debug purposes
+#include "NewEventManager.h"
 #include "Player.h"
 
 //Json file manager
@@ -28,7 +30,7 @@ class Afterlife
 public:
     // Constructor / Deconstructor
     Afterlife() noexcept;
-    ~Afterlife() = default;
+    ~Afterlife();
 
     Afterlife(Afterlife&&) = default;
     Afterlife& operator= (Afterlife&&) = default;
@@ -99,9 +101,14 @@ private:
     void ReadInput(); //Get current Mouse and Keyboard states
     std::unique_ptr<Keyboard> keyboard{};
     std::unique_ptr<Mouse> mouse{};
+    std::unique_ptr<GamePad> gamepad{};
+    int gamepad_index = 0;
 
     //Instance of the FSM
     std::unique_ptr<FSM> finite_state_machine = nullptr;
     std::unique_ptr<AudioManager> audio_manager = nullptr;
+
+    //Pointer to the Event Manager
+    AL::NewEventManager* event_manager = nullptr;
 };
 

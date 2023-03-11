@@ -66,6 +66,10 @@ void FSM::Update(GameData* game_data)
     state_array[current_state]->GetEvents(EventManager::GetEventList());
 }
 
+void FSM::DispatchEvents(std::vector<AL::Event>& event_list)
+{
+}
+
 //Rendering ------------------------------------------------------------------------------------------------------------
 
 /**
