@@ -118,6 +118,3 @@ void GameOver::Render2D(DrawData2D* draw_data2D)
 void GameOver::Render3D(DrawData* draw_data)
 {
 }
-
-
-

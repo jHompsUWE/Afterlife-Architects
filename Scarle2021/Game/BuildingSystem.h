@@ -8,6 +8,8 @@
 #include "PreviewQuad.h"
 #include "BuildingManager.h"
 
+#include "PlaneAssembler.h"
+
 class BuildingSystem
 {
 public:
@@ -21,6 +23,8 @@ public:
 protected:
 
 private:
+	void GenerateTerrain();
+
 	Vector3 ClampMouseToAxis(Vector3 start, Vector3 end);
 
 	void TryCreateHouse();

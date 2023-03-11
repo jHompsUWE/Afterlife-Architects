@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -193,6 +193,7 @@
     <ClInclude Include="PlaneType.h" />
     <ClInclude Include="PopulationManager.h" />
     <ClInclude Include="StructureGate.h" />
+    <ClInclude Include="MapAssembler.h" />
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
@@ -205,6 +206,8 @@
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="DataManager.h" />
+    <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="PlaneAssembler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PreviewQuad.h" />
     <ClInclude Include="Raycast.h" />

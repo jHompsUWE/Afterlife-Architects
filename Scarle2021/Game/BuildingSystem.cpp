@@ -5,9 +5,11 @@ BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device*
 	mouse_world_pos(mouse_pos), d11_device(GD)
 {
     Vector3 start_heaven = Vector3(-5, 0, -5);
-    tilemap = std::make_unique<Tilemap>(d11_device, 50, start_heaven);
-    vibe_tilemap = std::make_unique<VibeTilemap>(d11_device, 50, start_heaven);
-    building_manager = std::make_unique<BuildingManager>(d11_device, 50, start_heaven);
+
+    tilemap = std::make_unique<Tilemap>(d11_device, 100, start_heaven);
+    vibe_tilemap = std::make_unique<VibeTilemap>(d11_device, 100, start_heaven);
+    building_manager = std::make_unique<BuildingManager>(d11_device, 100, start_heaven);
+    GenerateTerrain();
 
     show_preview_quad = false;
     preview_quad = std::make_unique<PreviewQuad>(d11_device);
@@ -24,7 +26,7 @@ BuildingSystem::~BuildingSystem()
 
 void BuildingSystem::Tick(GameData* game_data)
 {
-    if (CallEverySeconds(game_data->delta_time, 0.5))
+    if (CallEverySeconds(game_data->delta_time, 1))
     {
         building_manager->Tick(game_data);
     }
@@ -211,6 +213,37 @@ void BuildingSystem::Render3D(DrawData* draw_data)
     if (show_preview_quad)
     {
         preview_quad->Draw(draw_data);
+    }
+}
+
+void BuildingSystem::GenerateTerrain()
+{
+    const auto noise_map_vec = PlaneAssembler::GeneratePlaneAsVector3();
+
+    for (auto& tile : noise_map_vec)
+    {
+        // 0 is Void
+        // 1 is Rock
+        // 2 is River
+        // 3 is Karma Portal
+        int tile_id = tile.z;
+        switch (tile_id)
+        {
+        case 1:
+            // Create Rock
+            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Rock);
+            break;
+
+        case 2:
+            // Create River
+            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Water);
+            break;
+
+        case 3:
+            // Create Karma Portal
+            tilemap->SetTile(Vector3(tile.x, 0, tile.y), Lava);
+            break;
+        }
     }
 }
 
