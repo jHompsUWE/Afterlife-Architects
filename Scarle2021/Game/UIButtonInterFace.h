@@ -2,7 +2,7 @@
 #include "GameData.h"
 #include "ImageGO2D.h"
 #include "TextGO2D.h"
-#include "OldEventManager.h"
+#include "EventManager.h"
 
 
 class UIButtonInterFace

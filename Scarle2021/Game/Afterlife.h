@@ -12,7 +12,7 @@
 #include "OrthographicCamera.h"
 
 //Player for debug purposes
-#include "EventManager.h"
+#include "NewEventManager.h"
 #include "Player.h"
 
 // Forward declarations
@@ -106,6 +106,6 @@ private:
     std::unique_ptr<AudioManager> audio_manager = nullptr;
 
     //Pointer to the Event Manager
-    AL::EventManager* event_manager = nullptr;
+    AL::NewEventManager* event_manager = nullptr;
 };
 

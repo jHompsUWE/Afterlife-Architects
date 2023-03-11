@@ -318,13 +318,13 @@
     <ClInclude Include="ActionListPacket.h">
       <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
     </ClInclude>
-    <ClInclude Include="OldEventManager.h">
+    <ClInclude Include="EventManager.h">
       <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
       <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClInclude>
-    <ClInclude Include="EventManager.h">
+    <ClInclude Include="NewEventManager.h">
       <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClInclude>
     <ClInclude Include="Packet.h">
@@ -473,10 +473,10 @@
     <ClCompile Include="AudioManager.cpp">
       <Filter>Afterlife\Singletons\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="OldEventManager.cpp">
+    <ClCompile Include="EventManager.cpp">
       <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
     </ClCompile>
-    <ClCompile Include="EventManager.cpp">
+    <ClCompile Include="NewEventManager.cpp">
       <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
     </ClCompile>
   </ItemGroup>

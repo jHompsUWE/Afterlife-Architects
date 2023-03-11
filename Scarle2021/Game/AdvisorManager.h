@@ -1,6 +1,6 @@
 #pragma once
 #include "DataManager.h" 
-#include "OldEventManager.h"
+#include "EventManager.h"
 #include <unordered_map>
 
 enum DialogueState

@@ -116,7 +116,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
         draw_data, draw_data2D, d3d_device.Get(),d3d_context.Get(), effect_factory);
 
     //Saves a pointer to the event manager
-    event_manager = &AL::EventManager::Get();
+    event_manager = &AL::NewEventManager::Get();
 
     //Inits the finite state machine
     finite_state_machine = std::make_unique<FSM>(game_data->current_game_state);
@@ -168,9 +168,9 @@ void Afterlife::ReadInput()
 
     //TODO:: GET RID OF OLD EVENT MANAGER 
     //Clears the event list if it not empty
-    OldEventManager::GetEventList().clear();
+    EventManager::GetEventList().clear();
     //Reads the input and generates events accordingly
-    OldEventManager::ReadInput(game_data);
+    EventManager::ReadInput(game_data);
     
     //Closes the game. Defined here so it is not dependant on the FSM
     if (game_data->keyboard_state.Escape)
@@ -287,7 +287,7 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
     CreateResources();
 
     // TODO: Game main_window is being resized.
-    OldEventManager::GenerateEvent(game_resized);
+    EventManager::GenerateEvent(game_resized);
 }
 
 // Properties

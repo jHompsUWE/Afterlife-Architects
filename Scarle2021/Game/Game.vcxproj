@@ -184,7 +184,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="OldEventManager.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FSM.h" />
@@ -203,7 +203,7 @@
     <ClInclude Include="Loop.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MarchCubes.h" />
-    <ClInclude Include="EventManager.h" />
+    <ClInclude Include="NewEventManager.h" />
     <ClInclude Include="ObjectList.h" />
     <ClInclude Include="OrthographicCamera.h" />
     <ClInclude Include="Packet.h" />
@@ -247,7 +247,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
     <ClCompile Include="EconomyManager.cpp" />
-    <ClCompile Include="OldEventManager.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="fileVBGO.cpp" />
     <ClCompile Include="FSM.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -262,7 +262,7 @@
     <ClCompile Include="Loop.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MarchCubes.cpp" />
-    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="NewEventManager.cpp" />
     <ClCompile Include="OrthographicCamera.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -63,7 +63,7 @@ void FSM::Update(GameData* game_data)
     state_array[current_state]->LateUpdate(game_data);
 
     //Events are dispatched at the end of the update cycle
-    state_array[current_state]->GetEvents(OldEventManager::GetEventList());
+    state_array[current_state]->GetEvents(EventManager::GetEventList());
 }
 
 void FSM::DispatchEvents(std::vector<AL::Event>& event_list)

@@ -30,7 +30,7 @@ bool AudioManager::init()
 /// <param name="game_data"></param>
 void AudioManager::Update(GameData* game_data)
 {
-    GetEvents(OldEventManager::GetEventList());
+    GetEvents(EventManager::GetEventList());
     if (!audEngine->Update())
     {
         //more 

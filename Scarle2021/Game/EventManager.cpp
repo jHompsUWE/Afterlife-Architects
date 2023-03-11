@@ -1,314 +1,108 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include "EventManager.h"
 
-#include <iostream>
-#include <ostream>
 
-namespace AL
+EventManager& EventManager::Get()
 {
-	//Default private constructor, no need to initialize inherited class
-	EventManager::EventManager() = default;
-	
-	//Default private de-constructor
-	EventManager::~EventManager() = default;
+    static EventManager instance;
+    return instance;
+}
 
-	// Instance --------------------------------------------------------------------------------------------------------
-	
-	/**
-	 * \return Instance of EventManager
-	 */
-	EventManager& EventManager::Get()
-	{
-		static EventManager instance;
-		return instance;
-	}
+/**
+ * \brief Can be called to manually add an Event to the Event list
+ * \param _event What event will be added
+ */
+void EventManager::GenerateEvent(AfterlifeEvent _event)
+{
+    Get().IGenerateEvent(_event);
+}
 
-	// Static ----------------------------------------------------------------------------------------------------------
-	
-	/**
-	 * \brief Static function to generate an event
-	 * \tparam Payload Data to be inserted in the event
-	 * \param type which type of even this is gonna be
-	 */
-	template <typename ... Payload>
-	void EventManager::GenerateEventSt(EventType type, const Payload&... args)
-	{
-		Get().GenerateEvent(type, args);
-	}
+/**
+ * \brief When called will save all the current input states
+ */
+void EventManager::ReadInput(GameData* game_data)
+{
+    Get().IReadInput(game_data);
+}
 
-	/**
-	 * \return static func to return the event list
-	 */
-	std::vector<Event>& EventManager::GetEventListSt()
-	{
-		return Get().GetEventList();
-	}
+/**
+ * \return std::list of all the Events generated from the last frame 
+ */
+std::list<AfterlifeEvent>& EventManager::GetEventList()
+{
+    return Get().event_list;
+}
 
-	/**
-	 * \param observer to be subscribed to receive events
-	 */
-	void EventManager::AddEventReceiver(IEventReceiver* observer)
-	{
-		Get().AddObserver(observer);
-	}
+// Internal Functions --------------------------------------------------------------------------------------------------
 
-	/**
-	 * \param observer to be unsubscribed from receiving events
-	 */
-	void EventManager::RemoveEventReceiver(IEventReceiver* observer)
-	{
-		Get().RemoveObserver(observer);
-	}
+void EventManager::IGenerateEvent(AfterlifeEvent _event)
+{
+    event_list.push_back(_event);
+}
 
-	// Event List ------------------------------------------------------------------------------------------------------
-	
-	/**
-	 * \return returns the event list.
-	 */
-	std::vector<Event>& EventManager::GetEventList()
-	{
-		return event_list;
-	}
+/**
+ * \brief This is where all the keyboard and mouse inputs are mapped to Events.
+ */
+void EventManager::IReadInput(GameData* game_data)
+{
+    //Input states: kb = Keyboard, ms = Mouse, kbt = Keyboard Tracker
+    auto& kb = game_data->keyboard_state;
+    auto& ms = game_data->mouse_state;
+    auto& kbt = game_data->keyboard_state_tracker;
 
-	/**
-	 * \brief Clear all data from the event list
-	 */
-	void EventManager::FlushEventList()
-	{
-		event_list.clear();
-	}
+    //TODO: Keyboard and mouse input has to be handled HERE
+    //Input mapping to events
+    MapInputToEvent(kb.D0, number_0);
+    MapInputToEvent(kb.D1, number_1);
+    MapInputToEvent(kb.D2, number_2);
+    MapInputToEvent(kb.D3, number_3);
+    MapInputToEvent(kb.D4, number_4);
+    MapInputToEvent(kb.D5, number_5);
+    MapInputToEvent(kb.D6, number_6);
+    MapInputToEvent(kb.D7, number_7);
+    MapInputToEvent(kb.D8, number_8);
+    MapInputToEvent(kb.D9, number_9);
+    MapInputToEvent(kb.E, input_E);
 
-	// Input Mapping ---------------------------------------------------------------------------------------------------
+    /*
+    MapInputToEvent(kb.W, input_up);
+    MapInputToEvent(kb.S, input_down);
+    MapInputToEvent(kb.A, input_left);
+    MapInputToEvent(kb.D, input_right);
 
-	/**
-	 * \brief To map keyboard entries to events
-	 * \param keyboard state in this current frame
-	 */
-	void EventManager::PollKeyboard(Keyboard::State keyboard)
-	{
-		//Map keyboard keys here
-		MapEntryToEvent(keyboard.W, Input::input_up);
-		MapEntryToEvent(keyboard.S, Input::input_down);
-		MapEntryToEvent(keyboard.A, Input::input_left);
-		MapEntryToEvent(keyboard.D, Input::input_right);
-	}
-	
-	/**
-	 * \brief to map mouse entries to events
-	 * \param mouse state in this current frame
-	 */
-	void EventManager::PollMouse(Mouse::State mouse)
-	{
-		//Creates event for mouse moved if necessary
-		MouseMovToEvent(mouse);
+    MapInputToEvent(kb.NumPad1, play_sound_theme1);
+    MapInputToEvent(kb.NumPad2, play_sound_theme2);
+    MapInputToEvent(kb.NumPad3, play_sound_theme3);
+    MapInputToEvent(kb.NumPad4, play_sound_theme4);
+    MapInputToEvent(kb.NumPad5, play_sound_theme5);
+    MapInputToEvent(kb.NumPad6, play_sound_theme6);
+    MapInputToEvent(kb.NumPad7, play_sound_theme7);
+    MapInputToEvent(kb.NumPad8, dialogue_1);
+    */
+}
 
-		//Map mouse keys here
-		MapEntryToEvent(mouse.leftButton, Cursor::button_input1);
-		MapEntryToEvent(mouse.rightButton, Cursor::button_input2);
-	}
-
-	/**
-	 * \brief to map gamepad entries to events
-	 * \param gamepad state in this current frame
-	 */
-	void EventManager::PollGamepad(GamePad::State gamepad)
-	{
-		if(gamepad.IsConnected())
-		{
-			//Map controller behaviour here
-			MapEntryToEvent(gamepad.IsAPressed(), Input::input_left);
-		}
-	}
-
-	// Data Sharing ----------------------------------------------------------------------------------------------------
-
-	/**
-	 * \brief Routes the events to each of the observers
-	 */
-	void EventManager::BroadcastData()
-	{
-		for (const auto& entry : event_list)
-		{
-			//Event looping is already done here, no need for loop in observer
-			for (const auto observer : observers)
-			{
-				observer->ReceiveEvents(entry);
-			}
-		}
-	}
-
-	// Key Mapping Handlers --------------------------------------------------------------------------------------------
-	
-	void EventManager::MouseMovToEvent(const Mouse::State& mouse)
-	{
-		//Check if mouse position has changed, and generate and event is so
-		if(mouse.x != mouse_x || mouse.y != mouse_y)
-		{
-			mouse_x = mouse.x;
-			mouse_y = mouse.y;
-
-			GenerateEvent(event_cursor_move, mouse_x, mouse_y);
-		}
-	}
-	
-	void EventManager::MapEntryToEvent(bool state, Input::Action action, bool repeat)
-	{
-		//If the input is set as repeat, generate an input event each poll action while
-		//the button is being pressed
-		if(repeat)
-		{
-			if(state)
-			{
-				//Repeat event
-				GenerateEvent(event_input, action, state);
-			}
-			return;
-		}
-
-		//Maps the current states of the outputs to keep track of pressed and relesed actions
-		if(state)
-		{
-			if(!input_to_action_map[action])
-			{
-				input_to_action_map[action] = true;
-				//Button is pressed
-				GenerateEvent(event_input, action, state);
-
-			}
-		}
-		else
-		{
-			if(input_to_action_map[action])
-			{
-				input_to_action_map[action] = false;
-				//Button is released 
-				GenerateEvent(event_input, action, state);
-			}
-		}
-	}
-
-	void EventManager::MapEntryToEvent(bool state, Cursor::Action action, bool repeat)
-	{
-		//If the input is set as repeat, generate an input event each poll action while
-		//the button is being pressed
-		if(repeat)
-		{
-			if(state)
-			{
-				//Repeat Event
-				GenerateEvent(event_cursor_interact, action, state);
-			}
-			return;
-		}
-
-		//Maps the current states of the outputs to keep track of pressed and relesed actions
-		if(state)
-		{
-			if(!cursor_to_action_map[action])
-			{
-				cursor_to_action_map[action] = true;
-				//Button is pressed 
-				GenerateEvent(event_cursor_interact, action, state);
-			}
-		}
-		else
-		{
-			if(cursor_to_action_map[action])
-			{
-				cursor_to_action_map[action] = false;
-				//Button is released 
-				GenerateEvent(event_cursor_interact, action, state);
-
-			}
-		}
-	}
-
-	// Event Generation ------------------------------------------------------------------------------------------------
-
-	/**
-	 * \brief Generates an event form the data given, easy as that
-	 * \tparam Payload Data to be inserted in the event
-	 * \param type which type of even this is gonna be
-	 */
-	template <typename ... Payload>
-	void EventManager::GenerateEvent(EventType type, const Payload&... args)
-	{
-		//ATM are not in place any sort of memory checks on the size of data being moved inside an event
-		//If the size of data surpasses 40 bytes a memory override will happen. and we *do not* want that
-		event_list.emplace_back(type);
-		SetEventData(event_list.back(), args...);
-	}
-
-	// Event Data Insertion --------------------------------------------------------------------------------------------
-
-	/**
-	 * \brief This function takes and data, will the store all the data provided inside the event.
-	 * \tparam Payload variadic template, this is the packet of values and types that need to be inserted
-	 * \param event reference to the event
-	 */
-	template <typename ... Payload>
-	void EventManager::SetEventData(Event& event, const Payload&... args)
-	{
-		//Gets the inital data offset of the event and starts the population process
-		int byte_offset = sizeof(EventType);
-		SetEventData(event, byte_offset, args...);
-	}
-	
-	/**
-	 * \brief This is closely linked to the previous function and will keep recurring until all the data has been moved
-	 * \tparam T type of the current type that is being inserted
-	 * \tparam Payload packet or remaining data 
-	 * \param event reference to the event
-	 * \param byte_offset offset of bytes from the initial memory address 
-	 */
-	template <typename T, typename ... Payload>
-	void EventManager::SetEventData(Event& event, int& byte_offset, const T& arg, const Payload&... args)
-	{
-		//Check the current allocation of memory to not overshoot
-		if(byte_offset + sizeof(T) > sizeof(Event))
-		{
-			std::cout << "Data inserted overshoots memory limit for Event, discarding data" << std::endl;
-			return;
-		}
-		
-		//Checks if the value is char
-		if constexpr (std::is_same<typename std::remove_cv<typename std::remove_extent<T>::type>::type, char>::value)
-		{
-			//If it is, save its size and save it as a char*
-			const int size = sizeof(event.sound_start.filename);
-			const char* string = arg;
-			size_t len = strnlen_s(string, size); //gets len of the string
-
-			//Checks if the string is small enough to fit into a char[32]
-			if (len < size)
-			{
-				//Copies the string, in this case, named arg, to the memory location defined
-				//*(char(*)[sizeof(T)]) is used to cast that memory pointer to a char[] of
-				//sizeof(T) value.
-				strcpy_s(*(char(*)[sizeof(T)])((char*)&event + byte_offset), arg);
-			}
-			else
-			{
-				//string too big! not good!
-				std::cout << "This event value has not been saved, value exceeds buffer." << std::endl;
-			}
-
-			//Adds the size of the string to the buffer for the next values
-			byte_offset += size;
-		}
-		else
-		{
-			//If not a string cast value as T* and takes the correct place in memory
-			//To move the pointer of memory a char* is used because it is a single byte
-			//More appropriate would be using std::byte, but that is not introduced yet in c++ 14
-			*(T*)((char*)&event + byte_offset) = arg;
-			byte_offset += sizeof(T);
-		}
-
-		//Keep recurring until all the value in the data package are used
-		if constexpr (sizeof...(args) > 0)
-		{
-			SetEventData(event, byte_offset, args...);
-		}
-	}
+/**
+ * \brief Uses a map to track the current state of each button pressed or released
+ * \param pressed button that is being pressed
+ * \param event event generated/to be generated
+ */
+void EventManager::MapInputToEvent(const bool& pressed, AfterlifeEvent event)
+{
+    if(pressed)
+    {
+        //If the button is pressed update the input state map and add event to list
+        if(!input_state[event])
+        {
+            event_list.push_back(event);
+            input_state[event] = true;
+        }
+    }
+    else
+    {
+        //When button is not being pressed anymore set it to false
+        if(input_state[event])
+        {
+            input_state[event] = false;
+        }
+    }
 }

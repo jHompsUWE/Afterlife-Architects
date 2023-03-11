@@ -1,76 +1,88 @@
-﻿#pragma once
-
-#include "gamedata.h"
-#include "Event.h"
-#include "Observable.h"
-#include "Observer.h"
+#pragma once
 
 #include <unordered_map>
+#include "GameData.h"
 
-namespace AL
+enum AfterlifeEvent
 {
-	class EventManager : public IObservable<IEventReceiver>
-	{
-	public:
-		//Deleted copy constructor and assignment operator
-		EventManager(const EventManager&) = delete;
-		EventManager& operator=(const EventManager&) = delete;
+	none,
+	number_1,
+	number_2,
+	number_3,
+	number_4,
+	number_5,
+	number_6,
+	number_7,
+	number_8,
+	number_9,
+	number_0,
+	input_up,
+	input_down,
+	input_left,
+	input_E,
+	input_right,
+	game_resized,
+	enter_main_menu,
+	enter_game_play,
+	enter_level_select,
+	window_1_green,
+	window_2_yellow,
+	window_3_orange,
+	window_4_brown,
+	window_5_pink,
+	window_6_red,
+	window_7_blue,
+	window_8_multicolour,
+	window_9_gate,
+	window_10_roads,
+	window_11_karam_station,
+	window_12_karma_tracks,
+	window_13_topias,
+	window_14_training_centre,
+	window_15_ports,
+	window_16_siphons_banks,
+	window_17_special_buildings,
+	window_18_omnibolges_and_love_domes,
+	window_19_limbo_structures,
+	window_20_delete_structures,
+	window_21_zoom_in,
+	window_22_zoom_out,
+	play_sound_theme1,
+	play_sound_theme2,
+	play_sound_theme3,
+	play_sound_theme4,
+	play_sound_theme5,
+	play_sound_theme6,
+	play_sound_theme7,
+	dialogue_1
+};
 
-		//Gets singleton instance
-		static EventManager& Get();
-		
-		//Static public functions, accessible via ::
-		template <typename... Payload>
-		static void GenerateEventSt(EventType type, const Payload&... args);
-		static std::vector<Event>& GetEventListSt();
-		static void AddEventReceiver(IEventReceiver* observer);
-		static void RemoveEventReceiver(IEventReceiver* observer);
+class EventManager
+{
+public:
+	//Deleted copy/assignment operators
+	EventManager(const EventManager&) = delete;
+	EventManager& operator=(const EventManager&) = default;
 
-		//Public functions, accessible via Get() or via singleton instance
-		std::vector<Event>& GetEventList();
-		void FlushEventList();
+	//Create class and instance
+	static EventManager& Get();
 
-		//Input polling
-		void PollKeyboard(Keyboard::State keyboard);
-		void PollMouse(Mouse::State mouse);
-		void PollGamepad(GamePad::State gamepad);
-		
-	private:
-		//Private constructor and de-constructor
-		EventManager();
-		~EventManager() override;
+	//Static public functions
+	static void GenerateEvent(AfterlifeEvent _event);
+	static void ReadInput(GameData* game_data);
+	static std::list<AfterlifeEvent>& GetEventList();
 
-		//Data sharing
-		void BroadcastData() override;
+private:
+	//Private constructor
+	EventManager() = default;
+	~EventManager() = default;
 
-		//Key mapping
-		void MouseMovToEvent(const Mouse::State& mouse);
-		void MapEntryToEvent(bool state, Input::Action action, bool repeat = false);
-		void MapEntryToEvent(bool state, Cursor::Action action, bool repeat = false);
-
-		//This function can generate events
-		template <typename... Payload>
-		void GenerateEvent(EventType type, const Payload&... args);
-
-		//The following two functions are closely linked together and provide an
-		//easy way to bulk data inside events
-		template<typename... Payload>
-		void SetEventData(Event& event, const Payload&... args);
-		template<typename T, typename... Payload>
-		void SetEventData(Event& event, int& byte_offset, const T& arg, const Payload&... args);
-		
-		//Key mapping data
-		std::unordered_map<Input::Action, bool> input_to_action_map{};
-		std::unordered_map<Cursor::Action, bool> cursor_to_action_map{};
-
-		//events
-		std::vector<Event> event_list{};
-
-		//Saves mouse pos
-		int mouse_x = 0;
-		int mouse_y = 0;
-	};
-
+	//Internal functions
+	void IGenerateEvent(AfterlifeEvent _event);
+	void IReadInput(GameData* game_data);
+	void MapInputToEvent(const bool& pressed, AfterlifeEvent event);
 	
-}
-
+	//Event queue & input state
+	std::list<AfterlifeEvent> event_list{};
+	std::unordered_map<AfterlifeEvent, bool> input_state{};
+};
