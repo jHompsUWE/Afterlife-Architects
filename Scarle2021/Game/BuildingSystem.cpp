@@ -24,7 +24,7 @@ BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device*
     preview_quad = std::make_unique<PreviewQuad>(d11_device);
     preview_quad->SetPos(Vector3(0, 0.01f, 0));
 
-    selected_zone = Green;
+    selected_zone = null;
 
     timer = 0;
 
@@ -118,17 +118,21 @@ void BuildingSystem::Tick(GameData* game_data)
                 PlaceSelectedStructure(GetPositionPlane(mouse_released_world_pos));
                 break;
 
+            case Karma_Tracks:
             case Road:
                 // Turn boxfill to line fill
-                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, Road, mouse_pressed_heaven_pos, 
+                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, 
                     ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
-                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, Road, mouse_pressed_hell_pos,
+                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos,
                     ClampMouseToAxis(mouse_pressed_hell_pos, mouse_released_hell_pos));
                 break;
 
             default:
                 break;
             }
+
+            // Set selected_zone to null after placing a zone
+            selected_zone = null;
         }
     }
 
@@ -236,6 +240,7 @@ void BuildingSystem::GenerateTerrain(std::unique_ptr<Tilemap>& tilemap, std::uni
             // Create Random Rock
 
             tilemap->BoxFill(building_manager, vibe, Rock, Vector3(tile.x, 0, tile.y), Vector3(tile.x, 0, tile.y));
+            tilemap->OccupyTile(Vector3(tile.x, 0, tile.y), 1);
 
             switch (rand() % 2)
             {

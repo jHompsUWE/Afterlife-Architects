@@ -101,10 +101,12 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, std::u
 bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 {
 	if (!IsPosValid(tile_pos) ||
-		tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == zone_type)
+		tilemap[tile_pos.x][tile_pos.z]->GetZoneType() == zone_type ||
+		!CanTileBeReplaced(tilemap[tile_pos.x][tile_pos.z]->GetZoneType()))
 	{
 		// Tile position exceeds tilemap size
 		// Don't change texture if ZoneType is the same
+		// This tile cannot be replaced
 		return false;
 	}
 
@@ -363,7 +365,7 @@ bool Tilemap::IsAreaValid(Vector3 start, int _size)
 	{
 		for (int z = 0; z < _size; z++)
 		{
-			if (!IsPosValid(Vector3(start.x + x, 0, start.z + z)))
+			if (!IsPosValid(Vector3(start.x + x, 0, start.z + z)) || IsTileOccupied(Vector3(start.x + x, 0, start.z + z)))
 			{
 				return false;
 			}
@@ -393,6 +395,26 @@ bool Tilemap::IsRoadNearby(Vector3 tile_pos)
 		}
 	}
 	return false;
+}
+
+/// <summary>
+/// Checks if the given ZoneType can be replaced
+/// </summary>
+/// <param name="zone_type">ZoneType</param>
+/// <returns>True if it can be replaced, False otherwise</returns>
+bool Tilemap::CanTileBeReplaced(ZoneType zone_type)
+{
+	switch (zone_type)
+	{
+	case Water:
+	case Lava:
+	case Karma_Anchor:
+	case Rock:
+		return false;
+
+	default:
+		return true;
+	}
 }
 
 /// <summary>

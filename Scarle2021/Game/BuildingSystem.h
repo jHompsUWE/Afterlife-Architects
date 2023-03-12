@@ -45,7 +45,7 @@ private:
 	ZoneType selected_zone;
 
 	// Mouse
-	bool mouse_pressed{};
+	bool mouse_pressed;
 	Vector3 mouse_pressed_world_pos;
 	Vector3 mouse_released_world_pos;
 
