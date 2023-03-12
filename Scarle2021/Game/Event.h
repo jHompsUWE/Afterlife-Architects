@@ -21,7 +21,8 @@ namespace AL
         event_sound_stop,
         event_ui,
         event_build_sys,
-        event_game
+        event_game,
+        event_adv_fault
     };
 
     //Normal input event
@@ -113,6 +114,14 @@ namespace AL
             Game::Action action = Game::Action::unknown;
         };
 
+        /**
+         * \brief Event to be redirect an action to the advisor
+         */
+        struct AdvisorEvent
+        {
+            int fault_index = NULL;
+        };
+
         //What kind of general event is this
         EventType type = unknown;
         
@@ -129,6 +138,7 @@ namespace AL
             BuildSysEvent build_sys;
             InterfaceEvent ui;
             GameEvent game;
+            AdvisorEvent advisor;
         };
     };
 }

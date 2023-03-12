@@ -381,4 +381,6 @@ namespace AL
 		EventType type, const BuildSys::Section&, const StructureType&, const ZoneType&);
 	//Game Event
 	template void NewEventManager::GenerateEventSt<Game::Action>(EventType, const Game::Action&);
+	//Advisor Fault Event
+	template void NewEventManager::GenerateEventSt<int>(EventType, const int&);
 }

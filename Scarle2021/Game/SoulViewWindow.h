@@ -40,7 +40,7 @@ private:
     std::vector<TextGO2D*> text_vec;
     std::vector<ImageGO2D*> image_vec;
 
-    string random_names[5] = {"Name 1","Name 2","Name 3","Name 4","Name 5"};
+    string random_names[6] = {"Oscar Wilkinson","Scott Knapp","Elvin Nicholson","Simone Farinelli","Awse Noori", "Seb LLewellyn"};
     string available_punishments[14] = {"Envy","Avarice","Gluttony","Sloth","Pride","Wrath","Lust","Contentment","Charity","Temperance","Diligence","Humility","Peacefulness","Chastity"};
     
     // NAAA does not show in afterlife

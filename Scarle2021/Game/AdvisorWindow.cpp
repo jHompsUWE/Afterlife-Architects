@@ -70,7 +70,7 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
     }
     
     //text vector
-    text_vec.push_back(new TextGO2D("press num pad 8 for temporary dialogue"));
+    text_vec.push_back(new TextGO2D(""));
     text_vec[5]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));
     text_vec[5]->SetScale(Vector2(0.3,0.3));
 }

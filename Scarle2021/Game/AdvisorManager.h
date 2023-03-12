@@ -49,6 +49,7 @@ private:
     void AddFault(int index);
     void RemoveFault(int index);
     void UpdateButtons();
+    bool ContainsFault(int index);
 
     int GetCharIndex();
 
@@ -63,7 +64,7 @@ private:
     // String for every dialogue
     string dia_array_string[5] = {"Starting first issue box!","Continuing first issue!","Ending first issue","Second issue start!","Second issue end!"};
     // NOT POINTERS but instead directs the next dialogue index
-    int dia_array_pointers[5] = { 1,2,3,4,-1 };
+    int dia_array_pointers[5] = { 1,2,-1,4,-1 };
     // Dictates who is saying what
     Advisor dia_array_advisor[5] = { Jasper,Aria,Aria,Jasper,Aria };
 

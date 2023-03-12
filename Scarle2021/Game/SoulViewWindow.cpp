@@ -212,9 +212,7 @@ void SoulViewWindow::generateRandSoul()
 {
     srand(std::time(nullptr));
 
-    string temp_str;
-
-    string temp_string = random_names[std::rand()%5];
+    string temp_string = random_names[std::rand()%6];
     text_vec[0]->ChangeString(temp_string);
 
     srand(std::time(nullptr) * 2);

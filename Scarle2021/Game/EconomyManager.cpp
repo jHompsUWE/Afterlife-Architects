@@ -223,6 +223,19 @@ void EconomyManager::IUpdateCurrency(GameData* game_data)
 		currency = currency + soul_rate;
 		year++;
 	}
+
+	if (year == 10)
+	{
+		AL::NewEventManager::GenerateEventSt(AL::event_adv_fault, 0);
+	}
+	else if (year == 20)
+	{
+		AL::NewEventManager::GenerateEventSt(AL::event_adv_fault, 1);
+	}
+	else if (year == 30)
+	{
+		AL::NewEventManager::GenerateEventSt(AL::event_adv_fault, 0);
+	}
 }
 
 void EconomyManager::IUpdateSouls()

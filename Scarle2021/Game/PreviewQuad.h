@@ -1,6 +1,7 @@
 #pragma once
 #include "VBQuad.h"
 #include "ZoneType.h"
+#include "NewEventManager.h"
 
 class PreviewQuad : public VBQuad
 {
@@ -18,6 +19,6 @@ public:
 protected:
 
 private:
-
+	const char click_sound_1[32] = "Click";
 };
 
