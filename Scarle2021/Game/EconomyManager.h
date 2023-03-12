@@ -1,6 +1,7 @@
 #pragma once
 #include <chrono>
 #include "GameData.h"
+#include "NewEventManager.h"
 
 class EconomyManager
 {

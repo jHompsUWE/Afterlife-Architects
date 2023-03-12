@@ -18,7 +18,7 @@ bool AdvisorManager::init(AdvisorWindow* adv_wind)
     advisor_window = adv_wind;
 
     AL::NewEventManager::AddEventReceiver(this);
-    
+    UpdateButtons();
     return 0;
 }
 
@@ -63,32 +63,59 @@ void AdvisorManager::Update(GameData* game_data)
 /// <param name="al_event"></param>
 void AdvisorManager::ReceiveEvents(const AL::Event& al_event)
 {
-    if(al_event.type != AL::event_ui) return;
-
-    switch (al_event.ui.action)
+    switch (al_event.type)
     {
-    case AL::UI::adv_option1:
-        GenerateAdvise(0);
+    case AL::event_ui:
+
+        switch (al_event.ui.action)
+        {
+        case AL::UI::adv_option1:
+            if (current_faults[0] != -1)
+            {
+                GenerateAdvise(dialogue_starts[current_faults[0]]);
+                RemoveFault(current_faults[0]);
+            }
+            break;
+
+        case AL::UI::adv_option2:
+            if (current_faults[1] != -1)
+            {
+                GenerateAdvise(dialogue_starts[current_faults[1]]);
+                RemoveFault(current_faults[1]);
+            }
+            break;
+
+        case AL::UI::adv_option3:
+            if (current_faults[2] != -1)
+            {
+                GenerateAdvise(dialogue_starts[current_faults[2]]);
+                RemoveFault(current_faults[2]);
+            }
+            break;
+
+        case AL::UI::adv_option4:
+            if (current_faults[3] != -1)
+            {
+                GenerateAdvise(dialogue_starts[current_faults[3]]);
+                RemoveFault(current_faults[3]);
+            }
+            break;
+
+        case AL::UI::adv_option5:
+            if (current_faults[4] != -1)
+            {
+                GenerateAdvise(dialogue_starts[current_faults[4]]);
+                RemoveFault(current_faults[4]);
+            }
+            break;
+
+        default:
+            break;;
+        }
         break;
-        
-    case AL::UI::adv_option2:
-        GenerateAdvise(1);
+    case AL::event_adv_fault:
+        AddFault(al_event.advisor.fault_index);
         break;
-        
-    case AL::UI::adv_option3:
-        GenerateAdvise(2);
-        break;
-        
-    case AL::UI::adv_option4:
-        GenerateAdvise(3);
-        break;
-        
-    case AL::UI::adv_option5:
-        GenerateAdvise(4);
-        break;
-        
-    default:
-        break;;
     }
 }
 
@@ -355,6 +382,23 @@ void AdvisorManager::RemoveFault(int index)
         current_faults[4] = -1;
         UpdateButtons();
     }
+}
+
+/// <summary>
+/// Returns true or false based on if it contains the fault specified
+/// </summary>
+/// <param name="index"></param>
+/// <returns></returns>
+bool AdvisorManager::ContainsFault(int index)
+{
+    for (int i = 0; i < 5; i++)
+    {
+        if (current_faults[i] == index)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 /// <summary>
