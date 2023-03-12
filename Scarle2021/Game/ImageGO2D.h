@@ -21,6 +21,10 @@ public:
 	//getter for image res
 	Vector2 GetRes() const;
 	
+	//getter for layer depth rendering 
+	float get_layer_depth() const;
+	void set_layer_depth(float _layer_depth);
+	
 protected:
 
 	ID3D11ShaderResourceView* m_pTextureRV;
@@ -28,6 +32,8 @@ protected:
 private:
 	float m_width = 0;
 	float m_height = 0;
+
+	float layer_depth = 0;
 };
 
 #endif

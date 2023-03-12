@@ -33,6 +33,7 @@ public:
 	bool IsPosValid(Vector3 tile_pos);
 	bool IsAreaValid(Vector3 start, int _size);
 	bool IsRoadNearby(Vector3 tile_pos);
+	bool CanTileBeReplaced(ZoneType zone_type);
 	void ActivateNearbyTile(Vector3 tile_pos);
 	void DeactivateNearbyTile(Vector3 tile_pos);
 

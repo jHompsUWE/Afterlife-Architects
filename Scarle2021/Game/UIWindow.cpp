@@ -52,29 +52,29 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     text_vec.back()->SetScale(Vector2(0.3,0.3));
     
     //window buttons.....................
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T1_Heaven_3x3",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.6,0.6)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T1,Vector2(0.6,0.6)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T2_Heaven_3x3",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.6,0.6)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T2,Vector2(0.6,0.6)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+170),
         DataManager::GetD3DDevice(),"Gate_T1_Hell_3x3",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.6,0.6)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T1,Vector2(0.6,0.6)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+170),
         DataManager::GetD3DDevice(),"Gate_T2_Hell_3x3",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.6,0.6)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T2,Vector2(0.6,0.6)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+280,window_pos.y+170),
         DataManager::GetD3DDevice(),"Gate_T3_Hell_4x4",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.5,0.5)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T3,Vector2(0.5,0.5)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+280,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T3_Heaven_4x4",
-        AL::EventType::event_ui, AL::UI::Action::window_gate, 0,Vector2(0.5,0.5)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T3,Vector2(0.5,0.5)));
 }
 
 UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
@@ -116,11 +116,16 @@ UIWindow::~UIWindow()
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
     if(!is_visible) return;
-    
+       
     //updates buttons
     for (const auto& button : buttons)
     {
         button->update(_gameData);
+        if(button->close_window)
+        {
+            button->close_window = true;
+            is_visible = false;
+        }
     }
  
     //window background
@@ -164,8 +169,7 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         const Vector2 offset = old_mouse_pos - _mousePosition;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
-
-
+        
         //text pos
         for (const auto& text : text_vec)
         {
@@ -243,6 +247,20 @@ void UIWindow::reSize(Vector2 game_res)
     {
         text->ReSize(game_res.x, game_res.y);
     }
+}
+
+void UIWindow::setVisibility(bool _vis)
+{
+    is_visible = _vis;
+    for (auto button : buttons)
+    {
+        button->interactable = _vis;
+    }
+}
+
+const bool& UIWindow::getVisibility()
+{
+    return is_visible;
 }
 
 bool UIWindow::isInside(Vector2& point) const

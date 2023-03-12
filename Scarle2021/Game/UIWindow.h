@@ -28,14 +28,21 @@ public:
     Vector2& getButtonRes() ;
 	
     void reSize(Vector2 game_res);
-    bool is_visible = false;
-
-    Vector2 getwindowRes() { return window_res; }
-
-protected:
 
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
+
+    Vector2 getwindowRes() { return window_res; }
+    
+    void setVisibility(bool _vis);
+    const bool& getVisibility();
+
+    
+
+    
+protected:
+
+    
     bool toggle_click = false;
     Vector2 old_mouse_pos{0,0};
     
@@ -54,5 +61,7 @@ protected:
     {
         text1, text2, text3, text4,
     };
+    // makes window render or update 
+    bool is_visible = false;
 };
 

@@ -64,6 +64,7 @@ public:
 
 	void ReceiveEvents(const AL::Event& al_event) override
 	{
+		if(!interactable) return;
 		switch (al_event.type)
 		{
 		case AL::event_cursor_move:
@@ -82,6 +83,7 @@ public:
 					//Mouse pos is inside button? carry our action
 					if(isInside(mouse_pos))
 					{
+						close_window = true;
 						//Specific behaviour for specific events
 						switch (saved_event)
 						{
@@ -201,8 +203,8 @@ public:
 		//Re-scale position and scale accordingly to make button work in UI 
 		button_pos = button_pos * resize_scale;
 		button_res = button_res * resize_scale;
+		
 	}
-
 private:
 
 	//mouse pointer inside button
@@ -220,6 +222,7 @@ private:
 	Action1 action_1 = NULL;
 	Action2 action_2 = NULL;
 };
+
 
 
 

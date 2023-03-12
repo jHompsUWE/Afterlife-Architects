@@ -21,6 +21,9 @@ public:
 
 	virtual void reSize(Vector2 game_res)=0;
 
+	bool interactable = true;
+	bool close_window = false;
+
 protected:
 	
 	ImageGO2D* buttonBackGround = nullptr;
@@ -30,4 +33,5 @@ protected:
 	Vector2 button_pos = {0,0};
 
 	AL::EventType saved_event = AL::EventType::unknown;
+	
 };

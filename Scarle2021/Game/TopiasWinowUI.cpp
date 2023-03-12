@@ -40,22 +40,21 @@ TopiasWindowUI::TopiasWindowUI(Vector2 _windowPosition, ID3D11Device* _d3dDevice
     text_vec.back()->SetScale(Vector2(0.3,0.3));
     
     //window buttons.....................
-     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+50),
+     buttons.push_back(new Button<AL::BuildSys::Section,StructureType>(Vector2(window_pos.x+80,window_pos.y+50),
          DataManager::GetD3DDevice(),"Topias_T1_Heaven_4x4",
-         AL::EventType::event_ui, AL::UI::window_gate, 0,Vector2(0.4,0.4)));
+         AL::EventType::event_build_sys, AL::BuildSys::structure, Topia_T1,Vector2(0.4,0.4)));
     
-     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+50),
+     buttons.push_back(new Button<AL::BuildSys::Section,StructureType>(Vector2(window_pos.x+180,window_pos.y+50),
          DataManager::GetD3DDevice(),"Topias_T2_Heaven_4x4",
-         AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+         AL::EventType::event_build_sys,AL::BuildSys::structure, Topia_T2,Vector2(0.4,0.4)));
     
-     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+170),
+     buttons.push_back(new Button<AL::BuildSys::Section,StructureType>(Vector2(window_pos.x+80,window_pos.y+170),
          DataManager::GetD3DDevice(),"Topias_T1_Hell_4x4",
-         AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+         AL::EventType::event_build_sys,AL::BuildSys::structure, Topia_T1,Vector2(0.4,0.4)));
     
-     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+170),
+     buttons.push_back(new Button<AL::BuildSys::Section,StructureType>(Vector2(window_pos.x+180,window_pos.y+170),
          DataManager::GetD3DDevice(),"Topias_T2_Hell_4x4",
-         AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
-    
+         AL::EventType::event_build_sys,AL::BuildSys::structure, Topia_T2,Vector2(0.4,0.4)));
 }
 
 TopiasWindowUI::~TopiasWindowUI()

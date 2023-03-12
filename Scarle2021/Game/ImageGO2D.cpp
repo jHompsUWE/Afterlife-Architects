@@ -56,11 +56,21 @@ void ImageGO2D::Draw(DrawData2D* _DD)
 	//nullptr can be changed to a RECT* to define what area of this image to grab
 	//you can also add an extra value at the end to define layer depth
 	//right click and "Go to Defintion/Declaration" to see other version of this in DXTK
-	_DD->sprites_batch->Draw(m_pTextureRV, m_pos, nullptr, m_colour, m_rotation, m_origin, m_scale, SpriteEffects_None);
+	_DD->sprites_batch->Draw(m_pTextureRV, m_pos, nullptr, m_colour, m_rotation, m_origin, m_scale, SpriteEffects_None,1);
 }
 
 //Returns the image's resolution
 Vector2 ImageGO2D::GetRes() const
 {
 	return Vector2(m_width, m_height);
+}
+
+float ImageGO2D::get_layer_depth() const
+{
+	return layer_depth;
+}
+
+void ImageGO2D::set_layer_depth(float _layer_depth)
+{
+	layer_depth = _layer_depth;
 }

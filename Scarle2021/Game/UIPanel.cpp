@@ -84,7 +84,7 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
         ,"green",AL::EventType::event_ui, AL::UI::window_limbo_structures, 0,Vector2(0.8,0.7)));
     
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
+    ,"green",AL::EventType::event_ui, AL::UI::window_delete_structures, 0,Vector2(0.8, 0.7)));
     
     // //zoom button 
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 155,panel_pos.y + 235),DataManager::GetD3DDevice()
@@ -112,6 +112,12 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     //advisor button
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 83,panel_pos.y + 355),DataManager::GetD3DDevice()
     ,"green",AL::EventType::event_ui, AL::UI::window_advisors, 0,Vector2(2.8, 1.5)));
+
+    //soul view button
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 93,panel_pos.y + 310),DataManager::GetD3DDevice()
+    ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
+    
+    
     //.............
     
     //UI Text Vector
@@ -125,6 +131,11 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     text[1]->SetPos(Vector2(30,60));
     text[1]->SetScale(Vector2(0.5,0.5));
     text[1]->SetColour(Color((float*)&Colors::Green));
+
+    text.push_back(new TextGO2D(" " + std::to_string(EconomyManager::GetSouls())));
+    text[2]->SetPos(Vector2(135,455));
+    text[2]->SetScale(Vector2(0.4,0.4));
+    text[2]->SetColour(Color((float*)&Colors::Green));
 }
 
 UIPanel::~UIPanel()
@@ -215,19 +226,20 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
 
 void UIPanel::render(DrawData2D* _drawData)
 {
-    panel_back_ground->Draw(_drawData);
-    
+        
     //renders buttons
     for (auto& button : buttons)
     {
         button->render(_drawData);
     }
-
+    
+    panel_back_ground->Draw(_drawData);
     // updates texts
     for (auto& text : text)
     {
         text->Draw(_drawData);
     }
+   
 }
 
 void UIPanel::setPostion(Vector2 _panelPosition)
@@ -276,5 +288,4 @@ bool UIPanel::isInsidePanel(Vector2& point) const
            return true;
     
     return false;
-    
 }

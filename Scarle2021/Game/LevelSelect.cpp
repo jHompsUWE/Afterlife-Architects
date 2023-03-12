@@ -85,6 +85,7 @@ void LevelSelect::GetEvents(const AL::Event& al_event)
         switch (al_event.game.action)
         {
         case AL::Game::enter_gameplay:
+            
             DataManager::GetGD()->current_game_state = gs_gameplay;
             EconomyManager::ResetEconomy();
             break;
