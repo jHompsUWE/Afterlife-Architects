@@ -84,7 +84,7 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
         ,"green",AL::EventType::event_ui, AL::UI::window_limbo_structures, 0,Vector2(0.8,0.7)));
     
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
+    ,"green",AL::EventType::event_ui, AL::UI::window_delete_structures, 0,Vector2(0.8, 0.7)));
     
     // //zoom button 
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 155,panel_pos.y + 235),DataManager::GetD3DDevice()
@@ -112,6 +112,12 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     //advisor button
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 83,panel_pos.y + 355),DataManager::GetD3DDevice()
     ,"green",AL::EventType::event_ui, AL::UI::window_advisors, 0,Vector2(2.8, 1.5)));
+
+    //soul view button
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 93,panel_pos.y + 310),DataManager::GetD3DDevice()
+    ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
+    
+    
     //.............
     
     //UI Text Vector

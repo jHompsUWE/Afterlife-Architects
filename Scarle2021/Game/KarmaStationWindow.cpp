@@ -24,12 +24,12 @@ KarmaStationWindow::KarmaStationWindow(Vector2 _windowPosition, ID3D11Device* _d
     text_vec.back()->SetPos(Vector2(window_pos.x+ 35,window_pos.y+ 95));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
 
-    text_vec.push_back(new TextGO2D("Karma Station\n""Cost 100 Credits"));
+    text_vec.push_back(new TextGO2D("Karma Station T2\n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
     text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 95));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
  
-    text_vec.push_back(new TextGO2D("Karma Station T2\n""Cost 100 Credits"));
+    text_vec.push_back(new TextGO2D("Karma Station \n""Cost 100 Credits"));
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
     text_vec.back()->SetPos(Vector2(window_pos.x+ 35,window_pos.y+ 220));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
@@ -38,41 +38,24 @@ KarmaStationWindow::KarmaStationWindow(Vector2 _windowPosition, ID3D11Device* _d
     text_vec.back()->SetColour(Color((float*)&Colors::Black));
     text_vec.back()->SetPos(Vector2(window_pos.x+ 140,window_pos.y+ 220));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
-
-    text_vec.push_back(new TextGO2D("Karma Station T3\n""Cost 100 Credits"));
-    text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(Vector2(window_pos.x+ 240,window_pos.y+ 220));
-    text_vec.back()->SetScale(Vector2(0.3,0.3));
-
-    text_vec.push_back(new TextGO2D("Karma Station T3\n""Cost 100 Credits"));
-    text_vec.back()->SetColour(Color((float*)&Colors::Black));
-    text_vec.back()->SetPos(Vector2(window_pos.x+ 240,window_pos.y+ 95));
-    text_vec.back()->SetScale(Vector2(0.3,0.3));
     
     //window buttons.....................
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+50),
-        DataManager::GetD3DDevice(),"KA_Heaven_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
-    
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+50),
-        DataManager::GetD3DDevice(),"KA_Hell_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
-    
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"KS_Heaven_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, KarmaStation,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+170),
-        DataManager::GetD3DDevice(),"KS_Hell_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
-    
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"KT_Heaven_1x1",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.7,0.7)));
+        AL::EventType::event_ui,AL::BuildSys::structure, KarmaStation, Vector2(0.8,0.8)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+170),
+        DataManager::GetD3DDevice(),"KS_Hell_3x3",
+        AL::EventType::event_ui,AL::BuildSys::structure, KarmaStation,Vector2(0.4,0.4)));
+    
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+170),
         DataManager::GetD3DDevice(),"KT_Hell_1x1",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.7,0.7)));
+        AL::EventType::event_ui,AL::BuildSys::structure, KarmaStation,Vector2(0.8,0.8)));
+    
 }
 
 KarmaStationWindow::~KarmaStationWindow()

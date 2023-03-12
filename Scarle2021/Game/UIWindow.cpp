@@ -164,8 +164,7 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         const Vector2 offset = old_mouse_pos - _mousePosition;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
-
-
+        
         //text pos
         for (const auto& text : text_vec)
         {
