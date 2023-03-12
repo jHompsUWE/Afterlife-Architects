@@ -40,6 +40,7 @@ void BuildingSystem::Tick(GameData* game_data)
     if (CallEverySeconds(game_data->delta_time, 1))
     {
         building_manager_heaven->Tick(game_data);
+        building_manager_hell->Tick(game_data);
     }
 
     // TEMPORARY mouse stuff
