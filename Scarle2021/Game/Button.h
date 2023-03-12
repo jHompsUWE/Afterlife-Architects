@@ -83,6 +83,7 @@ public:
 					//Mouse pos is inside button? carry our action
 					if(isInside(mouse_pos))
 					{
+						close_window = true;
 						//Specific behaviour for specific events
 						switch (saved_event)
 						{
@@ -202,8 +203,8 @@ public:
 		//Re-scale position and scale accordingly to make button work in UI 
 		button_pos = button_pos * resize_scale;
 		button_res = button_res * resize_scale;
+		
 	}
-
 private:
 
 	//mouse pointer inside button
