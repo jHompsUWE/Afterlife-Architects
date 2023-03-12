@@ -21,6 +21,8 @@ public:
 
 	virtual void reSize(Vector2 game_res)=0;
 
+	bool interactable = true;
+
 protected:
 	
 	ImageGO2D* buttonBackGround = nullptr;

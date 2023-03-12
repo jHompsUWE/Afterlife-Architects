@@ -64,6 +64,7 @@ public:
 
 	void ReceiveEvents(const AL::Event& al_event) override
 	{
+		if(!interactable) return;
 		switch (al_event.type)
 		{
 		case AL::event_cursor_move:
@@ -220,6 +221,7 @@ private:
 	Action1 action_1 = NULL;
 	Action2 action_2 = NULL;
 };
+
 
 
 

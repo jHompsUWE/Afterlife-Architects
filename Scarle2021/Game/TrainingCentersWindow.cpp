@@ -51,29 +51,29 @@ TrainingCentersWindow::TrainingCentersWindow(Vector2 _windowPosition, ID3D11Devi
     
     
     //window buttons.....................
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T1_Heaven_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T1,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T2_Heaven_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T2,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+80,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T1_Hell_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T1,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+180,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T2_Hell_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T2,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+170),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+280,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T3_Hell_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T3,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+50),
+    buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+280,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T3_Heaven_3x3",
-        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+        AL::EventType::event_build_sys,AL::BuildSys::structure, TrainingCenter_T3,Vector2(0.4,0.4)));
 }
 
 TrainingCentersWindow::~TrainingCentersWindow()

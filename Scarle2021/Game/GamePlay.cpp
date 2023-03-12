@@ -31,13 +31,16 @@ bool GamePlay::init()
     soul_view = new SoulViewWindow(Vector2(400,120),DataManager::
         GetD3DDevice(),"","SoulView",Vector2(1,1));
     //karma station
-    window_two_karma_station = new KarmaStationWindow(Vector2(0,30),DataManager::
+    window_two_karma_station = new KarmaStationWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+        .second*0.5),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //topias
-    window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
+    window_three_topias = new TopiasWindowUI(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+        .second*0.5),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //training center
-    window_four_training_centers_window = new TrainingCentersWindow(Vector2(0,70),DataManager::
+    window_four_training_centers_window = new TrainingCentersWindow(Vector2(*DataManager::GetRES().first*0.5,*DataManager::GetRES()
+        .second*0.5),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
@@ -56,20 +59,11 @@ bool GamePlay::init()
     adv_man = std::make_unique<AdvisorManager>();
     adv_man->init(advisor_window);
 
-    //EXAMPLE OF EVENT GENERATION
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_input, AL::Input::Action::build_houses, true);
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_cursor_move, 546, 456);
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_cursor_interact, AL::Cursor::Action::button_input1, false);
-    //
-    // const char filename[32] = "hello"; 
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_sound_start, filename, 67.6f, false);
-    // const char stop_name[32] = "HEla";
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_sound_stop, stop_name);
-    //
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_ui, AL::UI::Action::adv_option1);
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_build_sys, AL::BuildSys::Section::structure, StructureType::Rock_1, ZoneType::Blue);
-    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_game, AL::Game::Action::enter_gameplay);
-
+    window_one_gate->setVisibility(false);
+    window_two_karma_station->setVisibility(false);
+    window_three_topias->setVisibility(false);
+    window_four_training_centers_window->setVisibility(false);
+    
     return true;
 }
 
@@ -149,11 +143,11 @@ void GamePlay::GetEvents(const AL::Event& al_event)
                 break;
 
             case AL::UI::window_gate:
-                window_one_gate->is_visible = !window_one_gate->is_visible;
+                window_one_gate->setVisibility(!window_one_gate->getVisibility());
                 break;
 
             case AL::UI::window_karma_station:
-                window_two_karma_station->is_visible = !window_two_karma_station->is_visible;
+                window_two_karma_station->setVisibility(!window_two_karma_station->getVisibility());
                 break;
 
             case AL::UI::window_advisors:
@@ -161,11 +155,11 @@ void GamePlay::GetEvents(const AL::Event& al_event)
                 break;
 
             case AL::UI::window_topias:
-                window_three_topias->is_visible = !window_three_topias->is_visible;
+                window_three_topias->setVisibility(!window_three_topias->getVisibility());
                 break;
 
             case AL::UI::window_training_centre:
-                window_four_training_centers_window->is_visible = !window_four_training_centers_window->is_visible;
+                window_four_training_centers_window->setVisibility(!window_four_training_centers_window->getVisibility());
                 break;
 
             case AL::UI::window_soulview:
