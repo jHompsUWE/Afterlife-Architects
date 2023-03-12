@@ -6,8 +6,7 @@ AdvisorManager::AdvisorManager()
 = default;
 
 AdvisorManager::~AdvisorManager()
-{
-}
+= default;
 
 /// <summary>
 /// Initialise advisors with UI ref
@@ -17,6 +16,9 @@ bool AdvisorManager::init(AdvisorWindow* adv_wind)
 {
     srand(time(0));
     advisor_window = adv_wind;
+
+    AL::NewEventManager::AddEventReceiver(this);
+    
     return 0;
 }
 
@@ -26,9 +28,6 @@ bool AdvisorManager::init(AdvisorWindow* adv_wind)
 /// <param name="game_data"></param>
 void AdvisorManager::Update(GameData* game_data)
 {
-    // Check for events
-    GetEvents(EventManager::GetEventList());
-
     if (dia_state == Talking)
     {
         // Code for update whilst talking
@@ -61,29 +60,35 @@ void AdvisorManager::Update(GameData* game_data)
 /// <summary>
 /// Get advise event from Event Manager
 /// </summary>
-/// <param name="event_list"></param>
-void AdvisorManager::GetEvents(list<AfterlifeEvent>& event_list)
+/// <param name="al_event"></param>
+void AdvisorManager::ReceiveEvents(const AL::Event& al_event)
 {
-    for (auto& ev : event_list)
+    if(al_event.type != AL::event_ui) return;
+
+    switch (al_event.ui.action)
     {
-        switch (ev)
-        {
-            // FUNCTIONS WITH CURRENT EVENT SYSTEM, CHANGE TO NEW IN MERGE
-            
-        case dialogue_1:
-            GenerateAdvise(0);
-            RemoveFault(0);
-            break;
-        case play_sound_theme1:
-            AddFault(0);
-            break;
-        case play_sound_theme2:
-            AddFault(1);
-            break;
-            
-        default:
-            break;
-        }
+    case AL::UI::adv_option1:
+        GenerateAdvise(0);
+        break;
+        
+    case AL::UI::adv_option2:
+        GenerateAdvise(1);
+        break;
+        
+    case AL::UI::adv_option3:
+        GenerateAdvise(2);
+        break;
+        
+    case AL::UI::adv_option4:
+        GenerateAdvise(3);
+        break;
+        
+    case AL::UI::adv_option5:
+        GenerateAdvise(4);
+        break;
+        
+    default:
+        break;;
     }
 }
 

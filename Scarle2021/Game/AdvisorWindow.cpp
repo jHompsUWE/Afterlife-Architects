@@ -24,20 +24,21 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
     
     // ---------------CHANGE EACH BUTTON EVENT TO NEW EVENT CALLED ADVISOR BUTTON 1,2,3,4,5-------------------
 
+    //TODO:: THIS ALSO BROKE
     // Window Buttons and Texts
     for (int i = 0; i < 5; i++)
     {
-        buttons.push_back(new Button(Vector2(window_pos.x + 66, window_pos.y + 158 + (i*15)),
+        buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + (i*15)),
             DataManager::GetD3DDevice(), "ButtonAdvisor",
-            window_9_gate, Vector2(0.225, 0.25)));
-
+            AL::EventType::event_ui, AL::UI::window_gate, 0, Vector2(0.225, 0.25)));
+    
         indicators_ar.push_back(new ImageGO2D("adv_heaven", DataManager::GetD3DDevice()));
         indicators_ar[i]->SetPos(Vector2(window_pos.x + 26, window_pos.y + 158 + (i*15)));
         indicators_ar[i]->SetScale(Vector2(1,1));
         indicators_ja.push_back(new ImageGO2D("adv_hell", DataManager::GetD3DDevice()));
         indicators_ja[i]->SetPos(Vector2(window_pos.x + 106, window_pos.y + 158 + (i*15)));
         indicators_ja[i]->SetScale(Vector2(1,1));
-
+    
         text_vec.push_back(new TextGO2D("Box"));
         text_vec[i]->SetPos(Vector2(window_pos.x + 46, window_pos.y + 148 + (i*15)));
         text_vec[i]->SetScale(Vector2(0.3, 0.3));
@@ -56,6 +57,7 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
         image_vec_ja[j]->SetPos(Vector2(window_pos.x + 100, window_pos.y + 80));
         image_vec_ja[j]->SetScale(Vector2(1, 1));
     }
+    
     //text vector
     text_vec.push_back(new TextGO2D("press num pad 8 for temporary dialogue"));
     text_vec[5]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));

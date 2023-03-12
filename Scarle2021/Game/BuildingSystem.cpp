@@ -27,6 +27,8 @@ BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device*
     selected_zone = Green;
 
     timer = 0;
+
+    AL::NewEventManager::AddEventReceiver(this);
 }
 
 BuildingSystem::~BuildingSystem()
@@ -137,96 +139,43 @@ void BuildingSystem::Tick(GameData* game_data)
     }
 }
 
-void BuildingSystem::GetEvents(std::list<AfterlifeEvent>& event_list)
+void BuildingSystem::ReceiveEvents(const AL::Event& al_event)
 {
-    for (auto& event : event_list)
+    if(al_event.type == AL::event_input)
     {
-        switch (event)
+        switch (al_event.input.action)
         {
-        case number_1:
-            selected_zone = Green;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_2:
-            selected_zone = Yellow;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_3:
-            selected_zone = Orange;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_4:
-            selected_zone = Brown;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_5:
-            selected_zone = Purple;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_6:
-            selected_zone = Red;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_7:
-            selected_zone = Blue;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case number_8:
-            selected_zone = Void;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case input_K:
-            selected_zone = Karma_Tracks;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
-            break;
-
-        case input_E:
+        case AL::Input::build_houses:
             TryCreateHouse(tilemap_heaven, vibe_tilemap_heaven, building_manager_heaven, selected_zone);
             TryCreateHouse(tilemap_hell, vibe_tilemap_hell, building_manager_hell, selected_zone);
             break;
-
-        case input_G:
-            StartCreateStructure(Gate_T2);
-            break;
-
-        case input_H:
-            StartCreateStructure(Topia_T2);
-            break;
-
-        case input_J:
-            StartCreateStructure(TrainingCenter_T3);
-            break;
-
-        case input_L:
-            StartCreateStructure(KarmaPortal);
-            break;
-
-        case input_M:
-            StartCreateStructure(KarmaStation);
-            break;
-
-        case input_B:
-            StartCreateStructure(KarmaAnchor);
-            break;
-
-        case input_P:
+            
+        case AL::Input::show_vibes:
             show_vibes = !show_vibes;
             break;
-
-        case input_R:
-            selected_zone = Road;
-            preview_quad->ChangePreviewQuadColor(selected_zone);
+            
+        default:
             break;
         }
+        
     }
+    
+    if(al_event.type != AL::event_build_sys) return;
+    
+    switch (al_event.build_sys.section)
+        {
+        case AL::BuildSys::zone:
+            selected_zone = al_event.build_sys.zone;
+            preview_quad->ChangePreviewQuadColor(selected_zone);
+            break;
+        
+        case AL::BuildSys::structure:
+            StartCreateStructure(al_event.build_sys.structure);
+            break;
+        
+        default:
+            break;
+        }
 }
 
 void BuildingSystem::Render3D(DrawData* draw_data)

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameData.h"
-#include "EventManager.h"
+#include "NewEventManager.h"
 
 #include "Tilemap.h"
 #include "VibeTilemap.h"
@@ -11,19 +11,17 @@
 
 #include "PlaneAssembler.h"
 
-class BuildingSystem
+class BuildingSystem : public IEventReceiver
 {
 public:
 	BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device* GD);
-	~BuildingSystem();
+	~BuildingSystem() override;
 
 	void Tick(GameData* game_data);
-	void GetEvents(std::list<AfterlifeEvent>& event_list);
+	void ReceiveEvents(const AL::Event& al_event) override;
 	void Render3D(DrawData* draw_data);
 
 	PlaneType GetPositionPlane(Vector3 position);
-
-protected:
 
 private:
 	void GenerateTerrain(std::unique_ptr<Tilemap>& tilemap, std::unique_ptr<VibeTilemap>& vibe, std::unique_ptr<BuildingManager>& building_manager, PlaneType plane);
@@ -36,7 +34,7 @@ private:
 
 	bool CallEverySeconds(float dt, float time_interval);
 
-	std::shared_ptr<Vector3> mouse_world_pos;
+	std::shared_ptr<Vector3> mouse_world_pos{};
 	ID3D11Device* d11_device = nullptr;
 
 	// Timer
@@ -47,7 +45,7 @@ private:
 	ZoneType selected_zone;
 
 	// Mouse
-	bool mouse_pressed;
+	bool mouse_pressed{};
 	Vector3 mouse_pressed_world_pos;
 	Vector3 mouse_released_world_pos;
 
@@ -58,21 +56,21 @@ private:
 	Vector3 mouse_released_hell_pos;
 
 	// Heaven
-	std::unique_ptr<Tilemap> tilemap_heaven;
-	std::unique_ptr<VibeTilemap> vibe_tilemap_heaven;
-	std::unique_ptr<BuildingManager> building_manager_heaven;
+	std::unique_ptr<Tilemap> tilemap_heaven{};
+	std::unique_ptr<VibeTilemap> vibe_tilemap_heaven{};
+	std::unique_ptr<BuildingManager> building_manager_heaven{};
 
 	// Hell
-	std::unique_ptr<Tilemap> tilemap_hell;
-	std::unique_ptr<VibeTilemap> vibe_tilemap_hell;
-	std::unique_ptr<BuildingManager> building_manager_hell;
+	std::unique_ptr<Tilemap> tilemap_hell{};
+	std::unique_ptr<VibeTilemap> vibe_tilemap_hell{};
+	std::unique_ptr<BuildingManager> building_manager_hell{};
 
 	bool show_vibes = false;
 
-	std::shared_ptr<TextureManager> texture_manager;
+	std::shared_ptr<TextureManager> texture_manager{};
 
 	// Preview Quad
 	bool show_preview_quad;
-	std::unique_ptr<PreviewQuad> preview_quad;
+	std::unique_ptr<PreviewQuad> preview_quad{};
 };
 

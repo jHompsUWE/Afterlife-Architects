@@ -31,13 +31,13 @@ bool GamePlay::init()
     soul_view = new SoulViewWindow(Vector2(400,120),DataManager::
         GetD3DDevice(),"","SoulView",Vector2(1,1));
     //karma station
-    window_two_kara_station = new KaraStationWindow(Vector2(0,30),DataManager::
+    window_two_kara_station = new KarmaStationWindow(Vector2(0,30),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //topias
     window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //training center
-    window_four_training_centers_window = new TrainCentersWindow(Vector2(0,70),DataManager::
+    window_four_training_centers_window = new TrainingCentersWindow(Vector2(0,70),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     
     // ui frame init
@@ -55,6 +55,20 @@ bool GamePlay::init()
 
     adv_man = std::make_unique<AdvisorManager>();
     adv_man->init(advisor_window);
+
+    //EXAMPLE OF EVENT GENERATION
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_input, AL::Input::Action::build_houses, true);
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_cursor_move, 546, 456);
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_cursor_interact, AL::Cursor::Action::button_input1, false);
+    //
+    // const char filename[32] = "hello"; 
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_sound_start, filename, 67.6f, false);
+    // const char stop_name[32] = "HEla";
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_sound_stop, stop_name);
+    //
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_ui, AL::UI::Action::adv_option1);
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_build_sys, AL::BuildSys::Section::structure, StructureType::Rock_1, ZoneType::Blue);
+    // AL::NewEventManager::GenerateEventSt(AL::EventType::event_game, AL::Game::Action::enter_gameplay);
 
     return true;
 }
@@ -106,42 +120,49 @@ void GamePlay::LateUpdate(GameData* game_data)
     building_system->Tick(game_data);
 }
 
-void GamePlay::GetEvents(std::list<AfterlifeEvent>& event_list)
+void GamePlay::GetEvents(const AL::Event& al_event)
 {
-    // BuildingSystem
-    building_system->GetEvents(event_list);
-
-    for (auto& event : event_list)
+    switch (al_event.type)
     {
-        switch (event)
+    case AL::unknown:
+        break;
+        
+    case AL::event_input:
+        break;
+        
+    case AL::event_cursor_move:
+        break;
+        
+    case AL::event_cursor_interact:
+        break;
+        
+    case AL::event_sound_start:
+        break;
+        
+    case AL::event_sound_stop:
+        break;
+        
+    case AL::event_ui:
+
+        switch (al_event.ui.action)
         {
-        case none:
-            std::cout << "soooos" << std::endl;
-            break;
-
-        case window_1_green:
-            window_one_open = !window_one_open;
-
-            break;
-
-        case enter_main_menu:
-            break;
-
-        case input_left:
-            break;
-
-        case game_resized:
-            ResizeUI();
-            break;
-            /* TESTING SOUL GENERATION, DO NOT USE
-        case play_sound_theme1:
-            soul_view->generateRandSoul();
-            break;*/
-
-        case input_right:
-            DataManager::GetGD()->current_game_state = gs_game_over;
-            break;
+            case AL::UI::resize_ui:
+                ResizeUI();
+                break;
+            
+            default:
+                break;
         }
+        break;
+        
+    case AL::event_build_sys:
+        break;
+        
+    case AL::event_game:
+        break;
+        
+    default:
+        break;
     }
 }
 

@@ -7,10 +7,11 @@ namespace AL
 		enum Action
 		{
 			unknown = 0, //Not handled
-			select_green,
-			select_red,
-			select_yellow,
-			select_purple
+			enter_gameplay,
+			enter_main_menu,
+			enter_level_select,
+
+			quit_game
 		};
 	};
 }

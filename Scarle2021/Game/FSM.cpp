@@ -17,6 +17,8 @@ FSM::FSM(GameState& _current_state) : current_state(_current_state)
 
 bool FSM::init()
 {
+    AL::NewEventManager::AddEventReceiver(this);
+    
     //Runs each state and its init function
     for (auto& state : state_array)
     {
@@ -61,13 +63,11 @@ void FSM::Update(GameData* game_data)
 
     //Runs this for last
     state_array[current_state]->LateUpdate(game_data);
-
-    //Events are dispatched at the end of the update cycle
-    state_array[current_state]->GetEvents(EventManager::GetEventList());
 }
 
-void FSM::DispatchEvents(std::vector<AL::Event>& event_list)
+void FSM::ReceiveEvents(const AL::Event& al_event)
 {
+    state_array[current_state]->GetEvents(al_event);
 }
 
 //Rendering ------------------------------------------------------------------------------------------------------------

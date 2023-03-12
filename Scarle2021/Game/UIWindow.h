@@ -3,7 +3,7 @@
 #include "GameData.h"
 #include "ImageGO2D.h"
 #include "TextGO2D.h"
-#include "EventManager.h"
+#include "NewEventManager.h"
 #include "DataManager.h"
 
 
@@ -42,7 +42,7 @@ protected:
     ImageGO2D* windowBackGround = nullptr;
   
     //vector of buttons 
-    std::vector<Button*> buttons;
+    std::vector<UIButtonInterFace*> buttons;
     std::vector<TextGO2D*> text_vec;
 
     //vectors

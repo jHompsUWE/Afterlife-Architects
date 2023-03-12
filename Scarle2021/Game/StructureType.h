@@ -1,5 +1,7 @@
 #pragma once
-enum StructureType {
+
+enum StructureType
+{
 	Building_Green_T1,
 	Building_Green_T2,
 
@@ -42,6 +44,8 @@ enum StructureType {
 
 	TrainingCenter_T1,
 	TrainingCenter_T2,
-	TrainingCenter_T3
+	TrainingCenter_T3,
+
+	unknown
 };
 

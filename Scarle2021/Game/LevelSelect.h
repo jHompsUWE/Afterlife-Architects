@@ -16,9 +16,9 @@ public:
     void LateUpdate(GameData* game_data) override;
     
     //Events
-    void GetEvents(std::list<AfterlifeEvent>& event_list) override;
-    //Renders
+    void GetEvents(const AL::Event& al_event) override;
     
+    //Renders
     void Render2D(DrawData2D* draw_data2D) override;
     void Render3D(DrawData* draw_data) override;
     

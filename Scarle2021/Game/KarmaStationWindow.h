@@ -1,13 +1,13 @@
 #pragma once
 #include "UIWindow.h"
-class KaraStationWindow :
+class KarmaStationWindow :
     public UIWindow
 {
 public:
-    KaraStationWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
+    KarmaStationWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _text,std::string _filepath,Vector2 _setScale);
     
-    ~KaraStationWindow();
+    ~KarmaStationWindow();
 
     void update(GameData* _gameData, Vector2& _mousePosition);
     void render(DrawData2D* _drawData);

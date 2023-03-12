@@ -133,6 +133,7 @@ void Afterlife::Tick()
     timer.Tick([&]()
     {
         MainUpdate(timer);
+        event_manager->DispatchEventList();
         ReadInput();
     });
     Render();
@@ -144,7 +145,6 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
-    finite_state_machine->DispatchEvents(event_manager->GetEventList());
     audio_manager->Update(game_data);
     ortho_cam->Tick(game_data);
 }
@@ -164,22 +164,10 @@ void Afterlife::ReadInput()
     event_manager->PollMouse(game_data->mouse_state);
     event_manager->PollGamepad(pad);
     
-
-    //TODO:: GET RID OF OLD EVENT MANAGER 
-    //Clears the event list if it not empty
-    EventManager::GetEventList().clear();
-    //Reads the input and generates events accordingly
-    EventManager::ReadInput(game_data);
-    
     //Closes the game. Defined here so it is not dependant on the FSM
     if (game_data->keyboard_state.Escape)
     {
         ExitGame();
-    }
-
-    if (game_data->keyboard_state.Up)
-    {
-        game_data->current_game_state = gs_game_over;
     }
 
     //TODO: UNCOMMENT THIS TO LOCK CURSOR TO THE CENTRE OF THE WINDOW
@@ -291,7 +279,7 @@ void Afterlife::OnWindowSizeChanged(int _width, int _height)
     CreateResources();
 
     // TODO: Game main_window is being resized.
-    EventManager::GenerateEvent(game_resized);
+    event_manager->GenerateInterfaceEvent(AL::UI::Action::resize_ui);
 }
 
 // Properties

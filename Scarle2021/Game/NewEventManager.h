@@ -4,6 +4,7 @@
 #include "Event.h"
 #include "Observable.h"
 #include "Observer.h"
+#include "Packet.h"
 
 #include <unordered_map>
 
@@ -28,12 +29,25 @@ namespace AL
 
 		//Public functions, accessible via Get() or via singleton instance
 		std::vector<Event>& GetEventList();
+		void DispatchEventList();
 		void FlushEventList();
+		
 
 		//Input polling
 		void PollKeyboard(Keyboard::State keyboard);
 		void PollMouse(Mouse::State mouse);
 		void PollGamepad(GamePad::State gamepad);
+
+		//Button Work Around
+		void GenerateEventSoundStart(const char filename[32], const float& volume, const bool& loop);
+		void GenerateEventSoundStop(const char filename[32]);
+		void GenerateInterfaceEvent(const UI::Action& action);
+		void GenerateBuildSysEvent(const BuildSys::Section& section, const StructureType& structure, const ZoneType& zone);
+		void GenerateGameEvent(const Game::Action& action);
+
+		//Generate Events
+		template <typename... Payload>
+		void GenerateEvent(EventType type, const Payload&... args);
 		
 	private:
 		//Private constructor and de-constructor
@@ -47,10 +61,6 @@ namespace AL
 		void MouseMovToEvent(const Mouse::State& mouse);
 		void MapEntryToEvent(bool state, Input::Action action, bool repeat = false);
 		void MapEntryToEvent(bool state, Cursor::Action action, bool repeat = false);
-
-		//This function can generate events
-		template <typename... Payload>
-		void GenerateEvent(EventType type, const Payload&... args);
 
 		//The following two functions are closely linked together and provide an
 		//easy way to bulk data inside events
@@ -70,7 +80,5 @@ namespace AL
 		int mouse_x = 0;
 		int mouse_y = 0;
 	};
-
-	
 }
 

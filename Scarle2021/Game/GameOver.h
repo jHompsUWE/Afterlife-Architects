@@ -18,7 +18,7 @@ public:
 	void regenPerlin(int seed);
 	
 	//Events
-	void GetEvents(std::list<AfterlifeEvent>& event_list) override;
+	void GetEvents(const AL::Event& al_event) override;
 
 	//Renders
 	void Render2D(DrawData2D* draw_data2D) override;

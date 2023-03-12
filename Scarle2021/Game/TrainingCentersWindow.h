@@ -1,13 +1,13 @@
 #pragma once
 #include "UIWindow.h"
-class TrainCentersWindow :
+class TrainingCentersWindow :
     public UIWindow
 {
 public:
-    TrainCentersWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
+    TrainingCentersWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _text,std::string _filepath,Vector2 _setScale);
     
-    ~TrainCentersWindow();
+    ~TrainingCentersWindow();
 
     void update(GameData* _gameData, Vector2& _mousePosition);
     void render(DrawData2D* _drawData);

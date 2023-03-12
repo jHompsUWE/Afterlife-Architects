@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "TrainCentersWindow.h"
+#include "TrainingCentersWindow.h"
 
-TrainCentersWindow::TrainCentersWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, std::string _text,
-    std::string _filepath, Vector2 _setScale)
+TrainingCentersWindow::TrainingCentersWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, std::string _text,
+                                             std::string _filepath, Vector2 _setScale)
 {
     //setup for window background
     windowBackGround = new ImageGO2D(_filepath, _d3dDevice);
@@ -49,68 +49,68 @@ TrainCentersWindow::TrainCentersWindow(Vector2 _windowPosition, ID3D11Device* _d
     text_vec.back()->SetPos(Vector2(window_pos.x+ 250,window_pos.y+ 95));
     text_vec.back()->SetScale(Vector2(0.3,0.3));
     
-
+    
     //window buttons.....................
-    buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+50),
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T1_Heaven_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+50),
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T2_Heaven_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button(Vector2(window_pos.x+80,window_pos.y+170),
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+80,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T1_Hell_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button(Vector2(window_pos.x+180,window_pos.y+170),
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+180,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T2_Hell_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
     
-    buttons.push_back(new Button(Vector2(window_pos.x+280,window_pos.y+170),
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+170),
         DataManager::GetD3DDevice(),"TC_T3_Hell_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
-
-    buttons.push_back(new Button(Vector2(window_pos.x+280,window_pos.y+50),
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
+    
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x+280,window_pos.y+50),
         DataManager::GetD3DDevice(),"TC_T3_Heaven_3x3",
-        window_9_gate,Vector2(0.4,0.4)));
+        AL::EventType::event_ui,AL::UI::Action::window_gate, 0,Vector2(0.4,0.4)));
 }
 
-TrainCentersWindow::~TrainCentersWindow()
+TrainingCentersWindow::~TrainingCentersWindow()
 {
 }
 
-void TrainCentersWindow::update(GameData* _gameData, Vector2& _mousePosition)
+void TrainingCentersWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
     UIWindow::update(_gameData,_mousePosition);
 }
 
-void TrainCentersWindow::render(DrawData2D* _drawData)
+void TrainingCentersWindow::render(DrawData2D* _drawData)
 {
     UIWindow::render(_drawData);
 }
 
-void TrainCentersWindow::set_postion(Vector2& _new_pos)
+void TrainingCentersWindow::set_postion(Vector2& _new_pos)
 {
     UIWindow::setPostion(_new_pos);
 }
 
-void TrainCentersWindow::setScale(Vector2& _newScale)
+void TrainingCentersWindow::setScale(Vector2& _newScale)
 {
     UIWindow::setScale(_newScale);
 }
 
-Vector2& TrainCentersWindow::getPosition()
+Vector2& TrainingCentersWindow::getPosition()
 {
     return window_pos;
 }
 
-Vector2& TrainCentersWindow::getButtonRes()
+Vector2& TrainingCentersWindow::getButtonRes()
 {
     return window_res;
 }
 
-void TrainCentersWindow::reSize(Vector2 game_res)
+void TrainingCentersWindow::reSize(Vector2 game_res)
 {
     UIWindow::reSize(game_res);
 }

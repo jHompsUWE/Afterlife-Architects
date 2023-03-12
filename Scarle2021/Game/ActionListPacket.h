@@ -2,7 +2,7 @@
 
 namespace AL
 {
-	struct Packet
+	struct Payload
 	{
 		enum Action
 		{

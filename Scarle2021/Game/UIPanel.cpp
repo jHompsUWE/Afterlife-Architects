@@ -5,6 +5,7 @@
 #include "EconomyManager.h"
 
 
+
 UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
                  _d3dDevice, std::string _filepath,Vector2 _newScale)
 {
@@ -22,99 +23,100 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     panel_back_ground->SetPos(panel_pos);
     
     // UI game play buttons
-    
+
+    //TODO:: THIS TO FICS TOO
     //row 1...................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 51,panel_pos.y + 84),DataManager::GetD3DDevice()
-        ,"green",window_1_green,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 51,panel_pos.y + 84),DataManager::GetD3DDevice()
+        ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Green ,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 94,panel_pos.y + 84),DataManager::GetD3DDevice()
-        ,"green",window_2_yellow,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 94,panel_pos.y + 84),DataManager::GetD3DDevice()
+        ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Yellow,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 138,panel_pos.y + 84),DataManager::GetD3DDevice()
-        ,"green",window_3_orange,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 138,panel_pos.y + 84),DataManager::GetD3DDevice()
+        ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Orange,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 84),DataManager::GetD3DDevice()
-    ,"green",window_4_brown,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 84),DataManager::GetD3DDevice()
+    ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Brown,Vector2(0.8,0.7)));
     
     //row 2......................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 50,panel_pos.y + 113),DataManager::GetD3DDevice()
-            ,"green",window_5_pink,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 50,panel_pos.y + 113),DataManager::GetD3DDevice()
+            ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Purple,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 93,panel_pos.y + 113),DataManager::GetD3DDevice()
-        ,"green",window_6_red,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 93,panel_pos.y + 113),DataManager::GetD3DDevice()
+        ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Red,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 113),DataManager::GetD3DDevice()
-        ,"green",window_7_blue,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 137,panel_pos.y + 113),DataManager::GetD3DDevice()
+        ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Blue,Vector2(0.8,0.7)));
     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 113),DataManager::GetD3DDevice()
-    ,"green",window_8_multicolour,Vector2(0.8,0.7)));
+    buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 113),DataManager::GetD3DDevice()
+    ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Void,Vector2(0.8,0.7)));
     //row 3 ..................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 50,panel_pos.y + 143),DataManager::GetD3DDevice()
-            ,"green",window_9_gate,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 93,panel_pos.y + 143),DataManager::GetD3DDevice()
-        ,"green",window_10_roads,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 143),DataManager::GetD3DDevice()
-        ,"green",window_11_karma_station,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 143),DataManager::GetD3DDevice()
-    ,"green",window_12_karma_tracks,Vector2(0.8,0.7)));
-    //row 4 ..........................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 50,panel_pos.y + 173),DataManager::GetD3DDevice()
-        ,"green",window_13_topias,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 93,panel_pos.y + 173),DataManager::GetD3DDevice()
-        ,"green",window_14_training_centre,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 173),DataManager::GetD3DDevice()
-        ,"green",window_15_ports,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 173),DataManager::GetD3DDevice()
-    ,"green",window_16_siphons_banks,Vector2(0.8,0.7)));
-
-    // row 5...............................
-    buttons.push_back(new Button(Vector2(panel_pos.x + 50,panel_pos.y + 203),DataManager::GetD3DDevice()
-        ,"green",window_17_special_buildings,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 94,panel_pos.y + 203),DataManager::GetD3DDevice()
-        ,"green",window_18_omnibolges_and_love_domes,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 137,panel_pos.y + 203),DataManager::GetD3DDevice()
-        ,"green",window_19_limbo_structures,Vector2(0.8,0.7)));
-    
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-    
-    //zoom button 
-    buttons.push_back(new Button(Vector2(panel_pos.x + 155,panel_pos.y + 235),DataManager::GetD3DDevice()
-    ,"green",window_21_zoom_in,Vector2(0.8, 0.7)));
-        
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 280),DataManager::GetD3DDevice()
-    ,"green",window_22_zoom_out,Vector2(0.8, 0.7)));
-    
-    //direction buttons     
-    buttons.push_back(new Button(Vector2(panel_pos.x + 80,panel_pos.y + 235),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-        
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-        
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-        
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-        
-    buttons.push_back(new Button(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
-
-    //advisor button
-
-    buttons.push_back(new Button(Vector2(panel_pos.x + 83,panel_pos.y + 355),DataManager::GetD3DDevice()
-    ,"green",window_20_delete_structures,Vector2(2.8, 1.5)));
-    //.............
-    
+    // buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(panel_pos.x + 50,panel_pos.y + 143),DataManager::GetD3DDevice()
+    //         ,"green",window_9_gate,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 93,panel_pos.y + 143),DataManager::GetD3DDevice()
+    //     ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Road,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 137,panel_pos.y + 143),DataManager::GetD3DDevice()
+    //     ,"green",window_11_karma_station,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 143),DataManager::GetD3DDevice()
+    //     ,"green",AL::EventType::event_build_sys, AL::BuildSys::Section::zone, Karma_Tracks,Vector2(0.8,0.7)));
+    // //row 4 ..........................
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 50,panel_pos.y + 173),DataManager::GetD3DDevice()
+    //     ,"green",window_13_topias,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 93,panel_pos.y + 173),DataManager::GetD3DDevice()
+    //     ,"green",window_14_training_centre,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 137,panel_pos.y + 173),DataManager::GetD3DDevice()
+    //     ,"green",window_15_ports,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 173),DataManager::GetD3DDevice()
+    // ,"green",window_16_siphons_banks,Vector2(0.8,0.7)));
+    //
+    // // row 5...............................
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 50,panel_pos.y + 203),DataManager::GetD3DDevice()
+    //     ,"green",window_17_special_buildings,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 94,panel_pos.y + 203),DataManager::GetD3DDevice()
+    //     ,"green",window_18_omnibolges_and_love_domes,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 137,panel_pos.y + 203),DataManager::GetD3DDevice()
+    //     ,"green",window_19_limbo_structures,Vector2(0.8,0.7)));
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //
+    // //zoom button 
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 155,panel_pos.y + 235),DataManager::GetD3DDevice()
+    // ,"green",window_21_zoom_in,Vector2(0.8, 0.7)));
+    //     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 280),DataManager::GetD3DDevice()
+    // ,"green",window_22_zoom_out,Vector2(0.8, 0.7)));
+    //
+    // //direction buttons     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 80,panel_pos.y + 235),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //     
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 180,panel_pos.y + 203),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(0.8, 0.7)));
+    //
+    // //advisor button
+    //
+    // buttons.push_back(new Button<AL::BuildSys::Section, ZoneType>(Vector2(panel_pos.x + 83,panel_pos.y + 355),DataManager::GetD3DDevice()
+    // ,"green",window_20_delete_structures,Vector2(2.8, 1.5)));
+    // //.............
+    //
     //UI Text Vector
 
     text.push_back(new TextGO2D("Year: " + std::to_string(EconomyManager::GetYear())));

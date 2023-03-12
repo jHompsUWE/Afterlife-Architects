@@ -3,7 +3,7 @@
 #include "GameData.h"
 #include "ImageGO2D.h"
 #include "TextGO2D.h"
-#include "EventManager.h"
+#include "NewEventManager.h"
 #include "UIButtonInterFace.h"
 #include "Button.h"
 #include "DataManager.h"

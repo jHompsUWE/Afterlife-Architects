@@ -2,13 +2,12 @@
 #include "GameData.h"
 #include "ImageGO2D.h"
 #include "TextGO2D.h"
-#include "EventManager.h"
-
+#include "NewEventManager.h"
 
 class UIButtonInterFace
 {
 public:
-	explicit UIButtonInterFace(AfterlifeEvent _event):al_event(_event){}
+	explicit UIButtonInterFace(AL::EventType _event) : al_event(_event){}
 	virtual ~UIButtonInterFace() = default;
 
 	virtual Vector2& getPosition() =0;
@@ -30,6 +29,5 @@ protected:
 	Vector2 button_res = {0,0};
 	Vector2 button_pos = {0,0};
 
-	AfterlifeEvent al_event = none;
+	AL::EventType al_event = AL::EventType::unknown;
 };
-

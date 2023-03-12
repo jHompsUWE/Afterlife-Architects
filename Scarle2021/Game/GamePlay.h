@@ -9,7 +9,7 @@
 #include "UIPanel.h"
 #include "UIWindow.h"
 #include "SoulViewWindow.h"
-#include "KaraStationWindow.h"
+#include "KarmaStationWindow.h"
 #include "TopiasWindowUI.h"
 //
 #include "EconomyManager.h"
@@ -18,7 +18,7 @@
 #include "BuildingSystem.h"
 #include "Raycast.h"
 #include "TopiasWindowUI.h"
-#include "TrainCentersWindow.h"
+#include "TrainingCentersWindow.h"
 
 class GPGO;
 
@@ -36,7 +36,7 @@ public:
     void LateUpdate(GameData* game_data) override;
 
     //Events
-    void GetEvents(std::list<AfterlifeEvent>& event_list) override;
+    void GetEvents(const AL::Event& al_event) override;
 
     //Renders
     void Render2D(DrawData2D* draw_data2D) override;
@@ -67,10 +67,10 @@ private:
     
     // UI windows
     UIWindow* window_one_gate;
-    KaraStationWindow* window_two_kara_station;
+    KarmaStationWindow* window_two_kara_station;
     AdvisorWindow* advisor_window;
     TopiasWindowUI* window_three_topias;
-    TrainCentersWindow* window_four_training_centers_window;
+    TrainingCentersWindow* window_four_training_centers_window;
     SoulViewWindow* soul_view;
 
     bool window_one_open = false;

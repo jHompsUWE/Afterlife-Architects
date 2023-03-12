@@ -188,7 +188,6 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="EventManager.h" />
     <ClInclude Include="fileVBGO.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="FSM.h" />
@@ -207,7 +206,7 @@
     <ClInclude Include="GPGO.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="ImageGO2D.h" />
-    <ClInclude Include="KaraStationWindow.h" />
+    <ClInclude Include="KarmaStationWindow.h" />
     <ClInclude Include="LevelSelect.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loop.h" />
@@ -243,7 +242,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TopiasWindowUI.h" />
     <ClInclude Include="TPSCamera.h" />
-    <ClInclude Include="TrainCentersWindow.h" />
+    <ClInclude Include="TrainingCentersWindow.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeBit.h" />
     <ClInclude Include="UIButtonInterFace.h" />
@@ -272,7 +271,6 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="CMOGO.cpp" />
     <ClCompile Include="EconomyManager.cpp" />
-    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="fileVBGO.cpp" />
     <ClCompile Include="FSM.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -285,7 +283,7 @@
     <ClCompile Include="StructureGate.cpp" />
     <ClCompile Include="GPGO.cpp" />
     <ClCompile Include="ImageGO2D.cpp" />
-    <ClCompile Include="KaraStationWindow.cpp" />
+    <ClCompile Include="KarmaStationWindow.cpp" />
     <ClCompile Include="LevelSelect.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="Loop.cpp" />
@@ -317,7 +315,7 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TopiasWinowUI.cpp" />
     <ClCompile Include="TPSCamera.cpp" />
-    <ClCompile Include="TrainCentersWindow.cpp" />
+    <ClCompile Include="TrainingCentersWindow.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="treebit.cpp" />
     <ClCompile Include="UIPanel.cpp" />

@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "DataManager.h"
-#include "EventManager.h"
+#include "NewEventManager.h"
 #include "AudioManager.h"
 
 /**
@@ -23,7 +23,7 @@ public:
     virtual void LateUpdate(GameData* game_data) = 0;
 
     // Event List
-    virtual void GetEvents(std::list<AfterlifeEvent>& event_list) = 0;
+    virtual void GetEvents(const AL::Event& al_event) = 0;
     
     // Render
     virtual void Render3D(DrawData* draw_data) = 0;

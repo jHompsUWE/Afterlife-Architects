@@ -1,5 +1,3 @@
-
-
 #include "pch.h"
 #include "SoulViewWindow.h"
 #include <iostream>

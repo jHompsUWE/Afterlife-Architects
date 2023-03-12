@@ -1,6 +1,6 @@
 #pragma once
 #include "DataManager.h" 
-#include "EventManager.h"
+#include "NewEventManager.h"
 #include "AdvisorWindow.h"
 #include <unordered_map>
 
@@ -19,19 +19,19 @@ enum HeavenOrHell
     Adv_Heaven, Adv_Hell, Both, Neither
 };
 
-class AdvisorManager
+class AdvisorManager : public IEventReceiver
 {
 public:
     AdvisorManager();
-    ~AdvisorManager();
+    ~AdvisorManager() override;
 
     bool init(AdvisorWindow* adv_wind);
 
     // Update 
     void Update(GameData* game_data);
-
-    //Events 
-    void GetEvents(list<AfterlifeEvent>& event_list);
+    
+    //Events
+    void ReceiveEvents(const AL::Event& al_event) override;
 
 private:
     // Starting, updating and stopping advise

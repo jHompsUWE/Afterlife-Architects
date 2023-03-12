@@ -29,26 +29,28 @@ bool MainMenu::init()
     main_menu_bg = new ImageGO2D("MainmenuBG",DataManager::GetD3DDevice());
     main_menu_bg->SetOrigin(Vector2(0,0));
 
+    //AL::NewEventManager::GenerateEventSt(AL::event_ui, 34,54);
+    
     // UI buttons init................
     //start button
-    buttons.push_back(new Button(Vector2(109,37),DataManager::GetD3DDevice(),
-        "Start Game","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(109,37),DataManager::GetD3DDevice(),
+        "Start Game","ButtonBackgroundMM", AL::EventType::event_game, AL::Game::Action::enter_level_select, 0,Vector2(0.5,0.5)));
     
     //load button
-    buttons.push_back(new Button(Vector2(536,37),DataManager::GetD3DDevice(),
-        "Load Game","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(536,37),DataManager::GetD3DDevice(),
+        "Load Game","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_level_select, 0,Vector2(0.5,0.5)));
     
     //scenario button
-    buttons.push_back(new Button(Vector2(960,37),DataManager::GetD3DDevice(),
-        "Load Scenario","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(960,37),DataManager::GetD3DDevice(),
+        "Load Scenario","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_level_select, 0,Vector2(0.5,0.5)));
     
     //intro replay button
-    buttons.push_back(new Button(Vector2(262,661),DataManager::GetD3DDevice(),
-        "Replay Intro","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
-
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(262,661),DataManager::GetD3DDevice(),
+        "Replay Intro","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_level_select, 0,Vector2(0.5,0.5)));
+    
     //Quit afterlife button
-    buttons.push_back(new Button(Vector2(791,661),DataManager::GetD3DDevice(),
-        "Quit AfterLife","ButtonBackgroundMM",enter_level_select,Vector2(0.5,0.5)));
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(791,661),DataManager::GetD3DDevice(),
+        "Quit AfterLife","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_level_select, 0,Vector2(0.5,0.5)));
     
     return true;
 }
@@ -82,41 +84,49 @@ void MainMenu::LateUpdate(GameData* game_data)
 {
 }
 
-void MainMenu::GetEvents(std::list<AfterlifeEvent>& event_list)
+void MainMenu::GetEvents(const AL::Event& al_event)
 {
-    for (auto& ev : event_list)
+    switch (al_event.type)
     {
-        switch (ev)
+    case AL::event_ui:
+        switch (al_event.ui.action)
         {
-        case none:
-            std::cout << "soooos" << std::endl;
-            break;
-            
-        case enter_level_select:
-            DataManager::GetGD()->current_game_state = gs_level_select;
-            break;
-            
-        case enter_main_menu:
-            DataManager::GetGD()->current_game_state = gs_main_menu;
-            break;
-            
-        case input_left:
-            break;
-            
-        case input_right:
-            DataManager::GetGD()->current_game_state = gs_gameplay;
-            EconomyManager::ResetEconomy();
-            break;
-
-        case game_resized:
+        case AL::UI::resize_ui:
             ResizeUI();
-            break;
-            
+                break;
+                        
         default:
             break;
         }
+        break;
+
+    case AL::event_game:
+        switch (al_event.game.action)
+        {
+        case AL::Game::enter_level_select:
+            DataManager::GetGD()->current_game_state = gs_level_select;
+            EconomyManager::ResetEconomy();
+            break;
+                            
+        case AL::Game::enter_main_menu:
+            DataManager::GetGD()->current_game_state = gs_main_menu;
+            break;
+                            
+        case AL::Game::quit_game:
+            //Quit game
+            break;
+                        
+        default:
+            break;
+        }
+        break;
+        
+    default:
+        break;;
     }
+
 }
+    
 
 void MainMenu::Render2D(DrawData2D* draw_data2D)
 {
@@ -125,25 +135,14 @@ void MainMenu::Render2D(DrawData2D* draw_data2D)
     for (auto& button : buttons)
     {
         button->render(draw_data2D);
-    }
-
-    
-    
-    /*
-    main_menu_bg->Draw(draw_data2D);
-    start_button->render(draw_data2D);
-    load_button->render(draw_data2D);
-    load_scenario_button->render(draw_data2D);
-    replay_intro->render(draw_data2D);
-    quit_afterlife->render(draw_data2D);
-    */
+    }    
 }
 
 void MainMenu::Render3D(DrawData* draw_data)
 {
 }
 
-void MainMenu::ResizeUI()
+void MainMenu::ResizeUI() const
 {
     Vector2 game_res = Vector2(*DataManager::GetRES().first, *DataManager::GetRES().second);
     main_menu_bg->ReSize(game_res.x, game_res.y);

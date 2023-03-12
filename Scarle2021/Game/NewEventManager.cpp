@@ -2,7 +2,6 @@
 #include "NewEventManager.h"
 
 #include <iostream>
-#include <ostream>
 
 namespace AL
 {
@@ -22,20 +21,20 @@ namespace AL
 		static NewEventManager instance;
 		return instance;
 	}
-
-	// Static ----------------------------------------------------------------------------------------------------------
 	
+	// Static ----------------------------------------------------------------------------------------------------------
+
 	/**
 	 * \brief Static function to generate an event
 	 * \tparam Payload Data to be inserted in the event
 	 * \param type which type of even this is gonna be
 	 */
-	template <typename ... Payload>
+	template <typename... Payload>
 	void NewEventManager::GenerateEventSt(EventType type, const Payload&... args)
 	{
-		Get().GenerateEvent(type, args);
+		Get().GenerateEvent(type, args...);
 	}
-
+	
 	/**
 	 * \return static func to return the event list
 	 */
@@ -71,6 +70,22 @@ namespace AL
 	}
 
 	/**
+	 * \brief Dispatches the events to all subscribers
+	 */
+	void NewEventManager::DispatchEventList()
+	{
+		for (const auto& al_event : event_list)
+		{
+			for (const auto& observer : observers)
+			{
+				observer->ReceiveEvents(al_event);
+			}
+		}
+
+		FlushEventList();
+	}
+
+	/**
 	 * \brief Clear all data from the event list
 	 */
 	void NewEventManager::FlushEventList()
@@ -87,10 +102,10 @@ namespace AL
 	void NewEventManager::PollKeyboard(Keyboard::State keyboard)
 	{
 		//Map keyboard keys here
-		MapEntryToEvent(keyboard.W, Input::input_up);
-		MapEntryToEvent(keyboard.S, Input::input_down);
-		MapEntryToEvent(keyboard.A, Input::input_left);
-		MapEntryToEvent(keyboard.D, Input::input_right);
+		//MapEntryToEvent(keyboard.W, Input::input_up);
+		//MapEntryToEvent(keyboard.S, Input::input_down);
+		//MapEntryToEvent(keyboard.A, Input::input_left);
+		//MapEntryToEvent(keyboard.D, Input::input_right);
 	}
 	
 	/**
@@ -116,8 +131,53 @@ namespace AL
 		if(gamepad.IsConnected())
 		{
 			//Map controller behaviour here
-			MapEntryToEvent(gamepad.IsAPressed(), Input::input_left);
+			//MapEntryToEvent(gamepad.IsAPressed(), Input::input_left);
 		}
+	}
+
+	// TODO::IMPLEMENT THIS PROPERLY
+	// BUTTON WORK AROUND ----------------------------------------------------------------------------------------------
+	
+	void NewEventManager::GenerateEventSoundStart(const char filename[32], const float& volume, const bool& loop)
+	{
+		GenerateEvent(event_sound_start, filename, volume, loop);
+	}
+
+	void NewEventManager::GenerateEventSoundStop(const char filename[32])
+	{
+		GenerateEvent(event_sound_stop, filename);
+	}
+
+	void NewEventManager::GenerateInterfaceEvent(const UI::Action& action)
+	{
+		GenerateEvent(event_ui, action);
+	}
+
+	void NewEventManager::GenerateBuildSysEvent(const BuildSys::Section& section, const StructureType& structure,
+		const ZoneType& zone)
+	{
+		GenerateEvent(event_build_sys, section, structure);
+	}
+
+	void NewEventManager::GenerateGameEvent(const Game::Action& action)
+	{
+		GenerateEvent(event_game, action);
+	}
+
+	// Event Generation ------------------------------------------------------------------------------------------------
+
+	/**
+	 * \brief Generates an event form the data given, easy as that
+	 * \tparam Payload Data to be inserted in the event
+	 * \param type which type of even this is gonna be
+	 */
+	template <typename ... Payload>
+	void NewEventManager::GenerateEvent(EventType type, const Payload&... args)
+	{
+		//ATM are not in place any sort of memory checks on the size of data being moved inside an event
+		//If the size of data surpasses 40 bytes a memory override will happen. and we *do not* want that
+		event_list.emplace_back(type);
+		SetEventData(event_list.back(), args...);
 	}
 
 	// Data Sharing ----------------------------------------------------------------------------------------------------
@@ -223,22 +283,6 @@ namespace AL
 		}
 	}
 
-	// Event Generation ------------------------------------------------------------------------------------------------
-
-	/**
-	 * \brief Generates an event form the data given, easy as that
-	 * \tparam Payload Data to be inserted in the event
-	 * \param type which type of even this is gonna be
-	 */
-	template <typename ... Payload>
-	void NewEventManager::GenerateEvent(EventType type, const Payload&... args)
-	{
-		//ATM are not in place any sort of memory checks on the size of data being moved inside an event
-		//If the size of data surpasses 40 bytes a memory override will happen. and we *do not* want that
-		event_list.emplace_back(type);
-		SetEventData(event_list.back(), args...);
-	}
-
 	// Event Data Insertion --------------------------------------------------------------------------------------------
 
 	/**
@@ -311,4 +355,24 @@ namespace AL
 			SetEventData(event, byte_offset, args...);
 		}
 	}
+	
+	//Template function specialization ---------------------------------------------------------------------------------
+	
+	//Input Event
+	template void NewEventManager::GenerateEventSt<Input::Action, bool>(EventType, const Input::Action&, const bool&);
+	//Cursor Event Move
+	template void NewEventManager::GenerateEventSt<int, int>(EventType, const int&, const int&);
+	//Cursor Event Interact
+	template void NewEventManager::GenerateEventSt<Cursor::Action, bool>(EventType, const Cursor::Action&, const bool&);
+	//Sound Event Start
+	template void NewEventManager::GenerateEventSt<char[32], float, bool>(EventType, const char(&)[32], const float&, const bool&);
+	//Sound Event Stop
+	template void NewEventManager::GenerateEventSt<char[32]>(EventType, const char(&)[32]);
+	//Interface Event
+	template void NewEventManager::GenerateEventSt<UI::Action>(EventType, const UI::Action&);
+	//Building System Event
+	template void NewEventManager::GenerateEventSt<BuildSys::Section, StructureType, ZoneType>(
+		EventType type, const BuildSys::Section&, const StructureType&, const ZoneType&);
+	//Game Event
+	template void NewEventManager::GenerateEventSt<Game::Action>(EventType, const Game::Action&);
 }

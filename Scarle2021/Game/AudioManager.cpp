@@ -1,14 +1,15 @@
 
 #include "pch.h" 
 #include "AudioManager.h" 
+
+#include <chrono>
 #include <iostream>
 
 AudioManager::AudioManager()
 = default;
 
 AudioManager::~AudioManager()
-{
-}
+= default;
 
 /// <summary>
 /// Generating Audio Engine within initialisation
@@ -17,12 +18,13 @@ AudioManager::~AudioManager()
 bool AudioManager::init()
 {
     AUDIO_ENGINE_FLAGS eflags = AudioEngine_Default;
-#ifdef _DEBUG 
-    eflags |= AudioEngine_Debug;
-#endif 
     audEngine = std::make_unique<AudioEngine>(eflags);
     ShuffleMusic();
     PlayMusic(music_index_array[current_music_index]);
+
+    //Subscribes to the event system! 
+    AL::NewEventManager::AddEventReceiver(this);
+    
     return true;
 }
 
@@ -32,7 +34,6 @@ bool AudioManager::init()
 /// <param name="game_data"></param>
 void AudioManager::Update(GameData* game_data)
 {
-    GetEvents(EventManager::GetEventList());
     if (!audEngine->Update())
     {
         //more 
@@ -75,21 +76,24 @@ void AudioManager::Update(GameData* game_data)
 /// <summary>
 /// Get sound event from Event Manager
 /// </summary>
-/// <param name="event_list"></param>
-void AudioManager::GetEvents(list<AfterlifeEvent>& event_list)
+/// <param name="al_event"></param>
+void AudioManager::ReceiveEvents(const AL::Event& al_event)
 {
-    for (auto& ev : event_list)
+    switch (al_event.type)
     {
-        switch (ev)
-        {
-        /*case play_sound_theme1:
-            PlaySound("Afterlife Theme 1");
-            break;*/
-        default:
-            break;
-        }
+    case AL::event_sound_start:
+        //auto file_start = al_event.sound_start.filename;
+        break;
+        
+    case AL::event_sound_stop:
+        //auto file_end = al_event.sound_stop.filename;
+        break;
+        
+    default:
+        break;
     }
 }
+
 
 /// <summary>
 /// Generate sound with given filename

@@ -1,5 +1,6 @@
 #pragma once
-enum ZoneType {
+enum ZoneType
+{
 	Void,
 	Green,
 	Yellow,

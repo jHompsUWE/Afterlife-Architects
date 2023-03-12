@@ -64,9 +64,6 @@
     <Filter Include="Afterlife\GameStates">
       <UniqueIdentifier>{98f5c18d-60cc-414d-ab1d-8c9dd2c27088}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Afterlife\Singletons">
-      <UniqueIdentifier>{518271c0-e290-4a78-a594-fcf9a0b1278a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Afterlife\GameStates\FSM">
       <UniqueIdentifier>{d913d5ff-7e28-434e-af18-dde60016132b}</UniqueIdentifier>
     </Filter>
@@ -76,41 +73,8 @@
     <Filter Include="GameObjects\AfterlifeGOs">
       <UniqueIdentifier>{da403b41-258b-4075-a42a-811ed53d8c07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Afterlife\UIButton">
-      <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\AfterlifeGOs\Building System">
-      <UniqueIdentifier>{e90b4398-86ce-49c1-8f2a-b7c5bc8dfeaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\AfterlifeGOs\Building System\Tilemap">
-      <UniqueIdentifier>{b7e7acd6-4260-4b77-af05-c0d60060209f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Afterlife\AStar Pathfinding">
       <UniqueIdentifier>{42540fc4-1d6d-4ed8-b1c3-6aede6b9032a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\UIWindow">
-      <UniqueIdentifier>{4bbe157e-0adb-4290-a984-36c803e7d3bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\UIMainPanel">
-      <UniqueIdentifier>{e5250314-cc53-4c70-9134-4e1d52e17ecd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Advisors">
-      <UniqueIdentifier>{c2777624-4860-4369-90e9-2c36a3d004f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Audio">
-      <UniqueIdentifier>{4b3400ad-4035-4481-91dc-6fe2daa019d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Events">
-      <UniqueIdentifier>{5f8cfa18-802c-41ae-91a7-d3ab05e932ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Events\Action Lists">
-      <UniqueIdentifier>{fce2428b-c3b2-428b-9e25-141a1b887d79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Events\Old Event Manager">
-      <UniqueIdentifier>{c8a35665-ff52-44e4-b511-11131c4c91f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Afterlife\Singletons\Events\Event Manager">
-      <UniqueIdentifier>{0a147045-d82e-4f6c-bfd7-41240ccfe598}</UniqueIdentifier>
     </Filter>
     <Filter Include="Afterlife\Design Patterns">
       <UniqueIdentifier>{abf780c9-c19a-46a4-a9e9-4041b6da116a}</UniqueIdentifier>
@@ -118,14 +82,59 @@
     <Filter Include="Afterlife\Design Patterns\Observer Pattern">
       <UniqueIdentifier>{c4b3dfc8-0f70-4f3b-b161-b6d9e72a6d2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObjects\AfterlifeGOs\Vibe">
-      <UniqueIdentifier>{c1ecafa7-560c-45ee-addd-65e3da54a2a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\AfterlifeGOs\Building System\Structure">
-      <UniqueIdentifier>{411baae6-c812-449c-9469-c2b64bfd03af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Afterlife\WorldGen">
       <UniqueIdentifier>{f2e63d2e-da66-4198-9fc6-b866dc5b5a87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers">
+      <UniqueIdentifier>{518271c0-e290-4a78-a594-fcf9a0b1278a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Advisors">
+      <UniqueIdentifier>{c2777624-4860-4369-90e9-2c36a3d004f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Audio">
+      <UniqueIdentifier>{4b3400ad-4035-4481-91dc-6fe2daa019d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Events">
+      <UniqueIdentifier>{5f8cfa18-802c-41ae-91a7-d3ab05e932ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Events\Action Lists">
+      <UniqueIdentifier>{fce2428b-c3b2-428b-9e25-141a1b887d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Events\Event Manager">
+      <UniqueIdentifier>{0a147045-d82e-4f6c-bfd7-41240ccfe598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Building System">
+      <UniqueIdentifier>{e90b4398-86ce-49c1-8f2a-b7c5bc8dfeaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Building System\Tilemap">
+      <UniqueIdentifier>{b7e7acd6-4260-4b77-af05-c0d60060209f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Building System\Structure">
+      <UniqueIdentifier>{411baae6-c812-449c-9469-c2b64bfd03af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Vibe">
+      <UniqueIdentifier>{c1ecafa7-560c-45ee-addd-65e3da54a2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\Camera">
+      <UniqueIdentifier>{8a56976d-4cee-44e3-bdc3-6bcd4cae0bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\AfterlifeGOs\RayCast">
+      <UniqueIdentifier>{712c9263-7908-45af-84aa-a141e682ffe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\Managers\Economy">
+      <UniqueIdentifier>{71881dad-8224-4ae8-ba9a-4905c2295ecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\User Interface">
+      <UniqueIdentifier>{831dee95-8957-4571-b253-f0c6171a3b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\User Interface\UIButton">
+      <UniqueIdentifier>{f476fdb2-9590-4035-817c-57bd318a162e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\User Interface\UIMainPanel">
+      <UniqueIdentifier>{e5250314-cc53-4c70-9134-4e1d52e17ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Afterlife\User Interface\UIWindow">
+      <UniqueIdentifier>{4bbe157e-0adb-4290-a984-36c803e7d3bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -250,34 +259,28 @@
       <Filter>Afterlife\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="DataManager.h">
-      <Filter>Afterlife\Singletons</Filter>
+      <Filter>Afterlife\Managers</Filter>
     </ClInclude>
     <ClInclude Include="FSM.h">
       <Filter>Afterlife\GameStates\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="OrthographicCamera.h">
-      <Filter>GameObjects\AfterlifeGOs</Filter>
-    </ClInclude>
     <ClInclude Include="UIButtonInterFace.h">
-      <Filter>Afterlife\UIButton</Filter>
+      <Filter>Afterlife\User Interface\UIButton</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
-      <Filter>Afterlife\UIButton</Filter>
+      <Filter>Afterlife\User Interface\UIButton</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>GameObjects\3D\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VBQuad.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="Tilemap.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
-    </ClInclude>
-    <ClInclude Include="Raycast.h">
-      <Filter>GameObjects\AfterlifeGOs</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="AStarPathfinding.h">
       <Filter>Afterlife\AStar Pathfinding</Filter>
@@ -286,55 +289,49 @@
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="UIWindow.h">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
     <ClInclude Include="UIPanel.h">
-      <Filter>Afterlife\UIMainPanel</Filter>
+      <Filter>Afterlife\User Interface\UIMainPanel</Filter>
     </ClInclude>
     <ClInclude Include="ZoneType.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="PreviewQuad.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="BuildingManager.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
-    </ClInclude>
-    <ClInclude Include="EconomyManager.h">
-      <Filter>Base\Header Files</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="AdvisorManager.h">
-      <Filter>Afterlife\Singletons\Advisors</Filter>
+      <Filter>Afterlife\Managers\Advisors</Filter>
     </ClInclude>
     <ClInclude Include="AudioManager.h">
-      <Filter>Afterlife\Singletons\Audio</Filter>
+      <Filter>Afterlife\Managers\Audio</Filter>
     </ClInclude>
     <ClInclude Include="ActionListCursor.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="ActionListGame.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="ActionListInput.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="ActionListInterface.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="ActionListPacket.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
-    </ClInclude>
-    <ClInclude Include="EventManager.h">
-      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+      <Filter>Afterlife\Managers\Events\Event Manager</Filter>
     </ClInclude>
     <ClInclude Include="NewEventManager.h">
-      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+      <Filter>Afterlife\Managers\Events\Event Manager</Filter>
     </ClInclude>
     <ClInclude Include="Packet.h">
-      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+      <Filter>Afterlife\Managers\Events\Event Manager</Filter>
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
@@ -343,49 +340,46 @@
       <Filter>Afterlife\Design Patterns\Observer Pattern</Filter>
     </ClInclude>
     <ClInclude Include="ActionListBuildSys.h">
-      <Filter>Afterlife\Singletons\Events\Action Lists</Filter>
+      <Filter>Afterlife\Managers\Events\Action Lists</Filter>
     </ClInclude>
     <ClInclude Include="AdvisorWindow.h">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
     <ClInclude Include="StructureType.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="BuildingSystem.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="VibeTilemap.h">
-      <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+      <Filter>Afterlife\Managers\Vibe</Filter>
     </ClInclude>
     <ClInclude Include="VibeTile.h">
-      <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+      <Filter>Afterlife\Managers\Vibe</Filter>
     </ClInclude>
-    <ClInclude Include="TrainCentersWindow.h">
-      <Filter>Afterlife\UIWindow</Filter>
+    <ClInclude Include="TrainingCentersWindow.h">
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
     <ClInclude Include="SoulViewWindow.h">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
     <ClInclude Include="TopiasWindowUI.h">
-      <Filter>Afterlife\UIWindow</Filter>
-    </ClInclude>
-    <ClInclude Include="KaraStationWindow.h">
-      <Filter>Base\Header Files</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
     <ClInclude Include="StructureGate.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="StructureTopia.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="StructureTrainingCenter.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="PlaneType.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="PopulationManager.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClInclude>
     <ClInclude Include="PerlinNoise.h">
       <Filter>Afterlife\WorldGen</Filter>
@@ -397,19 +391,31 @@
       <Filter>Afterlife\WorldGen</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="StructureBuilding.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="StructureKarmaAnchor.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="StructureKarmaStation.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClInclude>
     <ClInclude Include="StructureSprite.h">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="OrthographicCamera.h">
+      <Filter>GameObjects\AfterlifeGOs\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>GameObjects\AfterlifeGOs\RayCast</Filter>
+    </ClInclude>
+    <ClInclude Include="EconomyManager.h">
+      <Filter>Afterlife\Managers\Economy</Filter>
+    </ClInclude>
+    <ClInclude Include="KarmaStationWindow.h">
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -497,107 +503,104 @@
     <ClCompile Include="FSM.cpp">
       <Filter>Afterlife\GameStates\FSM</Filter>
     </ClCompile>
-    <ClCompile Include="OrthographicCamera.cpp">
-      <Filter>GameObjects\AfterlifeGOs</Filter>
-    </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Afterlife\UIButton</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>GameObjects\3D\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VBQuad.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="Tilemap.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
-    </ClCompile>
-    <ClCompile Include="Raycast.cpp">
-      <Filter>GameObjects\AfterlifeGOs</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="AStarPathfinding.cpp">
       <Filter>Afterlife\AStar Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="UIWindow.cpp">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="UIPanel.cpp">
-      <Filter>Afterlife\UIMainPanel</Filter>
+      <Filter>Afterlife\User Interface\UIMainPanel</Filter>
     </ClCompile>
     <ClCompile Include="PreviewQuad.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClCompile>
     <ClCompile Include="BuildingManager.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
-    </ClCompile>
-    <ClCompile Include="EconomyManager.cpp">
-      <Filter>Base\Source Files</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClCompile>
     <ClCompile Include="AdvisorManager.cpp">
-      <Filter>Afterlife\Singletons\Advisors</Filter>
+      <Filter>Afterlife\Managers\Advisors</Filter>
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
-      <Filter>Afterlife\Singletons\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="EventManager.cpp">
-      <Filter>Afterlife\Singletons\Events\Old Event Manager</Filter>
+      <Filter>Afterlife\Managers\Audio</Filter>
     </ClCompile>
     <ClCompile Include="NewEventManager.cpp">
-      <Filter>Afterlife\Singletons\Events\Event Manager</Filter>
+      <Filter>Afterlife\Managers\Events\Event Manager</Filter>
     </ClCompile>
     <ClCompile Include="AdvisorWindow.cpp">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="BuildingSystem.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClCompile>
     <ClCompile Include="VibeTilemap.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+      <Filter>Afterlife\Managers\Vibe</Filter>
     </ClCompile>
     <ClCompile Include="VibeTile.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Vibe</Filter>
+      <Filter>Afterlife\Managers\Vibe</Filter>
     </ClCompile>
     <ClCompile Include="TopiasWinowUI.cpp">
-      <Filter>Afterlife\UIWindow</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClCompile>
-    <ClCompile Include="TrainCentersWindow.cpp">
-      <Filter>Afterlife\UIWindow</Filter>
+    <ClCompile Include="TrainingCentersWindow.cpp">
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="SoulViewWindow.cpp">
-      <Filter>Afterlife\UIWindow</Filter>
-    </ClCompile>
-    <ClCompile Include="KaraStationWindow.cpp">
-      <Filter>Base\Source Files</Filter>
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
     </ClCompile>
     <ClCompile Include="StructureGate.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="StructureTopia.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="StructureTrainingCenter.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="PopulationManager.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System</Filter>
+      <Filter>Afterlife\Managers\Building System</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Tilemap</Filter>
+      <Filter>Afterlife\Managers\Building System\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="StructureBuilding.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="StructureKarmaAnchor.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="StructureKarmaStation.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
     </ClCompile>
     <ClCompile Include="StructureSprite.cpp">
-      <Filter>GameObjects\AfterlifeGOs\Building System\Structure</Filter>
+      <Filter>Afterlife\Managers\Building System\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="OrthographicCamera.cpp">
+      <Filter>GameObjects\AfterlifeGOs\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Raycast.cpp">
+      <Filter>GameObjects\AfterlifeGOs\RayCast</Filter>
+    </ClCompile>
+    <ClCompile Include="EconomyManager.cpp">
+      <Filter>Afterlife\Managers\Economy</Filter>
+    </ClCompile>
+    <ClCompile Include="KarmaStationWindow.cpp">
+      <Filter>Afterlife\User Interface\UIWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Afterlife\User Interface\UIButton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

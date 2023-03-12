@@ -4,9 +4,11 @@ namespace AL
 {
 	struct BuildSys
 	{
-		enum Action
+		enum Section
 		{
-			unknown = 0 //Not handled
+			unknown = 0, //Not handled
+			structure,
+			zone
 		};
 	};
 }

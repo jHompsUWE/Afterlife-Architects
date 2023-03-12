@@ -103,7 +103,7 @@ void GameOver::LateUpdate(GameData* game_data)
 {
 }
 
-void GameOver::GetEvents(std::list<AfterlifeEvent>& event_list)
+void GameOver::GetEvents(const AL::Event& al_event)
 {
 }
 

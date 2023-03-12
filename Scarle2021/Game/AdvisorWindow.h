@@ -1,5 +1,6 @@
 #pragma once
 #include "UIWindow.h"
+#include "NewEventManager.h"
 
 class AdvisorWindow
 {
@@ -37,7 +38,7 @@ private:
     ImageGO2D* windowBackGround = nullptr;
   
     //vector of buttons 
-    std::vector<Button*> buttons;
+    std::vector<UIButtonInterFace*> buttons;
     std::vector<TextGO2D*> text_vec;
     std::vector<ImageGO2D*> image_vec_ar;
     std::vector<ImageGO2D*> image_vec_ja;

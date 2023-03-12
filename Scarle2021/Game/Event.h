@@ -5,6 +5,8 @@
 #include "ActionListInterface.h"
 #include "ActionListGame.h"
 #include "ActionListBuildSys.h"
+#include "ZoneType.h"
+#include "StructureType.h"
 
 namespace AL
 {
@@ -93,10 +95,14 @@ namespace AL
 
         /**
          * \brief Event to redirect an action to the UI
+         * \var structure that is being instantiated
+         * \var zone that is being instantiated
          */
         struct BuildSysEvent
         {
-            BuildSys::Action action = BuildSys::Action::unknown;
+            BuildSys::Section section = BuildSys::Section::unknown;
+        	StructureType structure = StructureType::unknown;
+            ZoneType zone = ZoneType::Void;
         };
         
         /**

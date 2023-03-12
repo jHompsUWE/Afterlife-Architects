@@ -20,22 +20,23 @@ bool LevelSelect::init()
     main_menu_bg = new ImageGO2D("MainmenuBG",DataManager::GetD3DDevice());
     main_menu_bg->SetOrigin(Vector2(0,0));
 
-    // UI buttons init................
-    //Easy button
-    buttons.push_back(new Button(Vector2(109,37),DataManager::GetD3DDevice(),
-        "Easy","ButtonBackgroundMM",enter_game_play,Vector2(0.5,0.5)));
-    
-    //Medium button
-    buttons.push_back(new Button(Vector2(536,37),DataManager::GetD3DDevice(),
-        "Medium","ButtonBackgroundMM",enter_game_play,Vector2(0.5,0.5)));
-    
-    //Bard button
-    buttons.push_back(new Button(Vector2(960,37),DataManager::GetD3DDevice(),
-        "Hard","ButtonBackgroundMM",enter_game_play,Vector2(0.5,0.5)));
-
-    //Return Main menu button
-    buttons.push_back(new Button(Vector2(262,661),DataManager::GetD3DDevice(),
-        "Return to Main Menu","ButtonBackgroundMM",enter_main_menu,Vector2(0.5,0.5)));
+    //TODO:: FIX THIS TOO
+    // // UI buttons init................
+    // //Easy button
+    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(109,37),DataManager::GetD3DDevice(),
+    //     "Easy","ButtonBackgroundMM", AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    //
+    // //Medium button
+    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(536,37),DataManager::GetD3DDevice(),
+    //     "Medium","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    //
+    // //Bard button
+    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(960,37),DataManager::GetD3DDevice(),
+    //     "Hard","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    //
+    // //Return Main menu button
+    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(262,661),DataManager::GetD3DDevice(),
+    //     "Return to Main Menu","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_main_menu, 0,Vector2(0.5,0.5)));
 
     
     return true;
@@ -62,38 +63,48 @@ void LevelSelect::LateUpdate(GameData* game_data)
 {
 }
 
-void LevelSelect::GetEvents(std::list<AfterlifeEvent>& event_list)
+void LevelSelect::GetEvents(const AL::Event& al_event)
 {
-    for (auto& ev : event_list)
+    switch (al_event.type)
     {
-        switch (ev)
-        {
-        case none:
-            std::cout << "soooos" << std::endl;
-            break;
-            
-        case enter_game_play:
-            DataManager::GetGD()->current_game_state = gs_gameplay;
-            EconomyManager::ResetEconomy();
-            break;
-            
-        case enter_main_menu:
-            DataManager::GetGD()->current_game_state = gs_main_menu;
-            break;
-            
-        case input_left:
-            break;
-            
-        case input_right:
-            break;
+    case AL::event_ui:
 
-        case game_resized:
+        switch (al_event.ui.action)
+        { 
+        case AL::UI::resize_ui:
             ResizeUI();
             break;
             
         default:
             break;
         }
+
+        break;
+
+    case AL::event_game:
+
+        switch (al_event.game.action)
+        {
+        case AL::Game::enter_gameplay:
+            DataManager::GetGD()->current_game_state = gs_gameplay;
+            EconomyManager::ResetEconomy();
+            break;
+            
+        case AL::Game::enter_main_menu:
+            DataManager::GetGD()->current_game_state = gs_main_menu;
+            break;
+            
+        case AL::Game::quit_game:
+            break;
+            
+        default:
+            break;
+        }
+        
+        break;
+        
+    default:
+        break;
     }
 }
 

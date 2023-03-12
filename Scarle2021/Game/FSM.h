@@ -7,11 +7,11 @@
 /**
  * \brief This is the main game Finite State Machine, basically, our game loop!
  */
-class FSM
+class FSM : public IEventReceiver
 {
 public:
     explicit FSM(GameState& _current_state);
-    ~FSM() = default;
+    ~FSM() override = default;
 
     bool init();
 
@@ -19,7 +19,7 @@ public:
     void Update(GameData* game_data);
 
     // Events
-    void DispatchEvents(std::vector<AL::Event>& event_list);
+    void ReceiveEvents(const AL::Event& al_event) override;
 
     // Renderers
     void Render3D(DrawData* draw_data) const;
