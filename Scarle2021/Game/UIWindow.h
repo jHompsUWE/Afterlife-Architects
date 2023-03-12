@@ -28,17 +28,21 @@ public:
     Vector2& getButtonRes() ;
 	
     void reSize(Vector2 game_res);
-   
+
+    //mouse pointer inside window
+    bool isInside(Vector2& point) const;
 
     Vector2 getwindowRes() { return window_res; }
+    
     void setVisibility(bool _vis);
     const bool& getVisibility();
 
     
+
+    
 protected:
 
-    //mouse pointer inside window
-    bool isInside(Vector2& point) const;
+    
     bool toggle_click = false;
     Vector2 old_mouse_pos{0,0};
     

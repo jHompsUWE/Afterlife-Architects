@@ -186,10 +186,7 @@ void GamePlay::GetEvents(const AL::Event& al_event)
 void GamePlay::Render2D(DrawData2D* draw_data2D)
 {
     ui_frame->Draw(draw_data2D);
-
-    //renders panel
-    main_panel->render(draw_data2D);
-
+    
     //render advisor
     advisor_window->render(draw_data2D);
 
@@ -207,6 +204,9 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     window_three_topias->render(draw_data2D);
     //training centre
     window_four_training_centers_window->render(draw_data2D);
+    
+    //renders panel
+    main_panel->render(draw_data2D);
 }
 
 void GamePlay::Render3D(DrawData* draw_data)

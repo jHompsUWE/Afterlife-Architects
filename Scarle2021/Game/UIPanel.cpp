@@ -131,6 +131,11 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     text[1]->SetPos(Vector2(30,60));
     text[1]->SetScale(Vector2(0.5,0.5));
     text[1]->SetColour(Color((float*)&Colors::Green));
+
+    text.push_back(new TextGO2D(" " + std::to_string(EconomyManager::GetSouls())));
+    text[2]->SetPos(Vector2(135,455));
+    text[2]->SetScale(Vector2(0.4,0.4));
+    text[2]->SetColour(Color((float*)&Colors::Green));
 }
 
 UIPanel::~UIPanel()
@@ -221,19 +226,20 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
 
 void UIPanel::render(DrawData2D* _drawData)
 {
-    panel_back_ground->Draw(_drawData);
-    
+        
     //renders buttons
     for (auto& button : buttons)
     {
         button->render(_drawData);
     }
-
+    
+    panel_back_ground->Draw(_drawData);
     // updates texts
     for (auto& text : text)
     {
         text->Draw(_drawData);
     }
+   
 }
 
 void UIPanel::setPostion(Vector2 _panelPosition)
@@ -282,5 +288,4 @@ bool UIPanel::isInsidePanel(Vector2& point) const
            return true;
     
     return false;
-    
 }

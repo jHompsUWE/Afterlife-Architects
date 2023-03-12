@@ -65,13 +65,6 @@ void MainMenu::Update(GameData* game_data)
     
     main_menu_bg->Tick(game_data);
     
-    /*
-    start_button->update(game_data,mouse_pos);
-    load_button->update(game_data,mouse_pos);
-    load_scenario_button->update(game_data,mouse_pos);
-    replay_intro->update(game_data,mouse_pos);
-    quit_afterlife->update(game_data,mouse_pos);
-    */
 } 
 
 void MainMenu::ScaledUpdate(GameData* game_data, float& scaled_dt)
