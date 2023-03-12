@@ -60,10 +60,12 @@ SoulViewWindow::~SoulViewWindow()
 
 void SoulViewWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
+    if (!is_visible) return;
+    
     //updates buttons
     for (const auto& button : buttons)
     {
-        button->update(_gameData, _mousePosition);
+        button->update(_gameData);
     }
     //updates image
     for (auto image : image_vec)
@@ -134,6 +136,8 @@ void SoulViewWindow::update(GameData* _gameData, Vector2& _mousePosition)
 
 void SoulViewWindow::render(DrawData2D* _drawData)
 {
+    if (!is_visible) return;
+    
     windowBackGround->Draw(_drawData);
 
     //renders buttons

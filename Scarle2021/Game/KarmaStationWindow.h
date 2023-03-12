@@ -19,7 +19,6 @@ public:
     Vector2& getButtonRes() ;
 	
     void reSize(Vector2 game_res);
-    bool is_visible = false;
 
     Vector2 getwindowRes() { return window_res; }
     

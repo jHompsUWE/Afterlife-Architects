@@ -6,7 +6,7 @@
 #include "UIButtonInterFace.h"
 
 template<typename Action1, typename Action2>
-class Button : public UIButtonInterFace
+class Button : public UIButtonInterFace, public IEventReceiver
 {
 public:
 	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string
@@ -31,6 +31,8 @@ public:
 		buttonText->SetColour(Color((float*)&Colors::Black));
 		buttonText->SetPos(Vector2(button_pos.x,button_pos.y));
 		buttonText->SetScale(Vector2(_setScale));
+
+		AL::NewEventManager::AddEventReceiver(this);
 	};
 	
 	Button(Vector2 _buttonPosition, ID3D11Device* _d3dDevice,std::string
@@ -48,63 +50,102 @@ public:
 	
 		button_pos = _buttonPosition - button_res/2;
 		buttonBackGround->SetPos(button_pos);
+
+		AL::NewEventManager::AddEventReceiver(this);
 	}
 	
 	~Button() override
 	{
+		AL::NewEventManager::RemoveEventReceiver(this);
+		
 		delete buttonBackGround;
 		delete buttonText;
 	}
 
-	void update(GameData* _gameData, Vector2& _mousePosition) override
+	void ReceiveEvents(const AL::Event& al_event) override
+	{
+		switch (al_event.type)
+		{
+		case AL::event_cursor_move:
+			//Only when the cursor is moved update position
+			mouse_pos = Vector2{(float)al_event.cursor_moved.pos_x, (float)al_event.cursor_moved.pos_y};
+			break;
+			
+		case AL::event_cursor_interact:
+
+			//Checks if the button specified is being pressed
+			if(al_event.cursor_interact.action == AL::Cursor::button_input1)
+			{
+				//If the button has been released, continue
+				if(al_event.cursor_interact.active == false)
+				{
+					//Mouse pos is inside button? carry our action
+					if(isInside(mouse_pos))
+					{
+						//Specific behaviour for specific events
+						switch (saved_event)
+						{
+						case AL::event_sound_start:
+							//AL::NewEventManager::Get().GenerateEventSoundStart(action_1, action_2, false);
+							break;
+					
+						case AL::event_sound_stop:
+							//AL::NewEventManager::Get().GenerateEventSoundStop(action_1);
+							break;
+					
+						case AL::event_ui:
+							AL::NewEventManager::Get().GenerateInterfaceEvent((AL::UI::Action)action_1);
+							break;
+					
+						case AL::event_build_sys:
+
+							switch ((AL::BuildSys::Section)action_1)
+							{
+								case AL::BuildSys::unknown:
+									break;
+
+								case AL::BuildSys::structure:
+									
+									AL::NewEventManager::Get().GenerateBuildSysEvent(AL::BuildSys::Section::structure,
+									(StructureType)action_2, (ZoneType)action_2);
+									break;
+
+								case AL::BuildSys::zone:
+									
+									AL::NewEventManager::Get().GenerateBuildSysEvent(AL::BuildSys::Section::zone,
+									(StructureType)action_2, (ZoneType)action_2);
+									break;
+
+						default:
+							break;
+							}
+					
+						case AL::event_game:
+							AL::NewEventManager::Get().GenerateGameEvent((AL::Game::Action)action_1);
+							break;
+					
+						default:
+							break;
+						}
+			
+					}
+				}
+			}
+			
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	void update(GameData* _gameData) override
 	{
 		buttonBackGround->Tick(_gameData);
 	
 		if(buttonText != nullptr)
 		{
 			buttonText->Tick(_gameData);
-		}
-	
-		if(isInside(_mousePosition))
-		{
-			if(DataManager::GetGD()->mouse_state.leftButton)
-			{
-				switch (al_event)
-				{
-				case AL::event_sound_start:
-					//AL::NewEventManager::Get().GenerateEventSoundStart(action_1, action_2, false);
-					break;
-					
-				case AL::event_sound_stop:
-					//AL::NewEventManager::Get().GenerateEventSoundStop(action_1);
-					break;
-					
-				case AL::event_ui:
-					AL::NewEventManager::Get().GenerateInterfaceEvent((AL::UI::Action)action_1);
-					break;
-					
-				case AL::event_build_sys:
-					
-					if((StructureType)action_1 != StructureType::unknown)
-					{
-						AL::NewEventManager::Get().GenerateBuildSysEvent(AL::BuildSys::Section::structure,
-							(StructureType)action_1, (ZoneType)action_2);
-					}
-					else if((ZoneType)action_2 != ZoneType::Void && typeid(action_2) != typeid(int))
-					{
-						AL::NewEventManager::Get().GenerateBuildSysEvent(AL::BuildSys::Section::zone,
-							(StructureType)action_1, (ZoneType)action_2);
-					}
-					break;
-					
-				case AL::event_game:
-					AL::NewEventManager::Get().GenerateGameEvent((AL::Game::Action)action_1);
-					break;
-					
-				default:
-					break;
-				}
-			}
 		}
 	}
 	
@@ -173,6 +214,8 @@ private:
     
 		return false;
 	}
+
+	Vector2 mouse_pos {0,0};
 	
 	Action1 action_1 = NULL;
 	Action2 action_2 = NULL;

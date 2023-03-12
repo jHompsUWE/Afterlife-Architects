@@ -102,7 +102,7 @@ namespace AL
         {
             BuildSys::Section section = BuildSys::Section::unknown;
         	StructureType structure = StructureType::unknown;
-            ZoneType zone = ZoneType::Void;
+            ZoneType zone = null;
         };
         
         /**

@@ -153,6 +153,11 @@ void BuildingSystem::ReceiveEvents(const AL::Event& al_event)
         case AL::Input::show_vibes:
             show_vibes = !show_vibes;
             break;
+
+        case AL::Input::place_zone_green:
+            selected_zone = Green;
+            preview_quad->ChangePreviewQuadColor(selected_zone);
+            break;
             
         default:
             break;

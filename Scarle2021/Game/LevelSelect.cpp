@@ -19,24 +19,23 @@ bool LevelSelect::init()
     // level select background image
     main_menu_bg = new ImageGO2D("MainmenuBG",DataManager::GetD3DDevice());
     main_menu_bg->SetOrigin(Vector2(0,0));
-
-    //TODO:: FIX THIS TOO
-    // // UI buttons init................
-    // //Easy button
-    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(109,37),DataManager::GetD3DDevice(),
-    //     "Easy","ButtonBackgroundMM", AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
-    //
-    // //Medium button
-    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(536,37),DataManager::GetD3DDevice(),
-    //     "Medium","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
-    //
-    // //Bard button
-    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(960,37),DataManager::GetD3DDevice(),
-    //     "Hard","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
-    //
-    // //Return Main menu button
-    // buttons.push_back(new Button<AL::Game::Action, int>(Vector2(262,661),DataManager::GetD3DDevice(),
-    //     "Return to Main Menu","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_main_menu, 0,Vector2(0.5,0.5)));
+    
+    // UI buttons init................
+    //Easy button
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(109,37),DataManager::GetD3DDevice(),
+        "Easy","ButtonBackgroundMM", AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    
+    //Medium button
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(536,37),DataManager::GetD3DDevice(),
+        "Medium","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    
+    //Bard button
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(960,37),DataManager::GetD3DDevice(),
+        "Hard","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_gameplay, 0,Vector2(0.5,0.5)));
+    
+    //Return Main menu button
+    buttons.push_back(new Button<AL::Game::Action, int>(Vector2(262,661),DataManager::GetD3DDevice(),
+        "Return to Main Menu","ButtonBackgroundMM",AL::EventType::event_game, AL::Game::Action::enter_main_menu, 0,Vector2(0.5,0.5)));
 
     
     return true;
@@ -49,7 +48,7 @@ void LevelSelect::Update(GameData* game_data)
 
     for (auto& button : buttons)
     {
-        button->update(game_data,mouse_pos);
+        button->update(game_data);
     }
 
     main_menu_bg->Tick(game_data);

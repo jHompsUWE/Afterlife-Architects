@@ -67,13 +67,11 @@ private:
     
     // UI windows
     UIWindow* window_one_gate;
-    KarmaStationWindow* window_two_kara_station;
+    KarmaStationWindow* window_two_karma_station;
     AdvisorWindow* advisor_window;
     TopiasWindowUI* window_three_topias;
     TrainingCentersWindow* window_four_training_centers_window;
     SoulViewWindow* soul_view;
-
-    bool window_one_open = false;
 
     std::unique_ptr<AdvisorManager> adv_man = nullptr;
 };

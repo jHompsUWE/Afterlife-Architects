@@ -44,6 +44,14 @@ namespace AL
 	}
 
 	/**
+	 * \brief Flushes the event list
+	 */
+	void NewEventManager::FlushEventListSt()
+	{
+		Get().FlushEventList();
+	}
+
+	/**
 	 * \param observer to be subscribed to receive events
 	 */
 	void NewEventManager::AddEventReceiver(IEventReceiver* observer)
@@ -70,11 +78,26 @@ namespace AL
 	}
 
 	/**
-	 * \brief Dispatches the events to all subscribers
+	 * \brief Clear all data from the event list
 	 */
-	void NewEventManager::DispatchEventList()
+	void NewEventManager::FlushEventList()
 	{
-		for (const auto& al_event : event_list)
+		event_list.clear();
+	}
+
+	// Data Sharing ----------------------------------------------------------------------------------------------------
+
+	/**
+	 * \brief Routes the events to each of the observers
+	 */
+	void NewEventManager::BroadcastData()
+	{
+		const auto event_list_copy = event_list;
+		
+		FlushEventList();
+
+		//Batch of events N1
+		for (const auto& al_event : event_list_copy)
 		{
 			for (const auto& observer : observers)
 			{
@@ -82,15 +105,16 @@ namespace AL
 			}
 		}
 
+		//Batch of events n2
+		for (const auto& al_event : event_list)
+		{
+			for (const auto& observer : observers)
+			{
+				observer->ReceiveEvents(al_event);
+			}
+		}
+		
 		FlushEventList();
-	}
-
-	/**
-	 * \brief Clear all data from the event list
-	 */
-	void NewEventManager::FlushEventList()
-	{
-		event_list.clear();
 	}
 
 	// Input Mapping ---------------------------------------------------------------------------------------------------
@@ -102,10 +126,9 @@ namespace AL
 	void NewEventManager::PollKeyboard(Keyboard::State keyboard)
 	{
 		//Map keyboard keys here
-		//MapEntryToEvent(keyboard.W, Input::input_up);
-		//MapEntryToEvent(keyboard.S, Input::input_down);
-		//MapEntryToEvent(keyboard.A, Input::input_left);
-		//MapEntryToEvent(keyboard.D, Input::input_right);
+		MapEntryToEvent(keyboard.E, Input::build_houses);
+		MapEntryToEvent(keyboard.P, Input::show_vibes);
+		MapEntryToEvent(keyboard.D1, Input::place_zone_green);
 	}
 	
 	/**
@@ -156,7 +179,7 @@ namespace AL
 	void NewEventManager::GenerateBuildSysEvent(const BuildSys::Section& section, const StructureType& structure,
 		const ZoneType& zone)
 	{
-		GenerateEvent(event_build_sys, section, structure);
+		GenerateEvent(event_build_sys, section, structure, zone);
 	}
 
 	void NewEventManager::GenerateGameEvent(const Game::Action& action)
@@ -178,23 +201,6 @@ namespace AL
 		//If the size of data surpasses 40 bytes a memory override will happen. and we *do not* want that
 		event_list.emplace_back(type);
 		SetEventData(event_list.back(), args...);
-	}
-
-	// Data Sharing ----------------------------------------------------------------------------------------------------
-
-	/**
-	 * \brief Routes the events to each of the observers
-	 */
-	void NewEventManager::BroadcastData()
-	{
-		for (const auto& entry : event_list)
-		{
-			//Event looping is already done here, no need for loop in observer
-			for (const auto observer : observers)
-			{
-				observer->ReceiveEvents(entry);
-			}
-		}
 	}
 
 	// Key Mapping Handlers --------------------------------------------------------------------------------------------

@@ -115,11 +115,12 @@ UIWindow::~UIWindow()
 
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
+    if(!is_visible) return;
     
     //updates buttons
     for (const auto& button : buttons)
     {
-        button->update(_gameData,_mousePosition);
+        button->update(_gameData);
     }
  
     //window background
@@ -185,6 +186,8 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 
 void UIWindow::render(DrawData2D* _drawData)
 {
+    if(!is_visible) return;
+    
     windowBackGround->Draw(_drawData);
     
     //renders buttons

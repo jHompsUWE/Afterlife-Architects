@@ -7,13 +7,13 @@
 class UIButtonInterFace
 {
 public:
-	explicit UIButtonInterFace(AL::EventType _event) : al_event(_event){}
+	explicit UIButtonInterFace(AL::EventType _event) : saved_event(_event){}
 	virtual ~UIButtonInterFace() = default;
 
 	virtual Vector2& getPosition() =0;
 	virtual Vector2& getButtonRes() =0;
 
-	virtual void update(GameData* _gameData, Vector2& _MousePostion)=0;
+	virtual void update(GameData* _gameData)=0;
 	virtual void render(DrawData2D* _drawData)=0;
 
 	virtual void setPostion(Vector2 newPostition)=0;
@@ -29,5 +29,5 @@ protected:
 	Vector2 button_res = {0,0};
 	Vector2 button_pos = {0,0};
 
-	AL::EventType al_event = AL::EventType::unknown;
+	AL::EventType saved_event = AL::EventType::unknown;
 };

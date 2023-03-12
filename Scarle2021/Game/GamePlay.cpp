@@ -10,7 +10,7 @@ GamePlay::~GamePlay()
     delete ui_frame;
     delete window_one_gate;
     delete advisor_window;
-    delete window_two_kara_station;
+    delete window_two_karma_station;
     delete window_three_topias;
     delete window_four_training_centers_window;
 }
@@ -31,7 +31,7 @@ bool GamePlay::init()
     soul_view = new SoulViewWindow(Vector2(400,120),DataManager::
         GetD3DDevice(),"","SoulView",Vector2(1,1));
     //karma station
-    window_two_kara_station = new KarmaStationWindow(Vector2(0,30),DataManager::
+    window_two_karma_station = new KarmaStationWindow(Vector2(0,30),DataManager::
         GetD3DDevice(),"","Window",Vector2(0.5,0.5));
     //topias
     window_three_topias = new TopiasWindowUI(Vector2(0,50),DataManager::
@@ -83,8 +83,6 @@ void GamePlay::Update(GameData* game_data)
 
     // mouse pos
     auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
-
-    //update window
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
@@ -95,7 +93,7 @@ void GamePlay::Update(GameData* game_data)
     //update soul view
     soul_view->update(game_data,mouse_pos);
     //karma station
-    window_two_kara_station->update(game_data,mouse_pos);
+    window_two_karma_station->update(game_data,mouse_pos);
     //Topais
     window_three_topias->update(game_data,mouse_pos);
     //training centre
@@ -149,6 +147,31 @@ void GamePlay::GetEvents(const AL::Event& al_event)
             case AL::UI::resize_ui:
                 ResizeUI();
                 break;
+
+            case AL::UI::window_gate:
+                window_one_gate->is_visible = !window_one_gate->is_visible;
+                break;
+
+            case AL::UI::window_karma_station:
+                window_two_karma_station->is_visible = !window_two_karma_station->is_visible;
+                break;
+
+            case AL::UI::window_advisors:
+                advisor_window->is_visible = !advisor_window->is_visible;
+                break;
+
+            case AL::UI::window_topias:
+                window_three_topias->is_visible = !window_three_topias->is_visible;
+                break;
+
+            case AL::UI::window_training_centre:
+                window_four_training_centers_window->is_visible = !window_four_training_centers_window->is_visible;
+                break;
+
+            case AL::UI::window_soulview:
+                soul_view->generateRandSoul();
+                soul_view->is_visible = !soul_view->is_visible;
+                break;
             
             default:
                 break;
@@ -180,13 +203,12 @@ void GamePlay::Render2D(DrawData2D* draw_data2D)
     soul_view->render(draw_data2D);
     
     // checks if window is open to render
-    if (window_one_open)
-    {
-        //render window
-        window_one_gate->render(draw_data2D);
-    }
+
+    //Render window
+    window_one_gate->render(draw_data2D);
+    
     //karma station
-    window_two_kara_station->render(draw_data2D);
+    window_two_karma_station->render(draw_data2D);
     //Topias
     window_three_topias->render(draw_data2D);
     //training centre
@@ -230,7 +252,7 @@ void GamePlay::ResizeUI()
     main_panel->reSize(screen_size);
     advisor_window->reSize(screen_size);
     soul_view->reSize(screen_size);
-    window_two_kara_station->reSize(screen_size);
+    window_two_karma_station->reSize(screen_size);
     window_three_topias->reSize(screen_size);
     window_four_training_centers_window->reSize(screen_size);
 }

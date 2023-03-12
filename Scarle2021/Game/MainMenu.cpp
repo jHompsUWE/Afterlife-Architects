@@ -29,8 +29,6 @@ bool MainMenu::init()
     main_menu_bg = new ImageGO2D("MainmenuBG",DataManager::GetD3DDevice());
     main_menu_bg->SetOrigin(Vector2(0,0));
 
-    //AL::NewEventManager::GenerateEventSt(AL::event_ui, 34,54);
-    
     // UI buttons init................
     //start button
     buttons.push_back(new Button<AL::Game::Action, int>(Vector2(109,37),DataManager::GetD3DDevice(),
@@ -62,7 +60,7 @@ void MainMenu::Update(GameData* game_data)
 
     for (auto& button : buttons)
     {
-        button->update(game_data,mouse_pos);
+        button->update(game_data);
     }
     
     main_menu_bg->Tick(game_data);

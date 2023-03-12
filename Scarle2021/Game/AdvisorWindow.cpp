@@ -24,14 +24,25 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
     
     // ---------------CHANGE EACH BUTTON EVENT TO NEW EVENT CALLED ADVISOR BUTTON 1,2,3,4,5-------------------
 
-    //TODO:: THIS ALSO BROKE
-    // Window Buttons and Texts
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            AL::EventType::event_ui, AL::UI::adv_option1, 0, Vector2(0.225, 0.25)));
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + 15),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            AL::EventType::event_ui, AL::UI::adv_option2, 0, Vector2(0.225, 0.25)));
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + 30),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            AL::EventType::event_ui, AL::UI::adv_option3, 0, Vector2(0.225, 0.25)));
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + 45),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            AL::EventType::event_ui, AL::UI::adv_option4, 0, Vector2(0.225, 0.25)));
+    buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + 60),
+            DataManager::GetD3DDevice(), "ButtonAdvisor",
+            AL::EventType::event_ui, AL::UI::adv_option5, 0, Vector2(0.225, 0.25)));
+    
+    // Texts
     for (int i = 0; i < 5; i++)
     {
-        buttons.push_back(new Button<AL::UI::Action, int>(Vector2(window_pos.x + 66, window_pos.y + 158 + (i*15)),
-            DataManager::GetD3DDevice(), "ButtonAdvisor",
-            AL::EventType::event_ui, AL::UI::window_gate, 0, Vector2(0.225, 0.25)));
-    
         indicators_ar.push_back(new ImageGO2D("adv_heaven", DataManager::GetD3DDevice()));
         indicators_ar[i]->SetPos(Vector2(window_pos.x + 26, window_pos.y + 158 + (i*15)));
         indicators_ar[i]->SetScale(Vector2(1,1));
@@ -91,10 +102,12 @@ AdvisorWindow::~AdvisorWindow()
 
 void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
+    if (!is_visible) return;
+    
     //updates buttons
     for (const auto& button : buttons)
     {
-        button->update(_gameData,_mousePosition);
+        button->update(_gameData);
     }
     //updates image
     for (auto image_ar : image_vec_ar)
@@ -197,6 +210,8 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
 
 void AdvisorWindow::render(DrawData2D* _drawData)
 {
+    if (!is_visible) return;
+    
     windowBackGround->Draw(_drawData);
     
     // Renders buttons

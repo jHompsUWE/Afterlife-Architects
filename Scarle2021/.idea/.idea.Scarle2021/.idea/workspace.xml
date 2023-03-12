@@ -10,62 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b8328b1-bf6f-49f8-981b-3c7317042b6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Game/KarmaStationWindow.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/KarmaStationWindow.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/TrainingCentersWindow.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Game/TrainingCentersWindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Afterlife-Architects" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Scarle2021/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Lambert.dgsl.cso" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Program Files_Microsoft Visual Studio_2022_Community_Common7_IDE_Extensions_Microsoft_VsGraphics_Assets_Effects_Phong.dgsl.cso" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ActionListBuildSys.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListBuildSys.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ActionListGame.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListGame.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/ActionListInput.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListInput.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/ActionListInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListInterface.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/ActionListPacket.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ActionListPacket.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AdvisorManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AdvisorManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/AdvisorWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AdvisorWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AdvisorWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Afterlife.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Afterlife.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AudioManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AudioManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/AudioManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/AudioManager.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/BuildingSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/BuildingSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/BuildingSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/BuildingSystem.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Button.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Button.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Button.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/Event.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Event.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/EventManager.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/EventManager.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/FSM.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/FSM.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Game.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Game.vcxproj.filters" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameOver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/GameOver.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GameOver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/GamePlay.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/GamePlay.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/KaraStationWindow.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/KaraStationWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/KarmaStationWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/KarmaStationWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/LevelSelect.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/LevelSelect.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/LevelSelect.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/NewEventManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/NewEventManager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/NewEventManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/NewEventManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/Observer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/Observer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/SoulViewWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SoulViewWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/SoulViewWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/SoulViewWindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/StateTemplate.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StateTemplate.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/StructureType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/StructureType.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/TopiasWinowUI.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TopiasWinowUI.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/TrainCentersWindow.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/TrainCentersWindow.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/TopiasWindowUI.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TopiasWindowUI.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/TrainingCentersWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/TrainingCentersWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/UIButtonInterFace.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIButtonInterFace.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/UIPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/UIWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game/UIWindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIWindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/ZoneType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/ZoneType.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -256,7 +221,7 @@
       <workItem from="1678358593088" duration="1137000" />
       <workItem from="1678360435875" duration="4423000" />
       <workItem from="1678573874206" duration="493000" />
-      <workItem from="1678574392468" duration="31755000" />
+      <workItem from="1678574392468" duration="41275000" />
     </task>
     <servers />
   </component>

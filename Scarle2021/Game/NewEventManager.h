@@ -24,14 +24,15 @@ namespace AL
 		template <typename... Payload>
 		static void GenerateEventSt(EventType type, const Payload&... args);
 		static std::vector<Event>& GetEventListSt();
+		static void FlushEventListSt();
 		static void AddEventReceiver(IEventReceiver* observer);
 		static void RemoveEventReceiver(IEventReceiver* observer);
 
 		//Public functions, accessible via Get() or via singleton instance
 		std::vector<Event>& GetEventList();
-		void DispatchEventList();
 		void FlushEventList();
-		
+		//Data sharing
+		void BroadcastData() override;
 
 		//Input polling
 		void PollKeyboard(Keyboard::State keyboard);
@@ -53,9 +54,6 @@ namespace AL
 		//Private constructor and de-constructor
 		NewEventManager();
 		~NewEventManager() override;
-
-		//Data sharing
-		void BroadcastData() override;
 
 		//Key mapping
 		void MouseMovToEvent(const Mouse::State& mouse);

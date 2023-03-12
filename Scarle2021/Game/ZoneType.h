@@ -23,6 +23,8 @@ enum ZoneType
 	Karma_Tracks,
 	Karma_Anchor,
 	Vibe,
-	Road
+	Road,
+
+	null
 };
 
