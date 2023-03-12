@@ -165,6 +165,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		structure_map[tile_position.x][tile_position.z] =
 			std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane);
+		AL::NewEventManager::GenerateEventSt(AL::event_sound_start, bank_sound, 1.0f, true);
 		break;
 
 	case Bank_T2:
@@ -172,6 +173,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		structure_map[tile_position.x][tile_position.z] =
 			std::make_unique<StructureSprite>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane);
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case Gate_T1:
@@ -179,6 +188,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size), 
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
 				5); // The number of souls this gate generates per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case Gate_T2:
@@ -186,6 +203,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
 				10); // The number of souls this gate generates per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case Gate_T3:
@@ -193,6 +218,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
 				15); // The number of souls this gate generates per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case KarmaAnchor:
@@ -234,6 +267,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureTopia>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, population_manager,
 				100); // The capacity of angels/demons that this building provides
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, topia_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, topia_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case Topia_T2:
@@ -241,6 +282,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureTopia>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, population_manager,
 				200); // The capacity of angels/demons that this building provides
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case TrainingCenter_T1:
@@ -248,6 +297,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager, population_manager,
 				10); // The number of souls this training center convert to angels/demons per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case TrainingCenter_T2:
@@ -255,6 +312,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager, population_manager,
 				20); // The number of souls this training center convert to angels/demons per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_hell_sound, 1.0f, true);
+		}
 		break;
 
 	case TrainingCenter_T3:
@@ -262,6 +327,14 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 			std::make_unique<StructureTrainingCenter>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager, population_manager,
 				30); // The number of souls this training center convert to angels/demons per year
+		if (plane == Heaven)
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_heaven_sound, 1.0f, true);
+		}
+		else
+		{
+			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, institute_hell_sound, 1.0f, true);
+		}
 		break;
 
 	default:
@@ -278,6 +351,7 @@ void BuildingManager::DestroyStructure(Vector3 tile_position)
 	if (structure_map[tile_position.x][tile_position.z])
 	{
 		structure_map[tile_position.x][tile_position.z] = nullptr;
+		AL::NewEventManager::GenerateEventSt(AL::event_sound_start, destroy_sound_1, 1.0f ,true);
 	}
 }
 

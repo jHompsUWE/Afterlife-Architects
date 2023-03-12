@@ -82,7 +82,7 @@ void AudioManager::ReceiveEvents(const AL::Event& al_event)
     switch (al_event.type)
     {
     case AL::event_sound_start:
-        //auto file_start = al_event.sound_start.filename;
+        PlaySound(al_event.sound_start.filename);
         break;
         
     case AL::event_sound_stop:
