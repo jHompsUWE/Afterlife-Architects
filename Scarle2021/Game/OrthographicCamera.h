@@ -48,7 +48,7 @@ private:
 	// Movement
 	Vector3 vertical_move;
 	Vector3 horizontal_move;
-	float camera_speed = 75.0f;
+	float camera_speed = 100.0f;
 
 	// Zoom
 	float zoom_value = 10.0f;

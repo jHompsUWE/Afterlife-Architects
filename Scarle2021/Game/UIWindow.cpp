@@ -123,7 +123,7 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         button->update(_gameData);
         if(button->close_window)
         {
-            is_visible = false;
+            setVisibility(false);
             button->close_window = false;
         }
     }

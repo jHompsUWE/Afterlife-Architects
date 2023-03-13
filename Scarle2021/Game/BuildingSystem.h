@@ -32,6 +32,8 @@ private:
 	void StartCreateStructure(StructureType structure_type);
 	void PlaceSelectedStructure(PlaneType plane);
 
+	bool SoulExceedsCapacity(PlaneType plane, ZoneType zone);
+
 	bool CallEverySeconds(float dt, float time_interval);
 
 	std::shared_ptr<Vector3> mouse_world_pos{};
@@ -68,6 +70,8 @@ private:
 	bool show_vibes = false;
 
 	std::shared_ptr<TextureManager> texture_manager{};
+	std::shared_ptr<PopulationManager> population_manager{};
+	EconomyManager* econ_manager = nullptr;
 
 	// Preview Quad
 	bool show_preview_quad;

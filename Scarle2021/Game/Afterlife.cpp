@@ -143,6 +143,7 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
 {
     const float delta_time = float(timer.GetElapsedSeconds());
     game_data->delta_time = delta_time;
+    game_data->delta_time = delta_time;
    
     finite_state_machine->Update(game_data);
     audio_manager->Update(game_data);
@@ -218,7 +219,7 @@ void Afterlife::Render()
 void Afterlife::Clear()
 {
     // Clear the views.
-    d3d_context->ClearRenderTargetView(render_target_view.Get(), Colors::CornflowerBlue);
+    d3d_context->ClearRenderTargetView(render_target_view.Get(), Colors::Black);
     d3d_context->ClearDepthStencilView(depth_stencil_view.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
     d3d_context->OMSetRenderTargets(1, render_target_view.GetAddressOf(), depth_stencil_view.Get());

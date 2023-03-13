@@ -10,11 +10,13 @@
 #include "BuildingManager.h"
 #include "VibeTilemap.h"
 #include "TextureManager.h"
+#include "PlaneType.h"
 
 class Tilemap
 {
 public:
-	Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start);
+	Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, std::shared_ptr<PopulationManager> _population_manager,
+		int _size, Vector3 _start, PlaneType _plane);
 	~Tilemap();
 
 	void Draw(DrawData* _DD);
@@ -44,8 +46,10 @@ protected:
 	std::vector<std::vector<std::unique_ptr<Tile>>> tilemap;
 	float size; // Size of the tilemap
 	Vector3 start; // Starting/Origin point of the tilemap
+	PlaneType plane;
 
 private:
 	std::shared_ptr<TextureManager> texture_manager;
+	std::shared_ptr<PopulationManager> population_manager;
 };
 

@@ -2,8 +2,9 @@
 #include "BuildingManager.h"
 #include <iostream>
 
-BuildingManager::BuildingManager(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start, PlaneType _plane) :
-	d11_device(GD), start(_start), plane(_plane), texture_manager(_texture_manager)
+BuildingManager::BuildingManager(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, std::shared_ptr<PopulationManager> _population_manager,
+	EconomyManager* _econ_manager, int _size, Vector3 _start, PlaneType _plane) :
+	d11_device(GD), start(_start), plane(_plane), texture_manager(_texture_manager), population_manager(_population_manager), econ_manager(_econ_manager)
 {
 	for (int x = 0; x < _size; x++)
 	{
@@ -13,9 +14,6 @@ BuildingManager::BuildingManager(ID3D11Device* GD, std::shared_ptr<TextureManage
 			structure_map[x].emplace_back(nullptr);
 		}
 	}
-
-	econ_manager = &EconomyManager::Get();
-	population_manager = std::make_shared<PopulationManager>();
 }
 
 BuildingManager::~BuildingManager()
@@ -187,7 +185,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		structure_map[tile_position.x][tile_position.z] =
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size), 
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
-				5); // The number of souls this gate generates per year
+				10); // The number of souls this gate generates per year
 		if (plane == Heaven)
 		{
 			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);
@@ -202,7 +200,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		structure_map[tile_position.x][tile_position.z] =
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
-				10); // The number of souls this gate generates per year
+				50); // The number of souls this gate generates per year
 		if (plane == Heaven)
 		{
 			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);
@@ -217,7 +215,7 @@ void BuildingManager::CreateStructure(StructureType structure_type, Vector3 tile
 		structure_map[tile_position.x][tile_position.z] =
 			std::make_unique<StructureGate>(d11_device, Vector2(sqrt(2) * size, sqrt(2) * dimensions.y / dimensions.x * size),
 				tile_position + start, size, texture_manager->GetTextureStructure(structure_type, plane), plane, econ_manager,
-				15); // The number of souls this gate generates per year
+				100); // The number of souls this gate generates per year
 		if (plane == Heaven)
 		{
 			AL::NewEventManager::GenerateEventSt(AL::event_sound_start, gate_heaven_sound, 1.0f, true);

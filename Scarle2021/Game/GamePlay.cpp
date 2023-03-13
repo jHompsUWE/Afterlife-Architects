@@ -92,6 +92,9 @@ void GamePlay::Update(GameData* game_data)
     window_three_topias->update(game_data,mouse_pos);
     //training centre
     window_four_training_centers_window->update(game_data,mouse_pos);
+
+    // Building System
+    building_system->Tick(game_data);
     
 
     adv_man->Update(game_data);
@@ -108,9 +111,6 @@ void GamePlay::LateUpdate(GameData* game_data)
     // Update mouse position
     mouse_screen_pos.x = game_data->mouse_state.x;
     mouse_screen_pos.y = game_data->mouse_state.y;
-
-    // Building System
-    building_system->Tick(game_data);
 }
 
 void GamePlay::GetEvents(const AL::Event& al_event)

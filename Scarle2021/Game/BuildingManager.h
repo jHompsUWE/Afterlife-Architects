@@ -21,7 +21,8 @@
 class BuildingManager
 {
 public:
-	BuildingManager(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start, PlaneType _plane);
+	BuildingManager(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, std::shared_ptr<PopulationManager> _population_manager, 
+		EconomyManager* _econ_manager, int _size, Vector3 _start, PlaneType _plane);
 	~BuildingManager();
 
 	void Tick(GameData* game_data);

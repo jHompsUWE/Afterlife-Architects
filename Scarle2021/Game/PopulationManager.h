@@ -1,6 +1,7 @@
 #pragma once
 #include "ZoneType.h"
 #include "PlaneType.h"
+#include <vector>
 
 class PopulationManager
 {
@@ -10,31 +11,24 @@ public:
 
 	void IncrementZoneCapacity(PlaneType plane, ZoneType zone, int capacity_increase);
 	void IncrementADCapacity(PlaneType plane, int capacity_increase);
+	void SetZoneFull(PlaneType plane, ZoneType zone, bool is_full);
 
 	int GetZoneCapacity(PlaneType plane, ZoneType zone);
 	int GetADCapacity(PlaneType plane);
+	bool GetZoneFull(PlaneType plane, ZoneType zone);
 
 protected:
 
 private:
 	// Heaven
-	int capacity_heaven_green;
-	int capacity_heaven_yellow;
-	int capacity_heaven_orange;
-	int capacity_heaven_brown;
-	int capacity_heaven_purple;
-	int capacity_heaven_red;
-	int capacity_heaven_blue;
+	std::vector<int> heaven_capacity;
+	std::vector<bool> heaven_full;
 	int capacity_angel;
 
+
 	// Hell
-	int capacity_hell_green;
-	int capacity_hell_yellow;
-	int capacity_hell_orange;
-	int capacity_hell_brown;
-	int capacity_hell_purple;
-	int capacity_hell_red;
-	int capacity_hell_blue;
+	std::vector<int> hell_capacity;
+	std::vector<bool> hell_full;
 	int capacity_demon;
 };
 

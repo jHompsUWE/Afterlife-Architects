@@ -1,8 +1,9 @@
 #include "pch.h"
 #include "Tilemap.h"
 
-Tilemap::Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, int _size, Vector3 _start) :
-	size(_size), start(_start), texture_manager(_texture_manager)
+Tilemap::Tilemap(ID3D11Device* GD, std::shared_ptr<TextureManager> _texture_manager, std::shared_ptr<PopulationManager> _population_manager,
+	int _size, Vector3 _start, PlaneType _plane) :
+	size(_size), start(_start), texture_manager(_texture_manager), population_manager(_population_manager), plane(_plane)
 {
 	for (int x = 0; x < size; x++)
 	{
@@ -76,6 +77,7 @@ void Tilemap::BoxFill(std::unique_ptr<BuildingManager>& building_manager, std::u
 						{
 							// Replace the tiles that this structure occupy to Void
 							SetTile(temp_pos, Void);
+							tilemap[temp_pos.x][temp_pos.z]->UnoccupyTile();
 						}
 					}
 
@@ -123,6 +125,11 @@ bool Tilemap::SetTile(Vector3 tile_pos, ZoneType zone_type)
 		{
 			// Turn zone to inactive if there is no road nearby
 			zone_type = GetInactiveZone(zone_type);
+		}
+		else
+		{
+			// Set zone to NOT full
+			population_manager->SetZoneFull(plane, zone_type, false);
 		}
 		break;
 
@@ -209,12 +216,7 @@ Vector3 Tilemap::FindEmpty2x2TileOfType(ZoneType zone_type)
 			int tile_found = 0;
 			for(auto& pos : tile_list)
 			{
-				if (pos.x > size - 1 || pos.z > size - 1 || pos.x < 0 || pos.z < 0)
-				{
-					break;
-				}
-
-				if (tilemap[pos.x][pos.z]->GetZoneType() == zone_type && tilemap[pos.x][pos.z]->IsTileOccupied() == false)
+				if (IsPosValid(Vector3(pos.x, 0, pos.z)) && tilemap[pos.x][pos.z]->GetZoneType() == zone_type && !tilemap[pos.x][pos.z]->IsTileOccupied())
 				{
 					tile_found += 1;
 				}
