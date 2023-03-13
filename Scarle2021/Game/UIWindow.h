@@ -7,7 +7,7 @@
 #include "DataManager.h"
 
 
-class UIWindow
+class UIWindow : public IEventReceiver
 {
 public:
     UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
@@ -16,34 +16,32 @@ public:
     UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _filepath,Vector2 _setScale);
     UIWindow();
-    ~UIWindow();
+    ~UIWindow() override;
 
-    void update(GameData* _gameData, Vector2& _mousePosition);
-    void render(DrawData2D* _drawData);
+    virtual void update(GameData* _gameData, Vector2& _mousePosition);
+    virtual void render(DrawData2D* _drawData);
+    void ReceiveEvents(const AL::Event& al_event) override;
 
     void setPostion(Vector2& _new_pos) ;
-    void setScale(Vector2& _newScale) ;
-	
-    Vector2& getPosition() ;
-    Vector2& getButtonRes() ;
-	
-    void reSize(Vector2 game_res);
+    virtual void setScale(Vector2& _newScale) ;
+
+    virtual Vector2& getPosition() ;
+    virtual Vector2& getButtonRes() ;
+
+    virtual void reSize(Vector2 game_res);
 
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
 
-    Vector2 getwindowRes() { return window_res; }
+    virtual Vector2 getwindowRes() { return window_res; }
     
     void setVisibility(bool _vis);
     const bool& getVisibility();
 
-    
-
-    
 protected:
-
     
     bool toggle_click = false;
+    Vector2 mouse_pos {0,0};
     Vector2 old_mouse_pos{0,0};
     
     ImageGO2D* windowBackGround = nullptr;

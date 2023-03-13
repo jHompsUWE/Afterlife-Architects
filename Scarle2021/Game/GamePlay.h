@@ -56,6 +56,7 @@ private:
 
     TextGO2D* text = nullptr;
 
+    Vector2 mouse_pos {0,0};
     Vector3 mouse_screen_pos;
     std::shared_ptr<Vector3> mouse_world_pos;
 

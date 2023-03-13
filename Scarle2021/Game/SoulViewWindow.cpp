@@ -35,6 +35,8 @@ SoulViewWindow::SoulViewWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice
     text_vec.push_back(new TextGO2D("Believes in HAHASUMARALFism"));
     text_vec[3]->SetPos(Vector2(window_pos.x + 17, window_pos.y+234));
     text_vec[3]->SetScale(Vector2(_setScale * 0.2));
+
+    AL::NewEventManager::AddEventReceiver(this);
 }
 
 SoulViewWindow::~SoulViewWindow()
@@ -56,11 +58,15 @@ SoulViewWindow::~SoulViewWindow()
     {
         delete image;
     }
+
+    AL::NewEventManager::RemoveEventReceiver(this);
 }
 
 void SoulViewWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
     if (!is_visible) return;
+
+    mouse_pos = _mousePosition;
     
     //updates buttons
     for (const auto& button : buttons)
@@ -82,32 +88,12 @@ void SoulViewWindow::update(GameData* _gameData, Vector2& _mousePosition)
         text->Tick(_gameData);
     }
 
-    //checks if mouse inside UI window 
-    if (isInside(_mousePosition))
-    {
-        //if clicked
-        if (DataManager::GetGD()->mouse_state.leftButton)
-        {
-            toggle_click = true;
-
-        }
-        else
-        {
-            toggle_click = false;
-
-        }
-    }
-    else
-    {
-        toggle_click = false;
-    }
-
     //if clicked updates pos and scale for window drag  
-    if (toggle_click)
+    if (toggle_click && isInside(mouse_pos))
     {
 
         //new pos on click and drag 
-        const Vector2 offset = old_mouse_pos - _mousePosition;
+        const Vector2 offset = old_mouse_pos - mouse_pos;
         windowBackGround->SetPos(windowBackGround->GetPos() - offset);
         window_pos = windowBackGround->GetPos();
 
@@ -131,7 +117,7 @@ void SoulViewWindow::update(GameData* _gameData, Vector2& _mousePosition)
             text->SetPos(button_pos - offset);
         }
     }
-    old_mouse_pos = _mousePosition;
+    old_mouse_pos = mouse_pos;
 }
 
 void SoulViewWindow::render(DrawData2D* _drawData)
@@ -154,6 +140,26 @@ void SoulViewWindow::render(DrawData2D* _drawData)
     for (const auto& image : image_vec)
     {
         image->Draw(_drawData);
+    }
+}
+
+void SoulViewWindow::ReceiveEvents(const AL::Event& al_event)
+{
+    switch (al_event.type)
+    {
+    case AL::event_input:
+        break;
+
+    case AL::event_cursor_interact:
+        //Saves the state of the action
+        if(al_event.cursor_interact.action == AL::Cursor::button_input1)
+        {
+            toggle_click = al_event.cursor_interact.active;
+        }
+        break;
+
+    default:
+        break;
     }
 }
 

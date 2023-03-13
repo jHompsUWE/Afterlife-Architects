@@ -36,6 +36,8 @@ private:
 
 	bool CallEverySeconds(float dt, float time_interval);
 
+	void CursorIntegration();
+
 	std::shared_ptr<Vector3> mouse_world_pos{};
 	ID3D11Device* d11_device = nullptr;
 
@@ -47,6 +49,7 @@ private:
 	ZoneType selected_zone;
 
 	// Mouse
+	bool mouse_state;
 	bool mouse_pressed;
 	Vector3 mouse_pressed_world_pos;
 	Vector3 mouse_released_world_pos;

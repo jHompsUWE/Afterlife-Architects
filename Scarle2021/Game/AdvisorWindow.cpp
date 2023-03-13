@@ -73,6 +73,9 @@ AdvisorWindow::AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice, 
     text_vec.push_back(new TextGO2D(""));
     text_vec[5]->SetPos(Vector2(window_pos.x+120,window_pos.y+150));
     text_vec[5]->SetScale(Vector2(0.3,0.3));
+
+    //Event receiver
+    AL::NewEventManager::AddEventReceiver(this); 
 }
 AdvisorWindow::~AdvisorWindow()
 {
@@ -98,11 +101,15 @@ AdvisorWindow::~AdvisorWindow()
     {
         delete image;        
     }
+
+    AL::NewEventManager::RemoveEventReceiver(this); 
 }
 
 void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
     if (!is_visible) return;
+
+    mouse_pos = _mousePosition; 
     
     //updates buttons
     for (const auto& button : buttons)
@@ -141,32 +148,12 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
         text->Tick(_gameData);
     }
     
-    //checks if mouse inside UI window 
-    if(isInside(_mousePosition))
-    {
-        //if clicked
-        if(DataManager::GetGD()->mouse_state.leftButton)
-        {
-            toggle_click = true;
-           
-        }
-        else
-        {
-            toggle_click = false;
-            
-        }
-    }
-    else
-    {
-        toggle_click = false;
-    }
-    
     //if clicked updates pos and scale for window drag  
-    if (toggle_click)
+    if (toggle_click && isInside(mouse_pos))
     {
 
         //new pos on click and drag 
-        const Vector2 offset = old_mouse_pos - _mousePosition;
+        const Vector2 offset = old_mouse_pos - mouse_pos;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
         
@@ -205,7 +192,7 @@ void AdvisorWindow::update(GameData* _gameData, Vector2& _mousePosition)
             text->SetPos(button_pos - offset);
         }
     }
-    old_mouse_pos = _mousePosition;
+    old_mouse_pos = mouse_pos;
 }
 
 void AdvisorWindow::render(DrawData2D* _drawData)
@@ -251,6 +238,26 @@ void AdvisorWindow::render(DrawData2D* _drawData)
             indicators_ja[k]->Draw(_drawData);
         }
     }
+}
+
+void AdvisorWindow::ReceiveEvents(const AL::Event& al_event)
+{
+    switch (al_event.type) 
+    { 
+    case AL::event_input: 
+        break; 
+ 
+    case AL::event_cursor_interact: 
+        //Saves the state of the action 
+        if(al_event.cursor_interact.action == AL::Cursor::button_input1) 
+        { 
+            toggle_click = al_event.cursor_interact.active; 
+        } 
+        break; 
+ 
+    default: 
+        break; 
+    } 
 }
 
 void AdvisorWindow::set_postion(Vector2& _new_pos)

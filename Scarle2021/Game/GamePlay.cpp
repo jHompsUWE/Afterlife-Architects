@@ -74,9 +74,6 @@ void GamePlay::Update(GameData* game_data)
         ResizeUI();
         do_once = false;
     }
-
-    // mouse pos
-    auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
     
     //updates panel
     main_panel->update(game_data,mouse_pos);
@@ -96,7 +93,6 @@ void GamePlay::Update(GameData* game_data)
     // Building System
     building_system->Tick(game_data);
     
-
     adv_man->Update(game_data);
     EconomyManager::UpdateCurrency(game_data);
     EconomyManager::UpdateSouls();
@@ -109,8 +105,8 @@ void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
 void GamePlay::LateUpdate(GameData* game_data)
 {
     // Update mouse position
-    mouse_screen_pos.x = game_data->mouse_state.x;
-    mouse_screen_pos.y = game_data->mouse_state.y;
+    mouse_screen_pos.x = mouse_pos.x;
+    mouse_screen_pos.y = mouse_pos.y;
 }
 
 void GamePlay::GetEvents(const AL::Event& al_event)
@@ -124,6 +120,8 @@ void GamePlay::GetEvents(const AL::Event& al_event)
         break;
         
     case AL::event_cursor_move:
+        mouse_pos.x = (float)al_event.cursor_moved.pos_x;
+        mouse_pos.y = (float)al_event.cursor_moved.pos_y;
         break;
         
     case AL::event_cursor_interact:

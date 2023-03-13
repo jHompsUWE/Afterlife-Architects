@@ -16,50 +16,50 @@ TPSCamera::~TPSCamera()
 
 void TPSCamera::Tick(GameData* _GD)
 {
-	if (_GD->mouse_state.scrollWheelValue < last_scroll_value)
-	{
-		// Zoom OUT
-		last_scroll_value = _GD->mouse_state.scrollWheelValue;
-		zoom += 1.0f;
-		if (zoom > max_zoom)
-		{
-			zoom = max_zoom;
-		}
-	}
-	else if (_GD->mouse_state.scrollWheelValue > last_scroll_value)
-	{
-		// Zoom IN
-		last_scroll_value = _GD->mouse_state.scrollWheelValue;
-		zoom -= 1.0f;
-		if (zoom < min_zoom)
-		{
-			zoom = min_zoom;
-		}
-	}
-
-	Vector3 verticalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom) * _GD->delta_time;
-	if (_GD->keyboard_state.W)
-	{
-		// Move UP
-		target += verticalMove;
-	}
-	if (_GD->keyboard_state.S)
-	{
-		// Move DOWN
-		target -= verticalMove;
-	}
-
-	Vector3 horizontalMove = speed * Vector3(1, 0, -1) * (zoom / max_zoom) * _GD->delta_time;
-	if (_GD->keyboard_state.A)
-	{
-		// Move LEFT
-		target -= horizontalMove;
-	}
-	if (_GD->keyboard_state.D)
-	{
-		// Move RIGHT
-		target += horizontalMove;
-	}
+	// if (_GD->mouse_state.scrollWheelValue < last_scroll_value)
+	// {
+	// 	// Zoom OUT
+	// 	last_scroll_value = _GD->mouse_state.scrollWheelValue;
+	// 	zoom += 1.0f;
+	// 	if (zoom > max_zoom)
+	// 	{
+	// 		zoom = max_zoom;
+	// 	}
+	// }
+	// else if (_GD->mouse_state.scrollWheelValue > last_scroll_value)
+	// {
+	// 	// Zoom IN
+	// 	last_scroll_value = _GD->mouse_state.scrollWheelValue;
+	// 	zoom -= 1.0f;
+	// 	if (zoom < min_zoom)
+	// 	{
+	// 		zoom = min_zoom;
+	// 	}
+	// }
+	//
+	// Vector3 verticalMove = speed * Vector3(1, 0, 1) * (zoom / max_zoom) * _GD->delta_time;
+	// if (_GD->keyboard_state.W)
+	// {
+	// 	// Move UP
+	// 	target += verticalMove;
+	// }
+	// if (_GD->keyboard_state.S)
+	// {
+	// 	// Move DOWN
+	// 	target -= verticalMove;
+	// }
+	//
+	// Vector3 horizontalMove = speed * Vector3(1, 0, -1) * (zoom / max_zoom) * _GD->delta_time;
+	// if (_GD->keyboard_state.A)
+	// {
+	// 	// Move LEFT
+	// 	target -= horizontalMove;
+	// }
+	// if (_GD->keyboard_state.D)
+	// {
+	// 	// Move RIGHT
+	// 	target += horizontalMove;
+	// }
 
 	// Set position of cam at an offset of m_dpos from target
 	m_pos = target + m_dpos;

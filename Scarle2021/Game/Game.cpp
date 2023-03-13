@@ -276,20 +276,20 @@ void Game::Update(DX::StepTimer const& _timer)
     ReadInput();
     //upon space bar switch camera state
     //see docs here for what's going on: https://github.com/Microsoft/DirectXTK/wiki/Keyboard
-    if (m_GD->keyboard_state_tracker.pressed.Space)
-    {
-        //Commented out because we made our own gamestates.
-        /*
-        if (m_GD->m_GS == GS_PLAY_MAIN_CAM)
-        {
-            m_GD->m_GS = GS_PLAY_TPS_CAM;
-        }
-        else
-        {
-            m_GD->m_GS = GS_PLAY_MAIN_CAM;
-        }
-        */
-    }
+    // if (m_GD->keyboard_state_tracker.pressed.Space)
+    // {
+    //     //Commented out because we made our own gamestates.
+    //     
+    //     if (m_GD->m_GS == GS_PLAY_MAIN_CAM)
+    //     {
+    //         m_GD->m_GS = GS_PLAY_TPS_CAM;
+    //     }
+    //     else
+    //     {
+    //         m_GD->m_GS = GS_PLAY_MAIN_CAM;
+    //     }
+    //     
+    // }
 
     //update all objects
     for (list<GameObject*>::iterator it = m_GameObjects.begin(); it != m_GameObjects.end(); it++)
@@ -606,19 +606,19 @@ void Game::OnDeviceLost()
 
 void Game::ReadInput()
 {
-    m_GD->keyboard_state = m_keyboard->GetState();
-    m_GD->keyboard_state_tracker.Update(m_GD->keyboard_state);
-    
-    //quit game on hiting escape
-    if (m_GD->keyboard_state.Escape)
-    {
-        ExitGame();
-    }
-
-    m_GD->mouse_state = m_mouse->GetState();
-
-    //lock the cursor to the centre of the window
-    RECT window;
-    GetWindowRect(m_window, &window);
-    SetCursorPos((window.left + window.right) >> 1, (window.bottom + window.top) >> 1);
+//     m_GD->keyboard_state = m_keyboard->GetState();
+//     m_GD->keyboard_state_tracker.Update(m_GD->keyboard_state);
+//     
+//     //quit game on hiting escape
+//     if (m_GD->keyboard_state.Escape)
+//     {
+//         ExitGame();
+//     }
+//
+//     m_GD->mouse_state = m_mouse->GetState();
+//
+//     //lock the cursor to the centre of the window
+//     RECT window;
+//     GetWindowRect(m_window, &window);
+//     SetCursorPos((window.left + window.right) >> 1, (window.bottom + window.top) >> 1);
 }
