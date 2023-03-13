@@ -150,7 +150,6 @@ namespace AL
 
 		//Map mouse keys here
 		MapEntryToEvent(mouse.leftButton, Cursor::button_input1);
-		MapEntryToEvent(mouse.leftButton, Cursor::button_input1_hold, true);
 		MapEntryToEvent(mouse.rightButton, Cursor::button_input2);
 		MapEntryToEvent(mouse.middleButton, Cursor::button_input3);
 	}
@@ -164,7 +163,20 @@ namespace AL
 		if(gamepad.IsConnected())
 		{
 			//Map controller behaviour here
-			//MapEntryToEvent(gamepad.IsAPressed(), Input::input_left);
+
+			//Camera movement
+			MapEntryToEvent(gamepad.IsLeftThumbStickUp(), Input::camera_up, true);
+			MapEntryToEvent(gamepad.IsLeftThumbStickDown(), Input::camera_down, true);
+			MapEntryToEvent(gamepad.IsLeftThumbStickLeft(), Input::camera_left, true);
+			MapEntryToEvent(gamepad.IsLeftThumbStickRight(), Input::camera_right, true);
+
+			//Camera zoom
+			MapEntryToEvent(gamepad.IsLeftShoulderPressed(), Cursor::scroll_up);
+			MapEntryToEvent(gamepad.IsRightShoulderPressed(), Cursor::scroll_down);
+			
+			//Cursor interactions
+			MapEntryToEvent(gamepad.IsRightTriggerPressed(), Cursor::button_input1);
+			MapEntryToEvent(gamepad.IsLeftTriggerPressed(), Cursor::button_input2);
 		}
 	}
 
@@ -391,6 +403,13 @@ namespace AL
 		{
 			SetEventData(event, byte_offset, args...);
 		}
+	}
+
+	//Cursor Getter ----------------------------------------------------------------------------------------------------
+
+	const SimpleMath::Vector2 NewEventManager::GetCursorPos() const
+	{
+		return SimpleMath::Vector2{(float)mouse_x, (float)mouse_y};
 	}
 	
 	//Template function specialization ---------------------------------------------------------------------------------

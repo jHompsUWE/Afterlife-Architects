@@ -38,6 +38,7 @@ Afterlife::~Afterlife()
     delete effect_factory;
     delete light;
     delete ortho_cam;
+    delete cursor_sprite;
 }
 
 void Afterlife::Initialize(HWND _window, int _width, int _height)
@@ -72,7 +73,7 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     mouse->SetWindow(_window);
     mouse->SetMode(Mouse::MODE_ABSOLUTE);
     // Mouse Pointer visible?
-    ShowCursor(true);
+    ShowCursor(false);
     
     // GameData
     game_data = new GameData;
@@ -124,6 +125,11 @@ void Afterlife::Initialize(HWND _window, int _width, int _height)
     //Inits the audio manager
     audio_manager = std::make_unique<AudioManager>();
     audio_manager->init();
+
+    //Makes a custom mouse cursor!
+    cursor_sprite = new ImageGO2D("Cursor", d3d_device.Get());
+    cursor_sprite->set_layer_depth(128);
+    cursor_sprite->SetOrigin(Vector2{0,0});   
 }
 
 // Executes the basic game loop
@@ -148,6 +154,10 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
     finite_state_machine->Update(game_data);
     audio_manager->Update(game_data);
     ortho_cam->Tick(game_data);
+
+    //Moves the cursor!
+    cursor_sprite->SetPos(event_manager->GetCursorPos());
+    cursor_sprite->Tick(game_data);
 }
 
 void Afterlife::ReadInput()
@@ -207,6 +217,7 @@ void Afterlife::Render()
     draw_data2D->sprites_batch->Begin(SpriteSortMode_Deferred, common_states->NonPremultiplied());
     //Draws the 2D GOs
     finite_state_machine->Render2D(draw_data2D);
+    cursor_sprite->Draw(draw_data2D);
     //Stops sprite batching
     draw_data2D->sprites_batch->End();
     

@@ -16,6 +16,7 @@
 #include "Player.h"
 
 //Json file manager
+#include "ImageGO2D.h"
 #include "../json/single_include/nlohmann/json.hpp"
 using json = nlohmann::json;
 
@@ -90,9 +91,6 @@ private:
     OrthographicCamera* ortho_cam = NULL;
     Light* light = NULL;
 
-    // Debug
-    //TPSCamera* debug_cam = NULL;
-
     // required for the CMO model rendering system
     CommonStates* common_states = NULL;
     IEffectFactory* effect_factory = NULL;
@@ -110,5 +108,8 @@ private:
 
     //Pointer to the Event Manager
     AL::NewEventManager* event_manager = nullptr;
+
+    //Out mouse pointer! Yippie!
+    ImageGO2D* cursor_sprite = nullptr;
 };
 

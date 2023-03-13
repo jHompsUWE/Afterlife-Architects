@@ -8,6 +8,8 @@
 
 #include <unordered_map>
 
+#include "SimpleMath.h"
+
 namespace AL
 {
 	class NewEventManager : public IObservable<IEventReceiver>
@@ -49,6 +51,9 @@ namespace AL
 		//Generate Events
 		template <typename... Payload>
 		void GenerateEvent(EventType type, const Payload&... args);
+
+		//Getter for cursor sprite
+		const SimpleMath::Vector2 GetCursorPos() const; 
 		
 	private:
 		//Private constructor and de-constructor
