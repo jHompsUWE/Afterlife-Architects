@@ -87,7 +87,10 @@ void BuildingSystem::ReceiveEvents(const AL::Event& al_event)
             break;
             
         case AL::Input::show_vibes:
-            show_vibes = !show_vibes;
+            if(al_event.input.active)
+            {
+                show_vibes = !show_vibes;
+            }
             break;
 
         case AL::Input::place_zone_green:

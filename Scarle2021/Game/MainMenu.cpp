@@ -12,15 +12,6 @@ MainMenu::~MainMenu()
     {
         delete button;        
     }
-    
-    /*
-    delete start_button;
-    delete main_menu_bg;
-    delete load_button;
-    delete load_scenario_button;
-    delete replay_intro;
-    delete quit_afterlife;
-    */
 }
 
 bool MainMenu::init()
@@ -94,6 +85,7 @@ void MainMenu::GetEvents(const AL::Event& al_event)
         case AL::Game::enter_level_select:
             DataManager::GetGD()->current_game_state = gs_level_select;
             EconomyManager::ResetEconomy();
+            do_once = true;
             break;
                             
         case AL::Game::enter_main_menu:
@@ -118,6 +110,12 @@ void MainMenu::GetEvents(const AL::Event& al_event)
 
 void MainMenu::Render2D(DrawData2D* draw_data2D)
 {
+    if(do_once)
+    {
+        ResizeUI();
+        do_once = false;
+    }
+    
     main_menu_bg->Draw(draw_data2D);
     
     for (auto& button : buttons)

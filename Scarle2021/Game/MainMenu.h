@@ -27,15 +27,9 @@ private:
 
 	//Button vector
 	std::vector<UIButtonInterFace*> buttons;
-	
-	//buttons
-	/*
-	Button* start_button = nullptr;
-	Button* load_button = nullptr;
-	Button* load_scenario_button = nullptr;
-	Button* replay_intro = nullptr;
-	Button* quit_afterlife = nullptr;
-	*/
+
+	//Init
+	bool do_once = true;
 	
 	ImageGO2D* main_menu_bg = nullptr;
 };

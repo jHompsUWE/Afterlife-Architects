@@ -89,6 +89,7 @@ void LevelSelect::GetEvents(const AL::Event& al_event)
             
         case AL::Game::enter_main_menu:
             DataManager::GetGD()->current_game_state = gs_main_menu;
+            do_once = true;
             break;
             
         case AL::Game::quit_game:
@@ -107,6 +108,12 @@ void LevelSelect::GetEvents(const AL::Event& al_event)
 
 void LevelSelect::Render2D(DrawData2D* draw_data2D)
 {
+    if(do_once)
+    {
+        ResizeUI();
+        do_once = false;
+    }
+    
     main_menu_bg->Draw(draw_data2D);
     
     for (auto& button : buttons)

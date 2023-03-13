@@ -116,6 +116,9 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     //soul view button
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 93,panel_pos.y + 310),DataManager::GetD3DDevice()
     ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
+
+    buttons.push_back(new Button<AL::Input::Action, int>(Vector2(panel_pos.x + 180,panel_pos.y + 311),DataManager::GetD3DDevice()
+    ,"green",AL::EventType::event_input, AL::Input::show_vibes, 0,Vector2(0.8, 0.7)));
     //.............
     
     //UI Text Vector

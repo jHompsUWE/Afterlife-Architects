@@ -25,6 +25,9 @@ public:
     private:
     void ResizeUI();
 
+    //init
+    bool do_once = true;
+
     //Button vector
     std::vector<UIButtonInterFace*> buttons;
 	
