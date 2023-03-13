@@ -90,17 +90,28 @@ void OrthographicCamera::ReceiveEvents(const AL::Event& al_event)
 		switch (al_event.cursor_interact.action)
 		{
 			case AL::Cursor::scroll_up:
-				ZoomIn();
+				ZoomIn(1);
 				break;
 
 			case AL::Cursor::scroll_down:
-				ZoomOut();
+				ZoomOut(1);
 				break;
 
 			default:
 				break;
 		}
 		break;
+
+	case AL::event_ui:
+		switch (al_event.ui.action)
+		{
+		case AL::UI::button_zoom_in:
+			ZoomIn(10);
+			break;
+		case AL::UI::button_zoom_out:
+			ZoomOut(10);
+			break;
+		}
 
 	default:
 		break;
@@ -142,9 +153,9 @@ void OrthographicCamera::MoveRight()
 /// <summary>
 /// Zooms camera in, clamped by zoom_in
 /// </summary>
-void OrthographicCamera::ZoomIn()
+void OrthographicCamera::ZoomIn(float magnitude)
 {
-	zoom_value -= 1.0f;
+	zoom_value -= magnitude;
 	if (zoom_value < zoom_min)
 	{
 		zoom_value = zoom_min;
@@ -154,9 +165,9 @@ void OrthographicCamera::ZoomIn()
 /// <summary>
 /// Zooms camera out, clamped by zoom_max
 /// </summary>
-void OrthographicCamera::ZoomOut()
+void OrthographicCamera::ZoomOut(float magnitude)
 {
-	zoom_value += 1.0f;
+	zoom_value += magnitude;
 	if (zoom_value > zoom_max)
 	{
 		zoom_value = zoom_max;

@@ -26,8 +26,8 @@ public:
 	void MoveDown();
 	void MoveLeft();
 	void MoveRight();
-	void ZoomIn();
-	void ZoomOut();
+	void ZoomIn(float magintude);
+	void ZoomOut(float magnitude);
 
 	void RecalculateProjViewPos();
 
