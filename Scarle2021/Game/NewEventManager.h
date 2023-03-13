@@ -8,6 +8,8 @@
 
 #include <unordered_map>
 
+#include "SimpleMath.h"
+
 namespace AL
 {
 	class NewEventManager : public IObservable<IEventReceiver>
@@ -49,6 +51,9 @@ namespace AL
 		//Generate Events
 		template <typename... Payload>
 		void GenerateEvent(EventType type, const Payload&... args);
+
+		//Getter for cursor sprite
+		const SimpleMath::Vector2 GetCursorPos() const; 
 		
 	private:
 		//Private constructor and de-constructor
@@ -75,10 +80,14 @@ namespace AL
 		//events
 		std::vector<Event> event_list{};
 
-		//Saves mouse pos
+		//Saves mouse data
+		int cursor_speed = 8;
 		int mouse_scroll = 0;
-		int mouse_x = 0;
-		int mouse_y = 0;
+		int mouse_x = 0.f;
+		int mouse_y = 0.f;
+
+		//controller
+		bool controller_connected = false;
 	};
 }
 

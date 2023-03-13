@@ -17,6 +17,8 @@
       <change beforePath="$PROJECT_DIR$/Game/MainMenu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/MainMenu.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/MainMenu.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game/UIPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/UIPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/NewEventManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Game/NewEventManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game/NewEventManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Game/NewEventManager.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +198,8 @@
       <workItem from="1678574392468" duration="41275000" />
       <workItem from="1678647681978" duration="7064000" />
       <workItem from="1678663541381" duration="995000" />
+      <workItem from="1678704047163" duration="1239000" />
+      <workItem from="1678705762049" duration="4554000" />
     </task>
     <servers />
   </component>
