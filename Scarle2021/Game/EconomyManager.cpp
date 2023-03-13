@@ -219,7 +219,7 @@ void EconomyManager::IUpdateCurrency(GameData* game_data)
 	while (timer >= year_update_interval)
 	{
 		timer -= year_update_interval;
-		soul_rate = (souls_total / year) * soul_rate_multiplier;
+		soul_rate = (souls_total / year) * soul_rate_multiplier + 1;
 		currency = currency + soul_rate;
 		year++;
 	}

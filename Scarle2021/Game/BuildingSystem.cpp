@@ -17,6 +17,7 @@ BuildingSystem::BuildingSystem(std::shared_ptr<Vector3> mouse_pos, ID3D11Device*
     vibe_tilemap_hell = std::make_unique<VibeTilemap>(d11_device, texture_manager, 100, start_hell);
     building_manager_hell = std::make_unique<BuildingManager>(d11_device, texture_manager, 100, start_hell, Hell);
 
+    PlaneAssembler::RefreshResSeed();
     GenerateTerrain(tilemap_heaven, vibe_tilemap_heaven, building_manager_heaven, Heaven);
     GenerateTerrain(tilemap_hell, vibe_tilemap_hell, building_manager_hell, Hell);
 

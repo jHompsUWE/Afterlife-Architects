@@ -96,6 +96,7 @@ void GamePlay::Update(GameData* game_data)
 
     adv_man->Update(game_data);
     EconomyManager::UpdateCurrency(game_data);
+    EconomyManager::UpdateSouls();
 }
 
 void GamePlay::ScaledUpdate(GameData* game_data, float& scaled_dt)
