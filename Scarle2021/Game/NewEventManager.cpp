@@ -126,9 +126,16 @@ namespace AL
 	void NewEventManager::PollKeyboard(Keyboard::State keyboard)
 	{
 		//Map keyboard keys here
+		//TEMPORARY
 		MapEntryToEvent(keyboard.E, Input::build_houses);
 		MapEntryToEvent(keyboard.P, Input::show_vibes);
 		MapEntryToEvent(keyboard.D1, Input::place_zone_green);
+
+		//Camera movement linked to keyboard
+		MapEntryToEvent(keyboard.W,Input::camera_up, true);
+		MapEntryToEvent(keyboard.S,Input::camera_down, true);
+		MapEntryToEvent(keyboard.A,Input::camera_left, true);
+		MapEntryToEvent(keyboard.D,Input::camera_right, true);
 	}
 	
 	/**
@@ -137,12 +144,15 @@ namespace AL
 	 */
 	void NewEventManager::PollMouse(Mouse::State mouse)
 	{
-		//Creates event for mouse moved if necessary
+		//Creates event for mouse moved and scroll if necessary
 		MouseMovToEvent(mouse);
+		MouseScrollToEvent(mouse);
 
 		//Map mouse keys here
 		MapEntryToEvent(mouse.leftButton, Cursor::button_input1);
+		MapEntryToEvent(mouse.leftButton, Cursor::button_input1_hold, true);
 		MapEntryToEvent(mouse.rightButton, Cursor::button_input2);
+		MapEntryToEvent(mouse.middleButton, Cursor::button_input3);
 	}
 
 	/**
@@ -204,6 +214,27 @@ namespace AL
 	}
 
 	// Key Mapping Handlers --------------------------------------------------------------------------------------------
+
+	void NewEventManager::MouseScrollToEvent(const Mouse::State& mouse)
+	{
+		//Gets current scroll value
+		const int current_scroll = mouse.scrollWheelValue;
+
+		//Has the scroll value changed?
+		if(current_scroll != mouse_scroll)
+		{
+			if(current_scroll > mouse_scroll)
+			{
+				GenerateEvent(event_cursor_interact, Cursor::Action::scroll_up);
+			}
+			else if(current_scroll < mouse_scroll)
+			{
+				GenerateEvent(event_cursor_interact, Cursor::Action::scroll_down);
+			}
+			//Save the new scroll value 
+			mouse_scroll = current_scroll;
+		}
+	}
 	
 	void NewEventManager::MouseMovToEvent(const Mouse::State& mouse)
 	{

@@ -152,21 +152,22 @@ void Afterlife::MainUpdate(DX::StepTimer const& timer)
 
 void Afterlife::ReadInput()
 {
-    //Updates states in GameData
-    game_data->keyboard_state = keyboard->GetState();
-    game_data->keyboard_state_tracker.Update(game_data->keyboard_state);
-    game_data->mouse_state = mouse->GetState();
-    const auto pad= gamepad->GetState(gamepad_index);
-
-    //TODO::PROPERLY SET THIS UP
-    //Temporary set up for the new event manager
+    //Gathers input
+    const auto _keyboard = keyboard->GetState();
+    const auto _gamepad= gamepad->GetState(gamepad_index);
+    const auto _mouse = mouse->GetState();
+    //Sends input to the event manager
     event_manager->FlushEventList();
-    event_manager->PollKeyboard(game_data->keyboard_state);
-    event_manager->PollMouse(game_data->mouse_state);
-    event_manager->PollGamepad(pad);
+    event_manager->PollKeyboard(_keyboard);
+    event_manager->PollMouse(_mouse);
+    event_manager->PollGamepad(_gamepad);
+
+    //TODO:: USE THIS IF STRICTLY NEEDED
+    // game_data->keyboard_state = _keyboard;
+    // game_data->mouse_state = _mouse;
     
     //Closes the game. Defined here so it is not dependant on the FSM
-    if (game_data->keyboard_state.Escape)
+    if (_keyboard.Escape)
     {
         ExitGame();
     }

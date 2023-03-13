@@ -116,8 +116,6 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     //soul view button
     buttons.push_back(new Button<AL::UI::Action, int>(Vector2(panel_pos.x + 93,panel_pos.y + 310),DataManager::GetD3DDevice()
     ,"green",AL::EventType::event_ui, AL::UI::window_soulview, 0,Vector2(0.8, 0.7)));
-    
-    
     //.............
     
     //UI Text Vector
@@ -136,11 +134,13 @@ UIPanel::UIPanel(Vector2 _panelPosition, ID3D11Device*
     text[2]->SetPos(Vector2(135,455));
     text[2]->SetScale(Vector2(0.4,0.4));
     text[2]->SetColour(Color((float*)&Colors::Green));
+
+    //Subscribe for events
+    AL::NewEventManager::AddEventReceiver(this);
 }
 
 UIPanel::~UIPanel()
 {
-    
     for (auto button : buttons)
     {
         delete button;        
@@ -152,10 +152,15 @@ UIPanel::~UIPanel()
         delete text;
     }
     delete panel_back_ground;
+
+    //Unsubscribe from events
+    AL::NewEventManager::RemoveEventReceiver(this);
 }
 
 void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
 {
+    mouse_pos = _mousePosition;
+    
     panel_back_ground->Tick(_gameData);
     //updates buttons
 
@@ -179,31 +184,13 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
     {
         text->Tick(_gameData);
     }
-    
-    //checks if mouse inside UI panel 
-    if(isInsidePanel(_mousePosition))
-    {
-        //if clicked
-        if(DataManager::GetGD()->mouse_state.leftButton)
-        {
-            toggle_click_panel = true;
-        }
-        else
-        {
-            toggle_click_panel = false;
-        }
-    }
-    else
-    {
-        toggle_click_panel = false;
-    }
 
     //if clicked updates pos and scale for window drag  
-    if (toggle_click_panel)
+    if (toggle_click_panel && isInsidePanel(mouse_pos))
     {
 
         //new pos on click and drag 
-        Vector2 offset = old_mouse_pos_panel - _mousePosition;
+        Vector2 offset = old_mouse_pos_panel - mouse_pos;
         panel_back_ground->SetPos(panel_back_ground->GetPos()-offset);
         panel_pos = panel_back_ground->GetPos();
         
@@ -222,7 +209,7 @@ void UIPanel::update(GameData* _gameData, Vector2& _mousePosition)
             text->SetPos(panel_pos - offset);
         }
     }
-    old_mouse_pos_panel = _mousePosition;
+    old_mouse_pos_panel = mouse_pos;
 }
 
 void UIPanel::render(DrawData2D* _drawData)
@@ -243,6 +230,26 @@ void UIPanel::render(DrawData2D* _drawData)
    
 }
 
+void UIPanel::ReceiveEvents(const AL::Event& al_event)
+{
+    switch (al_event.type)
+    {
+    case AL::event_input:
+        break;
+
+    case AL::event_cursor_interact:
+        //Saves the state of the action
+        if(al_event.cursor_interact.action == AL::Cursor::button_input1)
+        {
+            toggle_click_panel = al_event.cursor_interact.active;
+        }
+        break;
+
+    default:
+        break;
+    }
+}
+
 void UIPanel::setPostion(Vector2 _panelPosition)
 {
    panel_pos = _panelPosition;
@@ -250,7 +257,6 @@ void UIPanel::setPostion(Vector2 _panelPosition)
 
 void UIPanel::setScale(Vector2& _newScale)
 {
-    
 }
 
 Vector2& UIPanel::getPosition()

@@ -75,6 +75,8 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     buttons.push_back(new Button<AL::BuildSys::Section, StructureType>(Vector2(window_pos.x+280,window_pos.y+50),
         DataManager::GetD3DDevice(),"Gate_T3_Heaven_4x4",
         AL::EventType::event_build_sys,AL::BuildSys::structure, Gate_T3,Vector2(0.5,0.5)));
+
+    AL::NewEventManager::AddEventReceiver(this);
 }
 
 UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
@@ -93,11 +95,15 @@ UIWindow::UIWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
     // sets window pos
     window_pos = _windowPosition - window_res/2;
     windowBackGround->SetPos(window_pos);
+    
+    AL::NewEventManager::AddEventReceiver(this);
 }
+
 UIWindow::UIWindow()
 {
-    
+    AL::NewEventManager::AddEventReceiver(this);
 }
+
 UIWindow::~UIWindow()
 {
     //deletes pointers
@@ -111,12 +117,16 @@ UIWindow::~UIWindow()
     {
         delete text;
     }
+
+    AL::NewEventManager::RemoveEventReceiver(this);
 }
 
 void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
 {
     if(!is_visible) return;
-       
+
+    mouse_pos = _mousePosition;
+    
     //updates buttons
     for (const auto& button : buttons)
     {
@@ -138,35 +148,14 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
         {
             text->Tick(_gameData);
         }
-	
-    }
-    
-    //checks if mouse inside UI window 
-    if(isInside(_mousePosition))
-    {
-        //if clicked
-        if(DataManager::GetGD()->mouse_state.leftButton)
-        {
-            toggle_click = true;
-           
-        }
-        else
-        {
-            toggle_click = false;
-            
-        }
-    }
-    else
-    {
-        toggle_click = false;
     }
     
     //if clicked updates pos and scale for window drag  
-    if (toggle_click)
+    if (toggle_click && isInside(mouse_pos))
     {
 
         //new pos on click and drag 
-        const Vector2 offset = old_mouse_pos - _mousePosition;
+        const Vector2 offset = old_mouse_pos - mouse_pos;
         windowBackGround->SetPos(windowBackGround->GetPos()-offset);
         window_pos = windowBackGround->GetPos();
         
@@ -185,7 +174,7 @@ void UIWindow::update(GameData* _gameData, Vector2& _mousePosition)
             
         }
     }
-    old_mouse_pos = _mousePosition;
+    old_mouse_pos = mouse_pos;
 }
 
 void UIWindow::render(DrawData2D* _drawData)
@@ -208,7 +197,26 @@ void UIWindow::render(DrawData2D* _drawData)
         }
     }
 }
-    
+
+void UIWindow::ReceiveEvents(const AL::Event& al_event)
+{
+    switch (al_event.type)
+    {
+        case AL::event_input:
+            break;
+
+    case AL::event_cursor_interact:
+            //Saves the state of the action
+            if(al_event.cursor_interact.action == AL::Cursor::button_input1)
+            {
+                toggle_click = al_event.cursor_interact.active;
+            }
+            break;
+
+        default:
+            break;
+    }
+}
 
 
 void UIWindow::setPostion(Vector2& _new_pos)

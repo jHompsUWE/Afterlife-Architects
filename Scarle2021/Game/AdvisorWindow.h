@@ -2,17 +2,18 @@
 #include "UIWindow.h"
 #include "NewEventManager.h"
 
-class AdvisorWindow
+class AdvisorWindow : public IEventReceiver
 {
 public:
 
     AdvisorWindow(Vector2 _windowPosition, ID3D11Device* _d3dDevice,
         std::string _text,std::string _filepath,Vector2 _setScale);
     
-    ~AdvisorWindow();
+    ~AdvisorWindow() override;
     
     void update(GameData* _gameData, Vector2& _mousePosition);
     void render(DrawData2D* _drawData);
+    void ReceiveEvents(const AL::Event& al_event) override;
 
     void set_postion(Vector2& _new_pos);
     void set_scale(Vector2& _newScale);
@@ -33,6 +34,7 @@ private:
     //mouse pointer inside window
     bool isInside(Vector2& point) const;
     bool toggle_click = false;
+    Vector2 mouse_pos {0,0};
     Vector2 old_mouse_pos{0,0};
     
     ImageGO2D* windowBackGround = nullptr;

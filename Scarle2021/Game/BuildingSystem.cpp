@@ -70,106 +70,9 @@ void BuildingSystem::Tick(GameData* game_data)
             }
         }
     }
-
-    // TEMPORARY mouse stuff
-    if (game_data->mouse_state.leftButton)
-    {
-        if (!mouse_pressed)
-        {
-            // Mouse Pressed
-            mouse_pressed_world_pos = *mouse_world_pos;
-            mouse_pressed_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_pressed_world_pos);
-            mouse_pressed_hell_pos = tilemap_hell->WorldToLocalPos(mouse_pressed_world_pos);
-
-            mouse_pressed = true;
-            show_preview_quad = true;
-        }
-
-        // Mouse Hold
-        switch (selected_zone)
-        {
-        case Green:
-        case Yellow:
-        case Orange:
-        case Brown:
-        case Purple:
-        case Red:
-        case Blue:
-        case Void:
-            // Resize preview quad when NOT placing a Structure
-            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, *mouse_world_pos);
-            break;
-
-        case Road:
-            // Clamp preview quad to a line
-            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
-            break;
-
-        // Clamp the preview quad to a line
-        case Karma_Tracks:
-            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
-            break;
-
-        default:
-            break;
-        }
-    }
-    else
-    {
-        if (mouse_pressed)
-        {
-            // Mouse Released
-            mouse_released_world_pos = *mouse_world_pos;
-            mouse_released_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_released_world_pos);
-            mouse_released_hell_pos = tilemap_hell->WorldToLocalPos(mouse_released_world_pos);
-
-            mouse_pressed = false;
-            show_preview_quad = false;
-            preview_quad->ResetPreviewQuad();
-
-            switch (selected_zone)
-            {
-            case Green:
-            case Yellow:
-            case Orange:
-            case Brown:
-            case Purple:
-            case Red:
-            case Blue:
-            case Void:
-                // Place zone on mouse release
-                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, mouse_released_heaven_pos);
-                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos, mouse_released_hell_pos);
-                break;
-
-            case Structure:
-                // Place structure on mouse release
-                PlaceSelectedStructure(GetPositionPlane(mouse_released_world_pos));
-                break;
-
-            case Karma_Tracks:
-            case Road:
-                // Turn boxfill to line fill
-                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, 
-                    ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
-                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos,
-                    ClampMouseToAxis(mouse_pressed_hell_pos, mouse_released_hell_pos));
-                break;
-
-            default:
-                break;
-            }
-
-            // Set selected_zone to null after placing a zone
-            selected_zone = null;
-        }
-    }
-
-    if (selected_zone == Structure && !mouse_pressed)
-    {
-        // Move structure preview to mouse pos
-        preview_quad->SetPos(Vector3(mouse_world_pos->x, 0.01f, mouse_world_pos->z));
-    }
+    
+    //mouse stuff
+    CursorIntegration();
 }
 
 void BuildingSystem::ReceiveEvents(const AL::Event& al_event)
@@ -195,7 +98,22 @@ void BuildingSystem::ReceiveEvents(const AL::Event& al_event)
         default:
             break;
         }
-        
+    }
+
+    if(al_event.type == AL::event_cursor_interact)
+    {
+        if(al_event.cursor_interact.action == AL::Cursor::Action::button_input1)
+        {
+            if(al_event.cursor_interact.active)
+            {
+                mouse_state = true;
+            }
+            else
+            {
+                mouse_state = false;
+            }
+            CursorIntegration();
+        }
     }
     
     if(al_event.type != AL::event_build_sys) return;
@@ -634,4 +552,107 @@ bool BuildingSystem::CallEverySeconds(float dt, float time_interval)
         return true;
     }
     return false;
+}
+
+//Had to move this in a function has the order in which event were dispatched was creating issues
+void BuildingSystem::CursorIntegration()
+{
+    if (mouse_state)
+    {
+        if (!mouse_pressed)
+        {
+            // Mouse Pressed
+            mouse_pressed_world_pos = *mouse_world_pos;
+            mouse_pressed_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_pressed_world_pos);
+            mouse_pressed_hell_pos = tilemap_hell->WorldToLocalPos(mouse_pressed_world_pos);
+
+            mouse_pressed = true;
+            show_preview_quad = true;
+        }
+
+        // Mouse Hold
+        switch (selected_zone)
+        {
+        case Green:
+        case Yellow:
+        case Orange:
+        case Brown:
+        case Purple:
+        case Red:
+        case Blue:
+        case Void:
+            // Resize preview quad when NOT placing a Structure
+            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, *mouse_world_pos);
+            break;
+
+        case Road:
+            // Clamp preview quad to a line
+            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
+            break;
+
+        // Clamp the preview quad to a line
+        case Karma_Tracks:
+            preview_quad->ResizePreviewQuad(mouse_pressed_world_pos, ClampMouseToAxis(mouse_pressed_world_pos, *mouse_world_pos));
+            break;
+
+        default:
+            break;
+        }
+    }
+    else
+    {
+        if (mouse_pressed)
+        {
+            // Mouse Released
+            mouse_released_world_pos = *mouse_world_pos;
+            mouse_released_heaven_pos = tilemap_heaven->WorldToLocalPos(mouse_released_world_pos);
+            mouse_released_hell_pos = tilemap_hell->WorldToLocalPos(mouse_released_world_pos);
+
+            mouse_pressed = false;
+            show_preview_quad = false;
+            preview_quad->ResetPreviewQuad();
+
+            switch (selected_zone)
+            {
+            case Green:
+            case Yellow:
+            case Orange:
+            case Brown:
+            case Purple:
+            case Red:
+            case Blue:
+            case Void:
+                // Place zone on mouse release
+                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, mouse_released_heaven_pos);
+                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos, mouse_released_hell_pos);
+                break;
+
+            case Structure:
+                // Place structure on mouse release
+                PlaceSelectedStructure(GetPositionPlane(mouse_released_world_pos));
+                break;
+
+            case Karma_Tracks:
+            case Road:
+                // Turn boxfill to line fill
+                tilemap_heaven->BoxFill(building_manager_heaven, vibe_tilemap_heaven, selected_zone, mouse_pressed_heaven_pos, 
+                    ClampMouseToAxis(mouse_pressed_heaven_pos, mouse_released_heaven_pos));
+                tilemap_hell->BoxFill(building_manager_hell, vibe_tilemap_hell, selected_zone, mouse_pressed_hell_pos,
+                    ClampMouseToAxis(mouse_pressed_hell_pos, mouse_released_hell_pos));
+                break;
+
+            default:
+                break;
+            }
+
+            // Set selected_zone to null after placing a zone
+            selected_zone = null;
+        }
+    }
+
+    if (selected_zone == Structure && !mouse_pressed)
+    {
+        // Move structure preview to mouse pos
+        preview_quad->SetPos(Vector3(mouse_world_pos->x, 0.01f, mouse_world_pos->z));
+    }
 }

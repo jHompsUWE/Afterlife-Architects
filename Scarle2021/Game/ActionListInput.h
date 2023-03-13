@@ -9,7 +9,11 @@ namespace AL
 			unknown = 0, //Keyboard not handled
 			build_houses,
 			show_vibes,
-			place_zone_green
+			place_zone_green,
+			camera_up,
+			camera_down,
+			camera_left,
+			camera_right
 		};
 	};
 }

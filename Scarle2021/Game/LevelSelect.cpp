@@ -43,9 +43,6 @@ bool LevelSelect::init()
 
 void LevelSelect::Update(GameData* game_data)
 {
-    //saves mouse pos
-    auto mouse_pos = Vector2(game_data->mouse_state.x, game_data->mouse_state.y);
-
     for (auto& button : buttons)
     {
         button->update(game_data);

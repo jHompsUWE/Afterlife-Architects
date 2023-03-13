@@ -26,36 +26,36 @@ void Player::Tick(GameData* _GD)
 	Vector3 forwardMove = 40.0f * Vector3::Forward;
 	Matrix rotMove = Matrix::CreateRotationY(m_yaw);
 	forwardMove = Vector3::Transform(forwardMove, rotMove);
-	if (_GD->keyboard_state.W)
-	{
-		m_acc += forwardMove;
-	}
-	if (_GD->keyboard_state.S)
-	{
-		m_acc -= forwardMove;
-	}
-	
-	//change orinetation of player
-	float rotSpeed = 2.0f * _GD->delta_time;
-	if (_GD->keyboard_state.A)
-	{
-		m_yaw += rotSpeed;
-	}
-	if (_GD->keyboard_state.D)
-	{
-		m_yaw -= rotSpeed;
-	}
-
-	//move player up and down
-	if (_GD->keyboard_state.R)
-	{
-		m_acc.y += 40.0f;
-	}
-
-	if (_GD->keyboard_state.F)
-	{
-		m_acc.y -= 40.0f;
-	}
+	// if (_GD->keyboard_state.W)
+	// {
+	// 	m_acc += forwardMove;
+	// }
+	// if (_GD->keyboard_state.S)
+	// {
+	// 	m_acc -= forwardMove;
+	// }
+	//
+	// //change orinetation of player
+	// float rotSpeed = 2.0f * _GD->delta_time;
+	// if (_GD->keyboard_state.A)
+	// {
+	// 	m_yaw += rotSpeed;
+	// }
+	// if (_GD->keyboard_state.D)
+	// {
+	// 	m_yaw -= rotSpeed;
+	// }
+	//
+	// //move player up and down
+	// if (_GD->keyboard_state.R)
+	// {
+	// 	m_acc.y += 40.0f;
+	// }
+	//
+	// if (_GD->keyboard_state.F)
+	// {
+	// 	m_acc.y -= 40.0f;
+	// }
 
 	//limit motion of the player
 	float length = m_pos.Length();

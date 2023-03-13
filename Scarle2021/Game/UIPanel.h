@@ -10,16 +10,17 @@
 #include "EconomyManager.h"
 
 
-class UIPanel
+class UIPanel : public IEventReceiver
 {
 public:
     UIPanel(Vector2 _panelPosition, ID3D11Device* _d3dDevice,std::string
         _filepath,Vector2 _setScale);
 
-    ~UIPanel();
+    ~UIPanel() override;
 
     void update(GameData* _gameData, Vector2& _mousePosition);
     void render(DrawData2D* _drawData);
+    void ReceiveEvents(const AL::Event& al_event) override;
 
     void setPostion(Vector2 _new_pos);
     void setScale(Vector2& _newScale);
@@ -45,6 +46,7 @@ private:
     
     Vector2 panel_res {0,0};
     Vector2 panel_pos {0,0};
+    Vector2 mouse_pos {0,0};
     Vector2 old_mouse_pos_panel {0,0};
 
     bool toggle_click_panel = false;

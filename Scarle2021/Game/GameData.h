@@ -19,8 +19,8 @@ struct GameData
 	GameState current_game_state = gs_game_over; //global GameState
 
 	//player input state, this is here mostly for debug reasons.
-	Mouse::State mouse_state;
-	Keyboard::State keyboard_state;
-	Keyboard::KeyboardStateTracker keyboard_state_tracker;
+	// Mouse::State mouse_state;
+	// Keyboard::State keyboard_state;
+	// Keyboard::KeyboardStateTracker keyboard_state_tracker;
 };
 #endif

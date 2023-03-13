@@ -56,6 +56,7 @@ namespace AL
 		~NewEventManager() override;
 
 		//Key mapping
+		void MouseScrollToEvent(const Mouse::State& mouse);
 		void MouseMovToEvent(const Mouse::State& mouse);
 		void MapEntryToEvent(bool state, Input::Action action, bool repeat = false);
 		void MapEntryToEvent(bool state, Cursor::Action action, bool repeat = false);
@@ -75,6 +76,7 @@ namespace AL
 		std::vector<Event> event_list{};
 
 		//Saves mouse pos
+		int mouse_scroll = 0;
 		int mouse_x = 0;
 		int mouse_y = 0;
 	};

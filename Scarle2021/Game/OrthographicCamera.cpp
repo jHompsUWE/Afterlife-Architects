@@ -3,16 +3,20 @@
 #include "GameData.h"
 #include <iostream>
 
+#include "NewEventManager.h"
+
 OrthographicCamera::OrthographicCamera(float _near_plane, float _far_plane, Vector3 _offset) :
 	near_plane(_near_plane), far_plane(_far_plane), offset(_offset)
 {
 	//win_x = _win_x;
 	//win_x = _win_y;
+
+	AL::NewEventManager::AddEventReceiver(this);
 }
 
 OrthographicCamera::~OrthographicCamera()
 {
-
+	AL::NewEventManager::RemoveEventReceiver(this);
 }
 
 void OrthographicCamera::Tick(GameData* _GD)
@@ -20,72 +24,86 @@ void OrthographicCamera::Tick(GameData* _GD)
 	// Calculate movement vectors here so it has access to delta time
 	vertical_move = camera_speed * Vector3(1, 0, 1) * (zoom_value / zoom_max) * _GD->delta_time;
 	horizontal_move = camera_speed * Vector3(1, 0, -1) * (zoom_value / zoom_max) * _GD->delta_time;
-
-	ReadInput(_GD);
-	//MouseInput(_GD, win_x, win_y);
+	
 	RecalculateProjViewPos();
 	GameObject::Tick(_GD);
 }
 
-/// <summary>
-/// CHANGE THIS TO NEW EVENT SYSTEM WHEN DONE
-/// </summary>
-/// <param name="_GD"></param>
-void OrthographicCamera::ReadInput(GameData* _GD)
+void OrthographicCamera::MouseInput(GameData* _GD, int win_x, int win_y)
 {
-	if (_GD->keyboard_state.W)
+	if (mouse_pos.x > win_x - boundary)
 	{
-		MoveUp();
+		MoveRight();
 	}
-
-	if (_GD->keyboard_state.S)
-	{
-		MoveDown();
-	}
-
-	if (_GD->keyboard_state.A)
+	if (mouse_pos.x < boundary)
 	{
 		MoveLeft();
 	}
 
-	if (_GD->keyboard_state.D)
+	if (mouse_pos.y > win_y - boundary)
 	{
-		MoveRight();
+		MoveDown();
 	}
-
-	// Compare current scroll value with last scroll value
-	if (_GD->mouse_state.scrollWheelValue < last_scroll_value)
+	if (mouse_pos.y < boundary)
 	{
-		// Mouse scrolled down
-		last_scroll_value = _GD->mouse_state.scrollWheelValue;
-		ZoomOut();
-	}
-	else if (_GD->mouse_state.scrollWheelValue > last_scroll_value)
-	{
-		// Mouse scrolled up
-		last_scroll_value = _GD->mouse_state.scrollWheelValue;
-		ZoomIn();
+		MoveUp();
 	}
 }
 
-void OrthographicCamera::MouseInput(GameData* _GD, int win_x, int win_y)
+void OrthographicCamera::ReceiveEvents(const AL::Event& al_event)
 {
-	if (_GD->mouse_state.x > win_x - boundary)
+	switch (al_event.type)
 	{
-		MoveRight();
-	}
-	if (_GD->mouse_state.x < boundary)
-	{
-		MoveLeft();
-	}
+	case AL::event_input:
 
-	if (_GD->mouse_state.y > win_y - boundary)
-	{
-		MoveDown();
-	}
-	if (_GD->mouse_state.y < boundary)
-	{
-		MoveUp();
+		switch (al_event.input.action)
+		{
+			case AL::Input::camera_up:
+				MoveUp();
+				break;
+
+			case AL::Input::camera_down:
+				MoveDown();
+				break;
+
+			case AL::Input::camera_left:
+				MoveLeft();
+				break;
+
+			case AL::Input::camera_right:
+				MoveRight();
+				break;
+
+			default:
+				break;
+		}
+
+		break;
+
+	case AL::event_cursor_move:
+		mouse_pos.x = al_event.cursor_moved.pos_x;
+		mouse_pos.y = al_event.cursor_moved.pos_y;
+		break;
+
+	case AL::event_cursor_interact:
+
+		switch (al_event.cursor_interact.action)
+		{
+			case AL::Cursor::scroll_up:
+				ZoomIn();
+				break;
+
+			case AL::Cursor::scroll_down:
+				ZoomOut();
+				break;
+
+			default:
+				break;
+		}
+		break;
+
+	default:
+		break;
 	}
 }
 
