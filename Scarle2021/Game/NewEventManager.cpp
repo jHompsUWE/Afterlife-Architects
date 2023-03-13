@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "DataManager.h"
+
 namespace AL
 {
 	//Default private constructor, no need to initialize inherited class
@@ -125,6 +127,8 @@ namespace AL
 	 */
 	void NewEventManager::PollKeyboard(Keyboard::State keyboard)
 	{
+		if(controller_connected) return;
+		
 		//Map keyboard keys here
 		//TEMPORARY
 		MapEntryToEvent(keyboard.E, Input::build_houses);
@@ -145,8 +149,12 @@ namespace AL
 	void NewEventManager::PollMouse(Mouse::State mouse)
 	{
 		//Creates event for mouse moved and scroll if necessary
+		//But only if the controller is not connected!
 		MouseMovToEvent(mouse);
 		MouseScrollToEvent(mouse);
+
+		//Prevents conflcts 
+		if(controller_connected) return;
 
 		//Map mouse keys here
 		MapEntryToEvent(mouse.leftButton, Cursor::button_input1);
@@ -162,21 +170,99 @@ namespace AL
 	{
 		if(gamepad.IsConnected())
 		{
-			//Map controller behaviour here
-
-			//Camera movement
-			MapEntryToEvent(gamepad.IsLeftThumbStickUp(), Input::camera_up, true);
-			MapEntryToEvent(gamepad.IsLeftThumbStickDown(), Input::camera_down, true);
-			MapEntryToEvent(gamepad.IsLeftThumbStickLeft(), Input::camera_left, true);
-			MapEntryToEvent(gamepad.IsLeftThumbStickRight(), Input::camera_right, true);
-
-			//Camera zoom
-			MapEntryToEvent(gamepad.IsLeftShoulderPressed(), Cursor::scroll_up);
-			MapEntryToEvent(gamepad.IsRightShoulderPressed(), Cursor::scroll_down);
+			//Updates the controller state
+			controller_connected = true;
 			
-			//Cursor interactions
-			MapEntryToEvent(gamepad.IsRightTriggerPressed(), Cursor::button_input1);
-			MapEntryToEvent(gamepad.IsLeftTriggerPressed(), Cursor::button_input2);
+			//Map controller behaviour here
+			//std::cout << gamepad.thumbSticks.leftX << ", " << gamepad.thumbSticks.leftY << " Thumbstick left" << std::endl;
+			// std::cout << gamepad.thumbSticks.rightX << ", " << gamepad.thumbSticks.rightY << " Thumbstick right" << std::endl;
+			// std::cout << gamepad.triggers.left << " Triggher left" << std::endl;
+			// std::cout << gamepad.triggers.right << " Triggher rgiht" << std::endl;
+
+			//Camera Movement 
+			if(gamepad.thumbSticks.rightX < -0.2f || gamepad.thumbSticks.rightX > 0.2f)
+			{
+				if(gamepad.thumbSticks.rightX > 0.5f)
+				{
+					MapEntryToEvent(true, Input::camera_right, true);
+				}
+				else if(gamepad.thumbSticks.rightX < 0.5f)
+				{
+					MapEntryToEvent(true, Input::camera_left, true);
+				}
+			}
+
+			if(gamepad.thumbSticks.rightY < -0.2f || gamepad.thumbSticks.rightY > 0.2f)
+			{
+				if(gamepad.thumbSticks.rightY > 0.5f)
+				{
+					MapEntryToEvent(true, Input::camera_up, true);
+
+				}
+				else if(gamepad.thumbSticks.rightY < 0.5f)
+				{
+					MapEntryToEvent(true, Input::camera_down, true);
+
+				}
+			}
+
+			//Camera movement 
+			if(gamepad.triggers.left > 0.5f)
+			{
+				MapEntryToEvent(true, Cursor::button_input1);
+			}
+			else
+			{
+				MapEntryToEvent(false, Cursor::button_input1);
+			}
+				
+			// MapEntryToEvent(gamepad.IsLeftThumbStickUp(), Input::camera_up, true);
+			// MapEntryToEvent(gamepad.IsLeftThumbStickDown(), Input::camera_down, true);
+			// MapEntryToEvent(gamepad.IsLeftThumbStickLeft(), Input::camera_left, true);
+			// MapEntryToEvent(gamepad.IsLeftThumbStickRight(), Input::camera_right, true);
+			
+			// //Camera zoom
+			MapEntryToEvent(gamepad.IsLeftShoulderPressed(), Cursor::scroll_down);
+			MapEntryToEvent(gamepad.IsRightShoulderPressed(), Cursor::scroll_up);
+			
+			// //Cursor interactions
+			// MapEntryToEvent(gamepad.IsRightTriggerPressed(), Cursor::button_input1);
+			// MapEntryToEvent(gamepad.IsLeftTriggerPressed(), Cursor::button_input2);
+
+			//Mouse movement
+			if(gamepad.thumbSticks.leftX < -0.2f || gamepad.thumbSticks.leftX > 0.2f)
+			{
+				if(gamepad.thumbSticks.leftX > 0.5f)
+				{
+					mouse_x += cursor_speed;
+					return;
+				}
+				if(gamepad.thumbSticks.leftX < 0.5f)
+				{
+					mouse_x -= cursor_speed;
+					return;
+				}
+			}
+
+			if(gamepad.thumbSticks.leftY < -0.2f || gamepad.thumbSticks.leftY > 0.2f)
+			{
+				if(gamepad.thumbSticks.leftY > 0.5f)
+				{
+					mouse_y -= cursor_speed;
+					return;
+
+				}
+				if(gamepad.thumbSticks.leftY < 0.5f)
+				{
+					mouse_y += cursor_speed;
+					return;
+
+				}
+			}
+		}
+		else
+		{
+			controller_connected = false;
 		}
 	}
 
@@ -253,8 +339,11 @@ namespace AL
 		//Check if mouse position has changed, and generate and event is so
 		if(mouse.x != mouse_x || mouse.y != mouse_y)
 		{
-			mouse_x = mouse.x;
-			mouse_y = mouse.y;
+			if(!controller_connected)
+			{
+				mouse_x = mouse.x;
+				mouse_y = mouse.y;
+			}
 
 			GenerateEvent(event_cursor_move, mouse_x, mouse_y);
 		}
